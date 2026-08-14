@@ -1,0 +1,277 @@
+{%- comment -%}
+  ============================================================
+  NOTIFY ME WHEN AVAILABLE  —  custom back-in-stock capture
+  ------------------------------------------------------------
+  Submits a REAL {% form 'customer' %} (same form type as your
+  footer newsletter) NATIVELY, but targeted at a hidden <iframe>.
+  Why: this store rejects fetch/XHR posts to /contact with a 400,
+  but accepts normal form navigations (your footer proves it).
+  Targeting an iframe gives a native post WITHOUT reloading the
+  page, so:
+    - no 400 (it's a real navigation, not fetch)
+    - no page reload
+    - no scroll-to-footer
+    - footer newsletter is NOT touched / no false success
+    - the modal shows its own success state
+
+  Saved per signup, as TAGS on the Shopify customer:
+    notify-me
+    waitlist-<product-handle>          (filter: who wants this product)
+    variant-<variant-handle>           (only if the product has variants)
+    sku-<sku>                          (if set)
+    signup-<item-key>-<YYYY-MM-DD>     (date paired to THIS item, so
+                                        multi-product signups stay distinct)
+    where <item-key> = sku, else handle(+variant)
+
+  Does NOT send the restock email. When stock lands, filter
+  Customers by tag  waitlist-<handle>  and send via Shopify Email,
+  or pick up the tag in a Klaviyo segment once connected.
+
+  INSTALL:
+    1. Save as  snippets/notify-me.liquid
+    2. Render near the Add to Cart button:  {% render 'notify-me' %}
+       (placement doesn't matter — the form relocates itself to <body>)
+    3. Appears only when the selected variant is sold out.
+  ============================================================
+{%- endcomment -%}
+
+{%- assign nm_variant = product.selected_or_first_available_variant -%}
+
+{%- unless nm_variant.available -%}
+  {%- liquid
+    assign nm_variant_handle = nm_variant.title | handle
+    if nm_variant.sku != blank
+      assign nm_key = nm_variant.sku | handle
+    elsif product.has_only_default_variant
+      assign nm_key = product.handle
+    else
+      assign nm_key = product.handle | append: '-' | append: nm_variant_handle
+    endif
+  -%}
+
+  <div class="notify-me" data-notify-me>
+    <button type="button" class="button btn btn--large notify-me__trigger" style="width: 100%;margin-top: 15px;" data-notify-open>
+      Notify Me When Available
+    </button>
+
+    <template data-notify-template>
+      <div class="notify-me__overlay" data-notify-overlay data-notify-key="{{ nm_key }}" hidden>
+        <div class="notify-me__modal" role="dialog" aria-modal="true">
+          <button type="button" class="notify-me__close" data-notify-close aria-label="Close">&times;</button>
+
+          {%- comment -%} ---------- FORM VIEW ---------- {%- endcomment -%}
+          <div data-notify-view="form">
+            <h2 class="notify-me__title">{{ product.title }}</h2>
+            <p class="notify-me__text">Join the list to receive a notification when this item comes back in stock.</p>
+
+            {%- form 'customer', id: 'notify_me_signup' -%}
+              <input
+                type="hidden"
+                name="contact[tags]"
+                data-notify-tags
+                value="notify-me, waitlist-{{ product.handle }}{% unless product.has_only_default_variant %}, variant-{{ nm_variant_handle }}{% endunless %}{% if nm_variant.sku != blank %}, sku-{{ nm_variant.sku }}{% endif %}">
+
+              <label class="notify-me__label" for="notify-me-email">Email</label>
+              <input
+                type="email"
+                id="notify-me-email"
+                name="contact[email]"
+                class="notify-me__input"
+                placeholder="you@example.com"
+                autocomplete="email"
+                data-notify-email
+                required>
+
+              <button type="button" class="button button--large notify-me__submit" data-notify-submit>
+                Notify me when available
+              </button>
+
+              <p class="notify-me__error" data-notify-error hidden>
+                Something went wrong &mdash; please try again.
+              </p>
+            {%- endform -%}
+          </div>
+
+          {%- comment -%} ---------- SUCCESS VIEW ---------- {%- endcomment -%}
+          <div data-notify-view="success" hidden>
+            <h2 class="notify-me__title">You're on the list!</h2>
+            <p class="notify-me__text">We'll let you know as soon as {{ product.title }} is back in stock.</p>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <style>
+    .notify-me__trigger { text-align: center; }
+
+    .notify-me__overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
+      padding: 16px;
+    }
+    .notify-me__overlay[hidden] { display: none; }
+
+    .notify-me__modal {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      color: #222;
+      border-radius: 8px;
+      padding: 32px 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+      font-family: "DM Sans","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    .notify-me__close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: none;
+      border: 0;
+      font-size: 26px;
+      line-height: 1;
+      color: #ccc;
+      cursor: pointer;
+    }
+    .notify-me__close:hover { color: #999; }
+
+    .notify-me__title { margin: 0 0 8px; font-size: 1.35rem; color: #222; }
+    .notify-me__text  { margin: 0 0 20px; font-size: 0.95rem; line-height: 1.5; color: #222; }
+
+    .notify-me__label { display: block; margin-bottom: 6px; font-size: 0.85rem; font-weight: 600; }
+    .notify-me__input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: #222;
+    }
+    .notify-me__input:focus {
+      outline: none;
+      border-color: #d2bca6;
+      box-shadow: 0 0 0 2px rgba(210, 188, 166, 0.4);
+    }
+
+    .notify-me__submit {
+      width: 100%;
+      padding: 13px 16px;
+      border: 0;
+      border-radius: 4px;
+      background: #d2bca6;
+      color: #fff;
+      font-size: 1rem;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .notify-me__submit:hover { filter: brightness(0.95); }
+    .notify-me__submit[disabled] { opacity: 0.6; cursor: default; }
+
+    .notify-me__error {
+      margin: 14px 0 0;
+      padding: 10px 12px;
+      border-radius: 4px;
+      background: #fcd6d7;
+      color: #C72E2F;
+      font-size: 0.85rem;
+    }
+  </style>
+
+  <script>
+    (function () {
+      var root = document.querySelector('[data-notify-me]');
+      if (!root || root.dataset.notifyBound) return;
+      root.dataset.notifyBound = 'true';
+
+      var tpl     = root.querySelector('[data-notify-template]');
+      var openBtn = root.querySelector('[data-notify-open]');
+      if (!tpl || !openBtn) return;
+
+      // Clone the modal (with its real <form>) out to <body>: keeps it off the
+      // cart form so it never hijacks Add to Cart.
+      var overlay = tpl.content.firstElementChild.cloneNode(true);
+      document.body.appendChild(overlay);
+      tpl.remove();
+
+      var closeBtn = overlay.querySelector('[data-notify-close]');
+      var formEl   = overlay.querySelector('form');
+      var emailEl  = overlay.querySelector('[data-notify-email]');
+      var tagsEl   = overlay.querySelector('[data-notify-tags]');
+      var submitEl = overlay.querySelector('[data-notify-submit]');
+      var errorEl  = overlay.querySelector('[data-notify-error]');
+      var formView = overlay.querySelector('[data-notify-view="form"]');
+      var okView   = overlay.querySelector('[data-notify-view="success"]');
+
+      var baseTags = tagsEl.value;                          // product/variant/sku
+      var itemKey  = overlay.getAttribute('data-notify-key') || '';
+
+      // Hidden iframe sink: the form posts NATIVELY into this, so the request
+      // is a real navigation (not blocked like fetch) and the page never reloads.
+      var sinkName = 'notify-me-sink';
+      var sink = document.createElement('iframe');
+      sink.name = sinkName;
+      sink.setAttribute('aria-hidden', 'true');
+      sink.style.display = 'none';
+      document.body.appendChild(sink);
+      formEl.setAttribute('target', sinkName);  // any submit lands in the iframe
+
+      var hasSubmitted = false;
+      var failTimer = null;
+
+      sink.addEventListener('load', function () {
+        if (!hasSubmitted) return;        // ignore the initial about:blank load
+        hasSubmitted = false;
+        clearTimeout(failTimer);
+        formView.hidden = true;
+        okView.hidden = false;
+      });
+
+      function open()  { overlay.hidden = false; if (emailEl) emailEl.focus(); }
+      function close() { overlay.hidden = true; }
+
+      openBtn.addEventListener('click', open);
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !overlay.hidden) close();
+      });
+
+      function doSubmit() {
+        if (!emailEl.value.trim() || !emailEl.checkValidity()) { emailEl.reportValidity(); return; }
+
+        errorEl.hidden = true;
+        submitEl.disabled = true;
+
+        // Date paired to THIS item, captured (Sydney local) at submit time
+        var dateTag = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
+        tagsEl.value = baseTags + ', signup-' + itemKey + '-' + dateTag;
+
+        hasSubmitted = true;
+        formEl.submit();                  // native post into the hidden iframe
+
+        // Fallback: if the iframe never loads, surface an error
+        clearTimeout(failTimer);
+        failTimer = setTimeout(function () {
+          if (hasSubmitted) {
+            hasSubmitted = false;
+            errorEl.hidden = false;
+            submitEl.disabled = false;
+          }
+        }, 15000);
+      }
+
+      submitEl.addEventListener('click', function (e) { e.preventDefault(); doSubmit(); });
+      formEl.addEventListener('submit',  function (e) { e.preventDefault(); doSubmit(); });
+    })();
+  </script>
+{%- endunless -%}

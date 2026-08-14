@@ -1,0 +1,113 @@
+<!-- Begin Shopify-Afterpay JavaScript Snippet (v1.2.1) -->
+{% if cart.currency.iso_code == shop.currency %}
+<script type="text/javascript">
+// Overrides:
+var afterpay_msg_size = 'xs';  // Can be 'xs', 'sm', 'md' or 'lg'.
+// var afterpay_bold_amount = true;
+var afterpay_logo_theme = 'black';  // Can be 'colour', 'black' or 'white'.
+// var afterpay_modal_open_icon = true;
+// var afterpay_hide_upper_limit = false;
+// var afterpay_hide_lower_limit = true;
+// var afterpay_show_if_outside_limits = true;
+
+// var afterpay_product_integration_enabled = true;
+// var afterpay_product_selector = '#product-price-selector';
+// var afterpay_variable_price_fallback = false;
+// var afterpay_variable_price_fallback_selector = '';
+// var afterpay_variable_price_fallback_method = 'mutation';  // Can be 'mutation' or 'interval'.
+
+// var afterpay_cart_integration_enabled = true;
+// var afterpay_cart_static_selector = '#cart-subtotal-selector';
+// var afterpay_variable_subtotal_fallback = false;
+// var afterpay_variable_subtotal_fallback_selector = '';
+// var afterpay_variable_subtotal_fallback_method = 'mutation'; // Can be 'mutation' or 'interval'.
+
+// var afterpay_dynamic_cart_integration_enabled = false;
+// var afterpay_dynamic_cart_selector = '.cart-drawer__footer .totals';
+// var afterpay_dynamic_cart_observer_target = '#CartDrawer';
+
+// var afterpay_footer_logo_enabled = true;
+// var afterpay_footer_logo_format = 'icon';  // Can be 'icon', 'stacked' or 'logo'.
+// var afterpay_footer_logo_theme = 'colour'; // Can be 'colour', 'black' or 'white'.
+// var afterpay_footer_logo_background = 'border';  // Can be 'border' or 'transparent'.
+// var afterpay_footer_logo_container = 'footer ul.payment-icons';
+// var afterpay_footer_logo_template = '<li class="payment-icon"><object data="{logo_path}" type="image/svg+xml"></object></li>';
+
+// Non-editable fields:
+var afterpay_js_language = {{ localization.language.iso_code | slice: 0, 2 | json }};
+var afterpay_js_country = {{ localization.country.iso_code | json }};
+var afterpay_shop_currency = {{ shop.currency | json }};
+var afterpay_cart_currency = {{ cart.currency.iso_code | json }};
+var afterpay_shop_money_format = {{ shop.money_format | json }};
+var afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
+var afterpay_theme_name = {{ theme.name | json }};
+var afterpay_product = {{ product | json }};
+var afterpay_product_collections = {{ product.collections | map: 'title' | join: ',' | json }};
+var afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
+var afterpay_cart_total_price = {{ cart.total_price | json }};
+var afterpay_cart_skus = {{cart.items | map: 'sku' | join: ',' | json }};
+var afterpay_cart_collections = {{cart.items | map: 'product' | map: 'collections' | map: 'title' | uniq | join: ',' | json }};
+var afterpay_js_snippet_version = '1.2.1';
+</script>
+<script type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
+{% else %}
+<!-- Afterpay disabled: {{ cart.currency.iso_code }} != {{ shop.currency }} -->
+{% endif %}
+<style> 
+square-placement { 
+ --logo-badge-width: 70px; /* Must be >= 64px */ 
+}
+</style>
+<!-- End Shopify-Afterpay JavaScript Snippet (v1.2.1) -->
+
+ {%  comment %}
+<!-- Zip Widget -->
+
+<script type="text/javascript" src="https://static.zip.co/lib/js/zm-widget-js/dist/zip-widget.min.js"></script>
+       
+<div style="cursor:pointer" 
+     id="zip-product-widget" 
+     data-zm-widget="popup" 
+     data-zm-region="NZ"
+     data-env="production"
+     data-zm-merchant=""      
+     data-zm-price="{{ cart.total_price | money }}" 
+     data-zm-asset="productwidget" 
+     data-zm-popup-asset="termsdialog" 
+     >
+</div>
+
+<!-- Zip Widget End -->
+
+
+
+<div style="text-align: center;">
+
+ 
+  <!-- 
+<svg style="width:98px" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" width="98" height="23" class="compact-badge-logo" viewBox="0 0 100 21">
+                            <path class="afterpay-logo-badge-background" fill="#b2fce4" d="M89.85 20.92h-78.9a10.42 10.42 0 110-20.82h78.89a10.42 10.42 0 010 20.83v-.01z"></path>
+                            <g class="afterpay-logo-badge-lockup">
+                              <path d="M85.05 6.37L82.88 5.1l-2.2-1.27a2.2 2.2 0 00-3.3 1.9v.29c0 .16.08.3.22.38l1.03.58c.28.16.63-.04.63-.37v-.67c0-.34.36-.54.65-.38l2.02 1.16 2 1.15c.3.16.3.58 0 .75l-2 1.15-2.02 1.16a.43.43 0 01-.65-.38v-.33a2.2 2.2 0 00-3.28-1.9l-2.2 1.26-2.19 1.25a2.2 2.2 0 000 3.8l2.18 1.25 2.2 1.27a2.2 2.2 0 003.3-1.9v-.3c0-.15-.09-.3-.23-.37L78.02 14a.43.43 0 00-.64.37v.67c0 .34-.36.54-.65.38l-2-1.16-2-1.15a.43.43 0 010-.75l2-1.15 2-1.16c.3-.16.65.05.65.38v.33a2.2 2.2 0 003.3 1.9l2.2-1.26 2.17-1.25a2.2 2.2 0 000-3.8z"></path>
+                              <path d="M70.77 6.78l-5.1 10.53h-2.12l1.91-3.93-3-6.6h2.17l1.93 4.42 2.1-4.42h2.11z"></path>
+                              <path d="M19.8 10.5c0-1.24-.92-2.12-2.04-2.12s-2.03.9-2.03 2.14c0 1.23.91 2.14 2.03 2.14s2.03-.88 2.03-2.14m.02 3.74v-.97a3 3 0 01-2.36 1.09c-2.05 0-3.6-1.65-3.6-3.86 0-2.2 1.61-3.87 3.65-3.87.95 0 1.76.42 2.31 1.08v-.95h1.84v7.48h-1.84z"></path>
+                              <path d="M30.6 12.6c-.65 0-.84-.24-.84-.87V8.4h1.2V6.78h-1.2V4.96h-1.88v1.82h-2.43v-.74c0-.63.24-.87.9-.87h.42V3.72h-.9c-1.56 0-2.3.5-2.3 2.07v1h-1.04V8.4h1.04v5.85h1.88V8.4h2.43v3.66c0 1.53.6 2.19 2.11 2.19h.97V12.6h-.37z"></path>
+                              <path d="M37.35 9.85c-.13-.97-.93-1.56-1.86-1.56-.92 0-1.7.57-1.88 1.56h3.74zM33.6 11c.13 1.1.93 1.74 1.93 1.74.8 0 1.4-.37 1.76-.97h1.94c-.45 1.58-1.87 2.6-3.74 2.6a3.68 3.68 0 01-3.85-3.85 3.78 3.78 0 013.9-3.9 3.74 3.74 0 013.8 4.38H33.6z"></path>
+                              <path d="M51.35 10.5c0-1.2-.9-2.12-2.03-2.12-1.12 0-2.03.9-2.03 2.14 0 1.23.9 2.14 2.03 2.14 1.12 0 2.03-.93 2.03-2.14m-5.92 6.79V6.78h1.84v.97a2.97 2.97 0 012.36-1.1c2.02 0 3.6 1.65 3.6 3.85s-1.6 3.87-3.65 3.87a2.9 2.9 0 01-2.26-1v3.93h-1.9.01z"></path>
+                              <path d="M59.86 10.5c0-1.24-.9-2.12-2.03-2.12-1.12 0-2.04.9-2.04 2.14 0 1.23.92 2.14 2.04 2.14s2.03-.88 2.03-2.14m.02 3.74v-.97a3 3 0 01-2.36 1.09c-2.05 0-3.6-1.65-3.6-3.86 0-2.2 1.61-3.87 3.64-3.87.96 0 1.76.42 2.32 1.08v-.95h1.84v7.48h-1.84z"></path>
+                              <path d="M42.11 7.5s.47-.86 1.62-.86c.5 0 .8.17.8.17v1.9s-.69-.42-1.32-.33c-.64.09-1.04.67-1.04 1.45v4.42h-1.9V6.78h1.84v.73z"></path>
+                            </g>
+                          </svg> -->
+   
+
+
+<svg style="width:98px" width=“98” viewBox="0 0 300 135" fill="none" xmlns="http://www.w3.org/2000/svg" height="26">
+<path d="M300 20C300 8.9543 291.046 0 280 0H20C8.9543 0 0 8.95431 0 20V115C0 126.046 8.95431 135 20 135H280C291.046 135 300 126.046 300 115V20Z" fill="#FFFFFA"/>
+<path d="M117.043 46.5264L123.925 102.52H191.223L184.34 46.5264H117.043Z" fill="#AA8FFF"/>
+<path d="M136.241 25.159C140.533 29.1942 141.122 35.5407 137.556 39.3346C133.99 43.1285 127.619 42.9328 123.327 38.8977C119.035 34.8626 118.446 28.5161 122.012 24.7222C125.578 20.9284 131.949 21.1239 136.241 25.159Z" fill="#1A0826"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M261.751 66.6885C260.202 54.0955 250.31 46.4822 236.877 46.5264H192.13L199.012 102.52H219.151L217.779 91.3212H239.09C255.842 91.3212 263.521 80.8749 261.751 66.6885ZM236.899 75.6298L215.831 75.6519L214.171 62.2179L235.35 62.24C240.329 62.3064 242.874 65.095 243.295 68.9459C243.56 71.4026 242.431 75.6298 236.899 75.6298Z" fill="#1A0826"/>
+<path d="M46.9571 86.8728L48.8824 102.52H116.113L113.9 84.6153H82.5643L82.2766 82.38L111.156 62.218L109.231 46.5265H42L44.1909 64.4532H75.5934L75.8811 66.6886L46.9571 86.8728Z" fill="#1A0826"/>
+</svg> 
+
+</div>
+ {% endcomment %}

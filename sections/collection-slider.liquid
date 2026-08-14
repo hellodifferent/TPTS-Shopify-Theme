@@ -1,0 +1,51 @@
+<div class="collection-slider-custom">
+  <div class="slider slider-nav">
+     <div class="ig-story-section-ctr">
+       {%- for block in section.blocks -%}
+            <a href="{{ block.settings.link }}" class="story-link">
+              {% if block.settings.coll-img !=blank %}
+              <img src="{{ block.settings.coll-img | img_url: 'master'}}">
+                {% endif %}
+             <h3>{{ block.settings.linktext }}</h3>
+            </a>
+         {% endfor %}
+       </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Collection slider",
+    "class": "collection-slider collection-slider-after-header",
+    "settings": [],
+        "blocks":[
+        {
+        "type" : "select",
+        "name" : "select",
+        "settings" : [
+          {
+            "type": "image_picker",
+            "id": "coll-img",
+            "label": "add image"
+          },
+          {
+            "id" : "link",
+            "type" : "url",
+            "label" : "Collection Link"
+          },
+          {
+            "id" : "linktext",
+            "type" : "text",
+            "label" : "Collection name"
+          }
+        ]
+        }
+        
+        ],
+    "presets" : [
+    {
+      "name" : "Collection slider"
+      }
+    ]
+  }
+{% endschema %}
