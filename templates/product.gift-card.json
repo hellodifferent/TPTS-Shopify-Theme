@@ -1,1 +1,621 @@
-{"sections":{"main":{"type":"main-product","blocks":{"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{"show_installments":false,"show_tax_and_shipping":false,"enable_product_reviews_by_price":false}},"loox_reviews_loox_rating_m6GRAk":{"type":"shopify:\/\/apps\/loox-reviews\/blocks\/loox-rating\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e","disabled":true,"settings":{"contentSize":16,"pattern":"","hideText":false,"alignment":"","layout":"","textColor":"","starColor":"","showAllReviews":false,"looxOpenFloatingWidget":true,"emptyRatingWidget":false}},"richtext_TzTtHp":{"type":"richtext","settings":{"richtext":"{{ product.metafields.custom.sales_line | metafield_tag }}","icon":"","icon_size":"small","enable_box":false,"box_color":"#e0f4d5","show_in_quickbuy":false}},"custom_liquid_XHRybM":{"type":"custom-liquid","disabled":true,"settings":{"custom_liquid":"<script type=\"text\/javascript\" src=\"https:\/\/static.zipmoney.com.au\/lib\/js\/zm-widget-js\/dist\/zip-widget.min.js\"><\/script>\n<div style=\"cursor:pointer\" \n     id=\"zip-product-widget\" \n     data-zm-widget=\"popup\" \n     data-zm-region=\"au\"\n     data-env=\"production\"\n     data-zm-merchant=\"\"      \n     data-zm-price=\"\" \n     data-zm-asset=\"productwidget\" \n     data-zm-popup-asset=\"termsdialog\" \n     >\n<\/div>","variant_content":false,"show_in_quickbuy":false}},"richtext_fGXwM9":{"type":"richtext","settings":{"richtext":"{{ product.metafields.custom.product_alert_notice | metafield_tag }}","icon":"","icon_size":"small","enable_box":true,"box_color":"#fdf8f3","show_in_quickbuy":false}},"sibling_product_swatches_YfdE3R":{"type":"sibling_product_swatches","settings":{}},"variant_picker_8EVKbn":{"type":"variant-picker","settings":{"show_single":false,"selector_style":"listed","dynamic_availability":"show","enable_size_chart":false,"size_chart_label":"Size guide","size_chart_variant":"Size","size_chart_source":"page","size_chart_page":""}},"buy_buttons_6Ukibb":{"type":"buy-buttons","settings":{"show_quantity_selector":false,"enable_payment_button":false,"show_backorder_text":false,"show_pickup_availability":false,"show_gift_card_recipient":false}},"icon_columns_Vz438B":{"type":"icon-columns","disabled":true,"settings":{"icon_size":"large","text_size":"sm","enable_box":true,"box_color":"#f4f4f4","icon_1":"check_mark_in_circle","icon_1_color":"rgba(0,0,0,0)","icon_1_heading":"","icon_1_text":"Icon label 1","icon_2":"star","icon_2_color":"rgba(0,0,0,0)","icon_2_heading":"","icon_2_text":"Icon label 2","icon_3":"gift","icon_3_color":"rgba(0,0,0,0)","icon_3_heading":"","icon_3_text":"Icon label 3","show_in_quickbuy":false}},"vendor":{"type":"vendor","disabled":true,"settings":{}},"divider":{"type":"divider","disabled":true,"settings":{"show_in_quickbuy":false}},"loox_reviews_loox_snippets_widget_wdPRf7":{"type":"shopify:\/\/apps\/loox-reviews\/blocks\/loox-snippets-widget\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e","disabled":true,"settings":{"reviews-type":"product-reviews","reviews-limit":10,"alignment":"left","max-width":"","color-scheme":"default","shadow":"","show-rating":true,"show-image":true,"hide-arrows-mobile":false,"font-size":14,"show-border":false,"border-radius":16,"background-color":"","text-color":"","name-color":"","rating-icon-color":"","border-color":"","shadow-color":"","product_selection":""}},"description":{"type":"description","settings":{"show_in_tab":false,"open_tab":false,"icon":"","show_in_quickbuy":false}},"divider_rBbeCm":{"type":"divider","disabled":true,"settings":{"show_in_quickbuy":false}},"image_n8F6tL":{"type":"image","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/freegifts_product_page.png","image_width":700,"url":"","open_in_new_tab":false,"show_in_quickbuy":false}},"richtext_HmgwWf":{"type":"richtext","disabled":true,"settings":{"richtext":"<p><em>This item is in stock and ready to ship<\/em><\/p>","icon":"truck","icon_size":"small","enable_box":false,"box_color":"#e0f4d5","show_in_quickbuy":false}},"richtext_cTyq7m":{"type":"richtext","disabled":true,"settings":{"richtext":"<h5>Get a free inflatable pool on orders over $350!<\/h5>","icon":"gift","icon_size":"large","enable_box":false,"box_color":"#3ea36a","show_in_quickbuy":false}},"richtext_YUacVj":{"type":"richtext","disabled":true,"settings":{"richtext":"<h5>Receive a free play mat valued at $120 when you spend over $250<\/h5>","icon":"gift","icon_size":"small","enable_box":true,"box_color":"#f5eddf","show_in_quickbuy":false}},"42dc5ee6-57ba-4d39-bd78-af4a77550dad":{"type":"accordion","settings":{"title":"Details","icon":"","content":"{{ product.metafields.custom._details | metafield_tag }}","page":"","custom_liquid":"","open":false,"variant_content":false,"show_in_quickbuy":false}},"2a2f8118-ccb9-4eee-b0b7-0f183c1795f6":{"type":"accordion","settings":{"title":"Dimensions","icon":"","content":"{{ product.metafields.custom._dimensions | metafield_tag }}","page":"","custom_liquid":"","open":false,"variant_content":false,"show_in_quickbuy":false}},"0308c122-cde7-4593-b354-f30739551e27":{"type":"accordion","settings":{"title":"Material & Care","icon":"","content":"{{ product.metafields.custom._care_instructions | metafield_tag }}","page":"","custom_liquid":"","open":false,"variant_content":false,"show_in_quickbuy":false}},"7724e8aa-e0b4-47e4-ae8e-efd5ab746965":{"type":"accordion","disabled":true,"settings":{"title":"Shipping & Delivery","icon":"","content":"<p>We aim to dispatch your order within 1-3 business days of placing your order for you to get your products as quickly as possible.<\/p><p>The delivery time is around 2-5 business days for most areas, but rural and regional areas can take up to 5-13 business days. <\/p><p>Shipping rates will be calculated at checkout, reflecting the products and the location of each customer. <\/p><p>For more detailed information, please read our <a href=\"\/policies\/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">Shipping & Return Policy.<\/a><\/p>","page":"","custom_liquid":"","open":false,"variant_content":false,"show_in_quickbuy":false}},"accordion_PEyq34":{"type":"accordion","disabled":true,"settings":{"title":"Shipping & Delivery","icon":"","content":"<p><strong>Free shipping for orders over $300 AUD. <\/strong>For orders under $300 AUD, shipping cost is $30 AUD.<\/p><p>We aim to dispatch your order within <strong>1-3 business days<\/strong> of placing your order for you to get your products as quickly as possible.<\/p><p>The delivery time is around 2-5 business days for most areas, but rural and regional areas can take up to 5-13 business days. <\/p><p>For more detailed information, please read our <a href=\"\/policies\/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">Shipping & Return Policy <\/a><\/p>","page":"","custom_liquid":"","open":false,"variant_content":false,"show_in_quickbuy":false}},"65a87f77-6a2f-4d19-bbd0-d6d80c0a487b":{"type":"accordion","disabled":true,"settings":{"title":"Returns","icon":"","content":"<p>We offer a 30-days return policy*<\/p><ul><li><strong>Full-Price Items<\/strong> can be returned to store credit (+$50 AUD extra bonus per order), exchange or refund.<\/li><li><strong>Sale Items<\/strong> can be returned for a store credit, or exchanged. No refunds.<\/li><li><strong>Final Sale Items<\/strong> are final and not eligible for a return, exchange, or refund.<\/li><\/ul><p>*Returned items must be in their original packaging, unused, and in resaleable condition.<\/p><p>For more detailed information, please read our<a href=\"\/pages\/shipping-delivery-info\" target=\"_blank\" title=\"Shipping & Delivery Info\"> Return Policy<\/a>.<\/p>","page":"","custom_liquid":"","open":false,"variant_content":false,"show_in_quickbuy":false}}},"block_order":["title","price","loox_reviews_loox_rating_m6GRAk","richtext_TzTtHp","custom_liquid_XHRybM","richtext_fGXwM9","sibling_product_swatches_YfdE3R","variant_picker_8EVKbn","buy_buttons_6Ukibb","icon_columns_Vz438B","vendor","divider","loox_reviews_loox_snippets_widget_wdPRf7","description","divider_rBbeCm","image_n8F6tL","richtext_HmgwWf","richtext_cTyq7m","richtext_YUacVj","42dc5ee6-57ba-4d39-bd78-af4a77550dad","2a2f8118-ccb9-4eee-b0b7-0f183c1795f6","0308c122-cde7-4593-b354-f30739551e27","7724e8aa-e0b4-47e4-ae8e-efd5ab746965","accordion_PEyq34","65a87f77-6a2f-4d19-bbd0-d6d80c0a487b"],"custom_css":[".zip-container span {font-size: 14px;}",".product-title {margin-bottom: 10px;}",".price-container {margin-top: 18px;}","square-placement {margin-top: 0; margin-bottom: 0;}"],"settings":{"show_breadcrumbs":true,"select_first_variant":true,"show_location_underneath":false,"inventory_transfers_enable":false,"enable_sticky_columns":false,"enable_sticky_atc":false,"sticky_atc_position":"end","sticky_atc_mobile":true,"sticky_atc_behavior":"add_to_cart","sticky_atc_button_style":"secondary","gallery_size":"medium","gallery_layout":"carousel-under","collage_highlight_on_variant_change":true,"enable_zoom":true,"show_alt_text":false,"alt_text_icon":"","show_variant_media_label":true,"enable_video_autoplay":false,"enable_video_looping":false,"enable_media_grouping":true,"media_grouping_option":"Color,Colour,Couleur,Farbe"}},"collapsible_tabs_z3Gqcr":{"type":"collapsible-tabs","blocks":{"question_XVbyTj":{"type":"question","settings":{"title":"Why open-ended play?","answer":"<p>Have you ever wondered why kids love playing with cardboard boxes for so long? Their imagination runs wild, turning the box into a robot, a fort, a tunnel or a punching bag. Open-ended play is an activity that has no pre-determined limitations. The Playtime Store's products encapsulate this concept to help grow your child's creativity and provide endless enjoyment during the most developmental stages of their life. <\/p>"}},"question_PDGDrM":{"type":"question","settings":{"title":"What makes our products different?","answer":"<p>At The Playtime Store we pride ourselves on the quality and style of our products. We've worked tirelessly to source the quality that will last the test of time, steering away from low quality items that frequently need replacing. We believe investing in quality provides a more sustainable future for everyone. <\/p>"}},"question_DY6nhD":{"type":"question","settings":{"title":"How does it benefit my child?","answer":"<p>Our products are fantastic for your child's development because it encourages creativity, independence, and critical thinking. They learn to challenge themselves, build balance and take risks. <\/p>"}},"question_JWWUg6":{"type":"question","settings":{"title":"Do you offer a payment instalment plan?","answer":"<p>Yes! We offer both Afterpay and Zip. <\/p><p>Paypal is also available at checkout.<\/p>"}},"question_bVa6gE":{"type":"question","settings":{"title":"What if I change my mind after purchasing?","answer":"<p>The Playtime Store offers all customers a 100% money back guarantee for any change of mind purchases, provided that the following terms are met:<\/p><ul><li>All returns must be unused and in their original condition (including all original, protective packaging).<\/li><li>You must complete your return within 30 days of the date of your order and you are responsible for arranging the return and all costs associated with this.<\/li><li>The original shipping costs to you are not refunded.<\/li><li>See the full refund policy <a href=\"\/policies\/refund-policy\" target=\"_blank\" title=\"Refund Policy\">here<\/a>.<\/li><\/ul>"}}},"block_order":["question_XVbyTj","question_PDGDrM","question_DY6nhD","question_JWWUg6","question_bVa6gE"],"disabled":true,"settings":{"title":"FAQs","open_tab":false,"enable_faq_schema":false}},"review_testimonials_FE4FKe":{"type":"review-testimonials","blocks":{"testimonial_ggBLYq":{"type":"testimonial","settings":{"star_rating":0,"testimonial":"As a paediatric occupational therapist, I highly recommend the Playtime Store soft play equipment for children. Their products offer a safe and stimulating environment for kids to explore, develop motor skills, and build confidence. The design promotes sensory integration and encourages social interaction, making it an invaluable tool. I've seen firsthand how it enhances children's physical and cognitive abilities, making playtime not only fun but also therapeutic. I highly recommend the Playtime Store products to fellow therapists and parents for their ability to support and enrich children's development.","image":"shopify:\/\/shop_images\/IMG_1444.jpg","author":"Brooke Ottey","sub-heading":"Paediatric Occupational Therapist","image_caption":"","link":""}},"testimonial_9jMXCY":{"type":"testimonial","settings":{"star_rating":0,"testimonial":"As a pediatric occupational therapist and mother, I have witnessed the positive impact the Playtime Stores soft play equipment and ball pits has on a child’s development and overall well-being. The variety of sensory experiences provided by their play structures enables children to improve their motor skills, balance, coordination,sensory integration and imagination! The soft and safe environment allows children to explore, take risks, and build confidence in all of their abilities. I have seen firsthand how children with various abilities, such as autism, ADHD, and developmental delays, thrive in this inclusive and stimulating environment. The Playtime Store team truly understands the unique needs of children with all abilities and provides a welcoming and therapeutic equipment for them to play, learn, and grow.","image":"shopify:\/\/shop_images\/corina.jpg","author":"Corina Younis","sub-heading":"Pediatric Occupational Therapist","image_caption":"","link":""}},"testimonial_7eW84a":{"type":"testimonial","settings":{"star_rating":0,"testimonial":"As an Early Child Educator it's so amazing to see carefully designed, quality play equipment that is accessible for families to use in their home environment.\u2028From an education perspective the opportunities for motor and cognitive development are endless. Benefits include opportunities for children to develop their gross motor skills through physical challenge and safe risk taking. Cognitive development is extended through the development of skills such as problem solving, concentration and memory recall.","image":"shopify:\/\/shop_images\/1000021249.jpg","author":"Laura Newell","sub-heading":"Qualified Early Childhood Educator","image_caption":"","link":""}}},"block_order":["testimonial_ggBLYq","testimonial_9jMXCY","testimonial_7eW84a"],"settings":{"title":"Trusted By Experts","layout":"image-right","text_caps":false,"quote_text_size":14,"quote_text_size_mobile":14,"image_shape":"square","color_scheme":"default","autoplay":true,"autoplay_speed":5}},"17065021823ac34344":{"type":"apps","blocks":{"loox_reviews_loox_dynamic_section_XgETMn":{"type":"shopify:\/\/apps\/loox-reviews\/blocks\/loox-dynamic-section\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e","settings":{"reviews_to_display":"","default_tab":"automatic","only_photos":false,"aggregated":false,"limit":20,"hide_thumbnails":false,"maxwidth":1080,"is_sample":true}}},"block_order":["loox_reviews_loox_dynamic_section_XgETMn"],"settings":{"full_width":false,"show_space":true}},"related-products":{"type":"related-products","settings":{"title":"Build Your Collection","show_vendor":false,"grid":4}},"background_video_aGn97b":{"type":"background-video","blocks":{"subheading_c66KWd":{"type":"subheading","settings":{"subheading":"The Playtime Store"}},"heading_QtA4y7":{"type":"heading","settings":{"title":"Ignite Creativity","heading_max_width":15,"title_size":84,"title_size_mobile":32,"use_h1":false}},"text_a9QV3r":{"type":"text","settings":{"text":"<p>Discover the joy of open-ended play<\/p>","enlarge_text":true}}},"block_order":["subheading_c66KWd","heading_QtA4y7","text_a9QV3r"],"settings":{"video_shopify":"shopify:\/\/files\/videos\/master (1).mp4","video_external":"","video_description":"","text_alignment":"center center","height_desktop":600,"height_mobile":500,"full_width":true,"overlay_style":"shadow"}},"custom_content_C4rdYD":{"type":"custom-content","blocks":{"image_tPMFTp":{"type":"image","settings":{"width":"third","image":"shopify:\/\/shop_images\/CheriseFamilyShoot-29_1_ee98c229-a10a-4f7f-916f-84a9ea41d0de.jpg","mobile_image":"shopify:\/\/shop_images\/CheriseFamilyShoot-29_1_ee98c229-a10a-4f7f-916f-84a9ea41d0de.jpg","height":"adapt","height_desktop":600,"height_mobile":500,"subheading":"","title":"","text":"","enlarge_text":false,"button_label":"","button_style":"primary","image_link":"","text_alignment":"center center","mobile_overlay_under":false,"overlay_style":"shadow"}},"text_j4tc9t":{"type":"text","settings":{"width":"half","text_alignment":"center","center_on_mobile":true,"icon":"","icon_color":"rgba(0,0,0,0)","subheading":"","title":"Our Story","title_size":84,"title_size_mobile":46,"text":"<p>Founded in 2020, The Playtime Store quickly became a leader in luxury ball pits and soft play designs across Australia and New Zealand. <\/p><p>As a mum of three, I struggled to find open-ended play equipment that was both functional and stylish, so I created a range that engages children at every developmental stage, while making parenting a little easier. Every piece is designed for durability, ease of cleaning, and long-lasting fun—making it the perfect investment for your home.<\/p>","button_label":"","button_link":"","button_style":"primary"}}},"block_order":["image_tPMFTp","text_j4tc9t"],"settings":{"spacing":"medium","alignment":"middle","color_scheme":"default"}},"custom_liquid_xrQ7WD":{"type":"custom-liquid","settings":{"full_width":true,"show_space":true,"code":"<script>\nwindow.addEventListener('load', function() {\nvar _learnq = window._learnq || [];\nfunction addedToCart() {\n  fetch(`${window.location.origin}\/cart.js`)\n  .then(res => res.clone().json().then(data => {\n    var cart = {\n      total_price: data.total_price\/100,\n      $value: data.total_price\/100,\n      total_discount: data.total_discount,\n      original_total_price: data.original_total_price\/100,\n      items: data.items\n    }\n    if (typeof item !== 'undefined') {\n      cart = Object.assign(cart, item)\n    }\n    if (klAjax) {\n        _learnq.push(['track', 'Added to Cart', cart]);\n        klAjax = false;\n      }\n  }))\n};\n(function (ns, fetch) {\n  ns.fetch = function() {\n    const response = fetch.apply(this, arguments);\n    response.then(res => {\n      if (`${window.location.origin}\/cart\/add.js`\n      \t.includes(res.url)) {\n        \taddedToCart()\n      }\n    });\n    return response\n  }\n}(window, window.fetch));\nvar klAjax = true;\nvar atcButtons = document.querySelectorAll(\"form[action*='\/cart\/add'] button[type='submit']\");\nfor (var i = 0; i < atcButtons.length; i++) {\n    atcButtons[i].addEventListener(\"click\", function() {\n      if (klAjax && typeof item !== 'undefined') {\n        _learnq.push(['track', 'Added to Cart', item]);\n        klAjax = false;\n      }\n    })\n}\n});\n<\/script>"}}},"order":["main","collapsible_tabs_z3Gqcr","review_testimonials_FE4FKe","17065021823ac34344","related-products","background_video_aGn97b","custom_content_C4rdYD","custom_liquid_xrQ7WD"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_installments": false,
+            "show_tax_and_shipping": false,
+            "enable_product_reviews_by_price": false
+          }
+        },
+        "loox_reviews_loox_rating_m6GRAk": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "disabled": true,
+          "settings": {
+            "contentSize": 16,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": false,
+            "looxOpenFloatingWidget": true,
+            "emptyRatingWidget": false
+          }
+        },
+        "richtext_TzTtHp": {
+          "type": "richtext",
+          "settings": {
+            "richtext": "{{ product.metafields.custom.sales_line | metafield_tag }}",
+            "icon": "",
+            "icon_size": "small",
+            "enable_box": false,
+            "box_color": "#e0f4d5",
+            "show_in_quickbuy": false
+          }
+        },
+        "custom_liquid_XHRybM": {
+          "type": "custom-liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<script type=\"text/javascript\" src=\"https://static.zipmoney.com.au/lib/js/zm-widget-js/dist/zip-widget.min.js\"></script>\n<div style=\"cursor:pointer\" \n     id=\"zip-product-widget\" \n     data-zm-widget=\"popup\" \n     data-zm-region=\"au\"\n     data-env=\"production\"\n     data-zm-merchant=\"\"      \n     data-zm-price=\"\" \n     data-zm-asset=\"productwidget\" \n     data-zm-popup-asset=\"termsdialog\" \n     >\n</div>",
+            "variant_content": false,
+            "show_in_quickbuy": false
+          }
+        },
+        "richtext_fGXwM9": {
+          "type": "richtext",
+          "settings": {
+            "richtext": "{{ product.metafields.custom.product_alert_notice | metafield_tag }}",
+            "icon": "",
+            "icon_size": "small",
+            "enable_box": true,
+            "box_color": "#fdf8f3",
+            "show_in_quickbuy": false
+          }
+        },
+        "sibling_product_swatches_YfdE3R": {
+          "type": "sibling_product_swatches",
+          "settings": {}
+        },
+        "variant_picker_8EVKbn": {
+          "type": "variant-picker",
+          "settings": {
+            "show_single": false,
+            "selector_style": "listed",
+            "dynamic_availability": "show",
+            "enable_size_chart": false,
+            "size_chart_label": "Size guide",
+            "size_chart_variant": "Size",
+            "size_chart_source": "page",
+            "size_chart_page": ""
+          }
+        },
+        "buy_buttons_6Ukibb": {
+          "type": "buy-buttons",
+          "settings": {
+            "show_quantity_selector": false,
+            "enable_payment_button": false,
+            "show_backorder_text": false,
+            "show_pickup_availability": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "icon_columns_Vz438B": {
+          "type": "icon-columns",
+          "disabled": true,
+          "settings": {
+            "icon_size": "large",
+            "text_size": "sm",
+            "enable_box": true,
+            "box_color": "#f4f4f4",
+            "icon_1": "check_mark_in_circle",
+            "icon_1_color": "rgba(0,0,0,0)",
+            "icon_1_heading": "",
+            "icon_1_text": "Icon label 1",
+            "icon_2": "star",
+            "icon_2_color": "rgba(0,0,0,0)",
+            "icon_2_heading": "",
+            "icon_2_text": "Icon label 2",
+            "icon_3": "gift",
+            "icon_3_color": "rgba(0,0,0,0)",
+            "icon_3_heading": "",
+            "icon_3_text": "Icon label 3",
+            "show_in_quickbuy": false
+          }
+        },
+        "vendor": {
+          "type": "vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "divider": {
+          "type": "divider",
+          "disabled": true,
+          "settings": {
+            "show_in_quickbuy": false
+          }
+        },
+        "loox_reviews_loox_snippets_widget_wdPRf7": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-snippets-widget/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "disabled": true,
+          "settings": {
+            "reviews-type": "product-reviews",
+            "reviews-limit": 10,
+            "alignment": "left",
+            "max-width": "",
+            "color-scheme": "default",
+            "shadow": "",
+            "show-rating": true,
+            "show-image": true,
+            "hide-arrows-mobile": false,
+            "font-size": 14,
+            "show-border": false,
+            "border-radius": 16,
+            "background-color": "",
+            "text-color": "",
+            "name-color": "",
+            "rating-icon-color": "",
+            "border-color": "",
+            "shadow-color": "",
+            "product_selection": ""
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "show_in_tab": false,
+            "open_tab": false,
+            "icon": "",
+            "show_in_quickbuy": false
+          }
+        },
+        "divider_rBbeCm": {
+          "type": "divider",
+          "disabled": true,
+          "settings": {
+            "show_in_quickbuy": false
+          }
+        },
+        "image_n8F6tL": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/freegifts_product_page.png",
+            "image_width": 700,
+            "url": "",
+            "open_in_new_tab": false,
+            "show_in_quickbuy": false
+          }
+        },
+        "richtext_HmgwWf": {
+          "type": "richtext",
+          "disabled": true,
+          "settings": {
+            "richtext": "<p><em>This item is in stock and ready to ship</em></p>",
+            "icon": "truck",
+            "icon_size": "small",
+            "enable_box": false,
+            "box_color": "#e0f4d5",
+            "show_in_quickbuy": false
+          }
+        },
+        "richtext_cTyq7m": {
+          "type": "richtext",
+          "disabled": true,
+          "settings": {
+            "richtext": "<h5>Get a free inflatable pool on orders over $350!</h5>",
+            "icon": "gift",
+            "icon_size": "large",
+            "enable_box": false,
+            "box_color": "#3ea36a",
+            "show_in_quickbuy": false
+          }
+        },
+        "richtext_YUacVj": {
+          "type": "richtext",
+          "disabled": true,
+          "settings": {
+            "richtext": "<h5>Receive a free play mat valued at $120 when you spend over $250</h5>",
+            "icon": "gift",
+            "icon_size": "small",
+            "enable_box": true,
+            "box_color": "#f5eddf",
+            "show_in_quickbuy": false
+          }
+        },
+        "42dc5ee6-57ba-4d39-bd78-af4a77550dad": {
+          "type": "accordion",
+          "settings": {
+            "title": "Details",
+            "icon": "",
+            "content": "{{ product.metafields.custom._details | metafield_tag }}",
+            "page": "",
+            "custom_liquid": "",
+            "open": false,
+            "variant_content": false,
+            "show_in_quickbuy": false
+          }
+        },
+        "2a2f8118-ccb9-4eee-b0b7-0f183c1795f6": {
+          "type": "accordion",
+          "settings": {
+            "title": "Dimensions",
+            "icon": "",
+            "content": "{{ product.metafields.custom._dimensions | metafield_tag }}",
+            "page": "",
+            "custom_liquid": "",
+            "open": false,
+            "variant_content": false,
+            "show_in_quickbuy": false
+          }
+        },
+        "0308c122-cde7-4593-b354-f30739551e27": {
+          "type": "accordion",
+          "settings": {
+            "title": "Material & Care",
+            "icon": "",
+            "content": "{{ product.metafields.custom._care_instructions | metafield_tag }}",
+            "page": "",
+            "custom_liquid": "",
+            "open": false,
+            "variant_content": false,
+            "show_in_quickbuy": false
+          }
+        },
+        "7724e8aa-e0b4-47e4-ae8e-efd5ab746965": {
+          "type": "accordion",
+          "disabled": true,
+          "settings": {
+            "title": "Shipping & Delivery",
+            "icon": "",
+            "content": "<p>We aim to dispatch your order within 1-3 business days of placing your order for you to get your products as quickly as possible.</p><p>The delivery time is around 2-5 business days for most areas, but rural and regional areas can take up to 5-13 business days. </p><p>Shipping rates will be calculated at checkout, reflecting the products and the location of each customer. </p><p>For more detailed information, please read our <a href=\"/policies/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">Shipping & Return Policy.</a></p>",
+            "page": "",
+            "custom_liquid": "",
+            "open": false,
+            "variant_content": false,
+            "show_in_quickbuy": false
+          }
+        },
+        "accordion_PEyq34": {
+          "type": "accordion",
+          "disabled": true,
+          "settings": {
+            "title": "Shipping & Delivery",
+            "icon": "",
+            "content": "<p><strong>Free shipping for orders over $300 AUD. </strong>For orders under $300 AUD, shipping cost is $30 AUD.</p><p>We aim to dispatch your order within <strong>1-3 business days</strong> of placing your order for you to get your products as quickly as possible.</p><p>The delivery time is around 2-5 business days for most areas, but rural and regional areas can take up to 5-13 business days. </p><p>For more detailed information, please read our <a href=\"/policies/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">Shipping & Return Policy </a></p>",
+            "page": "",
+            "custom_liquid": "",
+            "open": false,
+            "variant_content": false,
+            "show_in_quickbuy": false
+          }
+        },
+        "65a87f77-6a2f-4d19-bbd0-d6d80c0a487b": {
+          "type": "accordion",
+          "disabled": true,
+          "settings": {
+            "title": "Returns",
+            "icon": "",
+            "content": "<p>We offer a 30-days return policy*</p><ul><li><strong>Full-Price Items</strong> can be returned to store credit (+$50 AUD extra bonus per order), exchange or refund.</li><li><strong>Sale Items</strong> can be returned for a store credit, or exchanged. No refunds.</li><li><strong>Final Sale Items</strong> are final and not eligible for a return, exchange, or refund.</li></ul><p>*Returned items must be in their original packaging, unused, and in resaleable condition.</p><p>For more detailed information, please read our<a href=\"/pages/shipping-delivery-info\" target=\"_blank\" title=\"Shipping & Delivery Info\"> Return Policy</a>.</p>",
+            "page": "",
+            "custom_liquid": "",
+            "open": false,
+            "variant_content": false,
+            "show_in_quickbuy": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "loox_reviews_loox_rating_m6GRAk",
+        "richtext_TzTtHp",
+        "custom_liquid_XHRybM",
+        "richtext_fGXwM9",
+        "sibling_product_swatches_YfdE3R",
+        "variant_picker_8EVKbn",
+        "buy_buttons_6Ukibb",
+        "icon_columns_Vz438B",
+        "vendor",
+        "divider",
+        "loox_reviews_loox_snippets_widget_wdPRf7",
+        "description",
+        "divider_rBbeCm",
+        "image_n8F6tL",
+        "richtext_HmgwWf",
+        "richtext_cTyq7m",
+        "richtext_YUacVj",
+        "42dc5ee6-57ba-4d39-bd78-af4a77550dad",
+        "2a2f8118-ccb9-4eee-b0b7-0f183c1795f6",
+        "0308c122-cde7-4593-b354-f30739551e27",
+        "7724e8aa-e0b4-47e4-ae8e-efd5ab746965",
+        "accordion_PEyq34",
+        "65a87f77-6a2f-4d19-bbd0-d6d80c0a487b"
+      ],
+      "custom_css": [
+        ".zip-container span {font-size: 14px;}",
+        ".product-title {margin-bottom: 10px;}",
+        ".price-container {margin-top: 18px;}",
+        "square-placement {margin-top: 0; margin-bottom: 0;}"
+      ],
+      "settings": {
+        "show_breadcrumbs": true,
+        "select_first_variant": true,
+        "show_location_underneath": false,
+        "inventory_transfers_enable": false,
+        "enable_sticky_columns": false,
+        "enable_sticky_atc": false,
+        "sticky_atc_position": "end",
+        "sticky_atc_mobile": true,
+        "sticky_atc_behavior": "add_to_cart",
+        "sticky_atc_button_style": "secondary",
+        "gallery_size": "medium",
+        "gallery_layout": "carousel-under",
+        "collage_highlight_on_variant_change": true,
+        "enable_zoom": true,
+        "show_alt_text": false,
+        "alt_text_icon": "",
+        "show_variant_media_label": true,
+        "enable_video_autoplay": false,
+        "enable_video_looping": false,
+        "enable_media_grouping": true,
+        "media_grouping_option": "Color,Colour,Couleur,Farbe"
+      }
+    },
+    "collapsible_tabs_z3Gqcr": {
+      "type": "collapsible-tabs",
+      "blocks": {
+        "question_XVbyTj": {
+          "type": "question",
+          "settings": {
+            "title": "Why open-ended play?",
+            "answer": "<p>Have you ever wondered why kids love playing with cardboard boxes for so long? Their imagination runs wild, turning the box into a robot, a fort, a tunnel or a punching bag. Open-ended play is an activity that has no pre-determined limitations. The Playtime Store's products encapsulate this concept to help grow your child's creativity and provide endless enjoyment during the most developmental stages of their life. </p>"
+          }
+        },
+        "question_PDGDrM": {
+          "type": "question",
+          "settings": {
+            "title": "What makes our products different?",
+            "answer": "<p>At The Playtime Store we pride ourselves on the quality and style of our products. We've worked tirelessly to source the quality that will last the test of time, steering away from low quality items that frequently need replacing. We believe investing in quality provides a more sustainable future for everyone. </p>"
+          }
+        },
+        "question_DY6nhD": {
+          "type": "question",
+          "settings": {
+            "title": "How does it benefit my child?",
+            "answer": "<p>Our products are fantastic for your child's development because it encourages creativity, independence, and critical thinking. They learn to challenge themselves, build balance and take risks. </p>"
+          }
+        },
+        "question_JWWUg6": {
+          "type": "question",
+          "settings": {
+            "title": "Do you offer a payment instalment plan?",
+            "answer": "<p>Yes! We offer both Afterpay and Zip. </p><p>Paypal is also available at checkout.</p>"
+          }
+        },
+        "question_bVa6gE": {
+          "type": "question",
+          "settings": {
+            "title": "What if I change my mind after purchasing?",
+            "answer": "<p>The Playtime Store offers all customers a 100% money back guarantee for any change of mind purchases, provided that the following terms are met:</p><ul><li>All returns must be unused and in their original condition (including all original, protective packaging).</li><li>You must complete your return within 30 days of the date of your order and you are responsible for arranging the return and all costs associated with this.</li><li>The original shipping costs to you are not refunded.</li><li>See the full refund policy <a href=\"/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\">here</a>.</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "question_XVbyTj",
+        "question_PDGDrM",
+        "question_DY6nhD",
+        "question_JWWUg6",
+        "question_bVa6gE"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "FAQs",
+        "open_tab": false,
+        "enable_faq_schema": false
+      }
+    },
+    "review_testimonials_FE4FKe": {
+      "type": "review-testimonials",
+      "blocks": {
+        "testimonial_ggBLYq": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 0,
+            "testimonial": "As a paediatric occupational therapist, I highly recommend the Playtime Store soft play equipment for children. Their products offer a safe and stimulating environment for kids to explore, develop motor skills, and build confidence. The design promotes sensory integration and encourages social interaction, making it an invaluable tool. I've seen firsthand how it enhances children's physical and cognitive abilities, making playtime not only fun but also therapeutic. I highly recommend the Playtime Store products to fellow therapists and parents for their ability to support and enrich children's development.",
+            "image": "shopify://shop_images/IMG_1444.jpg",
+            "author": "Brooke Ottey",
+            "sub-heading": "Paediatric Occupational Therapist",
+            "image_caption": "",
+            "link": ""
+          }
+        },
+        "testimonial_9jMXCY": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 0,
+            "testimonial": "As a pediatric occupational therapist and mother, I have witnessed the positive impact the Playtime Stores soft play equipment and ball pits has on a child’s development and overall well-being. The variety of sensory experiences provided by their play structures enables children to improve their motor skills, balance, coordination,sensory integration and imagination! The soft and safe environment allows children to explore, take risks, and build confidence in all of their abilities. I have seen firsthand how children with various abilities, such as autism, ADHD, and developmental delays, thrive in this inclusive and stimulating environment. The Playtime Store team truly understands the unique needs of children with all abilities and provides a welcoming and therapeutic equipment for them to play, learn, and grow.",
+            "image": "shopify://shop_images/corina.jpg",
+            "author": "Corina Younis",
+            "sub-heading": "Pediatric Occupational Therapist",
+            "image_caption": "",
+            "link": ""
+          }
+        },
+        "testimonial_7eW84a": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 0,
+            "testimonial": "As an Early Child Educator it's so amazing to see carefully designed, quality play equipment that is accessible for families to use in their home environment. From an education perspective the opportunities for motor and cognitive development are endless. Benefits include opportunities for children to develop their gross motor skills through physical challenge and safe risk taking. Cognitive development is extended through the development of skills such as problem solving, concentration and memory recall.",
+            "image": "shopify://shop_images/1000021249.jpg",
+            "author": "Laura Newell",
+            "sub-heading": "Qualified Early Childhood Educator",
+            "image_caption": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_ggBLYq",
+        "testimonial_9jMXCY",
+        "testimonial_7eW84a"
+      ],
+      "settings": {
+        "title": "Trusted By Experts",
+        "layout": "image-right",
+        "text_caps": false,
+        "quote_text_size": 14,
+        "quote_text_size_mobile": 14,
+        "image_shape": "square",
+        "color_scheme": "default",
+        "autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "17065021823ac34344": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_dynamic_section_XgETMn": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "reviews_to_display": "",
+            "default_tab": "automatic",
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1080,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_dynamic_section_XgETMn"
+      ],
+      "settings": {
+        "full_width": false,
+        "show_space": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "title": "Build Your Collection",
+        "show_vendor": false,
+        "grid": 4
+      }
+    },
+    "background_video_aGn97b": {
+      "type": "background-video",
+      "blocks": {
+        "subheading_c66KWd": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "The Playtime Store"
+          }
+        },
+        "heading_QtA4y7": {
+          "type": "heading",
+          "settings": {
+            "title": "Ignite Creativity",
+            "heading_max_width": 15,
+            "title_size": 84,
+            "title_size_mobile": 32,
+            "use_h1": false
+          }
+        },
+        "text_a9QV3r": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Discover the joy of open-ended play</p>",
+            "enlarge_text": true
+          }
+        }
+      },
+      "block_order": [
+        "subheading_c66KWd",
+        "heading_QtA4y7",
+        "text_a9QV3r"
+      ],
+      "settings": {
+        "video_shopify": "shopify://files/videos/master (1).mp4",
+        "video_external": "",
+        "video_description": "",
+        "text_alignment": "center center",
+        "height_desktop": 600,
+        "height_mobile": 500,
+        "full_width": true,
+        "overlay_style": "shadow"
+      }
+    },
+    "custom_content_C4rdYD": {
+      "type": "custom-content",
+      "blocks": {
+        "image_tPMFTp": {
+          "type": "image",
+          "settings": {
+            "width": "third",
+            "image": "shopify://shop_images/CheriseFamilyShoot-29_1_ee98c229-a10a-4f7f-916f-84a9ea41d0de.jpg",
+            "mobile_image": "shopify://shop_images/CheriseFamilyShoot-29_1_ee98c229-a10a-4f7f-916f-84a9ea41d0de.jpg",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "button_style": "primary",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        },
+        "text_j4tc9t": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Our Story",
+            "title_size": 84,
+            "title_size_mobile": 46,
+            "text": "<p>Founded in 2020, The Playtime Store quickly became a leader in luxury ball pits and soft play designs across Australia and New Zealand. </p><p>As a mum of three, I struggled to find open-ended play equipment that was both functional and stylish, so I created a range that engages children at every developmental stage, while making parenting a little easier. Every piece is designed for durability, ease of cleaning, and long-lasting fun—making it the perfect investment for your home.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "image_tPMFTp",
+        "text_j4tc9t"
+      ],
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "custom_liquid_xrQ7WD": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "show_space": true,
+        "code": "<script>\nwindow.addEventListener('load', function() {\nvar _learnq = window._learnq || [];\nfunction addedToCart() {\n  fetch(`${window.location.origin}/cart.js`)\n  .then(res => res.clone().json().then(data => {\n    var cart = {\n      total_price: data.total_price/100,\n      $value: data.total_price/100,\n      total_discount: data.total_discount,\n      original_total_price: data.original_total_price/100,\n      items: data.items\n    }\n    if (typeof item !== 'undefined') {\n      cart = Object.assign(cart, item)\n    }\n    if (klAjax) {\n        _learnq.push(['track', 'Added to Cart', cart]);\n        klAjax = false;\n      }\n  }))\n};\n(function (ns, fetch) {\n  ns.fetch = function() {\n    const response = fetch.apply(this, arguments);\n    response.then(res => {\n      if (`${window.location.origin}/cart/add.js`\n      \t.includes(res.url)) {\n        \taddedToCart()\n      }\n    });\n    return response\n  }\n}(window, window.fetch));\nvar klAjax = true;\nvar atcButtons = document.querySelectorAll(\"form[action*='/cart/add'] button[type='submit']\");\nfor (var i = 0; i < atcButtons.length; i++) {\n    atcButtons[i].addEventListener(\"click\", function() {\n      if (klAjax && typeof item !== 'undefined') {\n        _learnq.push(['track', 'Added to Cart', item]);\n        klAjax = false;\n      }\n    })\n}\n});\n</script>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collapsible_tabs_z3Gqcr",
+    "review_testimonials_FE4FKe",
+    "17065021823ac34344",
+    "related-products",
+    "background_video_aGn97b",
+    "custom_content_C4rdYD",
+    "custom_liquid_xrQ7WD"
+  ]
+}

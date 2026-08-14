@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -14,19 +23,19 @@
         "bundle_product_1": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "explorer-beige"
           }
         },
         "bundle_product_2": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "explorer-white-1"
           }
         },
         "bundle_product_3": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "castle-limited-edition"
           }
         }
       },
@@ -40,7 +49,7 @@
         "text": "<p>Choose the pieces that suit your space, then add them together.</p>",
         "button_label": "Add selected to cart",
         "preselect_products": true,
-        "minimum_products": 2,
+        "minimum_products": 3,
         "show_total": true,
         "total_label": "Bundle total",
         "success_message": "Selected items added to your cart.",
