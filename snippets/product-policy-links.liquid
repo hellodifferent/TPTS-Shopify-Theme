@@ -1,0 +1,19 @@
+{%- if shop.shipping_policy.body != blank or shop.refund_policy.body != blank -%}
+  <nav class="product-policy-links not-in-quickbuy" aria-label="Purchase information">
+    {%- if shop.shipping_policy.body != blank and settings.conversion_shipping_label != blank -%}
+      <a class="product-policy-links__item" href="{{ shop.shipping_policy.url }}">
+        <span class="product-policy-links__icon">{% render 'icon', icon: 'truck', size: 'small' %}</span>
+        <span>{{ settings.conversion_shipping_label | escape }}</span>
+        <span class="product-policy-links__arrow" aria-hidden="true">{% render 'icon-chevron-right', stroke_width: 1.5 %}</span>
+      </a>
+    {%- endif -%}
+
+    {%- if shop.refund_policy.body != blank and settings.conversion_returns_label != blank -%}
+      <a class="product-policy-links__item" href="{{ shop.refund_policy.url }}">
+        <span class="product-policy-links__icon">{% render 'icon', icon: 'return', size: 'small' %}</span>
+        <span>{{ settings.conversion_returns_label | escape }}</span>
+        <span class="product-policy-links__arrow" aria-hidden="true">{% render 'icon-chevron-right', stroke_width: 1.5 %}</span>
+      </a>
+    {%- endif -%}
+  </nav>
+{%- endif -%}

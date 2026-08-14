@@ -10,6 +10,7 @@ Parameters:
   - prioritised_loading {Boolean} - Whether to render images immediately, not lazily (optional, default is false).
   - icon_height {Number} - Custom icon height (optional, default is 24).
   - grid {Number} - Desktop grid column count, used for image sizing (option, default is section.settings.grid)
+  - cart_cross_sell {Boolean} - Show a direct add action for cart recommendations (optional, default is false).
 
   Usage:
   {% render 'product-block',
@@ -80,10 +81,12 @@ Parameters:
      <div class="product-card-labels">
       {% if settings.prod_sold_out_show and product.available == false %}
         <span class="price-label price-label--sold-out">{{ 'products.product.sold_out' | t }}</span>
-        <span class="price-label price-label--notify-me">Restocking soon</span>
+        {% if settings.prod_sold_out_secondary_label != blank %}
+          <span class="price-label price-label--notify-me">{{ settings.prod_sold_out_secondary_label | escape }}</span>
+        {% endif %}
       {% elsif settings.prod_pre_order_label_show and product.template_suffix contains 'preorder' %}
         <span class="price-label price-label--preorder">{{ 'products.product.preorder' | t }}</span>
-      {% elsif settings.prod_sale_show and variant.compare_at_price > variant.price %}
+      {% elsif settings.prod_sale_show and cheapest_variant.compare_at_price > cheapest_variant.price %}
         <span class="price-label price-label--sale">{{ 'products.product.sale' | t }}</span>
       {% endif %}
     </div>
@@ -352,6 +355,26 @@ Parameters:
                   </span>
                 </div>
               {%- endif -%}
+            {%- endif -%}
+
+            {%- if cart_cross_sell -%}
+              <div class="product-block__cart-action">
+                {%- if product.available and product.has_only_default_variant -%}
+                  <product-form>
+                    {%- form 'product', product, class: 'js-product-form', data-product-id: product.id -%}
+                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                      <div class="js-form-error small-text" role="alert" hidden></div>
+                      <button class="btn btn--secondary btn--small btn--wide" type="submit" name="add">
+                        {{- 'products.product.add_to_cart' | t -}}
+                      </button>
+                    {%- endform -%}
+                  </product-form>
+                {%- else -%}
+                  <a class="btn btn--secondary btn--small btn--wide" href="{{ product_url }}">
+                    {{- 'products.product.view_details' | t -}}
+                  </a>
+                {%- endif -%}
+              </div>
             {%- endif -%}
           </div>
         </div>

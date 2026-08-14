@@ -1,0 +1,23 @@
+<cc-fetched-content
+  class="not-in-quickbuy"
+  data-id="{{ section.id }}-conversion-complementary"
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&intent=complementary"
+  contains-product-blocks>
+  {%- if recommendations.performed and recommendations.products_count > 0 -%}
+    {%- assign available_recommendations = recommendations.products | where: 'available', true -%}
+    {%- if available_recommendations.size > 0 -%}
+      <section class="conversion-complementary container" aria-labelledby="ComplementaryHeading-{{ section.id }}">
+        <div class="conversion-complementary__header">
+          <h2 class="h3" id="ComplementaryHeading-{{ section.id }}">{{ settings.conversion_complementary_heading | escape }}</h2>
+        </div>
+        <ul class="product-grid conversion-complementary__grid" role="list">
+          {%- for recommendation_product in available_recommendations limit: settings.conversion_complementary_max -%}
+            <li>
+              {%- render 'product-block', product: recommendation_product, grid: 4 -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </section>
+    {%- endif -%}
+  {%- endif -%}
+</cc-fetched-content>
