@@ -1,0 +1,252 @@
+{%- liquid
+  assign configured_product_count = 0
+  for block in section.blocks
+    if block.settings.product != blank and block.settings.product.available
+      assign configured_product_count = configured_product_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if configured_product_count > 1 -%}
+  {{ 'bundle-builder.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'bundle-builder.js' | asset_url }}" defer></script>
+
+  <div class="{% if section.settings.color_scheme != 'default' %}use-color-scheme use-color-scheme--{{ section.settings.color_scheme }} fully-padded-row{% else %}fully-spaced-row{% endif %}">
+    <div class="container">
+      <bundle-builder
+        class="bundle-builder"
+        data-currency="{{ cart.currency.iso_code | default: shop.currency | escape }}"
+        data-success-message="{{ section.settings.success_message | escape }}"
+        data-minimum-products="{{ section.settings.minimum_products | at_most: configured_product_count }}"
+        style="--bundle-columns: {{ configured_product_count | at_most: 3 }}"
+      >
+        <div class="bundle-builder__header" {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
+          {%- if section.settings.title != blank -%}
+            <h2 class="h1">{{ section.settings.title | escape }}</h2>
+          {%- endif -%}
+          {%- if section.settings.text != blank -%}
+            <div class="rte">{{ section.settings.text }}</div>
+          {%- endif -%}
+        </div>
+
+        <div class="bundle-builder__items" role="list">
+          {%- for block in section.blocks -%}
+            {%- assign bundle_product = block.settings.product -%}
+            {%- if bundle_product != blank and bundle_product.available -%}
+              {%- assign bundle_variant = bundle_product.selected_or_first_available_variant -%}
+              <div class="bundle-builder__item" role="listitem" data-bundle-item {{ block.shopify_attributes }}>
+                <a class="bundle-builder__media" href="{{ bundle_product.url }}" tabindex="-1" aria-hidden="true">
+                  {%- if bundle_product.featured_media -%}
+                    {%- render 'image',
+                      image: bundle_product.featured_media.preview_image,
+                      sizes: '(max-width: 767px) 84px, 92px',
+                      widths: '84, 92, 168, 184',
+                      custom_aspect_ratio: 1,
+                      custom_crop: 'center'
+                    -%}
+                  {%- endif -%}
+                </a>
+
+                <div class="bundle-builder__content">
+                  <div class="bundle-builder__select-row">
+                    <input
+                      class="bundle-builder__checkbox"
+                      id="BundleProduct-{{ section.id }}-{{ block.id }}"
+                      type="checkbox"
+                      data-bundle-select
+                      {% if section.settings.preselect_products %}checked{% endif %}
+                      aria-label="Include {{ bundle_product.title | escape }}"
+                    >
+                    <div>
+                      <label class="bundle-builder__title" for="BundleProduct-{{ section.id }}-{{ block.id }}">
+                        {{ bundle_product.title | escape }}
+                      </label>
+                      <div class="bundle-builder__price">
+                        {%- render 'price',
+                          product: bundle_product,
+                          current_variant: bundle_variant,
+                          show_currency_code: settings.product_currency_code_enabled,
+                          show_labels: true
+                        -%}
+                      </div>
+                    </div>
+                  </div>
+
+                  {%- if bundle_product.variants.size > 1 -%}
+                    <label class="bundle-builder__variant-label" for="BundleVariant-{{ section.id }}-{{ block.id }}">
+                      {{ bundle_product.options | join: ' / ' }}
+                    </label>
+                    <select
+                      class="bundle-builder__variant"
+                      id="BundleVariant-{{ section.id }}-{{ block.id }}"
+                      data-bundle-variant
+                    >
+                      {%- for variant in bundle_product.variants -%}
+                        {%- if variant.available -%}
+                          <option
+                            value="{{ variant.id }}"
+                            data-price="{{ variant.price }}"
+                            {% if variant.id == bundle_variant.id %}selected{% endif %}
+                          >
+                            {{ variant.title | escape }} — {{ variant.price | money }}
+                          </option>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </select>
+                  {%- else -%}
+                    <input type="hidden" value="{{ bundle_variant.id }}" data-price="{{ bundle_variant.price }}" data-bundle-variant>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="bundle-builder__footer">
+          <p class="bundle-builder__summary">
+            <span><span data-bundle-count>0</span> selected</span>
+            {%- if section.settings.show_total -%}
+              <strong class="bundle-builder__total">
+                {{ section.settings.total_label | escape }}: <span data-bundle-total>{{ 0 | money }}</span>
+              </strong>
+            {%- else -%}
+              <span data-bundle-total hidden>{{ 0 | money }}</span>
+            {%- endif -%}
+          </p>
+          <p class="bundle-builder__selection-note" data-bundle-selection-note>
+            Choose at least {{ section.settings.minimum_products | at_most: configured_product_count }} products
+          </p>
+          <button class="btn btn--large bundle-builder__submit" type="button" data-bundle-submit disabled>
+            {{ section.settings.button_label | escape }}
+          </button>
+        </div>
+
+        <p class="bundle-builder__message bundle-builder__message--error" role="alert" data-bundle-error hidden></p>
+        <p class="bundle-builder__message" role="status" data-bundle-success hidden></p>
+      </bundle-builder>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Bundle builder",
+  "class": "section-bundle-builder",
+  "max_blocks": 4,
+  "disabled_on": {
+    "templates": [
+      "password"
+    ],
+    "groups": [
+      "aside"
+    ]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Select products below to create a bundle customers can configure and add to cart in one action. This section does not create or advertise a discount."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Build your playtime bundle"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Choose the pieces that suit your space, then add them together.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Add selected to cart"
+    },
+    {
+      "type": "checkbox",
+      "id": "preselect_products",
+      "label": "Preselect all products",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "minimum_products",
+      "label": "Minimum products customers must choose",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "checkbox",
+      "id": "show_total",
+      "label": "Show selected total",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "total_label",
+      "label": "Total label",
+      "default": "Bundle total"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Selected items added to your cart."
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "1",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle builder",
+      "category": "Products",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
