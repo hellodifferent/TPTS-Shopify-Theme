@@ -1,25 +1,36 @@
 {%- liquid
   assign configured_product_count = 0
+  assign available_product_count = 0
   for block in section.blocks
-    if block.settings.product != blank and block.settings.product.available
+    if block.settings.product != blank
       assign configured_product_count = configured_product_count | plus: 1
+      if block.settings.product.available
+        assign available_product_count = available_product_count | plus: 1
+      endif
     endif
   endfor
+  assign minimum_products = section.settings.minimum_products | default: 2
 -%}
 
-{%- if configured_product_count > 1 -%}
+{%- if configured_product_count > 0 or request.design_mode -%}
   {{ 'bundle-builder.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'bundle-builder.js' | asset_url }}" defer></script>
 
   <div class="{% if section.settings.color_scheme != 'default' %}use-color-scheme use-color-scheme--{{ section.settings.color_scheme }} fully-padded-row{% else %}fully-spaced-row{% endif %}">
     <div class="container">
-      <bundle-builder
-        class="bundle-builder"
-        data-currency="{{ cart.currency.iso_code | default: shop.currency | escape }}"
-        data-success-message="{{ section.settings.success_message | escape }}"
-        data-minimum-products="{{ section.settings.minimum_products | at_most: configured_product_count }}"
-        style="--bundle-columns: {{ configured_product_count | at_most: 3 }}"
-      >
+      {%- if configured_product_count == 0 -%}
+        <div class="bundle-builder__editor-note">
+          <strong>Bundle builder</strong>
+          <p>Select at least two products in this section’s product blocks.</p>
+        </div>
+      {%- else -%}
+        <bundle-builder
+          class="bundle-builder"
+          data-currency="{{ cart.currency.iso_code | default: shop.currency | escape }}"
+          data-success-message="{{ section.settings.success_message | escape }}"
+          data-minimum-products="{{ minimum_products }}"
+          style="--bundle-columns: {{ configured_product_count | at_most: 3 }}"
+        >
         <div class="bundle-builder__header" {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
           {%- if section.settings.title != blank -%}
             <h2 class="h1">{{ section.settings.title | escape }}</h2>
@@ -32,9 +43,9 @@
         <div class="bundle-builder__items" role="list">
           {%- for block in section.blocks -%}
             {%- assign bundle_product = block.settings.product -%}
-            {%- if bundle_product != blank and bundle_product.available -%}
+            {%- if bundle_product != blank -%}
               {%- assign bundle_variant = bundle_product.selected_or_first_available_variant -%}
-              <div class="bundle-builder__item" role="listitem" data-bundle-item {{ block.shopify_attributes }}>
+              <div class="bundle-builder__item{% unless bundle_product.available %} bundle-builder__item--unavailable{% endunless %}" role="listitem" data-bundle-item {{ block.shopify_attributes }}>
                 <a class="bundle-builder__media" href="{{ bundle_product.url }}" tabindex="-1" aria-hidden="true">
                   {%- if bundle_product.featured_media -%}
                     {%- render 'image',
@@ -54,7 +65,8 @@
                       id="BundleProduct-{{ section.id }}-{{ block.id }}"
                       type="checkbox"
                       data-bundle-select
-                      {% if section.settings.preselect_products %}checked{% endif %}
+                      {% if section.settings.preselect_products and bundle_product.available %}checked{% endif %}
+                      {% unless bundle_product.available %}disabled{% endunless %}
                       aria-label="Include {{ bundle_product.title | escape }}"
                     >
                     <div>
@@ -72,7 +84,7 @@
                     </div>
                   </div>
 
-                  {%- if bundle_product.variants.size > 1 -%}
+                  {%- if bundle_product.available and bundle_product.variants.size > 1 -%}
                     <label class="bundle-builder__variant-label" for="BundleVariant-{{ section.id }}-{{ block.id }}">
                       {{ bundle_product.options | join: ' / ' }}
                     </label>
@@ -93,8 +105,10 @@
                         {%- endif -%}
                       {%- endfor -%}
                     </select>
-                  {%- else -%}
+                  {%- elsif bundle_product.available -%}
                     <input type="hidden" value="{{ bundle_variant.id }}" data-price="{{ bundle_variant.price }}" data-bundle-variant>
+                  {%- else -%}
+                    <p class="bundle-builder__availability">{{ 'products.product.sold_out' | t }}</p>
                   {%- endif -%}
                 </div>
               </div>
@@ -114,7 +128,11 @@
             {%- endif -%}
           </p>
           <p class="bundle-builder__selection-note" data-bundle-selection-note>
-            Choose at least {{ section.settings.minimum_products | at_most: configured_product_count }} products
+            {%- if available_product_count < minimum_products -%}
+              This bundle is temporarily unavailable because some selected products are sold out.
+            {%- else -%}
+              Choose at least {{ minimum_products }} products
+            {%- endif -%}
           </p>
           <button class="btn btn--large bundle-builder__submit" type="button" data-bundle-submit disabled>
             {{ section.settings.button_label | escape }}
@@ -123,7 +141,8 @@
 
         <p class="bundle-builder__message bundle-builder__message--error" role="alert" data-bundle-error hidden></p>
         <p class="bundle-builder__message" role="status" data-bundle-success hidden></p>
-      </bundle-builder>
+        </bundle-builder>
+      {%- endif -%}
     </div>
   </div>
 {%- endif -%}
