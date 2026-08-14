@@ -1785,6 +1785,75 @@
     ]
   },
   {
+    "name": "Storefront UI refresh",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "A conversion-focused visual layer for product cards, collection controls, product pages, cart drawers, and mobile shopping. Disable this setting to return to the base theme styling."
+      },
+      {
+        "type": "checkbox",
+        "id": "ui_refresh_enabled",
+        "label": "Enable storefront UI refresh",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "ui_card_radius",
+        "min": 0,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "label": "Card and media corner radius",
+        "default": 12
+      },
+      {
+        "type": "range",
+        "id": "ui_control_radius",
+        "min": 0,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "label": "Button and control corner radius",
+        "default": 8
+      },
+      {
+        "type": "select",
+        "id": "ui_card_alignment",
+        "label": "Product card text alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "checkbox",
+        "id": "ui_mobile_card_actions",
+        "label": "Show quick shop on mobile product cards",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "ui_sticky_collection_controls",
+        "label": "Keep collection controls visible on mobile",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "ui_dim_sold_out_cards",
+        "label": "Visually de-emphasize sold-out products",
+        "default": true
+      }
+    ]
+  },
+  {
     "name": "Currency format",
     "settings": [
       {

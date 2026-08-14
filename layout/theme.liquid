@@ -42,6 +42,16 @@
   {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
   {{ 'main.css' | asset_url | stylesheet_tag: preload: true }}
 
+  {%- if settings.ui_refresh_enabled -%}
+    {{ 'tpts-ui.css' | asset_url | stylesheet_tag: preload: true }}
+    <style>
+      :root {
+        --tpts-card-radius: {{ settings.ui_card_radius }}px;
+        --tpts-control-radius: {{ settings.ui_control_radius }}px;
+      }
+    </style>
+  {%- endif -%}
+
   {%- if settings.swatch_source == 'theme' and settings.swatch_value_list != blank -%}
     <link rel="stylesheet" href="{{ 'swatches.css' | asset_url }}" media="print" onload="this.media='all'">
   {%- endif -%}
@@ -177,6 +187,11 @@
 
 <body class="template-{{ template | split: '.' | first | handle }}
     {%- if template.suffix %} template-suffix-{{ template.suffix }}{% endif -%}
+    {%- if settings.ui_refresh_enabled %} tpts-ui-refresh{% endif -%}
+    {%- if settings.ui_card_alignment == 'left' %} tpts-card-align-left{% endif -%}
+    {%- if settings.ui_sticky_collection_controls %} tpts-sticky-collection-controls{% endif -%}
+    {%- if settings.ui_dim_sold_out_cards %} tpts-dim-sold-out-cards{% endif -%}
+    {%- if settings.ui_mobile_card_actions %} tpts-mobile-card-actions{% endif -%}
     {%- if settings.swatch_source == 'native' %} swatch-source-native swatch-method-swatches swatch-style-{{ settings.swatch_style }}
     {%- elsif settings.swatch_source == 'theme' %} swatch-source-theme swatch-method-{{ settings.swatch_method }} swatch-style-{{ settings.swatch_style }}{% endif -%}
     {%- if settings.animations_enabled_desktop %} cc-animate-enabled{% endif -%}

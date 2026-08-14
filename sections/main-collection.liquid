@@ -290,7 +290,11 @@
 
       <div class="filters-adjacent collection-listing" data-ajax-container>
         {% if collection.products.size == 0 %}
-          <h5 class="align-centre fully-spaced-row">{{ 'sections.collection.empty' | t }}</h5>
+          <div class="collection-empty-state align-center fully-spaced-row">
+            <h2 class="h4">{{ 'sections.collection.empty' | t }}</h2>
+            <p>Try adjusting your filters to see more products.</p>
+            <a class="btn btn--secondary" href="{{ collection.url }}">{{ 'products.filtering.clear_all' | t }}</a>
+          </div>
         {% else %}
           <div class="product-grid product-grid--per-row-{{ section.settings.grid }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }}">
             {%- liquid
