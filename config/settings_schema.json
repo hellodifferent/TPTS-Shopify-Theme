@@ -1032,6 +1032,12 @@
         "default": true
       },
       {
+        "type": "text",
+        "id": "prod_sold_out_secondary_label",
+        "label": "Optional sold out message",
+        "info": "Leave blank unless the message is accurate for all sold out products."
+      },
+      {
         "type": "checkbox",
         "id": "prod_pre_order_label_show",
         "label": "Show pre-order label",
@@ -1717,6 +1723,64 @@
         "id": "free_shipping_bar_col_met",
         "label": "Bar color - success",
         "default": "#00800a"
+      }
+    ]
+  },
+  {
+    "name": "Conversion enhancements",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "conversion_mobile_sticky_atc",
+        "label": "Enable sticky add to cart on product pages",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "conversion_policy_links",
+        "label": "Show shipping and returns policy links below add to cart",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "conversion_shipping_label",
+        "label": "Shipping policy label",
+        "default": "Shipping & delivery"
+      },
+      {
+        "type": "text",
+        "id": "conversion_returns_label",
+        "label": "Returns policy label",
+        "default": "Returns policy"
+      },
+      {
+        "type": "header",
+        "content": "Complementary products"
+      },
+      {
+        "type": "paragraph",
+        "content": "Uses complementary recommendations configured in Shopify Search & Discovery. Sold out products are automatically excluded."
+      },
+      {
+        "type": "checkbox",
+        "id": "conversion_complementary_products",
+        "label": "Show complementary products on product pages",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "conversion_complementary_heading",
+        "label": "Heading",
+        "default": "Pairs well with"
+      },
+      {
+        "type": "range",
+        "id": "conversion_complementary_max",
+        "min": 2,
+        "max": 8,
+        "step": 1,
+        "label": "Maximum products",
+        "default": 4
       }
     ]
   },

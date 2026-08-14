@@ -29,9 +29,11 @@
         endif
       -%}
       {%- for product in recommendations.products -%}
-        <li class="slider__item">
-          {%- render 'product-block', product: product, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: chosen_aspect_ratio -%}
-        </li>
+        {%- if product.available -%}
+          <li class="slider__item">
+            {%- render 'product-block', product: product, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: chosen_aspect_ratio, cart_cross_sell: true -%}
+          </li>
+        {%- endif -%}
       {%- endfor -%}
     </ul>
   </div>

@@ -250,7 +250,7 @@
     {%- endif -%}
 
     <div class="product-form" id="ProductInfo-{{ section.id }}">
-      {%- if section.settings.enable_sticky_atc -%}
+      {%- if section.settings.enable_sticky_atc or settings.conversion_mobile_sticky_atc -%}
         <a class="sticky-atc-anchor" id="product-info" rel="nofollow"></a>
       {%- endif -%}
       {% for block in section.blocks %}
@@ -729,6 +729,10 @@
                 <div data-dynamic-variant-content="{{ block.id }}-pickup-availability"{% unless product.available %} hidden{% endunless %}>
                   {% render 'pickup-availability', current_variant: current_variant %}
                 </div>
+              {%- endif -%}
+
+              {%- if settings.conversion_policy_links -%}
+                {%- render 'product-policy-links' -%}
               {%- endif -%}
             </div>
 
@@ -1369,8 +1373,12 @@
   <div class="product-description rte container cf padded-row not-in-quickbuy">{{ product.description }}</div>
 {%- endif -%}
 
-{%- if section.settings.enable_sticky_atc -%}
+{%- if section.settings.enable_sticky_atc or settings.conversion_mobile_sticky_atc -%}
   {%- render 'sticky-atc', product: product, current_variant: current_variant -%}
+{%- endif -%}
+
+{%- if settings.conversion_complementary_products and settings.conversion_complementary_heading != blank -%}
+  {%- render 'product-complementary-products', product: product, section: section -%}
 {%- endif -%}
 
 {% schema %}

@@ -163,9 +163,11 @@
                       -%}
 
                       {%- for product in section.settings.cross_sell_products -%}
-                        <li class="slider__item">
-                          {%- render 'product-block', product: product, manual_loading: true, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: chosen_aspect_ratio -%}
-                        </li>
+                        {%- if product.available -%}
+                          <li class="slider__item">
+                            {%- render 'product-block', product: product, manual_loading: true, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: chosen_aspect_ratio, cart_cross_sell: true -%}
+                          </li>
+                        {%- endif -%}
                       {%- endfor -%}
                     {%- endif -%}
                   </ul>
@@ -250,6 +252,14 @@
         {% endif %}
       </div>
 
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types != empty -%}
+        <div class="cart-drawer__payment-icons" aria-label="Accepted payment methods">
+          {%- for type in shop.enabled_payment_types -%}
+            {{- type | payment_type_svg_tag: class: 'cart-drawer__payment-icon' -}}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
       {%- if section.settings.announcement_position == 'below-checkout' -%}
         <div class="cart-info-block cart-info-block--smt">{{- announcement -}}</div>
       {%- endif -%}
@@ -310,6 +320,12 @@
       "type": "checkbox",
       "id": "show_tax_and_shipping",
       "label": "Show tax status and shipping policy link",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show accepted payment methods below checkout",
       "default": true
     },
     {
