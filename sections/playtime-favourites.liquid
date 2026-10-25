@@ -1,0 +1,109 @@
+{%- liquid
+  assign configured_count = 0
+  for block in section.blocks
+    if block.settings.product != blank
+      assign configured_count = configured_count | plus: 1
+    endif
+  endfor
+-%}
+{%- if configured_count > 0 or request.design_mode -%}
+  {{ 'playtime-favourites.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'playtime-favourites.js' | asset_url }}" defer></script>
+  <section class="playtime-favourites" aria-labelledby="PlaytimeFavourites-{{ section.id }}" style="--pf-background: {{ section.settings.background }}; --pf-button: {{ section.settings.button_color }}; --pf-button-text: {{ section.settings.button_text_color }};">
+    <div class="container">
+      <header class="pf-heading">
+        {%- if section.settings.eyebrow != blank -%}<p class="pf-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 id="PlaytimeFavourites-{{ section.id }}">{%- if section.settings.heading != blank -%}{{ section.settings.heading | escape }}{%- else -%}{{ 'sections.playtime_favourites.heading' | t }}{%- endif -%}</h2>
+        {%- if section.settings.description != blank -%}<div class="pf-intro rte">{{ section.settings.description }}</div>{%- endif -%}
+      </header>
+      <playtime-favourites class="pf-grid">
+        {%- for block in section.blocks -%}
+          {%- assign card_product = block.settings.product -%}
+          {%- if card_product != blank -%}
+            {%- liquid
+              assign card_image = block.settings.image | default: card_product.featured_media.preview_image
+              assign family = card_product.metafields.custom.product_family.value
+              assign colour = card_product.metafields.custom.swatch_name.value | default: card_product.title
+              assign card_title = block.settings.title | default: card_product.title
+            -%}
+            <article class="pf-card" data-pf-card {{ block.shopify_attributes }}>
+              <div class="pf-media">
+                <a class="pf-image-link" href="{{ card_product.url }}" data-pf-link aria-label="{{ card_title | escape }}">
+                  <div data-pf-visual>
+                    {%- if card_image != blank -%}
+                      {% render 'image', image: card_image, custom_aspect_ratio: 1, size_cols_desktop: 4, size_cols_mobile: 2, class: 'pf-image', widths: '180, 260, 360, 540, 740, 980', loading: 'lazy' %}
+                    {%- else -%}
+                      {{ 'product-1' | placeholder_svg_tag: 'pf-placeholder' }}
+                    {%- endif -%}
+                  </div>
+                </a>
+                {%- if section.settings.show_badge -%}
+                  <span class="pf-badge" data-pf-badge{% if card_product.available %} hidden{% endif %}>{{ section.settings.sold_out_label | escape }}</span>
+                {%- endif -%}
+              </div>
+              <h3 class="pf-title"><a href="{{ card_product.url }}" data-pf-link{% if block.settings.title == blank %} data-pf-dynamic-title{% endif %}>{{ card_title | escape }}</a></h3>
+              {%- if block.settings.description != blank -%}<p class="pf-description">{{ block.settings.description | escape }}</p>{%- endif -%}
+              {%- if section.settings.show_price -%}
+                <div class="pf-price" data-pf-price>
+                  {%- if card_product.price_varies -%}{{ 'products.product.from' | t }} {% endif -%}{{ card_product.price | money }}
+                </div>
+              {%- endif -%}
+              {%- if family.products.value != blank -%}
+                <ul class="pf-swatches" aria-label="{{ 'sections.playtime_favourites.colours' | t: product: card_title | escape }}">
+                  {% render 'playtime-favourite-swatch', sibling: card_product, selected_product: card_product, selected_image: card_image %}
+                  {%- for sibling in family.products.value -%}
+                    {%- if sibling != blank and sibling.id != card_product.id -%}
+                      {% render 'playtime-favourite-swatch', sibling: sibling, selected_product: card_product, selected_image: card_image %}
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+                <p class="pf-colour" data-pf-colour>{{ colour | escape }}</p>
+              {%- endif -%}
+              <a class="pf-cta" href="{{ card_product.url }}" data-pf-link data-pf-cta data-available-label="{{ section.settings.available_label | escape }}" data-unavailable-label="{{ section.settings.unavailable_label | escape }}">
+                {%- if card_product.available -%}{{ section.settings.available_label | escape }}{%- else -%}{{ section.settings.unavailable_label | escape }}{%- endif -%}
+                <span aria-hidden="true"> →</span>
+              </a>
+              <span class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-pf-announcement></span>
+            </article>
+          {%- elsif request.design_mode -%}
+            <article class="pf-card pf-card--placeholder" {{ block.shopify_attributes }}>
+              <div class="pf-media">{{ 'product-1' | placeholder_svg_tag: 'pf-placeholder' }}</div>
+              <h3 class="pf-title">{{ 'sections.playtime_favourites.choose_product' | t }}</h3>
+              <p class="pf-description">{{ 'sections.playtime_favourites.editor_help' | t }}</p>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </playtime-favourites>
+    </div>
+  </section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Playtime favourites",
+  "class": "section-playtime-favourites",
+  "disabled_on": {"groups": ["header", "footer", "aside"]},
+  "max_blocks": 8,
+  "settings": [
+    {"type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "A little look at what’s next"},
+    {"type": "text", "id": "heading", "label": "Heading", "default": "Meet your next playtime favourite"},
+    {"type": "richtext", "id": "description", "label": "Description", "default": "<p>Find your favourite style. Get ready for everyday adventures.</p>"},
+    {"type": "checkbox", "id": "show_price", "label": "Show prices", "default": true},
+    {"type": "checkbox", "id": "show_badge", "label": "Show badge on unavailable products", "default": true},
+    {"type": "text", "id": "sold_out_label", "label": "Unavailable badge", "default": "Restocking soon", "info": "Only use restock wording for products confirmed to return."},
+    {"type": "text", "id": "available_label", "label": "Available product link", "default": "Explore the range"},
+    {"type": "text", "id": "unavailable_label", "label": "Unavailable product link", "default": "Choose colour & notify me"},
+    {"type": "color", "id": "background", "label": "Background", "default": "#ffffff"},
+    {"type": "color", "id": "button_color", "label": "Button background", "default": "#d2bca6"},
+    {"type": "color", "id": "button_text_color", "label": "Button text", "default": "#171717"}
+  ],
+  "blocks": [
+    {"type": "product", "name": "Product family", "settings": [
+      {"type": "product", "id": "product", "label": "Representative product", "info": "Sibling colours use the existing custom.product_family metafield and its products list."},
+      {"type": "text", "id": "title", "label": "Title override", "info": "Leave blank to use the selected product’s title."},
+      {"type": "text", "id": "description", "label": "Short description"},
+      {"type": "image_picker", "id": "image", "label": "Initial image override"}
+    ]}
+  ],
+  "presets": [{"name": "Playtime favourites", "blocks": [{"type": "product"}, {"type": "product"}, {"type": "product"}, {"type": "product"}]}]
+}
+{% endschema %}

@@ -1,0 +1,44 @@
+.playtime-favourites { padding: 56px 0; background: var(--pf-background); }
+.playtime-favourites .pf-heading { max-width: 760px; margin: 0 auto 32px; text-align: center; }
+.playtime-favourites .pf-eyebrow { margin: 0 0 15px; font-size: 11px; line-height: 1.5; letter-spacing: .16em; text-transform: uppercase; }
+.playtime-favourites .pf-heading h2 { margin: 0; font-size: clamp(30px, 3.1vw, 44px); line-height: 1.15; }
+.playtime-favourites .pf-intro { margin-top: 14px; }
+.playtime-favourites .pf-intro p:last-child { margin-bottom: 0; }
+.playtime-favourites .pf-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; }
+.playtime-favourites .pf-card { min-width: 0; display: flex; flex-direction: column; }
+.playtime-favourites .pf-media { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 9px; background: #f5eddf; }
+.playtime-favourites .pf-image-link, .playtime-favourites [data-pf-visual] { display: block; height: 100%; }
+.playtime-favourites .pf-media img, .playtime-favourites .pf-placeholder { display: block; width: 100%; height: 100%; object-fit: cover; }
+.playtime-favourites .pf-image-link:focus-visible { outline: 3px solid currentColor; outline-offset: -4px; }
+.playtime-favourites .pf-badge { position: absolute; top: 12px; left: 12px; max-width: calc(100% - 24px); padding: 5px 9px; border-radius: 4px; background: #f5eddf; color: #171717; font-size: 11px; line-height: 1.4; pointer-events: none; }
+.playtime-favourites .pf-badge[hidden] { display: none; }
+.playtime-favourites .pf-title a { text-decoration: none; }
+.playtime-favourites .pf-title { margin: 18px 0 8px; font-size: 24px; line-height: 1.2; }
+.playtime-favourites .pf-description { margin: 0 0 10px; font-size: 13px; line-height: 1.5; }
+.playtime-favourites .pf-price { margin-bottom: 12px; font-size: 14px; line-height: 1.5; }
+.playtime-favourites .pf-swatches { display: flex; flex-wrap: wrap; gap: 0; padding: 0; margin: 10px -8px 0; list-style: none; }
+.playtime-favourites .pf-swatch-item { margin: 0; padding: 0; }
+.playtime-favourites .pf-swatch { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; }
+.playtime-favourites .pf-swatch-dot { display: flex; align-items: center; justify-content: center; width: 23px; height: 23px; border: 1px solid #c8c1b6; border-radius: 50%; background-size: cover; background-position: center; }
+.playtime-favourites .pf-swatch[aria-current="true"] .pf-swatch-dot { outline: 1px solid currentColor; outline-offset: 3px; }
+.playtime-favourites .pf-swatch:focus-visible { outline: 2px solid currentColor; outline-offset: -2px; }
+.playtime-favourites .pf-swatch-initial { font-size: 10px; line-height: 1; }
+.playtime-favourites .pf-colour { margin: 0 0 12px; font-size: 12px; line-height: 1.4; }
+.playtime-favourites .pf-cta { display: flex; justify-content: center; align-items: center; width: 100%; min-height: 46px; margin-top: auto; gap: 6px; padding: 12px; border: 1px solid transparent; border-radius: 5px; background: var(--pf-button); color: var(--pf-button-text); font-size: 12px; line-height: 1.4; text-align: center; text-decoration: none; }
+.playtime-favourites .pf-cta:hover { border-color: currentColor; }
+.playtime-favourites .pf-cta:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (max-width: 1023px) {
+  .playtime-favourites .pf-grid { gap: 18px; }
+  .playtime-favourites .pf-title { font-size: 21px; }
+}
+@media (max-width: 767px) {
+  .playtime-favourites { padding: 34px 0; }
+  .playtime-favourites .pf-heading { margin-bottom: 24px; }
+  .playtime-favourites .pf-eyebrow { font-size: 10px; }
+  .playtime-favourites .pf-intro { font-size: 14px; }
+  .playtime-favourites .pf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 14px; }
+  .playtime-favourites .pf-title { margin-top: 12px; font-size: 19px; }
+  .playtime-favourites .pf-description, .playtime-favourites .pf-price { font-size: 12px; }
+  .playtime-favourites .pf-badge { top: 8px; left: 8px; max-width: calc(100% - 16px); padding: 4px 6px; font-size: 10px; }
+  .playtime-favourites .pf-cta { padding: 11px 8px; font-size: 11px; }
+}
