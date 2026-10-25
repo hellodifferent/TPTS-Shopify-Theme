@@ -98,21 +98,25 @@
         {%- endif -%}
       </div>
 
-      <div data-merge="cross-sells" data-merge-cache="{% if cart.items == blank %}blank{% else %}{% for item in cart.items %}{{ item.product.id }}{% unless forloop.last %}-{% endunless %}{% endfor %}{% endif %}">
+      <div data-merge="cross-sells" data-merge-cache="{% if cart.items == blank %}blank{% else %}{{ cart.items.first.product.id }}{% endif %}">
         {%- liquid
-          assign cross_sell_limit = section.settings.cross_sell_limit | default: 4
           if section.settings.enable_cross_sells
-            if section.settings.cross_sell_products != blank
-              assign cross_sell_product_list = true
-            endif
-            if cart.items != empty and section.settings.enable_automatic_cross_sells
-              assign cross_sell_auto = true
+            if cart.items == empty
+              if section.settings.cross_sell_products != blank
+                assign cross_sell_product_list = true
+              endif
+            else
+              if section.settings.enable_automatic_cross_sells
+                assign cross_sell_auto = true
+              elsif section.settings.cross_sell_products != blank
+                assign cross_sell_product_list = true
+              endif
             endif
           endif
         -%}
         {%- if cross_sell_product_list or cross_sell_auto -%}
           <div class="cart-item-upsells">
-            <cc-cart-cross-sell{% if cross_sell_auto %} data-from="{{ routes.product_recommendations_url }}?section_id=mini-related-products&limit={{ cross_sell_limit }}&product_id={{ cart.items.first.product.id }}"{% endif %}>
+            <cc-cart-cross-sell{% if cross_sell_auto %} data-from="{{ routes.product_recommendations_url }}?section_id=mini-related-products&limit=8&product_id={{ cart.items.first.product.id }}"{% endif %}>
               <carousel-slider class="carousel block collection-slider cart-drawer__content-item use-color-scheme use-color-scheme--{{ section.settings.croll_sell_color_scheme }}">
                 <div class="opposing-items opposing-items--valign-base very-lightly-spaced-row">
                   <div class="opposing-items__left product-info-label">{{ section.settings.cross_sell_title | escape }}</div>
@@ -158,24 +162,10 @@
                         endif
                       -%}
 
-                      {%- assign rendered_cross_sells = 0 -%}
                       {%- for product in section.settings.cross_sell_products -%}
-                        {%- liquid
-                          assign product_is_in_cart = false
-                          for item in cart.items
-                            if item.product.id == product.id
-                              assign product_is_in_cart = true
-                              break
-                            endif
-                          endfor
-                        -%}
-                        {%- if product.available and product_is_in_cart == false -%}
-                          <li class="slider__item">
-                            {%- render 'product-block', product: product, manual_loading: true, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: chosen_aspect_ratio, cart_cross_sell: true -%}
-                          </li>
-                          {%- assign rendered_cross_sells = rendered_cross_sells | plus: 1 -%}
-                          {%- if rendered_cross_sells >= cross_sell_limit -%}{%- break -%}{%- endif -%}
-                        {%- endif -%}
+                        <li class="slider__item">
+                          {%- render 'product-block', product: product, manual_loading: true, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: chosen_aspect_ratio -%}
+                        </li>
                       {%- endfor -%}
                     {%- endif -%}
                   </ul>
@@ -254,39 +244,11 @@
 
       <div class="checkout-buttons{% if cart.items == empty %} hidden{% endif %}" data-merge-attributes="checkout-buttons">
         {% if section.settings.enable_direct_cart %}
-          <a href="{{ routes.root_url | append: '/checkout' | replace: '//', '/' }}" class="btn btn--large btn--wide">
-            {{- 'cart.summary.checkout' | t -}}
-            {%- if section.settings.show_checkout_total -%}
-              &nbsp;·&nbsp;
-              {%- if settings.cart_currency_code_enabled -%}
-                {{- cart.total_price | money_with_currency -}}
-              {%- else -%}
-                {{- cart.total_price | money -}}
-              {%- endif -%}
-            {%- endif -%}
-          </a>
+          <a href="{{ routes.root_url | append: '/checkout' | replace: '//', '/' }}" class="btn btn--large btn--wide">{{ 'cart.summary.checkout' | t }}</a>
         {% else %}
-          <a href="{{ routes.cart_url }}" class="btn btn--large btn--wide">
-            {{- 'cart.summary.checkout' | t -}}
-            {%- if section.settings.show_checkout_total -%}
-              &nbsp;·&nbsp;
-              {%- if settings.cart_currency_code_enabled -%}
-                {{- cart.total_price | money_with_currency -}}
-              {%- else -%}
-                {{- cart.total_price | money -}}
-              {%- endif -%}
-            {%- endif -%}
-          </a>
+          <a href="{{ routes.cart_url }}" class="btn btn--large btn--wide">{{ 'cart.summary.checkout' | t }}</a>
         {% endif %}
       </div>
-
-      {%- if section.settings.show_payment_icons and shop.enabled_payment_types != empty -%}
-        <div class="cart-drawer__payment-icons" aria-label="Accepted payment methods">
-          {%- for type in shop.enabled_payment_types -%}
-            {{- type | payment_type_svg_tag: class: 'cart-drawer__payment-icon' -}}
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
 
       {%- if section.settings.announcement_position == 'below-checkout' -%}
         <div class="cart-info-block cart-info-block--smt">{{- announcement -}}</div>
@@ -352,21 +314,9 @@
     },
     {
       "type": "checkbox",
-      "id": "show_payment_icons",
-      "label": "Show accepted payment methods below checkout",
-      "default": true
-    },
-    {
-      "type": "checkbox",
       "id": "enable_direct_cart",
       "label": "Enable direct checkout",
       "info": "Disable to send customers to the cart page",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_checkout_total",
-      "label": "Show cart total in checkout button",
       "default": true
     },
     {
@@ -798,22 +748,13 @@
     {
       "type": "product_list",
       "id": "cross_sell_products",
-      "label": "Fallback products"
-    },
-    {
-      "type": "range",
-      "id": "cross_sell_limit",
-      "label": "Maximum recommendations",
-      "min": 2,
-      "max": 8,
-      "step": 1,
-      "default": 4
+      "label": "Products"
     },
     {
       "type": "checkbox",
       "id": "enable_automatic_cross_sells",
       "label": "Enable automatic recommendations",
-      "info": "Displays products related to the first cart item. Fallback products remain visible if Shopify has no recommendations.",
+      "info": "Displays products related to the first item in the cart, replacing the recommended products above.",
       "default": true
     },
     {

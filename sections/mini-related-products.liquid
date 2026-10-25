@@ -29,20 +29,9 @@
         endif
       -%}
       {%- for product in recommendations.products -%}
-        {%- liquid
-          assign product_is_in_cart = false
-          for item in cart.items
-            if item.product.id == product.id
-              assign product_is_in_cart = true
-              break
-            endif
-          endfor
-        -%}
-        {%- if product.available and product_is_in_cart == false -%}
-          <li class="slider__item">
-            {%- render 'product-block', product: product, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: chosen_aspect_ratio, cart_cross_sell: true -%}
-          </li>
-        {%- endif -%}
+        <li class="slider__item">
+          {%- render 'product-block', product: product, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: chosen_aspect_ratio -%}
+        </li>
       {%- endfor -%}
     </ul>
   </div>

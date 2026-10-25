@@ -1192,10 +1192,10 @@ const CCCartCrossSell = class extends HTMLElement {
           newContent.innerHTML = response;
 
           const pl = newContent.querySelector('.product-grid');
-          if (pl && pl.children.length > 0) {
+          if (pl) {
             this.productList.innerHTML = pl.innerHTML;
             this.querySelectorAll('carousel-slider').forEach((el) => el.refresh());
-          } else if (!this.productList || this.productList.children.length === 0) {
+          } else {
             this.classList.add('hidden');
           }
         });
