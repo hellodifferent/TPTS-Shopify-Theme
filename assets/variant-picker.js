@@ -128,6 +128,7 @@ if (!customElements.get('variant-picker')) {
       const sectionIds = [this.dataset.sectionId];
       if (!this.quickBuyContainer && !this.featuredProductContainer) {
         document.querySelectorAll('.cc-variant-dependent-section [data-section-id]').forEach((e) => {
+          if (e.closest('.rte')) return;
           sectionIds.push(e.dataset.sectionId);
         });
       }

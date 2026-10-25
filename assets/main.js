@@ -2939,7 +2939,7 @@ const ProductForm = class extends HTMLElement {
    * @param {string} [error=false] - Error to show a message for.
    */
   setErrorMsgState(error = false) {
-    this.errorMsg = this.errorMsg || this.querySelector('.js-form-error');
+    this.errorMsg = this.querySelector('.js-form-error');
     if (!this.errorMsg) return;
 
     this.errorMsg.hidden = !error;
