@@ -527,20 +527,20 @@
     "16359278676808bea5": {
       "type": "playtime-favourites",
       "blocks": {
-        "mini": {
-          "type": "product",
-          "settings": {
-            "product": "mini-step-slide-white",
-            "title": "Mini Step & Slide",
-            "description": "Little steps. Big possibilities."
-          }
-        },
         "blocks": {
           "type": "product",
           "settings": {
-            "product": "pre-order-mini-play-blocks-copy",
-            "title": "Play Blocks",
-            "description": "Stack, build and imagine."
+            "product": "mini-play-blocks-pastel",
+            "title": "Mini Play Blocks",
+            "description": "Stack, build & play"
+          }
+        },
+        "mini": {
+          "type": "product",
+          "settings": {
+            "product": "explorer",
+            "title": "Explorer",
+            "description": "Climb, crawl, balance & explore"
           }
         },
         "castle": {
@@ -548,21 +548,21 @@
           "settings": {
             "product": "castle-limited-edition",
             "title": "Castle Soft Play",
-            "description": "A world of their own."
+            "description": "Imagine a world of their own"
           }
         },
         "ballpit": {
           "type": "product",
           "settings": {
-            "product": "foldable-ball-pit-white",
-            "title": "Ball Pits",
-            "description": "Their own little happy place."
+            "product": "soft-play-ball-pit-beige",
+            "title": "Soft Play Ball Pits",
+            "description": "Their own little happy place"
           }
         }
       },
       "block_order": [
-        "mini",
         "blocks",
+        "mini",
         "castle",
         "ballpit"
       ],
@@ -574,7 +574,8 @@
         "show_badge": true,
         "sold_out_label": "Restocking soon",
         "cta_label": "Shop now",
-        "background": "#ffffff"}
+        "background": "#ffffff"
+      }
     },
     "rich_text_EKR8Ly": {
       "type": "rich-text",
@@ -1524,4 +1525,3 @@
     "slideshow_LRbBQP"
   ]
 }
-
