@@ -1,3 +1,4 @@
+{{ 'tps-product-info-blocks.css' | asset_url | stylesheet_tag }}
 {%- liquid
   assign zoom_size = 5000
   assign min_aspect_ratio = 0.6
@@ -374,6 +375,9 @@
     </div>
   {%- endif -%}
 </div>
+
+          {% when 'tps_delivery_links', 'tps_product_benefits' %}
+            {% render 'tps-product-info-block', block: block, product: product %}
 
           {% when 'description' %}
             <div class="{% unless block.settings.show_in_quickbuy %}not-in-quickbuy{% endunless %}{% if block.settings.show_in_tab %} product-info-accordion{% endif %}"
@@ -1789,6 +1793,80 @@
     }
   ],
   "blocks": [
+    {
+      "type": "tps_delivery_links",
+      "name": "TPS delivery links",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "shipping_text",
+          "label": "Shipping origin",
+          "default": "Ships from Brisbane"
+        },
+        {
+          "type": "text",
+          "id": "delivery_label",
+          "label": "Delivery link label",
+          "default": "Delivery information"
+        },
+        {
+          "type": "url",
+          "id": "delivery_url",
+          "label": "Delivery page"
+        },
+        {
+          "type": "text",
+          "id": "returns_label",
+          "label": "Returns link label",
+          "default": "Returns policy"
+        },
+        {
+          "type": "url",
+          "id": "returns_url",
+          "label": "Returns page"
+        }
+      ]
+    },
+    {
+      "type": "tps_product_benefits",
+      "name": "TPS product benefits",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_title_contains",
+          "label": "Only show for titles containing",
+          "info": "Leave blank to show on all physical products using this template. Use a shared product name to keep product-specific facts within that range."
+        },
+        {
+          "type": "textarea",
+          "id": "introduction",
+          "label": "Short introduction"
+        },
+        {
+          "type": "text",
+          "id": "benefit_1",
+          "label": "First benefit"
+        },
+        {
+          "type": "text",
+          "id": "benefit_2",
+          "label": "Second benefit"
+        },
+        {
+          "type": "text",
+          "id": "benefit_3",
+          "label": "Third benefit"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background",
+          "default": "#f9f7f3"
+        }
+      ]
+    },
     {
       "type": "@app"
     },
@@ -4168,3 +4246,4 @@
   ]
 }
 {% endschema %}
+
