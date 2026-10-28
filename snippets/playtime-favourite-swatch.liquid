@@ -14,10 +14,11 @@
   endif
 -%}
 <li class="pf-swatch-item">
-  <a class="pf-swatch" href="{{ sibling.url }}" data-pf-swatch data-product-title="{{ sibling.title | escape }}" data-colour="{{ colour_name | escape }}" data-available="{{ sibling.available }}" aria-label="{{ 'sections.playtime_favourites.view_colour' | t: colour: colour_name | escape }}" aria-current="{% if sibling.id == selected_product.id %}true{% else %}false{% endif %}" title="{{ colour_name | escape }}">
+  <a class="pf-swatch" href="{{ sibling.url }}" data-pf-swatch data-product-title="{{ sibling.title | escape }}" data-colour="{{ colour_name | escape }}" data-available="{{ sibling.available }}" aria-label="{{ 'sections.playtime_favourites.view_colour' | t: colour: colour_name | escape }}" aria-current="{% if sibling.id == selected_product.id %}true{% else %}false{% endif %}">
     <span class="pf-swatch-dot"{% if swatch_image != blank %} style="background-image: url('{{ swatch_image | image_url: width: 80 | escape }}');"{% elsif swatch_colour != blank %} style="background-color: {{ swatch_colour | color_to_hex }};"{% endif %}>
       {%- if swatch_image == blank and swatch_colour == blank -%}<span class="pf-swatch-initial" aria-hidden="true">{{ colour_name | slice: 0 | escape }}</span>{%- endif -%}
     </span>
+    <span class="pf-swatch-label" aria-hidden="true">{{ colour_name | escape }}</span>
   </a>
   <template data-pf-state>
     <div data-state-visual>

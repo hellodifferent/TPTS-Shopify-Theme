@@ -23,7 +23,6 @@
             {%- liquid
               assign card_image = block.settings.image | default: card_product.featured_media.preview_image
               assign family = card_product.metafields.custom.product_family.value
-              assign colour = card_product.metafields.custom.swatch_name.value | default: card_product.title
               assign card_title = block.settings.title | default: card_product.title
             -%}
             <article class="pf-card" data-pf-card {{ block.shopify_attributes }}>
@@ -57,10 +56,9 @@
                     {%- endif -%}
                   {%- endfor -%}
                 </ul>
-                <p class="pf-colour" data-pf-colour>{{ colour | escape }}</p>
               {%- endif -%}
-              <a class="pf-cta" href="{{ card_product.url }}" data-pf-link data-pf-cta data-available-label="{{ section.settings.available_label | escape }}" data-unavailable-label="{{ section.settings.unavailable_label | escape }}">
-                {%- if card_product.available -%}{{ section.settings.available_label | escape }}{%- else -%}{{ section.settings.unavailable_label | escape }}{%- endif -%}
+              <a class="pf-cta" href="{{ card_product.url }}" data-pf-link data-pf-cta>
+                {{ section.settings.cta_label | escape }}
                 <span aria-hidden="true"> →</span>
               </a>
               <span class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-pf-announcement></span>
@@ -90,8 +88,7 @@
     {"type": "checkbox", "id": "show_price", "label": "Show prices", "default": true},
     {"type": "checkbox", "id": "show_badge", "label": "Show badge on unavailable products", "default": true},
     {"type": "text", "id": "sold_out_label", "label": "Unavailable badge", "default": "Restocking soon", "info": "Only use restock wording for products confirmed to return."},
-    {"type": "text", "id": "available_label", "label": "Available product link", "default": "Explore the range"},
-    {"type": "text", "id": "unavailable_label", "label": "Unavailable product link", "default": "Choose colour & notify me"},
+    {"type": "text", "id": "cta_label", "label": "Product link", "default": "Shop now"},
     {"type": "color", "id": "background", "label": "Background", "default": "#ffffff"},
     {"type": "color", "id": "button_color", "label": "Button background", "default": "#d2bca6"},
     {"type": "color", "id": "button_text_color", "label": "Button text", "default": "#171717"}
