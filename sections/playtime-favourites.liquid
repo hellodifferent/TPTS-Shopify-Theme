@@ -9,7 +9,7 @@
 {%- if configured_count > 0 or request.design_mode -%}
   {{ 'playtime-favourites.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'playtime-favourites.js' | asset_url }}" defer></script>
-  <section class="playtime-favourites" aria-labelledby="PlaytimeFavourites-{{ section.id }}" style="--pf-background: {{ section.settings.background }}; --pf-button: {{ section.settings.button_color }}; --pf-button-text: {{ section.settings.button_text_color }};">
+  <section class="playtime-favourites" aria-labelledby="PlaytimeFavourites-{{ section.id }}" style="--pf-background: {{ section.settings.background }};">
     <div class="container">
       <header class="pf-heading">
         {%- if section.settings.eyebrow != blank -%}<p class="pf-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
@@ -57,9 +57,8 @@
                   {%- endfor -%}
                 </ul>
               {%- endif -%}
-              <a class="pf-cta" href="{{ card_product.url }}" data-pf-link data-pf-cta>
+              <a class="pf-cta btn btn--secondary" href="{{ card_product.url }}" data-pf-link data-pf-cta>
                 {{ section.settings.cta_label | escape }}
-                <span aria-hidden="true"> →</span>
               </a>
               <span class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-pf-announcement></span>
             </article>
@@ -89,9 +88,7 @@
     {"type": "checkbox", "id": "show_badge", "label": "Show badge on unavailable products", "default": true},
     {"type": "text", "id": "sold_out_label", "label": "Unavailable badge", "default": "Restocking soon", "info": "Only use restock wording for products confirmed to return."},
     {"type": "text", "id": "cta_label", "label": "Product link", "default": "Shop now"},
-    {"type": "color", "id": "background", "label": "Background", "default": "#ffffff"},
-    {"type": "color", "id": "button_color", "label": "Button background", "default": "#d2bca6"},
-    {"type": "color", "id": "button_text_color", "label": "Button text", "default": "#171717"}
+    {"type": "color", "id": "background", "label": "Background", "default": "#ffffff"}
   ],
   "blocks": [
     {"type": "product", "name": "Product family", "settings": [

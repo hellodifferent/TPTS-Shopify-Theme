@@ -574,10 +574,7 @@
         "show_badge": true,
         "sold_out_label": "Restocking soon",
         "cta_label": "Shop now",
-        "background": "#ffffff",
-        "button_color": "#d2bca6",
-        "button_text_color": "#171717"
-      }
+        "background": "#ffffff"}
     },
     "rich_text_EKR8Ly": {
       "type": "rich-text",
@@ -1527,3 +1524,4 @@
     "slideshow_LRbBQP"
   ]
 }
+

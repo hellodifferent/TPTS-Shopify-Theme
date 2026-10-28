@@ -16,17 +16,16 @@
 .playtime-favourites .pf-title { margin: 18px 0 8px; font-size: 24px; line-height: 1.2; }
 .playtime-favourites .pf-description { margin: 0 0 10px; font-size: 13px; line-height: 1.5; }
 .playtime-favourites .pf-price { margin-bottom: 0; font-size: 14px; line-height: 1.5; }
-.playtime-favourites .pf-swatches { display: flex; flex-wrap: wrap; gap: 0; padding: 0; margin: 2px -8px 10px; list-style: none; }
+.playtime-favourites .pf-swatches { display: flex; flex-wrap: wrap; gap: 0; padding: 0; margin: 2px -4px 10px; list-style: none; }
 .playtime-favourites .pf-swatch-item { position: relative; margin: 0; padding: 0; }
-.playtime-favourites .pf-swatch { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; }
+.playtime-favourites .pf-swatch { display: flex; align-items: center; justify-content: center; width: 32px; height: 44px; border-radius: 50%; }
 .playtime-favourites .pf-swatch-dot { display: flex; align-items: center; justify-content: center; width: 23px; height: 23px; border: 1px solid #c8c1b6; border-radius: 50%; background-size: cover; background-position: center; }
 .playtime-favourites .pf-swatch[aria-current="true"] .pf-swatch-dot { border: 1px solid #000; }
 .playtime-favourites .pf-swatch:focus-visible { outline: 2px solid currentColor; outline-offset: -2px; }
 .playtime-favourites .pf-swatch-initial { font-size: 10px; line-height: 1; }
 .playtime-favourites .pf-swatch-label { position: absolute; z-index: 2; bottom: calc(100% + 3px); left: 50%; transform: translateX(-50%); padding: 5px 8px; border: 1px solid #ded8d0; border-radius: 3px; background: #fff; color: #171717; font-size: 11px; line-height: 1.4; white-space: nowrap; opacity: 0; visibility: hidden; pointer-events: none; }
 .playtime-favourites .pf-swatch:hover .pf-swatch-label, .playtime-favourites .pf-swatch:focus-visible .pf-swatch-label { opacity: 1; visibility: visible; }
-.playtime-favourites .pf-cta { display: flex; justify-content: center; align-items: center; width: 100%; min-height: 46px; margin-top: auto; gap: 6px; padding: 12px; border: 1px solid transparent; border-radius: 5px; background: var(--pf-button); color: var(--pf-button-text); font-size: 12px; line-height: 1.4; text-align: center; text-decoration: none; }
-.playtime-favourites .pf-cta:hover { border-color: currentColor; }
+.playtime-favourites .pf-cta { display: block; width: 100%; margin-top: auto; }
 .playtime-favourites .pf-cta:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 @media (max-width: 1023px) {
   .playtime-favourites .pf-grid { gap: 16px; }
@@ -41,7 +40,6 @@
   .playtime-favourites .pf-title { margin-top: 12px; font-size: 19px; }
   .playtime-favourites .pf-description, .playtime-favourites .pf-price { font-size: 12px; }
   .playtime-favourites .pf-badge { top: 8px; left: 8px; max-width: calc(100% - 16px); padding: 4px 6px; font-size: 10px; }
-  .playtime-favourites .pf-cta { padding: 11px 8px; font-size: 11px; }
 }
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
