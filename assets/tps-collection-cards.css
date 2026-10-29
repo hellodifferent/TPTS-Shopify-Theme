@@ -8,6 +8,7 @@
 .tps-collection-vendor { margin: 12px 0 -8px; font-size: 12px; }
 .tps-collection-compare { margin-inline-start: 8px; opacity: .7; }
 .tps-collection-rating { margin-top: 8px; }
+.tps-collection-cards .product-card-labels[hidden] { display: none; }
 @media (max-width: 767px) {
   .tps-collection-cards .product-grid { column-gap: 12px; row-gap: 28px; }
 

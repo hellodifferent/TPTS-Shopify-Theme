@@ -24,7 +24,12 @@
       </div>
     </a>
     <div class="tps-collection-action" data-pf-action>{% render 'tps-collection-action', product: product, card_id: product.id %}</div>
-    <span class="pf-badge" data-pf-badge{% if product.available %} hidden{% endif %}>{{ 'products.product.sold_out' | t }}</span>
+    {%- if settings.prod_sold_out_show -%}
+      <div class="product-card-labels" data-pf-badge{% if product.available %} hidden{% endif %}>
+        <span class="price-label price-label--sold-out">{{ 'products.product.sold_out' | t }}</span>
+        <span class="price-label price-label--notify-me">{{ 'sections.collection.restocking_soon' | t }}</span>
+      </div>
+    {%- endif -%}
   </div>
   {%- if show_vendor -%}<p class="tps-collection-vendor">{{ product.vendor | escape }}</p>{%- endif -%}
   <h3 class="pf-title"><a href="{{ product.url }}" data-pf-link data-pf-dynamic-title>{{ product.title | escape }}</a></h3>
