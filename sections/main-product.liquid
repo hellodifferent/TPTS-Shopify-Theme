@@ -728,6 +728,7 @@
                   {% endif %}
                 </div>
               {% endform %}
+              {% render 'playtime-offers', mode: 'product', product: product %}
 
               {%- if block.settings.show_pickup_availability -%}
                 <div data-dynamic-variant-content="{{ block.id }}-pickup-availability"{% unless product.available %} hidden{% endunless %}>

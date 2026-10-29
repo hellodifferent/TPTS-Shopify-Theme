@@ -41,6 +41,9 @@
 
   {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
   {{ 'main.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'playtime-offers.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'playtime-offers.js' | asset_url }}" defer></script>
+  <script type="application/json" id="playtime-offer-config">{"adding":{{ 'playtime.offers.adding' | t | json }},"added":{{ 'playtime.offers.added' | t | json }},"error":{{ 'playtime.offers.error' | t | json }},"refreshError":{{ 'playtime.offers.refresh_error' | t | json }}}</script>
 
   {%- if settings.swatch_source == 'theme' and settings.swatch_value_list != blank -%}
     <link rel="stylesheet" href="{{ 'swatches.css' | asset_url }}" media="print" onload="this.media='all'">

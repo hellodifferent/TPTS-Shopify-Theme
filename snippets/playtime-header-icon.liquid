@@ -1,0 +1,15 @@
+{% doc %}
+  @param {string} name - Header icon name: bag, search, user or menu.
+{% enddoc %}
+<svg class="icon playtime-header-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  {%- case name -%}
+    {%- when 'bag' -%}
+      <path d="M5.5 7.5h13l1 13h-15l1-13Z"/><path d="M8.5 8V6a3.5 3.5 0 0 1 7 0v2"/>
+    {%- when 'search' -%}
+      <circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 4.5 4.5"/>
+    {%- when 'user' -%}
+      <circle cx="12" cy="7.5" r="3.5"/><path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2"/>
+    {%- when 'menu' -%}
+      <path d="M4 6.5h16M4 12h16M4 17.5h11"/>
+  {%- endcase -%}
+</svg>

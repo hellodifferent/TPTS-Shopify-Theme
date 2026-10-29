@@ -1,3 +1,13 @@
+{%- liquid
+  assign pt_search_icon = 'icon-search'
+  assign pt_user_icon = 'icon-user'
+  assign pt_menu_icon = 'icon-menu'
+  if settings.playtime_header_icons
+    assign pt_search_icon = 'playtime-header-icon'
+    assign pt_user_icon = 'playtime-header-icon'
+    assign pt_menu_icon = 'playtime-header-icon'
+  endif
+-%}
 {% style %}
   .logo img {
     width: {{ section.settings.logo_img_width_int }}px;
@@ -66,7 +76,7 @@
   <script src="{{ 'countdown-timer.js' | asset_url }}" defer></script>
 {%- endif -%}
 <page-header data-section-id="{{ section.id }}" {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
-  <div id="pageheader" class="pageheader pageheader--layout-{{ section.settings.menu_layout }}{% if section.settings.enable_transparent and template.name == 'index' %} pageheader--transparent-permitted pageheader--transparent{% endif %}{% if section.settings.enable_sticky %} pageheader--sticky{% endif %}">
+  <div id="pageheader" class="pageheader{% if settings.playtime_header_icons %} pt-header-upgraded{% endif %} pageheader--layout-{{ section.settings.menu_layout }}{% if section.settings.enable_transparent and template.name == 'index' %} pageheader--transparent-permitted pageheader--transparent{% endif %}{% if section.settings.enable_sticky %} pageheader--sticky{% endif %}">
     <div class="logo-area container container--no-max">
       <div class="logo-area__middle logo-area__middle--logo-{% if section.settings.logo != blank %}image{% else %}text{% endif %}">
         <div class="logo-area__middle__inner">
@@ -99,12 +109,12 @@
       <div class="logo-area__left">
         <div class="logo-area__left__inner">
           <button class="mobile-nav-toggle" aria-label="{{ 'general.navigation.menu' | t }}" aria-controls="main-nav">
-            {%- render 'icon-menu' -%}
+            {%- render pt_menu_icon, name: 'menu' -%}
           </button>
           {% if section.settings.enable_search %}
             <a class="show-search-link" href="{{ routes.search_url }}" aria-label="{{ 'sections.header.search' | t }}">
               <span class="show-search-link__icon">
-                {%- render 'icon-search' -%}
+                {%- render pt_search_icon, name: 'search' -%}
               </span>
               <span class="show-search-link__text{% if section.settings.icon_strategy == 'icons_only' %} visually-hidden{% endif %}">
                 {{- 'sections.header.search' | t -}}
@@ -155,12 +165,12 @@
               {% if customer %}
                 <a class="header-account-link" href="{{ routes.account_url }}" aria-label="{{ 'sections.header.account' | t | escape }}">
                   <span class="header-account-link__text {% if section.settings.icon_strategy == 'icons_only' %}visually-hidden{% else %}visually-hidden-mobile{% endif %}">{{ 'sections.header.account' | t }}</span>
-                  <span class="header-account-link__icon{% if section.settings.icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">{% render 'icon-user' %}</span>
+                  <span class="header-account-link__icon{% if section.settings.icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">{% render pt_user_icon, name: 'user' %}</span>
                 </a>
               {% else %}
                 <a class="header-account-link" href="{{ routes.account_login_url }}" aria-label="{{ 'sections.header.account' | t | escape }}">
                   <span class="header-account-link__text {% if section.settings.icon_strategy == 'icons_only' %}visually-hidden{% else %}visually-hidden-mobile{% endif %}">{{ 'sections.header.account' | t }}</span>
-                  <span class="header-account-link__icon{% if section.settings.icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">{% render 'icon-user' %}</span>
+                  <span class="header-account-link__icon{% if section.settings.icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">{% render pt_user_icon, name: 'user' %}</span>
                 </a>
               {% endif %}
             {%- else -%}
@@ -168,7 +178,7 @@
                 <div slot="signed-out-avatar">
                   <div class="inline-flex items-center">
                     <span class="header-account-link__text {% if section.settings.icon_strategy == 'icons_only' %}visually-hidden{% else %}visually-hidden-mobile{% endif %}">{{ 'sections.header.account' | t }}</span>
-                    <span class="header-account-link__icon{% if section.settings.icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">{% render 'icon-user' %}</span>
+                    <span class="header-account-link__icon{% if section.settings.icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">{% render pt_user_icon, name: 'user' %}</span>
                   </div>
                 </div>
               </shopify-account>
@@ -180,7 +190,7 @@
                 {{- 'sections.header.search' | t -}}
               </span>
               <span class="show-search-link__icon">
-                {%- render 'icon-search' -%}
+                {%- render pt_search_icon, name: 'search' -%}
               </span>
             </a>
           {% endif %}
@@ -197,7 +207,9 @@
             </span>
             <span class="cart-link__icon">
               {%- liquid
-                if section.settings.cart_icon == 'basket'
+                if settings.playtime_header_icons
+                  render 'playtime-header-icon', name: 'bag'
+                elsif section.settings.cart_icon == 'basket'
                   render 'icon-basket'
                 elsif section.settings.cart_icon == 'bag'
                   render 'icon-bag'
@@ -245,7 +257,7 @@
                 aria-expanded="false"
                 aria-activedescendant=""
               />
-              <button class="main-search__button" type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render 'icon-search' %}</button>
+              <button class="main-search__button" type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render pt_search_icon, name: 'search' %}</button>
             </div>
             {%- if settings.show_search_suggestions -%}
               <script src="{{ 'search-suggestions.js' | asset_url }}" defer></script>

@@ -96,6 +96,7 @@
         </div>
       </div>
 
+      <div data-merge="playtime-main-cart-offers">{% render 'playtime-offers', mode: 'cart' %}</div>
       <div {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
         <div class="checkout-subtotal-container spaced-row{% if cart.items == empty %} hidden{% endif %}" data-merge-attributes="subtotal-container">
           <div class="flexible-layout">

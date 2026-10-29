@@ -4,8 +4,8 @@
     "theme_name": "Symmetry",
     "theme_author": "Clean Canvas",
     "theme_version": "8.3.2",
-    "theme_documentation_url": "http:\/\/cleancanvas.co.uk\/support\/symmetry\/",
-    "theme_support_url": "http:\/\/cleancanvas.co.uk\/support\/symmetry\/"
+    "theme_documentation_url": "http://cleancanvas.co.uk/support/symmetry/",
+    "theme_support_url": "http://cleancanvas.co.uk/support/symmetry/"
   },
   {
     "name": "Layout",
@@ -143,7 +143,7 @@
         "options": [
           {
             "value": "repeat",
-            "label": "Tile\/repeat"
+            "label": "Tile/repeat"
           },
           {
             "value": "center top repeat-x",
@@ -1084,7 +1084,7 @@
       },
       {
         "type": "paragraph",
-        "content": "Choose a variant option to show using colors or images. [Learn more](https:\/\/cleancanvas.co.uk\/support\/general\/swatches)"
+        "content": "Choose a variant option to show using colors or images. [Learn more](https://cleancanvas.co.uk/support/general/swatches)"
       },
       {
         "type": "text",
@@ -1118,7 +1118,7 @@
       },
       {
         "type": "paragraph",
-        "content": "You may also [upload image files](\/admin\/settings\/files). Example: Light green:light-green.png"
+        "content": "You may also [upload image files](/admin/settings/files). Example: Light green:light-green.png"
       },
       {
         "type": "select",
@@ -1831,6 +1831,56 @@
       {
         "type": "paragraph",
         "content": "For a full list of JavaScript events included with Symmetry, please refer to the /assets/custom.js file within the theme code, or read our [JavaScript Technical Guide](https://cleancanvas.co.uk/support/symmetry/technical-guides/js)."
+      }
+    ]
+  },
+  {
+    "name": "Playtime offers & icons",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "playtime_header_icons",
+        "label": "Use updated header icons",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "playtime_offer_preview",
+        "label": "Show offer previews",
+        "info": "Shows the planned offers with purchasing disabled until the matching checkout-ready setting is enabled.",
+        "default": false
+      },
+      {
+        "type": "product_list",
+        "id": "playtime_ball_products",
+        "label": "100-ball bag products",
+        "limit": 4
+      },
+      {
+        "type": "checkbox",
+        "id": "playtime_ball_offer_ready",
+        "label": "Ball offer ready for checkout",
+        "info": "Enable only after each bag is $39 and the automatic $6-per-bag discount for 2+ eligible bags is active.",
+        "default": false
+      },
+      {
+        "type": "product_list",
+        "id": "playtime_mini_products",
+        "label": "Eligible Mini Play Blocks",
+        "limit": 12
+      },
+      {
+        "type": "checkbox",
+        "id": "playtime_mini_offer_ready",
+        "label": "Mini blocks offer ready for checkout",
+        "info": "Enable only after the any-two-for-$190 checkout discount is active and tested.",
+        "default": false
+      },
+      {
+        "type": "product_list",
+        "id": "playtime_pit_products",
+        "label": "Ball pit stock products",
+        "limit": 12
       }
     ]
   }

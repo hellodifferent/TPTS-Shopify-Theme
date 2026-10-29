@@ -1,0 +1,39 @@
+{% doc %}
+  @param {string} kind - balls or mini.
+  @param {boolean} ready - Whether the matching discount is ready for checkout.
+  @param {number} [current_product_id] - Product to omit when selecting a second set.
+{% enddoc %}
+{%- liquid
+  assign choices = settings.playtime_ball_products
+  if kind == 'mini'
+    assign choices = settings.playtime_mini_products
+  endif
+  assign available_count = 0
+  for choice in choices
+    if choice.available
+      assign available_count = available_count | plus: 1
+    endif
+  endfor
+-%}
+<div class="pt-offer__picker">
+  <label>
+    <span>{{ 'playtime.offers.choose_colour' | t }}</span>
+    <select data-pt-choice {% if available_count == 0 or ready == false %}disabled{% endif %}>
+      {%- for choice in choices -%}
+        {%- assign choice_variant = choice.selected_or_first_available_variant -%}
+        <option value="{{ choice_variant.id }}" data-product-id="{{ choice.id }}" {% unless choice.available %}disabled{% endunless %}{% if choice.available and choice.id != current_product_id %} data-pt-alternative{% endif %}>{{ choice.title | escape }}{% unless choice.available %} — {{ 'products.product.sold_out' | t }}{% endunless %}</option>
+      {%- else -%}
+        <option value="">{{ 'playtime.offers.unavailable' | t }}</option>
+      {%- endfor -%}
+    </select>
+  </label>
+  <button type="button" class="btn btn--secondary pt-offer__add" data-pt-add {% if available_count == 0 or ready == false %}disabled{% endif %}>
+    {% if ready == false %}
+      {{ 'playtime.offers.coming_soon' | t }}
+    {% elsif kind == 'mini' %}
+      {{ 'playtime.offers.add_set' | t }}
+    {% else %}
+      {{ 'playtime.offers.add_bag' | t }}
+    {% endif %}
+  </button>
+</div>

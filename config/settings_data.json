@@ -959,7 +959,29 @@
         "disabled": false,
         "settings": {}
       }
-    }
+    },
+    "playtime_header_icons": true,
+    "playtime_offer_preview": true,
+    "playtime_ball_offer_ready": false,
+    "playtime_mini_offer_ready": false,
+    "playtime_ball_products": [
+      "white-balls-100-pack",
+      "transparent-balls-100-pack",
+      "pink-balls-100-pack",
+      "blue-balls-100-pack"
+    ],
+    "playtime_mini_products": [
+      "pre-order-mini-play-blocks-copy",
+      "mini-play-blocks-beige",
+      "mini-play-blocks-pastel",
+      "mini-play-blocks-pink-blossom"
+    ],
+    "playtime_pit_products": [
+      "soft-play-ball-pit-white",
+      "soft-play-ball-pit-beige",
+      "soft-play-ball-pit-pastel",
+      "soft-play-ball-pit-pink-blossom"
+    ]
   },
   "platform_customizations": {
     "custom_css": [

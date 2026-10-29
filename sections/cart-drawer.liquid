@@ -183,6 +183,7 @@
       {%- endif -%}
 
       <div data-merge="footer">
+        {% render 'playtime-offers', mode: 'cart' %}
         {% if cart.items != empty %}
           {%- if cart.cart_level_discount_applications != blank -%}
             <ul class="cart-discount-list">
