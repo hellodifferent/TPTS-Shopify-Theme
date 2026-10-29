@@ -50,71 +50,10 @@
   assign pt_ball_single = 3900 | money
   assign pt_ball_multi = 3300 | money
   assign pt_pair_price = 19000 | money
-  assign pt_single_set = product.price | money
-  assign pt_pair_saving = product.price | times: 2 | minus: 19000 | money
-  assign pt_current_ball = false
-  assign pt_current_mini = false
-  assign pt_current_pit = false
-  if mode == 'product'
-    if pt_ball_ids contains product.id
-      assign pt_current_ball = true
-    endif
-    if pt_mini_ids contains product.id
-      assign pt_current_mini = true
-    endif
-    if pt_pit_ids contains product.id
-      assign pt_current_pit = true
-    endif
-    if product.title contains 'Ball Pit'
-      assign pt_current_pit = true
-    endif
-  endif
 -%}
 {%- if cart.currency.iso_code == 'AUD' -%}
   <div class="pt-offers" data-pt-offers data-merge="playtime-offers-{{ mode }}" data-pt-mode="{{ mode }}">
-    {%- if mode == 'product' -%}
-      {%- if pt_current_ball and pt_show_balls -%}
-        <playtime-offer class="pt-offer" data-pt-kind="balls">
-          <p class="pt-offer__eyebrow">{{ 'playtime.offers.ball_eyebrow' | t }}</p>
-          <h3 class="pt-offer__heading">{{ 'playtime.offers.ball_heading' | t }}</h3>
-          <p>{{ 'playtime.offers.ball_body' | t: price: pt_ball_multi }}</p>
-          {% render 'playtime-offer-prices' %}
-
-          <p class="pt-offer__status" data-pt-status role="status" aria-live="polite"></p>
-        </playtime-offer>
-      {%- endif -%}
-      {%- if pt_current_mini and pt_show_mini -%}
-        <playtime-offer class="pt-offer" data-pt-kind="mini">
-          <p class="pt-offer__eyebrow">{{ 'playtime.offers.mini_eyebrow' | t }}</p>
-          <h3 class="pt-offer__heading">{{ 'playtime.offers.mini_heading' | t }}</h3>
-          <p>{{ 'playtime.offers.mini_body' | t: price: pt_pair_price }}</p>
-          <div class="pt-offer__prices">
-            <span>{{ 'playtime.offers.single_set' | t }}<strong>{{ pt_single_set }}</strong><small>{{ 'playtime.offers.single_set_note' | t }}</small></span>
-            <span>{{ 'playtime.offers.two_sets' | t }}<strong>{{ pt_pair_price }}</strong><small>{{ 'playtime.offers.pair_saving' | t: saving: pt_pair_saving }}</small></span>
-          </div>
-          <details class="pt-offer__choices">
-            <summary>{{ 'playtime.offers.second_colour' | t }}</summary>
-            {% render 'playtime-offer-picker', kind: 'mini', ready: settings.playtime_mini_offer_ready, current_product_id: product.id %}
-            <p class="pt-offer__small">{{ 'playtime.offers.second_set_note' | t }}</p>
-          </details>
-          <p class="pt-offer__status" data-pt-status role="status" aria-live="polite"></p>
-        </playtime-offer>
-      {%- endif -%}
-      {%- if pt_current_pit and pt_show_balls -%}
-        <playtime-offer class="pt-offer" data-pt-kind="balls">
-          <p class="pt-offer__eyebrow">{{ 'playtime.offers.ball_eyebrow' | t }}</p>
-          <h3 class="pt-offer__heading">{{ 'playtime.offers.ball_heading' | t }}</h3>
-          <p>{{ 'playtime.offers.ball_body' | t: price: pt_ball_multi }}</p>
-          {% render 'playtime-offer-prices' %}
-          <details class="pt-offer__choices">
-            <summary>{{ 'playtime.offers.pit_question' | t }}</summary>
-            {% render 'playtime-offer-picker', kind: 'balls', ready: settings.playtime_ball_offer_ready %}
-            <p class="pt-offer__small">{{ 'playtime.offers.extra_balls_note' | t }}</p>
-          </details>
-          <p class="pt-offer__status" data-pt-status role="status" aria-live="polite"></p>
-        </playtime-offer>
-      {%- endif -%}
-    {%- elsif mode == 'cart' -%}
+    {%- if mode == 'cart' -%}
       {%- if pt_show_balls -%}
         {%- if pt_balls_count > 0 or pt_has_pit -%}
           <playtime-offer class="pt-offer pt-offer--cart" data-pt-kind="balls">

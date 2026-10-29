@@ -1,0 +1,71 @@
+{% doc %}
+  @param {product} product - Current product.
+  @param {string} form_id - Parent product form identifier.
+{% enddoc %}
+{%- liquid
+  assign mini_ids = settings.playtime_mini_products | map: 'id'
+  assign ball_ids = settings.playtime_ball_products | map: 'id'
+  assign pit_ids = settings.playtime_pit_products | map: 'id'
+  assign kind = ''
+  assign ready = settings.playtime_ball_offer_ready
+  if mini_ids contains product.id
+    assign kind = 'mini'
+    assign ready = settings.playtime_mini_offer_ready
+    assign choices = settings.playtime_mini_products
+  elsif ball_ids contains product.id
+    assign kind = 'balls'
+    assign choices = settings.playtime_ball_products
+  elsif pit_ids contains product.id
+    assign kind = 'pit'
+    assign choices = settings.playtime_ball_products
+  elsif product.title contains 'Ball Pit'
+    assign kind = 'pit'
+    assign choices = settings.playtime_ball_products
+  endif
+  assign show_selector = ready
+  if settings.playtime_offer_preview
+    assign show_selector = true
+  endif
+  assign single_price = product.price | money_without_trailing_zeros
+  assign pair_price = 19000 | money_without_trailing_zeros
+  assign saving = product.price | times: 2 | minus: 19000 | money_without_trailing_zeros
+-%}
+{%- if kind != blank and show_selector and cart.currency.iso_code == 'AUD' -%}
+  <playtime-pack-selector class="pt-pack" data-pt-mode="product" data-kind="{{ kind }}" data-ready="{{ ready }}" data-available="{{ product.available }}" data-preview-label="{{ 'playtime.offers.preview_only' | t | escape }}">
+    {%- if kind == 'pit' -%}<details class="pt-pack__optional"><summary>{{ 'playtime.offers.optional_balls' | t }}</summary>{%- endif -%}
+    <fieldset class="pt-pack__fieldset">
+      <legend>{% if kind == 'mini' %}{{ 'playtime.offers.choose_set' | t }}{% else %}{{ 'playtime.offers.choose_balls' | t }}{% endif %}</legend>
+      <div class="pt-pack__options{% unless kind == 'mini' %} pt-pack__options--balls{% endunless %}">
+        {%- if kind == 'mini' -%}
+          <label class="pt-pack__option"><input type="radio" name="pt-pack-{{ form_id }}" value="1" checked><span><span class="pt-pack__name">{{ 'playtime.offers.six_blocks' | t }}</span><strong>{{ single_price }}</strong></span></label>
+          <label class="pt-pack__option"><input type="radio" name="pt-pack-{{ form_id }}" value="2"><span><span class="pt-pack__name">{{ 'playtime.offers.twelve_blocks' | t }}</span><strong>{{ pair_price }}</strong><small>{{ 'playtime.offers.save_amount' | t: saving: saving }}</small></span></label>
+        {%- else -%}
+          {%- if kind == 'pit' -%}<label class="pt-pack__option"><input type="radio" name="pt-pack-{{ form_id }}" value="0" checked><span class="pt-pack__name">{{ 'playtime.offers.no_balls' | t }}</span></label>{%- endif -%}
+          {%- for bags in (1..3) -%}
+            {%- assign count = bags | times: 100 -%}
+            {%- assign price = bags | times: 3300 -%}
+            {%- if bags == 1 -%}{%- assign price = 3900 -%}{%- endif -%}
+            {%- assign pack_price = price | money_without_trailing_zeros -%}
+            <label class="pt-pack__option"><input type="radio" name="pt-pack-{{ form_id }}" value="{{ bags }}"{% if kind == 'balls' and bags == 1 %} checked{% endif %}><span><span class="pt-pack__name">{{ 'playtime.offers.ball_pack' | t: count: count }}</span><strong>{{ pack_price }}</strong></span></label>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </fieldset>
+    {%- if kind == 'mini' -%}
+      <label class="pt-pack__colour" data-pack-colour="2" hidden><span>{{ 'playtime.offers.second_set_colour' | t }}</span>
+        <select data-pack-choice="2">{%- for choice in choices -%}<option value="{{ choice.selected_or_first_available_variant.id }}"{% if choice.id == product.id %} selected{% endif %}{% unless choice.available %} disabled{% endunless %}>{{ choice.title | remove: 'Mini Play Blocks - ' | escape }}{% unless choice.available %} — {{ 'products.product.sold_out' | t }}{% endunless %}</option>{%- endfor -%}</select>
+      </label>
+    {%- else -%}
+      {%- for bag in (1..3) -%}
+        <label class="pt-pack__colour" data-pack-colour="{{ bag }}" hidden><span>{{ 'playtime.offers.bag_colour' | t: number: bag }}</span>
+          <select data-pack-choice="{{ bag }}">
+            {%- for choice in choices -%}<option value="{{ choice.selected_or_first_available_variant.id }}"{% if choice.id == product.id %} selected{% endif %}{% unless choice.available %} disabled{% endunless %}>{{ choice.title | remove: ' Balls - 100 Pack' | escape }}{% unless choice.available %} — {{ 'products.product.sold_out' | t }}{% endunless %}</option>
+            {%- else -%}<option value="">{{ 'playtime.offers.white' | t }}</option><option value="">{{ 'playtime.offers.transparent' | t }}</option><option value="">{{ 'playtime.offers.pink' | t }}</option><option value="">{{ 'playtime.offers.blue' | t }}</option>{%- endfor -%}
+          </select>
+        </label>
+      {%- endfor -%}
+    {%- endif -%}
+    {%- if kind == 'pit' -%}</details>{%- endif -%}
+    <p class="pt-pack__status" data-pack-status role="status" aria-live="polite" hidden></p>
+  </playtime-pack-selector>
+{%- endif -%}

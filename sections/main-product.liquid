@@ -683,6 +683,8 @@
                   {% render 'gift-card-recipient', section: section %}
                 {% endif %}
 
+                {% render 'playtime-pack-selector', product: product, form_id: product_form_id %}
+
                 <div class="quantity-submit-row input-row {% if enable_dynamic_payment_button %}has-spb{% endif %}">
                   {% if block.settings.show_quantity_selector %}
                     <label class="label" for="quantity">{{ 'products.product.quantity' | t }}</label>
@@ -728,7 +730,6 @@
                   {% endif %}
                 </div>
               {% endform %}
-              {% render 'playtime-offers', mode: 'product', product: product %}
 
               {%- if block.settings.show_pickup_availability -%}
                 <div data-dynamic-variant-content="{{ block.id }}-pickup-availability"{% unless product.available %} hidden{% endunless %}>

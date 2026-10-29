@@ -18,3 +18,29 @@
 .pt-header-upgraded .cart-link:hover .playtime-header-icon{transform:rotate(-7deg)}
 @media(max-width:767px){.pt-offers .pt-offer{padding:22px 20px;border-radius:20px}.pt-offers .pt-offer__heading{font-size:26px}.pt-offers .pt-offer__prices strong{font-size:24px}}
 @media(prefers-reduced-motion:reduce){.pt-header-upgraded .cart-link:hover .playtime-header-icon{transform:none}}
+
+.pt-pack{display:block;margin:0 0 22px;color:inherit}
+.pt-pack [hidden]{display:none!important}
+.pt-pack__fieldset{border:0;padding:0;margin:0;min-width:0}
+.pt-pack__fieldset legend{padding:0;margin:0 0 10px;font-size:14px;font-weight:500}
+.pt-pack__options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pt-pack__option{position:relative;display:flex;align-items:center;gap:10px;border:1px solid #d8d3cb;border-radius:9px;padding:13px 15px;min-height:75px;cursor:pointer;line-height:1.4;background:#fff;min-width:0}
+.pt-pack__option:has(input:checked){border-color:#7a6c5b;background:#f6f1e8;box-shadow:inset 0 0 0 1px #7a6c5b}
+.pt-pack__option:has(input:focus-visible){outline:2px solid currentColor;outline-offset:3px}
+.pt-pack__option input[type=radio]{appearance:auto;position:static;opacity:1;margin:0;width:16px;height:16px;accent-color:#7a6c5b;flex-shrink:0}
+.pt-pack__option>span{display:block;min-width:0}
+.pt-pack__name{display:block;font-size:14px;font-weight:500}
+.pt-pack__option strong{display:block;font-size:16px;font-weight:400;margin-top:3px}
+.pt-pack__option small{display:block;font-size:11px;line-height:1.4;color:#627054;margin-top:4px}
+.pt-pack__colour{display:block;margin:14px 0 0;font-size:13px}
+.pt-pack__colour>span{display:block;margin-bottom:6px}
+.pt-pack__colour select{display:block;width:100%;min-height:44px;border:1px solid #d8d3cb;border-radius:6px;background:#fff;color:inherit;padding:10px 34px 10px 12px;font:inherit}
+.pt-pack__optional{border:0;border-top:1px solid #e1dbd2;padding-top:14px;margin-top:10px}
+.pt-pack__optional summary{font-size:14px;min-height:32px;cursor:pointer}
+.pt-pack__optional[open] summary{margin-bottom:12px}
+.pt-pack__options--balls{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pt-pack__status{font-size:11px;line-height:1.5;color:#776b5e;margin:10px 0 0}
+.pt-offers .pt-offer--cart{background:#f6f1e8;padding:16px;border-radius:9px}
+.pt-offers .pt-offer--cart .pt-offer__eyebrow{display:none}
+.pt-offers .pt-offer--cart .pt-offer__heading{font-family:inherit;font-weight:500;font-size:15px;line-height:1.4;letter-spacing:0;margin:0 0 7px}
+@media(max-width:767px){.pt-pack__option{padding:12px;gap:8px}.pt-pack__colour select{font-size:16px}}
