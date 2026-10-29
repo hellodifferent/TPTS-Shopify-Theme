@@ -2,7 +2,7 @@
   @param {media} media - Product media to display.
   @param {product} [product] - Current product.
   @param {number} [min_aspect_ratio] - Minimum image aspect ratio.
-  @param {number} [image_aspect_ratio] - Optional fixed photo crop ratio.
+  @param {number} [image_aspect_ratio] - Optional fixed gallery frame ratio.
   @param {string} [loading] - Image loading strategy.
   @param {boolean} [in_collage] - Whether media appears in a collage.
 {% enddoc %}
@@ -18,6 +18,9 @@
           if image_aspect_ratio
             assign custom_aspect_ratio = image_aspect_ratio
             assign image_crop = nil
+            if media.preview_image.aspect_ratio < 0.5
+              assign image_crop = 'contain'
+            endif
           elsif min_aspect_ratio
             assign custom_aspect_ratio = media.preview_image.aspect_ratio | at_least: min_aspect_ratio
           else
@@ -37,16 +40,22 @@
       </div>
 
     {% when 'external_video', 'video' %}
+      {%- liquid
+        assign video_ratio = media.preview_image.aspect_ratio | default: 1.7778
+        assign video_frame_ratio = image_aspect_ratio | default: video_ratio
+        assign video_frame_width = video_ratio | divided_by: video_frame_ratio | at_least: 1 | times: 100
+        assign video_frame_height = video_frame_ratio | divided_by: video_ratio | at_least: 1 | times: 100
+      -%}
       <link rel="stylesheet" href="{{ 'video.css' | asset_url }}" {%- render 'lazy-stylesheet-attrs' %}>
       <script src="{{ 'video.js' | asset_url }}" defer></script>
-      <deferred-media class="product-media product-media--video product-media--frame video-section"
+      <deferred-media class="product-media product-media--video product-media--frame video-section{% if image_aspect_ratio %} tps-product-video-crop{% endif %}"
           data-video-type="external"
           data-video-id="{{ media.external_id }}"
           data-enable-video-looping="{{ section.settings.enable_video_looping }}"
           data-autoplay="{{ section.settings.enable_video_autoplay }}"
-          style="padding-bottom: {{ 1 | divided_by: media.preview_image.aspect_ratio | times: 100 }}%">
+          style="padding-bottom: {{ 1 | divided_by: video_frame_ratio | times: 100 }}%;{% if image_aspect_ratio %} --tps-video-width: {{ video_frame_width }}%; --tps-video-height: {{ video_frame_height }}%;{% endif %}">
         <div class="product-media__poster img-fill">
-          {% render 'image' with media.preview_image, size_cols_desktop: 2 %}
+          {% render 'image' with media.preview_image, size_cols_desktop: 2, custom_aspect_ratio: image_aspect_ratio %}
           {% unless section.settings.enable_video_autoplay %}
             <button class="product-media__video-play-btn js-load-media" aria-label="{{ 'products.product.media.play_video' | t | escape }}">{% render 'icon-video-badge-full-color' %}</button>
           {% endunless %}

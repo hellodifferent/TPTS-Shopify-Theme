@@ -145,3 +145,19 @@ a.tps-social-viewer__handle { text-decoration: underline; text-underline-offset:
   .product-info .tps-product-gallery.media-gallery-size-large { width: 65%; }
   .product-info .tps-product-gallery.media-gallery-size-large + .product-column-right { width: calc(35% - 44px); }
 }
+
+.tps-product-gallery .product-media--image .img-ar--contain img {
+  object-position: 50% 50%;
+}
+.tps-product-video-crop video {
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.tps-product-video-crop iframe {
+  top: 50%;
+  left: 50%;
+  width: var(--tps-video-width, 100%);
+  height: var(--tps-video-height, 100%);
+  max-width: none;
+  transform: translate(-50%, -50%);
+}
