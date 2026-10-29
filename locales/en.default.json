@@ -336,6 +336,10 @@
     "terms": {
       "agreement_html": "I agree to the <a href=\"{{ terms_url }}\" target=\"_blank\">terms and refund policy</a>",
       "confirmation": "You must agree to the terms and conditions before continuing."
+    },
+    "drawer": {
+      "accepted_payments": "Accepted payment methods",
+      "shop_bestsellers": "Shop bestsellers"
     }
   },
   "customer": {

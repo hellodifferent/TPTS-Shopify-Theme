@@ -42,15 +42,14 @@
   {% endif %}
 {%- endcapture -%}
 
+{{ 'tps-cart-drawer.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer></script>
 {%- if section.settings.show_order_note -%}
   <script src="{{ 'cart-note.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-<cart-drawer class="drawer fixed top-0 right-0 flex flex-col w-full has-motion js-cart-drawer" role="dialog" tabindex="-1" aria-labelledby="CartDrawerModal-Title" aria-modal="true" aria-hidden="true" data-name="cart-drawer" data-section-id="{{ section.id }}">
+<cart-drawer class="drawer tps-cart-drawer fixed top-0 right-0 flex flex-col w-full has-motion js-cart-drawer" role="dialog" tabindex="-1" aria-labelledby="CartDrawerModal-Title" aria-modal="true" aria-hidden="true" data-name="cart-drawer" data-section-id="{{ section.id }}">
   <cart-form data-section-id="{{ section.id }}" class="cart-drawer" data-ajax-update="true">
-    <div class="cart-drawer__content{% if cart.items == empty %} cart-drawer__content--hidden{% endif %}" data-merge-attributes="content-container">
-      <div class="cart-drawer__content-upper">
         <header class="cart-drawer__header cart-drawer__content-item">
           <div id="CartDrawerModal-Title" class="cart-drawer__title h4 heading-font" data-merge="header-title">
             {{ 'cart.general.title' | t }}
@@ -64,6 +63,9 @@
             {% render 'icon-close' %}
           </button>
         </header>
+    <div class="cart-drawer__content{% if cart.items == empty %} cart-drawer__content--hidden{% endif %}" data-merge-attributes="content-container">
+      <div class="cart-drawer__content-upper">
+
 
         {%- if settings.show_free_shipping_bar -%}
           <div class="cart-drawer__content-item">
@@ -183,7 +185,6 @@
       {%- endif -%}
 
       <div data-merge="footer">
-        {% render 'playtime-offers', mode: 'cart' %}
         {% if cart.items != empty %}
           {%- if cart.cart_level_discount_applications != blank -%}
             <ul class="cart-discount-list">
@@ -251,6 +252,14 @@
         {% endif %}
       </div>
 
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types != empty -%}
+        <ul class="tps-cart-payments" role="list" aria-label="{{ 'cart.drawer.accepted_payments' | t | escape }}">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{ type | payment_type_svg_tag: class: 'tps-cart-payments__icon' | replace: 'pi-', 'cart-pi-' }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
       {%- if section.settings.announcement_position == 'below-checkout' -%}
         <div class="cart-info-block cart-info-block--smt">{{- announcement -}}</div>
       {%- endif -%}
@@ -263,21 +272,17 @@
         style="--bg: {{ section.settings.empty_color_background_gradient | default: section.settings.empty_color_background }};
               --text-color: {{ section.settings.empty_color_text.rgb }}"
       {% endif %}>
-      <button type="button" class="drawer__close-btn js-close-drawer">
-        <span class="visually-hidden">{{ 'accessibility.close' | t }}</span>
-        {% render 'icon-close' %}
-      </button>
-      <div class="align-center">
+      <div class="align-center tps-cart-empty-card">
         {%- if section.settings.empty_icon == 'basket' -%}
-          <div class="lightly-spaced-row"><span class="icon--large">{%- render 'icon-basket' -%}</span></div>
+          <div class="tps-cart-empty-icon" aria-hidden="true"><span class="icon--large">{%- render 'icon-basket' -%}</span></div>
         {%- elsif section.settings.empty_icon == 'bag' -%}
-          <div class="lightly-spaced-row"><span class="icon--large">{%- render 'icon-bag' -%}</span></div>
+          <div class="tps-cart-empty-icon" aria-hidden="true"><span class="icon--large">{%- render 'icon-bag' -%}</span></div>
         {%- elsif section.settings.empty_icon == 'cart' -%}
-          <div class="lightly-spaced-row"><span class="icon--large">{%- render 'icon-cart' -%}</span></div>
+          <div class="tps-cart-empty-icon" aria-hidden="true"><span class="icon--large">{%- render 'icon-cart' -%}</span></div>
         {%- endif -%}
 
         {%- if section.settings.empty_heading != blank -%}
-          <div class="majortitle h1">{{ section.settings.empty_heading }}</div>
+          <h2 class="majortitle h2">{{ section.settings.empty_heading | escape }}</h2>
         {%- endif -%}
 
         {%- if section.settings.empty_text != blank -%}
@@ -286,8 +291,11 @@
 
         {%- if section.settings.empty_button_text != blank -%}
           <div class="button-row">
-            <a class="{% if section.settings.empty_button_style != 'link' %}btn btn--{{ section.settings.empty_button_style }}{% else %}small-feature-link{% endif %} button-row__btn" href="{{ section.settings.empty_button_link }}">{{ section.settings.empty_button_text | escape }}</a>
+            <a class="{% if section.settings.empty_button_style != 'link' %}btn btn--{{ section.settings.empty_button_style }}{% else %}small-feature-link{% endif %} button-row__btn" href="{{ section.settings.empty_button_link | default: routes.all_products_collection_url }}">{{ section.settings.empty_button_text | escape }}</a>
           </div>
+        {%- endif -%}
+        {%- if collections['best-sellers'] != blank -%}
+          <a class="tps-cart-empty-secondary underline" href="{{ collections['best-sellers'].url }}">{{ 'cart.drawer.shop_bestsellers' | t }}</a>
         {%- endif -%}
       </div>
     </div>
@@ -318,6 +326,12 @@
       "id": "enable_direct_cart",
       "label": "Enable direct checkout",
       "info": "Disable to send customers to the cart page",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons below checkout",
       "default": true
     },
     {
@@ -672,13 +686,14 @@
     {
       "type": "richtext",
       "id": "empty_text",
-      "label": "Text"
+      "label": "Text",
+      "default": "<p>Find their next playtime favourite. Explore soft play, ball pits and more.</p>"
     },
     {
       "type": "text",
       "id": "empty_button_text",
       "label": "Button text",
-      "default": "Start shopping"
+      "default": "Shop all"
     },
     {
       "type": "url",
@@ -785,3 +800,4 @@
   ]
 }
 {% endschema %}
+
