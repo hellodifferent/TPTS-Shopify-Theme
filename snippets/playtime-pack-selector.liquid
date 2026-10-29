@@ -30,7 +30,7 @@
   assign pair_price = 19000 | money_without_trailing_zeros
   assign saving = product.price | times: 2 | minus: 19000 | money_without_trailing_zeros
 -%}
-{%- if kind != blank and show_selector and cart.currency.iso_code == 'AUD' -%}
+{%- if kind != blank and kind != 'pit' and show_selector and cart.currency.iso_code == 'AUD' -%}
   <playtime-pack-selector class="pt-pack" data-pt-mode="product" data-kind="{{ kind }}" data-ready="{{ ready }}" data-available="{{ product.available }}" data-preview-label="{{ 'playtime.offers.preview_only' | t | escape }}">
     {%- if kind == 'pit' -%}<details class="pt-pack__optional"><summary>{{ 'playtime.offers.optional_balls' | t }}</summary>{%- endif -%}
     <fieldset class="pt-pack__fieldset">
