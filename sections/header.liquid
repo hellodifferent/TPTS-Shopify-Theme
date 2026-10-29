@@ -197,9 +197,7 @@
             </span>
             <span class="cart-link__icon">
               {%- liquid
-                if settings.playtime_header_icons
-                  render 'playtime-header-icon', name: 'bag'
-                elsif section.settings.cart_icon == 'basket'
+                if section.settings.cart_icon == 'basket'
                   render 'icon-basket'
                 elsif section.settings.cart_icon == 'bag'
                   render 'icon-bag'
