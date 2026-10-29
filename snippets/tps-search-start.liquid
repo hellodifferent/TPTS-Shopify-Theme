@@ -7,6 +7,12 @@
     assign featured_products = collections.favourites.products
   endif
   assign popular_terms = section.settings.search_popular_terms | newline_to_br | split: '<br />'
+  assign default_contact_url = routes.root_url | append: 'pages/contact-us'
+  assign default_faq_url = routes.root_url | append: 'pages/faqs'
+  assign default_shipping_url = routes.root_url | append: 'pages/shipping-delivery-info'
+  assign contact_url = section.settings.search_contact_url | default: default_contact_url
+  assign faq_url = section.settings.search_faq_url | default: default_faq_url
+  assign shipping_url = section.settings.search_shipping_url | default: default_shipping_url
 -%}
 <div class="tps-search-start">
   <div class="tps-search-column">
@@ -43,14 +49,14 @@
   <div class="tps-search-column">
     <h2>{{ section.settings.search_contact_label | escape }}</h2>
     <ul class="tps-search-contact" role="list">
-      {%- if section.settings.search_contact_url != blank -%}
-        <li><a href="{{ section.settings.search_contact_url }}">{{ section.settings.search_contact_label | escape }}</a></li>
+      {%- if section.settings.search_contact_label != blank -%}
+        <li><a href="{{ contact_url | escape }}">{{ section.settings.search_contact_label | escape }}</a></li>
       {%- endif -%}
-      {%- if section.settings.search_faq_url != blank -%}
-        <li><a href="{{ section.settings.search_faq_url }}">{{ section.settings.search_faq_label | escape }}</a></li>
+      {%- if section.settings.search_faq_label != blank -%}
+        <li><a href="{{ faq_url | escape }}">{{ section.settings.search_faq_label | escape }}</a></li>
       {%- endif -%}
-      {%- if section.settings.search_shipping_url != blank -%}
-        <li><a href="{{ section.settings.search_shipping_url }}">{{ section.settings.search_shipping_label | escape }}</a></li>
+      {%- if section.settings.search_shipping_label != blank -%}
+        <li><a href="{{ shipping_url | escape }}">{{ section.settings.search_shipping_label | escape }}</a></li>
       {%- endif -%}
     </ul>
   </div>

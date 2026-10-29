@@ -375,11 +375,11 @@
         ],
         "search_show_all_label": "Shop all",
         "search_contact_label": "Contact us",
-        "search_contact_url": "/pages/contact-us",
+        "search_contact_url": "shopify://pages/contact-us",
         "search_faq_label": "FAQs",
-        "search_faq_url": "/pages/faqs",
+        "search_faq_url": "shopify://pages/faqs",
         "search_shipping_label": "Shipping and delivery",
-        "search_shipping_url": "/pages/shipping-delivery-info"
+        "search_shipping_url": "shopify://pages/shipping-delivery-info"
       }
     },
     "store-messages": {
