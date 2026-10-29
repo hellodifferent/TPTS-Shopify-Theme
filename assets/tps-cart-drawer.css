@@ -104,7 +104,7 @@
 .tps-cart-empty-card h2 { font-size: 30px; line-height: 1.2; margin-bottom: 14px; }
 .tps-cart-empty-card .rte { max-width: 300px; margin: 0 auto; font-size: 14px; line-height: 1.65; }
 .tps-cart-empty-card .button-row { margin-top: 24px; }
-.tps-cart-empty-card .button-row__btn { width: 100%; margin: 0; min-height: 48px; }
+.tps-cart-empty-card .button-row__btn { display: inline-flex; align-items: center; justify-content: center; width: 100%; margin: 0; min-height: 48px; padding: 14px 20px; font-size: 14px; line-height: 1.2; text-align: center; vertical-align: middle; }
 .tps-cart-empty-secondary { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; color: inherit; font-size: 13px; }
 .tps-cart-drawer .cart-drawer__content--hidden,
 .tps-cart-drawer .cart-drawer__footer--hidden,
