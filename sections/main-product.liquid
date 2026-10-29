@@ -1,5 +1,6 @@
 {{ 'tps-product-info-blocks.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'tps-product-social-media.js' | asset_url }}" defer></script>
+<script src="{{ 'tps-gallery-thumbnails.js' | asset_url }}" defer></script>
 {%- liquid
   assign zoom_size = 5000
   assign min_aspect_ratio = 0.6
@@ -188,6 +189,15 @@
                       assign custom_aspect_ratio = media.preview_image.aspect_ratio | at_least: min_aspect_ratio
                       render 'image' with media.preview_image, sizes: '65px', widths: '65px, 130px', custom_aspect_ratio: custom_aspect_ratio, custom_crop: 'contain'
                     -%}
+
+                    {%- if media.media_type == 'video' -%}
+                      {%- assign thumbnail_source = media.sources | where: 'format', 'mp4' | sort: 'height' | first -%}
+                      {%- if thumbnail_source != blank -%}
+                        <tps-thumbnail-video class="tps-thumbnail-video" aria-hidden="true">
+                          <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture data-src="{{ thumbnail_source.url | escape }}"></video>
+                        </tps-thumbnail-video>
+                      {%- endif -%}
+                    {%- endif -%}
 
                     {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
                       <div class="thumbnail__badge">
