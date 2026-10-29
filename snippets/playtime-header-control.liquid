@@ -1,0 +1,12 @@
+{% doc %}
+  @param {string} name - Header icon name: search, user or menu.
+{% enddoc %}
+{%- if settings.playtime_header_icons -%}
+  {% render 'playtime-header-icon', name: name %}
+{%- else -%}
+  {%- case name -%}
+    {%- when 'search' -%}{% render 'icon-search' %}
+    {%- when 'user' -%}{% render 'icon-user' %}
+    {%- when 'menu' -%}{% render 'icon-menu' %}
+  {%- endcase -%}
+{%- endif -%}

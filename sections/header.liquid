@@ -1,13 +1,3 @@
-{%- liquid
-  assign pt_search_icon = 'icon-search'
-  assign pt_user_icon = 'icon-user'
-  assign pt_menu_icon = 'icon-menu'
-  if settings.playtime_header_icons
-    assign pt_search_icon = 'playtime-header-icon'
-    assign pt_user_icon = 'playtime-header-icon'
-    assign pt_menu_icon = 'playtime-header-icon'
-  endif
--%}
 {% style %}
   .logo img {
     width: {{ section.settings.logo_img_width_int }}px;
@@ -109,12 +99,12 @@
       <div class="logo-area__left">
         <div class="logo-area__left__inner">
           <button class="mobile-nav-toggle" aria-label="{{ 'general.navigation.menu' | t }}" aria-controls="main-nav">
-            {%- render pt_menu_icon, name: 'menu' -%}
+            {%- render 'playtime-header-control', name: 'menu' -%}
           </button>
           {% if section.settings.enable_search %}
             <a class="show-search-link" href="{{ routes.search_url }}" aria-label="{{ 'sections.header.search' | t }}">
               <span class="show-search-link__icon">
-                {%- render pt_search_icon, name: 'search' -%}
+                {%- render 'playtime-header-control', name: 'search' -%}
               </span>
               <span class="show-search-link__text{% if section.settings.icon_strategy == 'icons_only' %} visually-hidden{% endif %}">
                 {{- 'sections.header.search' | t -}}
@@ -165,12 +155,12 @@
               {% if customer %}
                 <a class="header-account-link" href="{{ routes.account_url }}" aria-label="{{ 'sections.header.account' | t | escape }}">
                   <span class="header-account-link__text {% if section.settings.icon_strategy == 'icons_only' %}visually-hidden{% else %}visually-hidden-mobile{% endif %}">{{ 'sections.header.account' | t }}</span>
-                  <span class="header-account-link__icon{% if section.settings.icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">{% render pt_user_icon, name: 'user' %}</span>
+                  <span class="header-account-link__icon{% if section.settings.icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">{% render 'playtime-header-control', name: 'user' %}</span>
                 </a>
               {% else %}
                 <a class="header-account-link" href="{{ routes.account_login_url }}" aria-label="{{ 'sections.header.account' | t | escape }}">
                   <span class="header-account-link__text {% if section.settings.icon_strategy == 'icons_only' %}visually-hidden{% else %}visually-hidden-mobile{% endif %}">{{ 'sections.header.account' | t }}</span>
-                  <span class="header-account-link__icon{% if section.settings.icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">{% render pt_user_icon, name: 'user' %}</span>
+                  <span class="header-account-link__icon{% if section.settings.icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">{% render 'playtime-header-control', name: 'user' %}</span>
                 </a>
               {% endif %}
             {%- else -%}
@@ -178,7 +168,7 @@
                 <div slot="signed-out-avatar">
                   <div class="inline-flex items-center">
                     <span class="header-account-link__text {% if section.settings.icon_strategy == 'icons_only' %}visually-hidden{% else %}visually-hidden-mobile{% endif %}">{{ 'sections.header.account' | t }}</span>
-                    <span class="header-account-link__icon{% if section.settings.icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">{% render pt_user_icon, name: 'user' %}</span>
+                    <span class="header-account-link__icon{% if section.settings.icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">{% render 'playtime-header-control', name: 'user' %}</span>
                   </div>
                 </div>
               </shopify-account>
@@ -190,7 +180,7 @@
                 {{- 'sections.header.search' | t -}}
               </span>
               <span class="show-search-link__icon">
-                {%- render pt_search_icon, name: 'search' -%}
+                {%- render 'playtime-header-control', name: 'search' -%}
               </span>
             </a>
           {% endif %}
@@ -257,7 +247,7 @@
                 aria-expanded="false"
                 aria-activedescendant=""
               />
-              <button class="main-search__button" type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render pt_search_icon, name: 'search' %}</button>
+              <button class="main-search__button" type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render 'playtime-header-control', name: 'search' %}</button>
             </div>
             {%- if settings.show_search_suggestions -%}
               <script src="{{ 'search-suggestions.js' | asset_url }}" defer></script>
