@@ -65,8 +65,10 @@
 {%- if has_countdown -%}
   <script src="{{ 'countdown-timer.js' | asset_url }}" defer></script>
 {%- endif -%}
+{{ 'tps-header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'tps-header.js' | asset_url }}" defer></script>
 <page-header data-section-id="{{ section.id }}" {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
-  <div id="pageheader" class="pageheader{% if settings.playtime_header_icons %} pt-header-upgraded{% endif %} pageheader--layout-{{ section.settings.menu_layout }}{% if section.settings.enable_transparent and template.name == 'index' %} pageheader--transparent-permitted pageheader--transparent{% endif %}{% if section.settings.enable_sticky %} pageheader--sticky{% endif %}">
+  <div id="pageheader" style="--tps-logo-width: {{ section.settings.logo_img_width_int }}px; --tps-mobile-logo-width: {{ section.settings.mobile_logo_img_width_int }}px;" class="pageheader tps-header{% if settings.playtime_header_icons %} pt-header-upgraded{% endif %} pageheader--layout-{{ section.settings.menu_layout }}{% if section.settings.enable_transparent and template.name == 'index' %} pageheader--transparent-permitted pageheader--transparent{% endif %}{% if section.settings.enable_sticky %} pageheader--sticky{% endif %}">
     <div class="logo-area container container--no-max">
       <div class="logo-area__middle logo-area__middle--logo-{% if section.settings.logo != blank %}image{% else %}text{% endif %}">
         <div class="logo-area__middle__inner">
@@ -102,7 +104,7 @@
             {%- render 'playtime-header-control', name: 'menu' -%}
           </button>
           {% if section.settings.enable_search %}
-            <a class="show-search-link" href="{{ routes.search_url }}" aria-label="{{ 'sections.header.search' | t }}">
+            <a class="show-search-link" aria-controls="TpsHeaderSearch" aria-expanded="false" href="{{ routes.search_url }}" aria-label="{{ 'sections.header.search' | t }}">
               <span class="show-search-link__icon">
                 {%- render 'playtime-header-control', name: 'search' -%}
               </span>
@@ -175,7 +177,7 @@
             {% endif %}
           {% endif %}
           {% if section.settings.enable_search %}
-            <a class="show-search-link" href="{{ routes.search_url }}">
+            <a class="show-search-link" aria-controls="TpsHeaderSearch" aria-expanded="false" href="{{ routes.search_url }}" aria-label="{{ 'sections.header.search' | t | escape }}">
               <span class="show-search-link__text {% if section.settings.icon_strategy == 'icons_only' %}visually-hidden{% else %}visually-hidden-mobile{% endif %}">
                 {{- 'sections.header.search' | t -}}
               </span>
@@ -226,12 +228,14 @@
         endif
       -%}
       <script src="{{ 'main-search.js' | asset_url }}" defer></script>
-      <main-search class="main-search {% if show_search_recommendations %}main-search--with-suggestions{% endif %}"
+      <main-search id="TpsHeaderSearch" role="dialog" aria-modal="true" aria-label="{{ 'general.search.title' | t | escape }}" class="main-search {% if show_search_recommendations %}main-search--with-suggestions{% endif %}"
           data-quick-search="{{ settings.enable_quick_header_search }}"
           data-quick-search-meta="{{ settings.quick_search_search_meta }}">
 
         <div class="main-search__container container">
-          <button class="main-search__close" aria-label="{{ 'general.search.close' | t | escape }}">{% render 'icon-close', stroke_width: 1 %}</button>
+          <button type="button" class="main-search__close" aria-label="{{ 'general.search.close' | t | escape }}"><span>{{ 'general.search.close' | t }}</span>{% render 'icon-close', stroke_width: 1 %}</button>
+
+          {% render 'tps-search-identity', section: section %}
 
           <form class="main-search__form" action="{{ routes.search_url }}" method="get" autocomplete="off">
             <div class="main-search__input-container">
@@ -240,7 +244,7 @@
                 type="text"
                 name="q"
                 autocomplete="off"
-                placeholder="{{ 'general.search.placeholder' | t | escape }}"
+                placeholder="{{ section.settings.search_input_placeholder | escape }}"
                 aria-label="{{ 'general.search.title' | t | escape }}"
                 aria-autocomplete="list"
                 aria-controls="HeaderSearchResults"
@@ -248,6 +252,7 @@
                 aria-activedescendant=""
               />
               <button class="main-search__button" type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render 'playtime-header-control', name: 'search' %}</button>
+              <button type="button" class="tps-search-clear" data-tps-search-clear>{{ section.settings.search_clear_label | escape }}</button>
             </div>
             {%- if settings.show_search_suggestions -%}
               <script src="{{ 'search-suggestions.js' | asset_url }}" defer></script>
@@ -257,6 +262,8 @@
 
           <div id="HeaderSearchResults" class="main-search__results" role="listbox"></div>
           <div id="HeaderSearchResultsStatus" class="visually-hidden" role="status" aria-live="polite"></div>
+
+          {% render 'tps-search-start', section: section %}
 
           {% if show_search_recommendations %}
             <div class="main-search__suggestions">
@@ -445,12 +452,17 @@
             {% endif %}
           </div>
         </div>
-        <div class="mobile-navigation-drawer__footer"></div>
+        <div class="mobile-navigation-drawer__footer">
+          {% if shop.customer_accounts_enabled %}
+            <a class="tps-mobile-account" href="{{ routes.account_url }}">{{ 'sections.header.account' | t }}</a>
+          {% endif %}
+        </div>
       </div>
     </script>
   </main-navigation>
 
   <a href="#" class="header-shade mobile-nav-toggle" aria-label="{{ 'general.navigation.close' | t }}"></a>
+  <tps-header-tools hidden data-reveal="{% if section.settings.enable_sticky and section.settings.reveal_on_scroll_up %}true{% else %}false{% endif %}"></tps-header-tools>
 </page-header>
 
 <script>
@@ -472,6 +484,90 @@
   "name": "Header",
   "class": "section-header",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "reveal_on_scroll_up",
+      "label": "Reveal header on scroll up",
+      "info": "With sticky header enabled, hide while scrolling down and reveal while scrolling up.",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "search_input_placeholder",
+      "label": "Search field placeholder",
+      "default": "Search for products, articles or pages"
+    },
+    {
+      "type": "text",
+      "id": "search_clear_label",
+      "label": "Clear search label",
+      "default": "Clear"
+    },
+    {
+      "type": "text",
+      "id": "search_popular_heading",
+      "label": "Search suggestions heading",
+      "default": "Popular searches"
+    },
+    {
+      "type": "textarea",
+      "id": "search_popular_terms",
+      "label": "Suggested search terms",
+      "info": "Enter one term per line. These are manually chosen suggestions.",
+      "default": "Soft play\nBall pits\nPlay blocks"
+    },
+    {
+      "type": "text",
+      "id": "search_products_heading",
+      "label": "Featured products heading",
+      "default": "Trending products"
+    },
+    {
+      "type": "product_list",
+      "id": "search_featured_products",
+      "label": "Featured search products",
+      "limit": 3,
+      "info": "Choose up to three products. Falls back to the Favourites collection when empty."
+    },
+    {
+      "type": "text",
+      "id": "search_show_all_label",
+      "label": "All products link label",
+      "default": "Shop all"
+    },
+    {
+      "type": "text",
+      "id": "search_contact_label",
+      "label": "Contact link label",
+      "default": "Contact us"
+    },
+    {
+      "type": "url",
+      "id": "search_contact_url",
+      "label": "Contact page"
+    },
+    {
+      "type": "text",
+      "id": "search_faq_label",
+      "label": "FAQ link label",
+      "default": "FAQs"
+    },
+    {
+      "type": "url",
+      "id": "search_faq_url",
+      "label": "FAQ page"
+    },
+    {
+      "type": "text",
+      "id": "search_shipping_label",
+      "label": "Shipping link label",
+      "default": "Shipping and delivery"
+    },
+    {
+      "type": "url",
+      "id": "search_shipping_url",
+      "label": "Shipping page"
+    },
     {
       "type": "image_picker",
       "id": "logo",
@@ -1020,3 +1116,4 @@
   ]
 }
 {% endschema %}
+

@@ -32,6 +32,10 @@ const MainSearch = class extends HTMLElement {
 
   handleKeyDown(evt) {
     const options = [...this.querySelectorAll('.main-search__results [role="option"]')];
+    if (!options.length) {
+      this.activeResultIndex = -1;
+      return;
+    }
 
     const updateActiveOption = () => {
       options.forEach((opt) => opt.classList.remove('search-result-active'));
@@ -223,15 +227,16 @@ const MainSearch = class extends HTMLElement {
         clearTimeout(searchTimeoutID);
 
         // Clear results
-        this.classList.remove('main-search--has-results', 'main-search--results-on-multiple-lines', 'main-search--loading');
+        this.classList.remove('main-search--has-results', 'main-search--results-on-multiple-lines', 'main-search--loading', 'main-search--no-results');
         resultsBox.innerHTML = '';
         searchInput.setAttribute('aria-expanded', false);
       }
     };
 
-    searchInput.addEventListener('keyup', handleInputChange.bind(this));
+    searchInput.addEventListener('input', handleInputChange.bind(this));
     searchInput.addEventListener('change', handleInputChange.bind(this));
   }
 };
 
 window.customElements.define('main-search', MainSearch);
+

@@ -1,0 +1,15 @@
+{% doc %}
+  @param {section} section - Header logo and search identity.
+{% enddoc %}
+          <a class="tps-search-brand" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+            {%- if section.settings.logo != blank -%}
+              {{ section.settings.logo | image_url: width: 410 | image_tag: loading: 'eager', widths: '205, 410', sizes: '185px', alt: shop.name }}
+            {%- else -%}
+              {{ shop.name | escape }}
+            {%- endif -%}
+          </a>
+          <a class="cart-link tps-search-cart" href="{{ routes.cart_url }}" aria-label="{{ 'sections.header.cart' | t | escape }}">
+            {% if settings.playtime_header_icons %}{% render 'playtime-header-icon', name: 'bag' %}{% else %}{% render 'icon-bag' %}{% endif %}
+            <span class="tps-search-cart-count" data-tps-cart-count>{{ cart.item_count }}</span>
+          </a>
+

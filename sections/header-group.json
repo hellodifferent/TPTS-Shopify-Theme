@@ -341,13 +341,13 @@
         "logo_img_width_int": 205,
         "mobile_logo_img_width_int": 130,
         "logo_h1": false,
-        "enable_sticky": false,
+        "enable_sticky": true,
         "enable_transparent": false,
         "transparent_color": "#ffffff",
         "transparent_fade": "#000000",
         "transparent_fade_strength": 0,
         "menu_linklist": "updated-mega-menu",
-        "menu_layout": "inline-menu-center",
+        "menu_layout": "underneath",
         "nav_featured_link": "Sale",
         "enable_legacy_customer_account_link": false,
         "customer_account_menu": "customer-account-main-menu",
@@ -361,7 +361,25 @@
         "search_recommendations_title": "",
         "search_recommendations_menu": "",
         "icon_strategy": "icons_only",
-        "cart_icon": "cart"
+        "cart_icon": "bag",
+        "reveal_on_scroll_up": true,
+        "search_input_placeholder": "Search for products, articles or pages",
+        "search_clear_label": "Clear",
+        "search_popular_heading": "Popular searches",
+        "search_popular_terms": "Soft play\nBall pits\nPlay blocks",
+        "search_products_heading": "Trending products",
+        "search_featured_products": [
+          "mini-step-slide-white",
+          "pre-order-mini-play-blocks-copy",
+          "foldable-ball-pit-white"
+        ],
+        "search_show_all_label": "Shop all",
+        "search_contact_label": "Contact us",
+        "search_contact_url": "/pages/contact-us",
+        "search_faq_label": "FAQs",
+        "search_faq_url": "/pages/faqs",
+        "search_shipping_label": "Shipping and delivery",
+        "search_shipping_url": "/pages/shipping-delivery-info"
       }
     },
     "store-messages": {

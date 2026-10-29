@@ -1,0 +1,57 @@
+{% doc %}
+  @param {section} section - Header section and search content settings.
+{% enddoc %}
+{%- liquid
+  assign featured_products = section.settings.search_featured_products
+  if featured_products == blank
+    assign featured_products = collections.favourites.products
+  endif
+  assign popular_terms = section.settings.search_popular_terms | newline_to_br | split: '<br />'
+-%}
+<div class="tps-search-start">
+  <div class="tps-search-column">
+    <h2>{{ section.settings.search_popular_heading | escape }}</h2>
+    <ul class="tps-search-terms" role="list">
+      {%- for term in popular_terms limit: 6 -%}
+        {%- assign search_term = term | strip -%}
+        {%- if search_term != blank -%}
+          <li><a href="{{ routes.search_url }}?q={{ search_term | url_encode }}">
+            {% render 'playtime-header-control', name: 'search' %}
+            <span>{{ search_term | escape }}</span>
+          </a></li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+  <div class="tps-search-column">
+    <h2>{{ section.settings.search_products_heading | escape }}</h2>
+    <ul class="tps-search-products" role="list">
+      {%- for featured_product in featured_products limit: 3 -%}
+        <li><a href="{{ featured_product.url }}">
+          <div class="tps-search-product-image">
+            {%- if featured_product.featured_image -%}
+              {{ featured_product.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 160', sizes: '80px', alt: featured_product.title }}
+            {%- endif -%}
+          </div>
+          <span class="tps-search-product-title">{{ featured_product.title | escape }}</span>
+          <span class="tps-search-product-price">{{ featured_product.price | money }}</span>
+        </a></li>
+      {%- endfor -%}
+    </ul>
+    <a class="tps-search-all" href="{{ routes.all_products_collection_url }}">{{ section.settings.search_show_all_label | escape }}</a>
+  </div>
+  <div class="tps-search-column">
+    <h2>{{ section.settings.search_contact_label | escape }}</h2>
+    <ul class="tps-search-contact" role="list">
+      {%- if section.settings.search_contact_url != blank -%}
+        <li><a href="{{ section.settings.search_contact_url }}">{{ section.settings.search_contact_label | escape }}</a></li>
+      {%- endif -%}
+      {%- if section.settings.search_faq_url != blank -%}
+        <li><a href="{{ section.settings.search_faq_url }}">{{ section.settings.search_faq_label | escape }}</a></li>
+      {%- endif -%}
+      {%- if section.settings.search_shipping_url != blank -%}
+        <li><a href="{{ section.settings.search_shipping_url }}">{{ section.settings.search_shipping_label | escape }}</a></li>
+      {%- endif -%}
+    </ul>
+  </div>
+</div>

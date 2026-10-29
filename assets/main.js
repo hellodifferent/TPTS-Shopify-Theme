@@ -3914,6 +3914,7 @@ const PageHeader = class extends HTMLElement {
         theme.manuallyLoadImages(mainSearch);
         document.body.classList.add('show-search');
         setTimeout(() => {
+          if (!document.body.classList.contains('show-search') || !mainSearch.isConnected) return;
           theme.trapOpener = currentTarget;
           trapFocus(mainSearch, this.querySelector('.main-search__input'));
         }, 500);
@@ -4232,3 +4233,4 @@ window.onpageshow = () => {
       console.log(error.message);
     });
 };
+
