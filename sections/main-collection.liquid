@@ -1,3 +1,6 @@
+{{ 'playtime-favourites.css' | asset_url | stylesheet_tag }}
+{{ 'tps-collection-cards.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'playtime-favourites.js' | asset_url }}" defer></script>
 <div data-section-id="{{ section.id }}" {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
 {% paginate collection.products by section.settings.coll_num_per_page_int %}
 
@@ -288,11 +291,11 @@
         {% render 'faceted-filters', filter_context: collection, clear_url: collection.url, current_sort: current_sort %}
       {% endif %}
 
-      <div class="filters-adjacent collection-listing" data-ajax-container>
+      <div class="filters-adjacent collection-listing playtime-favourites tps-collection-cards" data-ajax-container>
         {% if collection.products.size == 0 %}
           <h5 class="align-centre fully-spaced-row">{{ 'sections.collection.empty' | t }}</h5>
         {% else %}
-          <div class="product-grid product-grid--per-row-{{ section.settings.grid }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }}">
+          <playtime-favourites class="product-grid product-grid--per-row-{{ section.settings.grid }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }}">
             {%- liquid
               if settings.prod_thumb_shape == 'portrait-23'
                 assign chosen_aspect_ratio = 0.67
@@ -325,10 +328,10 @@
                 if forloop.index0 < section.settings.grid
                   assign prioritised_loading = true
                 endif
-                render 'product-block', product: product, custom_aspect_ratio: chosen_aspect_ratio, animate: true, prioritised_loading: prioritised_loading
+                render 'tps-collection-card', product: product, columns: section.settings.grid, show_vendor: section.settings.show_vendor, prioritised_loading: prioritised_loading
               endfor
             -%}
-          </div>
+          </playtime-favourites>
         {% endif %}
       </div>
     </filter-container>

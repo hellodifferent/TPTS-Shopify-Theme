@@ -22,12 +22,12 @@
         {%- endif -%}
         <input type="hidden" name="quantity" value="1">
         <div class="js-form-error tps-cart-quick-add__error" role="alert" hidden></div>
-        <button type="submit" name="add" class="btn btn--secondary btn--wide" aria-label="{{ 'cart.drawer.add_product' | t: product: product.title | escape }}">{{ 'products.product.add_to_cart' | t }}</button>
+        <button type="submit" name="add" class="tps-cart-quick-add__link underline" aria-label="{{ 'cart.drawer.add_product' | t: product: product.title | escape }}">{{ 'products.product.add_to_cart' | t }}</button>
       {%- endform -%}
     </product-form>
   {%- elsif product.available -%}
-    <a class="btn btn--secondary btn--wide" href="{{ product.url }}">{{ 'cart.drawer.choose_options' | t }}</a>
+    <a class="tps-cart-quick-add__link underline" href="{{ product.url }}">{{ 'cart.drawer.choose_options' | t }}</a>
   {%- else -%}
-    <button type="button" class="btn btn--secondary btn--wide" disabled>{{ 'products.product.sold_out' | t }}</button>
+    <button type="button" class="tps-cart-quick-add__link underline" disabled>{{ 'products.product.sold_out' | t }}</button>
   {%- endif -%}
 </div>

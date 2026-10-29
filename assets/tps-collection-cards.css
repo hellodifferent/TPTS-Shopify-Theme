@@ -1,0 +1,14 @@
+.tps-collection-cards.playtime-favourites { padding: 0; background: transparent; }
+.tps-collection-cards .product-grid { column-gap: 20px; row-gap: 36px; align-items: stretch; }
+.tps-collection-cards .pf-card { text-align: start; }
+.tps-collection-cards .pf-title { font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); color: rgb(var(--heading-color)); }
+.tps-collection-cards .pf-title a { color: inherit; }
+.tps-collection-cards .pf-cta { margin-top: 12px; }
+.tps-collection-cards .pf-price { color: rgb(var(--text-color)); }
+.tps-collection-vendor { margin: 12px 0 -8px; font-size: 12px; }
+.tps-collection-compare { margin-inline-start: 8px; opacity: .7; }
+.tps-collection-rating { margin-top: 8px; }
+@media (max-width: 767px) {
+  .tps-collection-cards .product-grid { column-gap: 12px; row-gap: 28px; }
+  .tps-collection-cards .pf-cta { padding-inline: 10px; font-size: 11px; }
+}

@@ -183,7 +183,8 @@
       },
       "grid_layout": "Grid",
       "list_layout": "List",
-      "view_all_related_collections": "View all..."
+      "view_all_related_collections": "View all...",
+      "shop_now": "Shop now"
     },
     "countdown": {
       "days_short": "Day",

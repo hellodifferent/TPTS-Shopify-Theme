@@ -1,0 +1,57 @@
+{% doc %}
+  @param {product} product - Collection product.
+  @param {number} columns - Desktop column count.
+  @param {boolean} prioritised_loading - Load first-row images eagerly.
+  @param {boolean} show_vendor - Show the product vendor.
+{% enddoc %}
+{%- liquid
+  assign card_image = product.featured_media.preview_image
+  assign family = product.metafields.custom.product_family.value
+  assign loading = 'lazy'
+  if prioritised_loading
+    assign loading = 'eager'
+  endif
+-%}
+<article class="pf-card" data-pf-card>
+  <div class="pf-media">
+    <a class="pf-image-link" href="{{ product.url }}" data-pf-link aria-label="{{ product.title | escape }}">
+      <div data-pf-visual>
+        {%- if card_image != blank -%}
+          {% render 'image', image: card_image, custom_aspect_ratio: 1, size_cols_desktop: columns, size_cols_mobile: 2, class: 'pf-image', widths: '180, 260, 360, 540, 740, 980', loading: loading %}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'pf-placeholder' }}
+        {%- endif -%}
+      </div>
+    </a>
+    <span class="pf-badge" data-pf-badge{% if product.available %} hidden{% endif %}>{{ 'products.product.sold_out' | t }}</span>
+  </div>
+  {%- if show_vendor -%}<p class="tps-collection-vendor">{{ product.vendor | escape }}</p>{%- endif -%}
+  <h3 class="pf-title"><a href="{{ product.url }}" data-pf-link data-pf-dynamic-title>{{ product.title | escape }}</a></h3>
+  {%- if settings.prod_thumb_show_subtitle and product.metafields.descriptors.subtitle != blank -%}
+    <p class="pf-description">{{ product.metafields.descriptors.subtitle | escape }}</p>
+  {%- endif -%}
+  <div class="pf-price" data-pf-price>
+    {%- if product.price_varies -%}{{ 'products.product.from' | t }} {% endif -%}{{ product.price | money }}
+    {%- if product.compare_at_price > product.price and product.price_varies == false -%}
+      <s class="tps-collection-compare">{{ product.compare_at_price | money }}</s>
+    {%- endif -%}
+  </div>
+  {%- if family.products.value != blank -%}
+    <ul class="pf-swatches" aria-label="{{ 'sections.playtime_favourites.colours' | t: product: product.title | escape }}">
+      {% render 'playtime-favourite-swatch', sibling: product, selected_product: product, selected_image: card_image %}
+      {%- for sibling in family.products.value -%}
+        {%- if sibling != blank and sibling.id != product.id -%}
+          {% render 'playtime-favourite-swatch', sibling: sibling, selected_product: product, selected_image: card_image %}
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+  {%- if settings.enable_product_reviews_collection and product.metafields.reviews.rating_count != blank -%}
+    {%- assign rating_count = product.metafields.reviews.rating_count | plus: 0 -%}
+    {%- if rating_count > 0 -%}
+      <div class="tps-collection-rating">{% render 'rating', rating_value: product.metafields.reviews.rating.value, rating_count: rating_count %}</div>
+    {%- endif -%}
+  {%- endif -%}
+  <a class="pf-cta btn btn--secondary" href="{{ product.url }}" data-pf-link>{{ 'sections.collection.shop_now' | t }}</a>
+  <span class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-pf-announcement></span>
+</article>
