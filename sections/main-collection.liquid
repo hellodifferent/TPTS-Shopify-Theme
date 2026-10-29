@@ -219,11 +219,7 @@
         {% endif %}
       </div>
 
-      {% if section.settings.show_total and paginate.items > 0 %}
-        <div class="utility-bar__centre">
-          <div class="utility-bar__item">{{ 'sections.collection.product_count' | t: count: paginate.items }}</div>
-        </div>
-      {% endif %}
+
 
       <div class="utility-bar__right">
         {% if section.settings.show_sort %}
@@ -335,6 +331,14 @@
         {% endif %}
       </div>
     </filter-container>
+  </div>
+
+  <div class="container tps-collection-product-count" data-ajax-container aria-live="polite">
+      {% if section.settings.show_total and paginate.items > 0 %}
+        <div class="utility-bar__centre">
+          <div class="utility-bar__item">{{ 'sections.collection.product_count' | t: count: paginate.items }}</div>
+        </div>
+      {% endif %}
   </div>
 
   <div class="container pagination-row" data-ajax-container>{% render 'pagination-control', paginate: paginate %}</div>
