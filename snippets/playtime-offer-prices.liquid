@@ -1,0 +1,10 @@
+{% doc %}
+  Renders the shared ball-bag quantity pricing card.
+{% enddoc %}
+{%- assign single_price = 3900 | money_without_trailing_zeros -%}
+{%- assign multi_price = 3300 | money_without_trailing_zeros -%}
+{%- assign bag_saving = 600 | money_without_trailing_zeros -%}
+<div class="pt-offer__prices">
+  <span>{{ 'playtime.offers.single_bag' | t }}<strong>{{ single_price }}</strong><small>{{ 'playtime.offers.hundred_balls' | t }}</small></span>
+  <span>{{ 'playtime.offers.multi_bag' | t }}<strong>{{ 'playtime.offers.each_price' | t: price: multi_price }}</strong><small>{{ 'playtime.offers.bag_saving' | t: saving: bag_saving }}</small></span>
+</div>

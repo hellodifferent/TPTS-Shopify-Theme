@@ -498,14 +498,14 @@
       "add_bag": "Add 100 balls",
       "ball_eyebrow": "A little more, for less",
       "ball_heading": "Mix colours. Save together.",
-      "ball_body": "Choose any 2 or more 100-ball bags and pay {{ price }} per bag.",
-      "single_bag": "One bag · 100 balls",
-      "multi_bag": "Any 2+ bags · mix colours",
+      "ball_body": "Choose any 2 or more bags and pay {{ price }} per bag.",
+      "single_bag": "One bag",
+      "multi_bag": "Any 2+ bags",
       "each_price": "{{ price }} each",
       "ball_note": "Mix any colours. Savings apply automatically in your bag.",
       "mini_eyebrow": "Better together",
       "mini_heading": "Twice the possibilities.",
-      "mini_body": "Choose any two eligible Mini Play Blocks sets for {{ price }}.",
+      "mini_body": "Keep them matching, or mix their colours. Any two sets for {{ price }}.",
       "mini_colours": "Keep them matching, or mix their colours.",
       "second_set_note": "Add your first set above, then choose another here. The offer also applies when sets are added separately.",
       "pit_question": "Want to choose your own ball colours or add more?",
@@ -522,7 +522,14 @@
       "adding": "Adding to your bag…",
       "added": "Added to your bag. Your total reflects the discounts applied at checkout.",
       "error": "We could not add this item. Please try again.",
-      "refresh_error": "Your item was added. Please open your bag to check the updated total."
+      "refresh_error": "Your item was added. Please open your bag to check the updated total.",
+      "hundred_balls": "100 balls",
+      "bag_saving": "Save {{ saving }} on every bag",
+      "single_set": "One set",
+      "two_sets": "Any two sets",
+      "single_set_note": "Their next little adventure",
+      "pair_saving": "Save {{ saving }} together",
+      "second_colour": "Choose your second colour"
     }
   }
 }
