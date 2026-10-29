@@ -317,6 +317,18 @@
             "title": "Stand Out",
             "link_url": "shopify://collections/inflatable-pools"
           }
+        },
+        "mobile_bestsellers": {
+          "type": "mobile-bestsellers",
+          "settings": {
+            "enabled": true,
+            "heading": "Bestsellers",
+            "products": [],
+            "collection": "best-sellers",
+            "product_limit": 3,
+            "link_label": "Shop all bestsellers",
+            "link_url": ""
+          }
         }
       },
       "block_order": [
@@ -333,7 +345,8 @@
         "menu_promotion_small_yhg7fU",
         "menu_promotion_small_NPkGKR",
         "menu_promotion_small_RPxTgg",
-        "menu_promotion_small_rDapch"
+        "menu_promotion_small_rDapch",
+        "mobile_bestsellers"
       ],
       "custom_css": [],
       "settings": {

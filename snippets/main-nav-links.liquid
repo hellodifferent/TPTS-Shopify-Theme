@@ -1,3 +1,8 @@
+{% doc %}
+  @param {string} link_list - Navigation menu handle.
+  @param {boolean} mobile - Render mobile navigation.
+  @param {string[]} featured_links - Link titles to highlight.
+{% enddoc %}
 <ul class="navigation__tier-1">
   {% for link in linklists[link_list].links %}
     {%- liquid
@@ -43,7 +48,7 @@
       {% if has_dropdown %}
         <a class="navigation__children-toggle" href="#" aria-label="{{ 'general.navigation.show_links' | t }}">{% render 'icon-toggle-menu', stroke_width: 1.3 %}</a>
 
-        <div id="NavigationTier2-{{ forloop.index }}{% if mobile %}-mob{% endif %}" class="navigation__tier-2-container navigation__child-tier">
+        <div id="NavigationTier2-{{ forloop.index }}{% if mobile %}-mob{% endif %}" class="navigation__tier-2-container navigation__child-tier{% if use_columns and mobile == false %} tps-mega-panel{% endif %}">
           {%- for block in section.blocks -%}
             {%- assign dropdown_link_title_sanitised = block.settings.dropdown_link_title | downcase | strip -%}
             {%- if dropdown_link_title_sanitised == link_title_sanitised and block.type == 'menu-promotion-large' -%}
@@ -127,7 +132,7 @@
 
           {%- if link.links != blank or small_promo_count > 0 -%}
             <div class="container">
-              <ul class="navigation__tier-2{% if use_columns %} navigation__columns navigation__columns--count-{{ column_count }}{% if column_count == 5 %} navigation__columns--5-cols{% elsif column_count > 5 %} navigation__columns--over-5-cols{% endif %}{% if small_promo_count > 0 %} navigation__columns--with-promos{% endif %}{% endif %}">
+              <ul class="navigation__tier-2{% if use_columns %} navigation__columns navigation__columns--count-{{ column_count }}{% if column_count == 5 %} navigation__columns--5-cols{% elsif column_count > 5 %} navigation__columns--over-5-cols{% endif %}{% if small_promo_count > 0 %} navigation__columns--with-promos{% endif %}{% endif %}" style="--tps-menu-columns: {{ column_count | at_least: 1 }};">
                 {% if use_columns and link.levels == 1 %}
                   <li class="navigation__item navigation__column">
                     {% for child_link in link.links %}

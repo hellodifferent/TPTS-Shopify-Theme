@@ -1,0 +1,52 @@
+{% doc %}
+  @param {section} section - Header settings and merchandising blocks.
+{% enddoc %}
+{%- liquid
+  assign merchandising = section.blocks | where: 'type', 'mobile-bestsellers' | first
+  assign enabled = section.settings.enable_nav_mob_products
+  assign heading = section.settings.nav_mob_products_title
+  assign featured_collection = section.settings.nav_mob_products_collection
+  assign product_limit = 3
+  assign all_label = section.settings.nav_mob_products_title
+  if merchandising != blank
+    assign enabled = merchandising.settings.enabled
+    assign heading = merchandising.settings.heading
+    assign chosen_products = merchandising.settings.products
+    assign featured_collection = merchandising.settings.collection | default: collections['best-sellers']
+    assign product_limit = merchandising.settings.product_limit
+    assign all_label = merchandising.settings.link_label
+    assign all_url = merchandising.settings.link_url
+  endif
+  if featured_collection != blank and featured_collection.url == blank
+    assign featured_collection = collections[featured_collection]
+  endif
+  if chosen_products == blank
+    assign chosen_products = featured_collection.products
+  endif
+  if all_url == blank
+    assign all_url = featured_collection.url
+  endif
+-%}
+{%- if enabled and chosen_products != blank -%}
+  <section class="navigation__mobile-products tps-mobile-bestsellers" {% if merchandising %}{{ merchandising.shopify_attributes }}{% endif %}>
+    {%- if heading != blank -%}<h2 class="tps-mobile-bestsellers__heading">{{ heading | escape }}</h2>{%- endif -%}
+    {%- if all_url != blank and all_label != blank -%}
+      <a class="tps-mobile-bestsellers__all" href="{{ all_url | escape }}">{{ all_label | escape }}</a>
+    {%- endif -%}
+    <ul class="tps-mobile-bestsellers__products" role="list">
+      {%- for featured_product in chosen_products limit: product_limit -%}
+        <li><a class="tps-mobile-bestsellers__product" href="{{ featured_product.url }}">
+          <div class="tps-mobile-bestsellers__image">
+            {%- if featured_product.featured_image -%}
+              {{ featured_product.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 160', sizes: '72px', alt: '' }}
+            {%- endif -%}
+          </div>
+          <div class="tps-mobile-bestsellers__detail">
+            <span class="tps-mobile-bestsellers__title">{{ featured_product.title | escape }}</span>
+            <span class="tps-mobile-bestsellers__price">{% if featured_product.price_varies %}{{ 'products.product.from' | t }} {% endif %}{{ featured_product.price | money }}</span>
+          </div>
+        </a></li>
+      {%- endfor -%}
+    </ul>
+  </section>
+{%- endif -%}
