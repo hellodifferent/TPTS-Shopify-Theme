@@ -97,6 +97,27 @@
             "show_gift_card_recipient": false
           }
         },
+        "tps_delivery_links": {
+          "type": "tps_delivery_links",
+          "settings": {
+            "shipping_text": "Next day dispatch from Brisbane",
+            "delivery_label": "",
+            "delivery_url": "",
+            "returns_label": "",
+            "returns_url": ""
+          }
+        },
+        "tps_product_benefits": {
+          "type": "tps_product_benefits",
+          "settings": {
+            "product_title_contains": "Mini Step & Slide",
+            "introduction": "A little space for big adventures. Our compact Mini Step & Slide gives little explorers room to climb, slide and imagine.",
+            "benefit_1": "Four individual soft play pieces",
+            "benefit_2": "20 cm at its highest point",
+            "benefit_3": "Easy-clean finish for everyday play",
+            "background": "#f9f7f3"
+          }
+        },
         "vendor": {
           "type": "vendor",
           "disabled": true,
@@ -273,27 +294,6 @@
             "open": false,
             "variant_content": false,
             "show_in_quickbuy": false
-          }
-        },
-        "tps_delivery_links": {
-          "type": "tps_delivery_links",
-          "settings": {
-            "shipping_text": "Ships from Brisbane",
-            "delivery_label": "Delivery information",
-            "delivery_url": "/pages/shipping-delivery-info",
-            "returns_label": "Returns policy",
-            "returns_url": "/pages/return-policy"
-          }
-        },
-        "tps_product_benefits": {
-          "type": "tps_product_benefits",
-          "settings": {
-            "product_title_contains": "Mini Step & Slide",
-            "introduction": "A little space for big adventures. Our compact Mini Step & Slide gives little explorers room to climb, slide and imagine.",
-            "benefit_1": "Four individual soft play pieces",
-            "benefit_2": "20 cm at its highest point",
-            "benefit_3": "Easy-clean finish for everyday play",
-            "background": "#f9f7f3"
           }
         }
       },
