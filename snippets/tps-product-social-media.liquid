@@ -13,7 +13,7 @@
   endfor
 -%}
 {%- if media_count > 0 -%}
-  <div class="tps-product-social not-in-quickbuy" {{ block.shopify_attributes }}>
+  <tps-social-media class="tps-product-social not-in-quickbuy" {{ block.shopify_attributes }}>
     {%- if block.settings.heading != blank -%}
       <h2 class="tps-product-social__heading" id="SocialHeading-{{ section.id }}-{{ block.id }}">{{ block.settings.heading | escape }}</h2>
     {%- endif -%}
@@ -24,28 +24,61 @@
             assign video_key = 'video_' | append: index
             assign image_key = 'image_' | append: index
             assign caption_key = 'caption_' | append: index
+            assign handle_key = 'handle_' | append: index
+            assign url_key = 'social_url_' | append: index
             assign social_video = block.settings[video_key]
             assign social_image = block.settings[image_key]
-            assign social_description = block.settings[caption_key] | default: social_image.alt | default: social_video.alt | default: product.title
+            assign social_preview = social_image | default: social_video.preview_image
+            assign social_caption = block.settings[caption_key]
+            assign social_description = social_caption | default: social_preview.alt | default: social_video.alt | default: product.title
+            assign social_handle = block.settings[handle_key] | remove: '@'
+            assign social_url = block.settings[url_key]
           -%}
           {%- if social_video != blank or social_image != blank -%}
             <li class="tps-product-social__item">
-              {%- if social_video != blank -%}
-                {%- if social_image != blank -%}
-                  {%- assign social_poster = social_image | image_url: width: 480 -%}
-                  {{ social_video | video_tag: controls: true, playsinline: true, autoplay: false, loop: false, preload: 'none', image_size: '480x', poster: social_poster, class: 'tps-product-social__media', aria-label: social_description }}
-                {%- else -%}
-                  {{ social_video | video_tag: controls: true, playsinline: true, autoplay: false, loop: false, preload: 'none', image_size: '480x', class: 'tps-product-social__media', aria-label: social_description }}
+              <button class="tps-product-social__trigger" type="button" data-social-open="{{ index }}" aria-haspopup="dialog" aria-controls="SocialViewer-{{ section.id }}-{{ block.id }}" aria-label="{{ 'tps_social_media.open' | t: description: social_description | escape }}">
+                {{ social_preview | image_url: width: 640 | image_tag: widths: '180, 240, 320, 480, 640', sizes: '(max-width: 767px) 44vw, 180px', loading: 'lazy', class: 'tps-product-social__media', alt: social_description }}
+                <span class="tps-product-social__badge">{% if social_video != blank %}{{ 'tps_social_media.watch' | t }}{% else %}{{ 'tps_social_media.view_photo' | t }}{% endif %}</span>
+              </button>
+              {%- if social_handle != blank -%}<p class="tps-product-social__credit">@{{ social_handle | escape }}</p>{%- endif -%}
+              <template data-social-template="{{ index }}">
+                <div class="tps-social-viewer__media">
+                  {%- if social_video != blank -%}
+                    {%- assign social_poster = social_preview | image_url: width: 720 -%}
+                    {{ social_video | video_tag: controls: true, playsinline: true, autoplay: false, loop: false, preload: 'none', image_size: '720x', poster: social_poster, class: 'tps-social-viewer__asset', aria-label: social_description }}
+                  {%- else -%}
+                    {{ social_image | image_url: width: 960 | image_tag: widths: '320, 480, 720, 960', sizes: '360px', loading: 'lazy', class: 'tps-social-viewer__asset', alt: social_description }}
+                  {%- endif -%}
+                </div>
+                {%- if social_handle != blank or social_caption != blank -%}
+                  <div class="tps-social-viewer__caption">
+                    {%- if social_handle != blank -%}
+                      {%- if social_url != blank -%}<a class="tps-social-viewer__handle" href="{{ social_url }}" target="_blank" rel="noopener noreferrer">@{{ social_handle | escape }}</a>
+                      {%- else -%}<p class="tps-social-viewer__handle">@{{ social_handle | escape }}</p>{%- endif -%}
+                    {%- endif -%}
+                    {%- if social_caption != blank -%}<p class="tps-social-viewer__description">{{ social_caption | escape }}</p>{%- endif -%}
+                  </div>
                 {%- endif -%}
-              {%- else -%}
-                {{ social_image | image_url: width: 640 | image_tag: widths: '180, 240, 320, 480, 640', sizes: '(max-width: 767px) 44vw, 180px', loading: 'lazy', class: 'tps-product-social__media', alt: social_description }}
-              {%- endif -%}
+              </template>
             </li>
           {%- endif -%}
         {%- endfor -%}
       </ul>
     </div>
-  </div>
+    <dialog class="tps-social-viewer" id="SocialViewer-{{ section.id }}-{{ block.id }}" aria-label="{{ 'tps_social_media.label' | t | escape }}" data-social-dialog>
+      <div class="tps-social-viewer__toolbar">
+        <span data-social-position aria-live="polite"></span>
+        <button class="tps-social-viewer__close" type="button" data-social-close aria-label="{{ 'tps_social_media.close' | t | escape }}">&#215;</button>
+      </div>
+      <div data-social-stage></div>
+      {%- if media_count > 1 -%}
+        <div class="tps-social-viewer__navigation">
+          <button type="button" data-social-previous>{{ 'tps_social_media.previous' | t }}</button>
+          <button type="button" data-social-next>{{ 'tps_social_media.next' | t }}</button>
+        </div>
+      {%- endif -%}
+    </dialog>
+  </tps-social-media>
 {%- elsif request.design_mode -%}
   <div class="tps-product-social tps-product-social--empty not-in-quickbuy" {{ block.shopify_attributes }}>
     <p>{{ 'tps_social_media.empty' | t }}</p>

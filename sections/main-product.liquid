@@ -1,4 +1,5 @@
 {{ 'tps-product-info-blocks.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'tps-product-social-media.js' | asset_url }}" defer></script>
 {%- liquid
   assign zoom_size = 5000
   assign min_aspect_ratio = 0.6
@@ -1829,9 +1830,20 @@
     },
     {
       "type": "text",
+      "id": "handle_1",
+      "label": "Instagram handle",
+      "info": "For example: @theplaytimestore_"
+    },
+    {
+      "type": "url",
+      "id": "social_url_1",
+      "label": "Instagram post or profile link"
+    },
+    {
+      "type": "text",
       "id": "caption_1",
       "label": "Description",
-      "info": "Describe the image or video for accessibility."
+      "info": "Shown below the media in the floating viewer."
     },
     {
       "type": "header",
@@ -1849,9 +1861,20 @@
     },
     {
       "type": "text",
+      "id": "handle_2",
+      "label": "Instagram handle",
+      "info": "For example: @theplaytimestore_"
+    },
+    {
+      "type": "url",
+      "id": "social_url_2",
+      "label": "Instagram post or profile link"
+    },
+    {
+      "type": "text",
       "id": "caption_2",
       "label": "Description",
-      "info": "Describe the image or video for accessibility."
+      "info": "Shown below the media in the floating viewer."
     },
     {
       "type": "header",
@@ -1869,9 +1892,20 @@
     },
     {
       "type": "text",
+      "id": "handle_3",
+      "label": "Instagram handle",
+      "info": "For example: @theplaytimestore_"
+    },
+    {
+      "type": "url",
+      "id": "social_url_3",
+      "label": "Instagram post or profile link"
+    },
+    {
+      "type": "text",
       "id": "caption_3",
       "label": "Description",
-      "info": "Describe the image or video for accessibility."
+      "info": "Shown below the media in the floating viewer."
     }
   ]
 },
