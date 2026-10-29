@@ -339,7 +339,12 @@
     },
     "drawer": {
       "accepted_payments": "Accepted payment methods",
-      "shop_bestsellers": "Shop bestsellers"
+      "shop_bestsellers": "Shop bestsellers",
+      "shipping_at_checkout_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "shipping_at_checkout": "Shipping calculated at checkout.",
+      "add_product": "Add {{ product }} to cart",
+      "choose_option": "Choose an option for {{ product }}",
+      "choose_options": "Choose options"
     }
   },
   "customer": {

@@ -31,6 +31,7 @@
       {%- for product in recommendations.products -%}
         <li class="slider__item">
           {%- render 'product-block', product: product, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: chosen_aspect_ratio -%}
+          {% render 'tps-cart-quick-add', product: product, form_prefix: 'CartRecommendationAuto' %}
         </li>
       {%- endfor -%}
     </ul>

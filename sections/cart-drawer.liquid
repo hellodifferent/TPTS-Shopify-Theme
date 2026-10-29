@@ -167,6 +167,7 @@
                       {%- for product in section.settings.cross_sell_products -%}
                         <li class="slider__item">
                           {%- render 'product-block', product: product, manual_loading: true, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: chosen_aspect_ratio -%}
+                          {% render 'tps-cart-quick-add', product: product, form_prefix: 'CartRecommendation' %}
                         </li>
                       {%- endfor -%}
                     {%- endif -%}
@@ -213,14 +214,10 @@
           <div class="lightly-spaced-row">
             {%- if section.settings.show_tax_and_shipping -%}
               <div class="cart-policies rte">
-                {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-                  {{- 'cart.general.taxes_included_shipping_at_checkout_html' | t: link: shop.shipping_policy.url -}}
-                {%- elsif cart.taxes_included -%}
-                  {{- 'cart.general.taxes_included_shipping_at_checkout' | t -}}
-                {%- elsif shop.shipping_policy.body != blank -%}
-                  {{- 'cart.general.taxes_and_shipping_at_checkout_html' | t: link: shop.shipping_policy.url -}}
+                {%- if shop.shipping_policy.body != blank -%}
+                  {{- 'cart.drawer.shipping_at_checkout_html' | t: link: shop.shipping_policy.url -}}
                 {%- else -%}
-                  {{- 'cart.general.taxes_and_shipping_at_checkout' | t -}}
+                  {{- 'cart.drawer.shipping_at_checkout' | t -}}
                 {%- endif -%}
               </div>
             {%- endif -%}
@@ -257,6 +254,9 @@
           {%- for type in shop.enabled_payment_types -%}
             <li>{{ type | payment_type_svg_tag: class: 'tps-cart-payments__icon' | replace: 'pi-', 'cart-pi-' }}</li>
           {%- endfor -%}
+          {%- unless shop.enabled_payment_types contains 'afterpay' -%}
+            <li>{{ 'afterpay' | payment_type_svg_tag: class: 'tps-cart-payments__icon' | replace: 'pi-', 'cart-pi-' }}</li>
+          {%- endunless -%}
         </ul>
       {%- endif -%}
 

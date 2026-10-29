@@ -1,0 +1,33 @@
+{% doc %}
+  @param {product} product - The recommended product.
+  @param {string} form_prefix - Prefix for unique form and option IDs.
+{% enddoc %}
+{%- liquid
+  assign quick_variant = product.selected_or_first_available_variant
+  assign quick_form_id = form_prefix | append: '-' | append: product.id
+-%}
+<div class="tps-cart-quick-add">
+  {%- if product.available and product.requires_selling_plan == false -%}
+    <product-form>
+      {%- form 'product', product, id: quick_form_id, class: 'js-product-form' -%}
+        {%- if product.variants.size > 1 -%}
+          <label class="visually-hidden" for="{{ quick_form_id }}-variant">{{ 'cart.drawer.choose_option' | t: product: product.title | escape }}</label>
+          <select id="{{ quick_form_id }}-variant" name="id" class="tps-cart-quick-add__variant" required>
+            {%- for variant in product.variants -%}
+              <option value="{{ variant.id }}"{% if variant.id == quick_variant.id %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title | escape }} — {{ variant.price | money }}{% unless variant.available %} · {{ 'products.product.sold_out' | t }}{% endunless %}</option>
+            {%- endfor -%}
+          </select>
+        {%- else -%}
+          <input type="hidden" name="id" value="{{ quick_variant.id }}">
+        {%- endif -%}
+        <input type="hidden" name="quantity" value="1">
+        <div class="js-form-error tps-cart-quick-add__error" role="alert" hidden></div>
+        <button type="submit" name="add" class="btn btn--secondary btn--wide" aria-label="{{ 'cart.drawer.add_product' | t: product: product.title | escape }}">{{ 'products.product.add_to_cart' | t }}</button>
+      {%- endform -%}
+    </product-form>
+  {%- elsif product.available -%}
+    <a class="btn btn--secondary btn--wide" href="{{ product.url }}">{{ 'cart.drawer.choose_options' | t }}</a>
+  {%- else -%}
+    <button type="button" class="btn btn--secondary btn--wide" disabled>{{ 'products.product.sold_out' | t }}</button>
+  {%- endif -%}
+</div>
