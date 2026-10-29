@@ -3,6 +3,7 @@
   @param {product} sibling - Sibling product to preview.
   @param {product} selected_product - Initially selected product.
   @param {image} selected_image - Initial card image.
+  @param {boolean} [collection_actions] - Include a collection card action preview.
 {% enddoc %}
 {%- liquid
   assign swatch_image = sibling.metafields.custom.swatch_image.value
@@ -21,6 +22,9 @@
     <span class="pf-swatch-label" aria-hidden="true">{{ colour_name | escape }}</span>
   </a>
   <template data-pf-state>
+    {%- if collection_actions -%}
+      <div data-state-action>{% render 'tps-collection-action', product: sibling, card_id: selected_product.id %}</div>
+    {%- endif -%}
     <div data-state-visual>
       {%- if preview_image != blank -%}
         {% render 'image', image: preview_image, custom_aspect_ratio: 1, size_cols_desktop: 4, size_cols_mobile: 2, class: 'pf-image', widths: '180, 260, 360, 540, 740, 980', loading: 'lazy' %}

@@ -155,12 +155,12 @@
     <div class="section-footer__row__col">
       {% if section.settings.show_payment_icons %}
         <div class="section-footer__payment-icons">
+          {{ 'afterpay' | payment_type_svg_tag: class: 'section-footer__payment-icon' }}
           {% for type in shop.enabled_payment_types %}
+            {% if type == 'afterpay' %}{% continue %}{% endif %}
             {{ type | payment_type_svg_tag: class: 'section-footer__payment-icon' }}
           {% endfor %}
-          {% unless shop.enabled_payment_types contains 'afterpay' %}
-            {{ 'afterpay' | payment_type_svg_tag: class: 'section-footer__payment-icon' }}
-          {% endunless %}
+
         </div>
 
       {% endif %}

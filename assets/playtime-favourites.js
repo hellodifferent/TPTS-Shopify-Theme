@@ -15,6 +15,9 @@ if (!customElements.get('playtime-favourites')) {
         card.querySelectorAll('[data-pf-link]').forEach((link) => {
           link.href = swatch.href;
         });
+        const action = card.querySelector('[data-pf-action]');
+        const nextAction = state.querySelector('[data-state-action]');
+        if (action && nextAction) action.replaceChildren(...Array.from(nextAction.childNodes, (node) => node.cloneNode(true)));
         const title = card.querySelector('[data-pf-dynamic-title]');
         if (title) title.textContent = swatch.dataset.productTitle;
         const price = card.querySelector('[data-pf-price]');

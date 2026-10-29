@@ -23,6 +23,7 @@
         {%- endif -%}
       </div>
     </a>
+    <div class="tps-collection-action" data-pf-action>{% render 'tps-collection-action', product: product, card_id: product.id %}</div>
     <span class="pf-badge" data-pf-badge{% if product.available %} hidden{% endif %}>{{ 'products.product.sold_out' | t }}</span>
   </div>
   {%- if show_vendor -%}<p class="tps-collection-vendor">{{ product.vendor | escape }}</p>{%- endif -%}
@@ -38,10 +39,10 @@
   </div>
   {%- if family.products.value != blank -%}
     <ul class="pf-swatches" aria-label="{{ 'sections.playtime_favourites.colours' | t: product: product.title | escape }}">
-      {% render 'playtime-favourite-swatch', sibling: product, selected_product: product, selected_image: card_image %}
+      {% render 'playtime-favourite-swatch', sibling: product, selected_product: product, selected_image: card_image, collection_actions: true %}
       {%- for sibling in family.products.value -%}
         {%- if sibling != blank and sibling.id != product.id -%}
-          {% render 'playtime-favourite-swatch', sibling: sibling, selected_product: product, selected_image: card_image %}
+          {% render 'playtime-favourite-swatch', sibling: sibling, selected_product: product, selected_image: card_image, collection_actions: true %}
         {%- endif -%}
       {%- endfor -%}
     </ul>
@@ -52,6 +53,5 @@
       <div class="tps-collection-rating">{% render 'rating', rating_value: product.metafields.reviews.rating.value, rating_count: rating_count %}</div>
     {%- endif -%}
   {%- endif -%}
-  <a class="pf-cta btn btn--secondary" href="{{ product.url }}" data-pf-link>{{ 'sections.collection.shop_now' | t }}</a>
   <span class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-pf-announcement></span>
 </article>

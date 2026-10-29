@@ -135,3 +135,5 @@
 .tps-cart-drawer .collection-slider .product-block__detail { margin-bottom: 0; }
 .tps-cart-quick-add__variant { width: 100%; min-height: 40px; margin-bottom: 8px; padding: 8px 24px 8px 8px; font-size: 12px; }
 .tps-cart-quick-add__error { margin-bottom: 8px; font-size: 12px; color: #a02424; }
+
+.tps-cart-quick-add { text-align: center; }

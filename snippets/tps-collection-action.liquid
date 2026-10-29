@@ -1,0 +1,23 @@
+{% doc %}
+  @param {product} product - Product currently shown in the card.
+  @param {number} card_id - Original card product ID, for unique form IDs.
+{% enddoc %}
+{%- liquid
+  assign can_quick_add = false
+  if product.available and product.variants.size == 1 and product.requires_selling_plan == false
+    assign can_quick_add = true
+  endif
+  assign form_id = 'CollectionQuickAdd-' | append: card_id | append: '-' | append: product.id
+-%}
+{%- if can_quick_add -%}
+  <product-form>
+    {%- form 'product', product, id: form_id, class: 'js-product-form' -%}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <input type="hidden" name="quantity" value="1">
+      <div class="js-form-error tps-collection-action__error" role="alert" hidden></div>
+      <button class="btn btn--wide" type="submit" name="add" aria-label="{{ 'cart.drawer.add_product' | t: product: product.title | escape }}">{{ 'products.product.add_to_cart' | t }}</button>
+    {%- endform -%}
+  </product-form>
+{%- else -%}
+  <a class="btn btn--wide" href="{{ product.url }}">{{ 'sections.collection.shop_now' | t }}</a>
+{%- endif -%}
