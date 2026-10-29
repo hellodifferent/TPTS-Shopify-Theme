@@ -18,7 +18,7 @@
           if image_aspect_ratio
             assign custom_aspect_ratio = image_aspect_ratio
             assign image_crop = nil
-            if media.preview_image.aspect_ratio < 0.5
+            if media.preview_image.aspect_ratio < 0.5 or media.preview_image.aspect_ratio >= 1
               assign image_crop = 'contain'
             endif
           elsif min_aspect_ratio
