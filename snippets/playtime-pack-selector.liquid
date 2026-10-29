@@ -37,24 +37,38 @@
       <legend>{% if kind == 'mini' %}{{ 'playtime.offers.choose_set' | t }}{% else %}{{ 'playtime.offers.choose_balls' | t }}{% endif %}</legend>
       <div class="pt-pack__options{% unless kind == 'mini' %} pt-pack__options--balls{% endunless %}">
         {%- if kind == 'mini' -%}
-          <label class="pt-pack__option"><input type="radio" name="pt-pack-{{ form_id }}" value="1" checked><span><span class="pt-pack__name">{{ 'playtime.offers.six_blocks' | t }}</span><strong>{{ single_price }}</strong></span></label>
-          <label class="pt-pack__option"><input type="radio" name="pt-pack-{{ form_id }}" value="2"><span><span class="pt-pack__name">{{ 'playtime.offers.twelve_blocks' | t }}</span><strong>{{ pair_price }}</strong><small>{{ 'playtime.offers.save_amount' | t: saving: saving }}</small></span></label>
+          <label class="pt-pack__option"><input type="radio" data-pack-size name="pt-pack-{{ form_id }}" value="1" checked><span><span class="pt-pack__name">{{ 'playtime.offers.six_blocks' | t }}</span><strong>{{ single_price }}</strong></span></label>
+          <label class="pt-pack__option"><input type="radio" data-pack-size name="pt-pack-{{ form_id }}" value="2"><span><span class="pt-pack__name">{{ 'playtime.offers.twelve_blocks' | t }}</span><strong>{{ pair_price }}</strong></span><small class="pt-pack__saving">{{ 'playtime.offers.save_amount' | t: saving: saving }}</small></label>
         {%- else -%}
-          {%- if kind == 'pit' -%}<label class="pt-pack__option"><input type="radio" name="pt-pack-{{ form_id }}" value="0" checked><span class="pt-pack__name">{{ 'playtime.offers.no_balls' | t }}</span></label>{%- endif -%}
+          {%- if kind == 'pit' -%}<label class="pt-pack__option"><input type="radio" data-pack-size name="pt-pack-{{ form_id }}" value="0" checked><span class="pt-pack__name">{{ 'playtime.offers.no_balls' | t }}</span></label>{%- endif -%}
           {%- for bags in (1..3) -%}
             {%- assign count = bags | times: 100 -%}
             {%- assign price = bags | times: 3300 -%}
             {%- if bags == 1 -%}{%- assign price = 3900 -%}{%- endif -%}
             {%- assign pack_price = price | money_without_trailing_zeros -%}
-            <label class="pt-pack__option"><input type="radio" name="pt-pack-{{ form_id }}" value="{{ bags }}"{% if kind == 'balls' and bags == 1 %} checked{% endif %}><span><span class="pt-pack__name">{{ 'playtime.offers.ball_pack' | t: count: count }}</span><strong>{{ pack_price }}</strong></span></label>
+            <label class="pt-pack__option"><input type="radio" data-pack-size name="pt-pack-{{ form_id }}" value="{{ bags }}"{% if kind == 'balls' and bags == 1 %} checked{% endif %}><span><span class="pt-pack__name">{{ 'playtime.offers.ball_pack' | t: count: count }}</span><strong>{{ pack_price }}</strong></span></label>
           {%- endfor -%}
         {%- endif -%}
       </div>
     </fieldset>
     {%- if kind == 'mini' -%}
-      <label class="pt-pack__colour" data-pack-colour="2" hidden><span>{{ 'playtime.offers.second_set_colour' | t }}</span>
-        <select data-pack-choice="2">{%- for choice in choices -%}<option value="{{ choice.selected_or_first_available_variant.id }}"{% if choice.id == product.id %} selected{% endif %}{% unless choice.available %} disabled{% endunless %}>{{ choice.title | remove: 'Mini Play Blocks - ' | escape }}{% unless choice.available %} — {{ 'products.product.sold_out' | t }}{% endunless %}</option>{%- endfor -%}</select>
-      </label>
+      <fieldset class="pt-pack__colour pt-pack__colour--swatches" data-pack-colour="2" hidden>
+        <legend>{{ 'playtime.offers.second_set_colour' | t }}: <span data-pack-colour-name>{{ product.metafields.custom.swatch_name.value | default: product.title | remove: 'Mini Play Blocks - ' | escape }}</span></legend>
+        <div class="pt-pack__swatches">
+          {%- for choice in choices -%}
+            {%- liquid
+              assign colour_name = choice.metafields.custom.swatch_name.value | default: choice.title | remove: 'Mini Play Blocks - '
+              assign colour_image = choice.metafields.custom.swatch_image.value
+              assign colour_hex = choice.metafields.custom.swatch_colour.value
+            -%}
+            <label class="pt-pack__swatch{% unless choice.available %} pt-pack__swatch--unavailable{% endunless %}" title="{{ colour_name | escape }}{% unless choice.available %} — {{ 'products.product.sold_out' | t }}{% endunless %}">
+              <input type="radio" name="pt-colour-{{ form_id }}" data-pack-choice="2" data-colour-name="{{ colour_name | escape }}" value="{{ choice.selected_or_first_available_variant.id }}"{% if choice.id == product.id %} checked{% endif %}{% unless choice.available %} disabled{% endunless %}>
+              <span class="pt-pack__swatch-dot"{% if colour_image %} style="background-image:url('{{ colour_image | image_url: width: 100 }}')"{% elsif colour_hex %} style="background-color:{{ colour_hex | color_to_hex }}"{% endif %}></span>
+              <span class="visually-hidden">{{ colour_name | escape }}{% unless choice.available %} — {{ 'products.product.sold_out' | t }}{% endunless %}</span>
+            </label>
+          {%- endfor -%}
+        </div>
+      </fieldset>
     {%- else -%}
       {%- for bag in (1..3) -%}
         <label class="pt-pack__colour" data-pack-colour="{{ bag }}" hidden><span>{{ 'playtime.offers.bag_colour' | t: number: bag }}</span>

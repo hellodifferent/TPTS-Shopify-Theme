@@ -83,10 +83,10 @@
         if (this.dataset.kind !== 'balls') items.push({ id: variant, quantity });
         const count = this.selection();
         if (this.dataset.kind === 'mini') {
-          items.push({ id: Number(this.querySelector('[data-pack-choice="2"]').value), quantity });
+          items.push({ id: Number(this.choiceFor(2)?.value), quantity });
         } else {
           for (let bag = 1; bag <= count; bag++) {
-            items.push({ id: Number(this.querySelector(`[data-pack-choice="${bag}"]`).value), quantity });
+            items.push({ id: Number(this.choiceFor(bag)?.value), quantity });
           }
         }
         if (items.some(item => !Number.isSafeInteger(item.id) || item.id <= 0)) return;
@@ -98,7 +98,10 @@
       this.abortController?.abort();
     }
     selection() {
-      return Number(this.querySelector('input[type="radio"]:checked')?.value || 0);
+      return Number(this.querySelector('[data-pack-size]:checked')?.value || 0);
+    }
+    choiceFor(index) {
+      return this.querySelector(`input[data-pack-choice="${index}"]:checked`) || this.querySelector(`select[data-pack-choice="${index}"]`);
     }
     requiresCustomAdd() {
       const count = this.selection();
@@ -110,7 +113,13 @@
         label.hidden = Number(label.dataset.packColour) > count;
       });
       const custom = this.requiresCustomAdd();
-      const unavailable = Array.from(this.querySelectorAll('[data-pack-choice]')).some(select => !select.closest('[hidden]') && (!select.value || select.selectedOptions[0]?.disabled));
+      const unavailable = Array.from(this.querySelectorAll('[data-pack-colour]')).some(group => {
+        if (group.hidden) return false;
+        const choice = this.choiceFor(group.dataset.packColour);
+        return !choice?.value || choice.disabled || choice.selectedOptions?.[0]?.disabled;
+      });
+      const colourName = this.querySelector('[data-pack-colour-name]');
+      if (colourName) colourName.textContent = this.choiceFor(2)?.dataset.colourName || '';
       const previewOnly = custom && this.dataset.ready !== 'true';
       this.button.disabled = this.originalDisabled || previewOnly || (custom && unavailable);
       const status = this.querySelector('[data-pack-status]');
