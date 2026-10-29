@@ -141,6 +141,10 @@
             "product_selection": ""
           }
         },
+        "tps_social_media": {
+          "type": "tps_social_media",
+          "settings": { "heading": "Playtime in real life" }
+        },
         "description": {
           "type": "description",
           "settings": {
@@ -282,6 +286,7 @@
         "divider",
         "tps_delivery_links_ktjq7d",
         "loox_reviews_loox_snippets_widget_wdPRf7",
+        "tps_social_media",
         "description",
         "divider_rBbeCm",
         "image_jm4pYb",

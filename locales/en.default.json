@@ -8,6 +8,10 @@
  * ------------------------------------------------------------
  */
 {
+  "tps_social_media": {
+    "label": "Product videos and photos",
+    "empty": "Add up to three vertical videos or images in this block’s settings. This block stays hidden on your storefront until you add media."
+  },
   "general": {
     "localization": {
       "country_label": "Country/Region",

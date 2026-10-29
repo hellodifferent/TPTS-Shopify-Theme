@@ -379,6 +379,9 @@
           {% when 'tps_delivery_links', 'tps_product_benefits' %}
             {% render 'tps-product-info-block', block: block, product: product %}
 
+          {% when 'tps_social_media' %}
+            {% render 'tps-product-social-media', block: block, product: product %}
+
           {% when 'description' %}
             <div class="{% unless block.settings.show_in_quickbuy %}not-in-quickbuy{% endunless %}{% if block.settings.show_in_tab %} product-info-accordion{% endif %}"
                   data-dynamic-variant-content="{{ block.id }}"
@@ -1795,6 +1798,83 @@
     }
   ],
   "blocks": [
+{
+  "type": "tps_social_media",
+  "name": "TPS social media",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Playtime in real life"
+    },
+    {
+      "type": "paragraph",
+      "content": "Select portrait 9:16 media from Shopify Files. Video takes priority over image. Images can also be used as video covers. Empty slots stay hidden."
+    },
+    {
+      "type": "header",
+      "content": "Media 1"
+    },
+    {
+      "type": "video",
+      "id": "video_1",
+      "label": "Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image or video cover"
+    },
+    {
+      "type": "text",
+      "id": "caption_1",
+      "label": "Description",
+      "info": "Describe the image or video for accessibility."
+    },
+    {
+      "type": "header",
+      "content": "Media 2"
+    },
+    {
+      "type": "video",
+      "id": "video_2",
+      "label": "Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image or video cover"
+    },
+    {
+      "type": "text",
+      "id": "caption_2",
+      "label": "Description",
+      "info": "Describe the image or video for accessibility."
+    },
+    {
+      "type": "header",
+      "content": "Media 3"
+    },
+    {
+      "type": "video",
+      "id": "video_3",
+      "label": "Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image or video cover"
+    },
+    {
+      "type": "text",
+      "id": "caption_3",
+      "label": "Description",
+      "info": "Describe the image or video for accessibility."
+    }
+  ]
+},
     {
       "type": "tps_delivery_links",
       "name": "TPS delivery links",

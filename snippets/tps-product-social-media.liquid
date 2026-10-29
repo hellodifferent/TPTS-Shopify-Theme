@@ -1,0 +1,53 @@
+{% doc %}
+  @param {block} block - Social media block settings.
+  @param {product} product - Current product.
+{% enddoc %}
+{%- liquid
+  assign media_count = 0
+  for index in (1..3)
+    assign video_key = 'video_' | append: index
+    assign image_key = 'image_' | append: index
+    if block.settings[video_key] != blank or block.settings[image_key] != blank
+      assign media_count = media_count | plus: 1
+    endif
+  endfor
+-%}
+{%- if media_count > 0 -%}
+  <div class="tps-product-social not-in-quickbuy" {{ block.shopify_attributes }}>
+    {%- if block.settings.heading != blank -%}
+      <h2 class="tps-product-social__heading" id="SocialHeading-{{ section.id }}-{{ block.id }}">{{ block.settings.heading | escape }}</h2>
+    {%- endif -%}
+    <div class="tps-product-social__track" tabindex="0" role="region" {% if block.settings.heading != blank %}aria-labelledby="SocialHeading-{{ section.id }}-{{ block.id }}"{% else %}aria-label="{{ 'tps_social_media.label' | t | escape }}"{% endif %}>
+      <ul class="tps-product-social__list" role="list">
+        {%- for index in (1..3) -%}
+          {%- liquid
+            assign video_key = 'video_' | append: index
+            assign image_key = 'image_' | append: index
+            assign caption_key = 'caption_' | append: index
+            assign social_video = block.settings[video_key]
+            assign social_image = block.settings[image_key]
+            assign social_description = block.settings[caption_key] | default: social_image.alt | default: social_video.alt | default: product.title
+          -%}
+          {%- if social_video != blank or social_image != blank -%}
+            <li class="tps-product-social__item">
+              {%- if social_video != blank -%}
+                {%- if social_image != blank -%}
+                  {%- assign social_poster = social_image | image_url: width: 480 -%}
+                  {{ social_video | video_tag: controls: true, playsinline: true, autoplay: false, loop: false, preload: 'none', image_size: '480x', poster: social_poster, class: 'tps-product-social__media', aria-label: social_description }}
+                {%- else -%}
+                  {{ social_video | video_tag: controls: true, playsinline: true, autoplay: false, loop: false, preload: 'none', image_size: '480x', class: 'tps-product-social__media', aria-label: social_description }}
+                {%- endif -%}
+              {%- else -%}
+                {{ social_image | image_url: width: 640 | image_tag: widths: '180, 240, 320, 480, 640', sizes: '(max-width: 767px) 44vw, 180px', loading: 'lazy', class: 'tps-product-social__media', alt: social_description }}
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+{%- elsif request.design_mode -%}
+  <div class="tps-product-social tps-product-social--empty not-in-quickbuy" {{ block.shopify_attributes }}>
+    <p>{{ 'tps_social_media.empty' | t }}</p>
+  </div>
+{%- endif -%}
