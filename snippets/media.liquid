@@ -1,3 +1,11 @@
+{% doc %}
+  @param {media} media - Product media to display.
+  @param {product} [product] - Current product.
+  @param {number} [min_aspect_ratio] - Minimum image aspect ratio.
+  @param {number} [image_aspect_ratio] - Optional fixed photo crop ratio.
+  @param {string} [loading] - Image loading strategy.
+  @param {boolean} [in_collage] - Whether media appears in a collage.
+{% enddoc %}
 <div id="FeaturedMedia-{{ section.id }}-{{ media.id }}-wrapper"
     class="product-media-wrapper"
     data-media-id="{{ section.id }}-{{ media.id }}"
@@ -6,13 +14,17 @@
     {% when 'image' %}
       <div class="product-media product-media--image">
         {%- liquid
-          if min_aspect_ratio
+          assign image_crop = 'contain'
+          if image_aspect_ratio
+            assign custom_aspect_ratio = image_aspect_ratio
+            assign image_crop = nil
+          elsif min_aspect_ratio
             assign custom_aspect_ratio = media.preview_image.aspect_ratio | at_least: min_aspect_ratio
           else
             assign custom_aspect_ratio = false
           endif
 
-          render 'image' with media.preview_image, size_cols_desktop: 2, custom_aspect_ratio: custom_aspect_ratio, custom_crop: 'contain', loading: loading
+          render 'image' with media.preview_image, size_cols_desktop: 2, custom_aspect_ratio: custom_aspect_ratio, custom_crop: image_crop, loading: loading
         -%}
         {%- if section.settings.show_alt_text and media.alt != blank and media.alt != product.title and media.alt != 'all-groups' -%}
           <span class="product-media__label">

@@ -49,7 +49,7 @@
 {% endif %}
 
 <product-form id="{{ section.id }}" class="js-product product-info quickbuy-content spaced-row container">
-  <media-gallery class="media-gallery media-gallery--layout-{{ section.settings.gallery_layout }} media-gallery-size-{{ section.settings.gallery_size }} product-column-left {% if product.media.size > 1 %}has-thumbnails{% endif %}"
+  <media-gallery class="media-gallery tps-product-gallery media-gallery--layout-{{ section.settings.gallery_layout }} media-gallery-size-{{ section.settings.gallery_size }} product-column-left {% if product.media.size > 1 %}has-thumbnails{% endif %}"
     {%- if enable_media_grouping %}
       data-media-grouping-enabled
     {%- endif %}
@@ -102,7 +102,7 @@
                       assign loading = 'lazy'
                     endif
 
-                    render 'media', media: media, product: product, min_aspect_ratio: min_aspect_ratio, loading: loading
+                    render 'media', media: media, product: product, min_aspect_ratio: min_aspect_ratio, image_aspect_ratio: 0.75, loading: loading
                   -%}
 
                   {%- if media.media_type == 'image' and section.settings.enable_zoom -%}
@@ -143,7 +143,7 @@
                     assign loading = 'lazy'
                   endif
 
-                  render 'media', media: media, product: product, min_aspect_ratio: min_aspect_ratio, loading: loading, in_collage: true
+                  render 'media', media: media, product: product, min_aspect_ratio: min_aspect_ratio, image_aspect_ratio: 0.75, loading: loading, in_collage: true
                 -%}
                 {%- if media.media_type == 'image' and section.settings.enable_zoom -%}
                   </a>
