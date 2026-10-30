@@ -25,8 +25,7 @@
   .tps-collection-cards .pf-card:hover .tps-collection-action, .tps-collection-cards .pf-card:focus-within .tps-collection-action { opacity: 1; pointer-events: auto; }
 }
 @media (max-width: 767px) {
-  .tps-collection-action { padding-inline: 4px; }
-  .tps-collection-action .btn { min-height: 44px; padding: 12px 8px; font-size: 10px; }
+  .tps-collection-action { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .tps-collection-action { transition: none; } }
 

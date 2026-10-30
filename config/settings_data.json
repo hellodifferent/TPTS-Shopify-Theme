@@ -962,7 +962,7 @@
     },
     "playtime_header_icons": true,
     "playtime_offer_preview": true,
-    "playtime_ball_offer_ready": false,
+    "playtime_ball_offer_ready": true,
     "playtime_mini_offer_ready": true,
     "playtime_ball_products": [
       "white-balls-100-pack",
