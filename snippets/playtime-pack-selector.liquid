@@ -52,9 +52,12 @@
       </div>
     </fieldset>
     {%- if kind == 'mini' -%}
-      <fieldset class="pt-pack__colour pt-pack__colour--swatches" data-pack-colour="2" hidden>
-        <legend>{{ 'playtime.offers.second_set_colour' | t }}: <span data-pack-colour-name>{{ product.metafields.custom.swatch_name.value | default: product.title | remove: 'Mini Play Blocks - ' | escape }}</span></legend>
-        <div class="pt-pack__swatches">
+      {%- for set in (1..2) -%}
+      <fieldset class="pt-pack__colour pt-pack__colour--swatches" data-pack-colour="{{ set }}" hidden>
+        <legend>{% if set == 1 %}{{ 'playtime.offers.first_set_colour' | t }}{% else %}{{ 'playtime.offers.second_set_colour' | t }}{% endif %}: <span data-pack-colour-name="{{ set }}">{{ product.metafields.custom.swatch_name.value | default: product.title | remove: 'Mini Play Blocks - ' | escape }}</span></legend>
+        <div class="pt-pack__selection">
+          <img class="pt-pack__preview" data-pack-preview="{{ set }}" src="{{ product.featured_image | image_url: width: 160 }}" width="72" height="72" alt="" loading="lazy">
+          <div class="pt-pack__swatches">
           {%- for choice in choices -%}
             {%- liquid
               assign colour_name = choice.metafields.custom.swatch_name.value | default: choice.title | remove: 'Mini Play Blocks - '
@@ -62,13 +65,15 @@
               assign colour_hex = choice.metafields.custom.swatch_colour.value
             -%}
             <label class="pt-pack__swatch{% unless choice.available %} pt-pack__swatch--unavailable{% endunless %}" title="{{ colour_name | escape }}{% unless choice.available %} — {{ 'products.product.sold_out' | t }}{% endunless %}">
-              <input type="radio" name="pt-colour-{{ form_id }}" data-pack-choice="2" data-colour-name="{{ colour_name | escape }}" value="{{ choice.selected_or_first_available_variant.id }}"{% if choice.id == product.id %} checked{% endif %}{% unless choice.available %} disabled{% endunless %}>
+              <input type="radio" name="pt-colour-{{ form_id }}-{{ set }}" data-pack-choice="{{ set }}" data-image-url="{{ choice.featured_image | image_url: width: 160 }}" data-colour-name="{{ colour_name | escape }}" value="{{ choice.selected_or_first_available_variant.id }}"{% if choice.id == product.id %} checked{% endif %}{% unless choice.available %} disabled{% endunless %}>
               <span class="pt-pack__swatch-dot"{% if colour_image %} style="background-image:url('{{ colour_image | image_url: width: 100 }}')"{% elsif colour_hex %} style="background-color:{{ colour_hex | color_to_hex }}"{% endif %}></span>
               <span class="visually-hidden">{{ colour_name | escape }}{% unless choice.available %} — {{ 'products.product.sold_out' | t }}{% endunless %}</span>
             </label>
           {%- endfor -%}
+          </div>
         </div>
       </fieldset>
+      {%- endfor -%}
     {%- else -%}
       {%- for bag in (1..3) -%}
         <label class="pt-pack__colour" data-pack-colour="{{ bag }}" hidden><span>{{ 'playtime.offers.bag_colour' | t: number: bag }}</span>

@@ -555,6 +555,7 @@
       "six_blocks": "6 blocks",
       "twelve_blocks": "12 blocks",
       "save_amount": "Save {{ saving }}",
+      "first_set_colour": "First set colour",
       "second_set_colour": "Second set colour",
       "choose_balls": "Choose your balls",
       "optional_balls": "Add balls (optional)",

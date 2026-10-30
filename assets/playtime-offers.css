@@ -54,3 +54,10 @@
 .pt-offers .pt-offer--cart .pt-offer__eyebrow{display:none}
 .pt-offers .pt-offer--cart .pt-offer__heading{font-family:inherit;font-weight:500;font-size:15px;line-height:1.4;letter-spacing:0;margin:0 0 7px}
 @media(max-width:767px){.pt-pack{padding:16px}.pt-pack__option{padding:10px;min-height:46px}.pt-pack__options{gap:8px}.pt-pack__name{font-size:12px}.pt-pack__option strong{font-size:13px}.pt-pack__colour select{font-size:16px}}
+
+.pt-pack__selection { clear: both; display: flex; align-items: center; gap: 12px; }
+.pt-pack__preview { display: block; flex: 0 0 72px; width: 72px; height: 72px; object-fit: contain; background: #fff; border-radius: 6px; }
+.pt-pack__selection .pt-pack__swatches { gap: 6px; }
+.pt-pack__selection .pt-pack__swatch { display: flex; align-items: center; justify-content: center; }
+.pt-pack__selection .pt-pack__swatch-dot { width: 35px; height: 35px; }
+.pt-pack__selection .pt-pack__swatch--unavailable:after { left: 4px; width: 35px; }

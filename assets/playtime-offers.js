@@ -80,17 +80,25 @@
         const quantity = Number(this.form.querySelector('[name="quantity"]')?.value || 1);
         const variant = Number(this.form.querySelector('[name="id"]').value);
         const items = [];
-        if (this.dataset.kind !== 'balls') items.push({ id: variant, quantity });
+        if (this.dataset.kind !== 'balls' && this.dataset.kind !== 'mini') items.push({ id: variant, quantity });
         const count = this.selection();
         if (this.dataset.kind === 'mini') {
-          items.push({ id: Number(this.choiceFor(2)?.value), quantity });
+          for (let set = 1; set <= 2; set++) {
+            items.push({ id: Number(this.choiceFor(set)?.value), quantity });
+          }
         } else {
           for (let bag = 1; bag <= count; bag++) {
             items.push({ id: Number(this.choiceFor(bag)?.value), quantity });
           }
         }
         if (items.some(item => !Number.isSafeInteger(item.id) || item.id <= 0)) return;
-        PlaytimeOffer.prototype.addSelection.call(this, this.button, items);
+        const mergedItems = new Map();
+        items.forEach(item => {
+          const existing = mergedItems.get(item.id);
+          if (existing) existing.quantity += item.quantity;
+          else mergedItems.set(item.id, { ...item });
+        });
+        PlaytimeOffer.prototype.addSelection.call(this, this.button, [...mergedItems.values()]);
       }, { capture: true, signal });
       this.updateSelection();
     }
@@ -110,7 +118,7 @@
     updateSelection() {
       const count = this.selection();
       this.querySelectorAll('[data-pack-colour]').forEach(label => {
-        label.hidden = Number(label.dataset.packColour) > count;
+        label.hidden = this.dataset.kind === 'mini' ? count !== 2 : Number(label.dataset.packColour) > count;
       });
       const custom = this.requiresCustomAdd();
       const unavailable = Array.from(this.querySelectorAll('[data-pack-colour]')).some(group => {
@@ -118,10 +126,18 @@
         const choice = this.choiceFor(group.dataset.packColour);
         return !choice?.value || choice.disabled || choice.selectedOptions?.[0]?.disabled;
       });
-      const colourName = this.querySelector('[data-pack-colour-name]');
-      if (colourName) colourName.textContent = this.choiceFor(2)?.dataset.colourName || '';
+      this.querySelectorAll('[data-pack-colour-name]').forEach(label => {
+        const choice = this.choiceFor(label.dataset.packColourName);
+        label.textContent = choice?.dataset.colourName || '';
+        const preview = this.querySelector(`[data-pack-preview="${label.dataset.packColourName}"]`);
+        if (preview) {
+          preview.hidden = !choice?.dataset.imageUrl;
+          if (choice?.dataset.imageUrl) preview.src = choice.dataset.imageUrl;
+        }
+      });
       const previewOnly = custom && this.dataset.ready !== 'true';
-      this.button.disabled = this.originalDisabled || previewOnly || (custom && unavailable);
+      const baseUnavailable = this.dataset.kind === 'mini' && custom ? false : this.originalDisabled;
+      this.button.disabled = baseUnavailable || previewOnly || (custom && unavailable);
       const status = this.querySelector('[data-pack-status]');
       status.hidden = !previewOnly;
       status.textContent = previewOnly ? this.dataset.previewLabel : '';
