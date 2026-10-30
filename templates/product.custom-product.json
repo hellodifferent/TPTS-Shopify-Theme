@@ -87,7 +87,10 @@
             "size_chart_page": ""
           }
         },
-        "tps_mini_sets": {"type": "tps_mini_sets", "settings": {}},
+        "tps_mini_sets": {
+          "type": "tps_mini_sets",
+          "settings": {}
+        },
         "buy_buttons_6Ukibb": {
           "type": "buy-buttons",
           "settings": {
@@ -157,7 +160,9 @@
         },
         "tps_social_media": {
           "type": "tps_social_media",
-          "settings": { "heading": "Playtime in real life" }
+          "settings": {
+            "heading": "Playtime in real life"
+          }
         },
         "description": {
           "type": "description",
@@ -300,6 +305,12 @@
             "variant_content": false,
             "show_in_quickbuy": false
           }
+        },
+        "tps_ball_pit_setup": {
+          "type": "tps_ball_pit_setup",
+          "settings": {
+            "heading": "Choose your setup"
+          }
         }
       },
       "block_order": [
@@ -312,6 +323,7 @@
         "sibling_product_swatches_YfdE3R",
         "variant_picker_8EVKbn",
         "tps_mini_sets",
+        "tps_ball_pit_setup",
         "buy_buttons_6Ukibb",
         "tps_delivery_links",
         "tps_product_benefits",

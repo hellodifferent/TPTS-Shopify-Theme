@@ -682,6 +682,9 @@
               %}
             </div>
 
+          {% when 'tps_ball_pit_setup' %}
+            {% render 'tps-ball-pit-selector', product: product, block: block %}
+
           {% when 'tps_mini_sets' %}
             <div class="tps-mini-set-block not-in-quickbuy" {{ block.shopify_attributes }}>
               {% render 'playtime-pack-selector', product: product, form_id: product_form_id, only_kind: 'mini' %}
@@ -1822,6 +1825,12 @@
     }
   ],
   "blocks": [
+    {
+      "type": "tps_ball_pit_setup",
+      "name": "TPS ball pit setup",
+      "limit": 1,
+      "settings": [{ "type": "text", "id": "heading", "label": "Heading", "default": "Choose your setup" }]
+    },
     {
       "type": "tps_mini_sets",
       "name": "TPS Mini Play Blocks sets",

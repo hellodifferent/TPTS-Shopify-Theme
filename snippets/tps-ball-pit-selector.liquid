@@ -1,0 +1,79 @@
+{% doc %}
+  @param {product} product - Current ball pit or bundle product.
+  @param {object} block - Product information block.
+{% enddoc %}
+{%- liquid
+  assign pairings = product.metafields.custom.bundled_pairings.value
+  assign pit_only = product.metafields.custom.ball_pit_only.value
+  assign pit_product = nil
+  assign bundle_product = nil
+  assign bundle_count = 0
+  if pit_only == true
+    assign pit_product = product
+  endif
+  for pairing in pairings
+    if pairing != blank and pairing.url != blank
+      if pairing.metafields.custom.ball_pit_only.value == true
+        assign pit_product = pairing
+      else
+        assign bundle_count = bundle_count | plus: 1
+        if bundle_product == nil
+          assign bundle_product = pairing
+        endif
+        if pairing.id == product.id
+          assign bundle_product = pairing
+        endif
+      endif
+    endif
+  endfor
+-%}
+{%- if pit_product != nil -%}
+  <div class="tps-pit-selector input-row not-in-quickbuy" {{ block.shopify_attributes }}>
+    <h2 class="tps-pit-selector__heading">{{ block.settings.heading | escape }}</h2>
+    <nav class="tps-pit-selector__setups" aria-label="{{ 'tps_pit_selector.setup_label' | t | escape }}">
+      <a class="tps-pit-selector__option{% if product.id == pit_product.id %} is-selected{% endif %}" href="{{ pit_product.url }}"{% if product.id == pit_product.id %} aria-current="page"{% endif %}>
+        <span>{{ 'tps_pit_selector.pit_only' | t }}</span>
+        <span class="tps-pit-selector__price">{{ pit_product.price | money }}</span>
+      </a>
+      {%- if bundle_product != nil -%}
+        <a class="tps-pit-selector__option{% if pit_only == false %} is-selected{% endif %}" href="{{ bundle_product.url }}"{% if product.id == bundle_product.id %} aria-current="page"{% endif %}>
+          <span>{{ 'tps_pit_selector.with_balls' | t }}</span>
+          <span class="tps-pit-selector__price">{{ bundle_product.price | money }}</span>
+        </a>
+      {%- else -%}
+        <span class="tps-pit-selector__option tps-pit-selector__option--pending" aria-disabled="true">
+          <span>{{ 'tps_pit_selector.with_balls' | t }}</span>
+          <span class="tps-pit-selector__price">{{ 'tps_pit_selector.coming_soon' | t }}</span>
+        </span>
+      {%- endif -%}
+    </nav>
+    {%- if bundle_count > 0 -%}
+      <h3 class="tps-pit-selector__mix-heading">{{ 'tps_pit_selector.mix_label' | t }}</h3>
+      <nav class="tps-pit-selector__mixes" aria-label="{{ 'tps_pit_selector.mix_label' | t | escape }}">
+        {%- for pairing in pairings -%}
+          {%- if pairing != blank and pairing.url != blank and pairing.metafields.custom.ball_pit_only.value != true -%}
+            {%- liquid
+              assign mix_name = pairing.title | split: ' + 300 Balls - ' | last | remove: ' Mix'
+              assign mix_description = ''
+              if mix_name == 'Cloud'
+                assign mix_name = 'tps_pit_selector.cloud' | t
+                assign mix_description = 'tps_pit_selector.cloud_description' | t
+              elsif mix_name == 'Ocean'
+                assign mix_name = 'tps_pit_selector.ocean' | t
+                assign mix_description = 'tps_pit_selector.ocean_description' | t
+              elsif mix_name == 'Pink Blossom'
+                assign mix_name = 'tps_pit_selector.pink_blossom' | t
+                assign mix_description = 'tps_pit_selector.pink_description' | t
+              endif
+            -%}
+            <a class="tps-pit-selector__mix{% if pairing.id == product.id %} is-selected{% endif %}" href="{{ pairing.url }}"{% if pairing.id == product.id %} aria-current="page"{% endif %}>
+              <span class="tps-pit-selector__mix-name">{{ mix_name | escape }}</span>
+              {%- if mix_description != blank -%}<span class="tps-pit-selector__mix-description">{{ mix_description | escape }}</span>{%- endif -%}
+              {%- unless pairing.available -%}<span class="tps-pit-selector__availability">{{ 'sections.collection.restocking_soon' | t }}</span>{%- endunless -%}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+  </div>
+{%- endif -%}

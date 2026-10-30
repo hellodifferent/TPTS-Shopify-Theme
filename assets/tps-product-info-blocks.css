@@ -249,3 +249,21 @@ a.tps-social-viewer__handle { text-decoration: underline; text-underline-offset:
 @media (max-width: 767.98px) {
   .tps-gallery-more { display: none; }
 }
+
+
+.tps-pit-selector { margin-block: 20px; }
+.tps-pit-selector__heading, .tps-pit-selector__mix-heading { margin: 0 0 12px; font-family: var(--base-font-family); font-size: 14px; font-weight: 600; line-height: 1.4; }
+.tps-pit-selector__setups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tps-pit-selector__option, .tps-pit-selector__mix { display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 13px 14px; border: 1px solid #ded8d0; border-radius: 6px; background: transparent; color: inherit; text-decoration: none; font-size: 13px; line-height: 1.4; }
+.tps-pit-selector a:hover { border-color: #d2bca6; color: inherit; }
+.tps-pit-selector .is-selected { border-color: #d2bca6; background: #f7f5f1; }
+.tps-pit-selector a:focus-visible { outline: 2px solid #8d7460; outline-offset: 3px; }
+.tps-pit-selector__price { font-size: 13.5px; }
+.tps-pit-selector__option--pending { opacity: .65; }
+.tps-pit-selector__mix-heading { margin-top: 18px; }
+.tps-pit-selector__mixes { display: grid; gap: 8px; }
+.tps-pit-selector__mix { display: grid; grid-template-columns: 1fr auto; column-gap: 10px; }
+.tps-pit-selector__mix-name { font-weight: 600; }
+.tps-pit-selector__mix-description { grid-column: 1 / -1; font-size: 12px; }
+.tps-pit-selector__availability { grid-column: 2; grid-row: 1; font-size: 10px; align-self: center; color: #71695f; }
+@media (max-width: 767px) { .tps-pit-selector__option { padding: 12px 10px; } }
