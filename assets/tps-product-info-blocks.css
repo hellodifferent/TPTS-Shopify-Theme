@@ -226,7 +226,12 @@ a.tps-social-viewer__handle { text-decoration: underline; text-underline-offset:
   background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,.82) 60%, #fff);
   pointer-events: none;
 }
-.tps-gallery-more__button {
+.tps-gallery-more .btn.tps-gallery-more__button,
+.tps-gallery-more .btn.tps-gallery-more__button:hover,
+.tps-gallery-more .btn.tps-gallery-more__button:focus-visible {
+  background: #fff;
+  border-color: #fff;
+  color: #d2bca6;
   display: inline-flex;
   align-items: center;
   justify-content: center;
