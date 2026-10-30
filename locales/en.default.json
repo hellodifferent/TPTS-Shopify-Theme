@@ -8,6 +8,7 @@
  * ------------------------------------------------------------
  */
 {
+  "tps_gallery": { "show_more": "Show more" },
   "tps_social_media": {
     "open": "View: {{ description }}",
     "watch": "Watch",

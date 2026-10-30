@@ -1,5 +1,6 @@
 {{ 'tps-product-info-blocks.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'tps-product-social-media.js' | asset_url }}" defer></script>
+<script src="{{ 'tps-gallery-more.js' | asset_url }}" defer></script>
 <script src="{{ 'tps-gallery-thumbnails.js' | asset_url }}" defer></script>
 {%- liquid
   assign zoom_size = 5000
@@ -131,6 +132,8 @@
         </carousel-slider>
 
         {%- if section.settings.gallery_layout contains 'collage' or section.settings.gallery_layout contains 'columns' -%}
+          <tps-gallery-more class="tps-gallery-more desktop-only">
+            <div class="tps-gallery-more__viewport" id="GalleryMore-{{ section.id }}" data-gallery-viewport>
           <div class="product-media-collage desktop-only">
             {%- for media in product.media -%}
               <div class="product-media-collage__item{% if forloop.index0 == initial_slide %} is-active{% endif %}" data-media-id="{{ media.id }}">
@@ -152,6 +155,11 @@
               </div>
             {%- endfor -%}
           </div>
+            </div>
+            <div class="tps-gallery-more__overlay" data-gallery-more-overlay hidden>
+              <button type="button" class="btn btn--primary tps-gallery-more__button" data-gallery-more-button aria-expanded="false" aria-controls="GalleryMore-{{ section.id }}">{{ 'tps_gallery.show_more' | t }}</button>
+            </div>
+          </tps-gallery-more>
         {%- endif -%}
 
         {%- assign models = product.media | where: 'media_type', 'model' -%}
