@@ -82,6 +82,7 @@
       {%- endcomment -%}
       {%- if filter_context.terms -%}
         <input type="hidden" name="q" value="{{ filter_context.terms | escape }}">
+        <input type="hidden" name="options[unavailable_products]" value="show">
       {%- endif -%}
 
       {%- if section.settings.enable_filtering -%}

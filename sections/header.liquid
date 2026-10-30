@@ -239,6 +239,7 @@
           {% render 'tps-search-identity', section: section %}
 
           <form class="main-search__form" action="{{ routes.search_url }}" method="get" autocomplete="off">
+            <input type="hidden" name="options[unavailable_products]" value="show">
             <div class="main-search__input-container">
               <input
                 class="main-search__input"
