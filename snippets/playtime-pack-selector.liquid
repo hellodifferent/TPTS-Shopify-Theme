@@ -52,7 +52,7 @@
           {%- for bags in (1..3) -%}
             {%- assign count = bags | times: 100 -%}
             {%- assign price = bags | times: 3300 -%}
-            {%- if bags == 1 -%}{%- assign price = 3900 -%}{%- endif -%}
+            {%- if bags == 1 -%}{%- assign price = 4500 -%}{%- endif -%}
             {%- assign pack_price = price | money_without_trailing_zeros -%}
             <label class="pt-pack__option"><input type="radio" data-pack-size name="pt-pack-{{ form_id }}" value="{{ bags }}"{% if kind == 'balls' and bags == 1 %} checked{% endif %}><span><span class="pt-pack__name">{{ 'playtime.offers.ball_pack' | t: count: count }}</span><strong>{{ pack_price }}</strong></span></label>
           {%- endfor -%}
