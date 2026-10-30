@@ -26,7 +26,7 @@
 .pt-pack__fieldset legend{padding:0;margin:0 0 15px;font-size:13px;font-weight:500}
 .pt-pack__options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .pt-pack__option{position:relative;display:flex;align-items:center;min-height:48px;padding:10px 13px;border:1px solid #d8d3cb;border-radius:6px;cursor:pointer;line-height:1.4;background:#fff;min-width:0}
-.pt-pack__option:has(input:checked){border-color:#d2bca6;background:#f8f4e9;box-shadow:none}
+.pt-pack__option:has(input:checked){border-color:#d2bca6;background:#f7f5f1;box-shadow:none}
 .pt-pack__option:has(input:focus-visible),.pt-pack__swatch:has(input:focus-visible){outline:2px solid #665746;outline-offset:4px}
 .pt-pack__option input[type=radio],.pt-pack__swatch input[type=radio]{position:absolute;width:1px;height:1px;margin:0;padding:0;opacity:0;clip-path:inset(50%);overflow:hidden}
 .pt-pack__option>span{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-width:0}
@@ -56,7 +56,7 @@
 @media(max-width:767px){.pt-pack{padding:16px}.pt-pack__option{padding:10px;min-height:46px}.pt-pack__options{gap:8px}.pt-pack__name{font-size:12px}.pt-pack__option strong{font-size:13px}.pt-pack__colour select{font-size:16px}}
 
 .pt-pack__selection { clear: both; display: flex; align-items: center; gap: 12px; }
-.pt-pack__preview { display: block; flex: 0 0 72px; width: 72px; height: 72px; object-fit: contain; background: #fff; border-radius: 6px; }
+.pt-pack__preview { display: block; flex: 0 0 72px; width: 72px; height: 72px; aspect-ratio: 1; object-fit: cover; object-position: 50% 50%; background: #fff; border-radius: 6px; }
 .pt-pack__selection .pt-pack__swatches { gap: 6px; }
 .pt-pack__selection .pt-pack__swatch { display: flex; align-items: center; justify-content: center; }
 .pt-pack__selection .pt-pack__swatch-dot { width: 35px; height: 35px; }
