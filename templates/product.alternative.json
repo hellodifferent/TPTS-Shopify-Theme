@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {"sections":{"main":{"type":"main-product","blocks":{"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{"show_tax_and_shipping":false,"enable_product_reviews_by_price":true}},"vendor":{"type":"vendor","settings":{}},"richtext":{"type":"richtext","settings":{"richtext":"<p><strong>Highlight<\/strong> a feature of your product.<\/p>","icon":"leaf","icon_size":"small","enable_box":true,"box_color":"#faf2e6","show_in_quickbuy":false}},"variant_picker":{"type":"variant-picker","settings":{"show_single":false,"selector_style":"dropdown"}},"buy_buttons":{"type":"buy-buttons","settings":{"show_quantity_selector":true,"enable_payment_button":true,"show_backorder_text":true,"show_pickup_availability":true,"show_gift_card_recipient":false}},"tps_social_media": {
           "type": "tps_social_media",
           "settings": { "heading": "Playtime in real life" }
