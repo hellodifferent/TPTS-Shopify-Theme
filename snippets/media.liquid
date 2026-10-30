@@ -21,7 +21,7 @@
             if media.preview_image.aspect_ratio < 0.5 or media.preview_image.aspect_ratio >= 1
               assign image_crop = 'contain'
             endif
-            if product.media.first.id == media.id and media.preview_image.aspect_ratio == 1
+            if product.media.first.id == media.id and media.preview_image.aspect_ratio >= 1
               assign custom_aspect_ratio = media.preview_image.aspect_ratio
             endif
           elsif min_aspect_ratio
