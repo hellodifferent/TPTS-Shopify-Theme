@@ -187,7 +187,11 @@
                   if forloop.index <= section.settings.grid
                     assign prioritised_loading = true
                   endif
-                  render 'tps-collection-card', product: item, columns: section.settings.grid, show_vendor: section.settings.show_vendor, prioritised_loading: prioritised_loading
+                  if section.id == 'main-search'
+                    render 'product-block', product: item, custom_aspect_ratio: chosen_product_aspect_ratio, animate: false
+                  else
+                    render 'tps-collection-card', product: item, columns: section.settings.grid, show_vendor: section.settings.show_vendor, prioritised_loading: prioritised_loading
+                  endif
                 -%}
               {% elsif item.object_type == 'collection' %}
                 {% render 'collection-block', collection: item, custom_aspect_ratio: chosen_collection_aspect_ratio, animate: true %}
