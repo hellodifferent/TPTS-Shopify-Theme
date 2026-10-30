@@ -1,6 +1,8 @@
 {% doc %}
   @param {product} product - Current product.
-  @param {string} form_id - Parent product form identifier.
+  @param {string} form_id - Product form identifier.
+  @param {string} [only_kind] - Render only this offer kind.
+  @param {boolean} [exclude_mini] - Omit the Mini Play Blocks offer.
 {% enddoc %}
 {%- liquid
   assign mini_ids = settings.playtime_mini_products | map: 'id'
@@ -26,12 +28,18 @@
   if settings.playtime_offer_preview
     assign show_selector = true
   endif
+  if only_kind != blank and kind != only_kind
+    assign show_selector = false
+  endif
+  if exclude_mini and kind == 'mini'
+    assign show_selector = false
+  endif
   assign single_price = product.price | money_without_trailing_zeros
   assign pair_price = 19000 | money_without_trailing_zeros
   assign saving = product.price | times: 2 | minus: 19000 | money_without_trailing_zeros
 -%}
 {%- if kind != blank and kind != 'pit' and show_selector and cart.currency.iso_code == 'AUD' -%}
-  <playtime-pack-selector class="pt-pack" data-pt-mode="product" data-kind="{{ kind }}" data-ready="{{ ready }}" data-available="{{ product.available }}" data-preview-label="{{ 'playtime.offers.preview_only' | t | escape }}">
+  <playtime-pack-selector class="pt-pack" data-pt-mode="product" data-product-form-id="{{ form_id }}" data-kind="{{ kind }}" data-ready="{{ ready }}" data-available="{{ product.available }}" data-preview-label="{{ 'playtime.offers.preview_only' | t | escape }}">
     {%- if kind == 'pit' -%}<details class="pt-pack__optional"><summary>{{ 'playtime.offers.optional_balls' | t }}</summary>{%- endif -%}
     <fieldset class="pt-pack__fieldset">
       <legend>{% if kind == 'mini' %}{{ 'playtime.offers.choose_set' | t }}{% else %}{{ 'playtime.offers.choose_balls' | t }}{% endif %}</legend>

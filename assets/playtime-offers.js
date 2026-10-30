@@ -64,7 +64,13 @@
   }
   class PlaytimePackSelector extends HTMLElement {
     connectedCallback() {
-      this.form = this.closest('form');
+      queueMicrotask(() => {
+        if (this.isConnected) this.initialize();
+      });
+    }
+    initialize() {
+      this.abortController?.abort();
+      this.form = this.closest('form') || this.closest('product-form')?.querySelector('form.js-product-form') || document.getElementById(this.dataset.productFormId);
       if (!this.form) return;
       this.button = this.form.querySelector('[name="add"]');
       if (!this.button) return;
@@ -104,6 +110,8 @@
     }
     disconnectedCallback() {
       this.abortController?.abort();
+      if (this.button) this.button.disabled = this.originalDisabled;
+      this.form?.querySelectorAll('.product-dynamic-payment-button').forEach(button => { button.hidden = false; });
     }
     selection() {
       return Number(this.querySelector('[data-pack-size]:checked')?.value || 0);

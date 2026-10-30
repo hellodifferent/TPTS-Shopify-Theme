@@ -674,6 +674,11 @@
               %}
             </div>
 
+          {% when 'tps_mini_sets' %}
+            <div class="tps-mini-set-block not-in-quickbuy" {{ block.shopify_attributes }}>
+              {% render 'playtime-pack-selector', product: product, form_id: product_form_id, only_kind: 'mini' %}
+            </div>
+
           {% when 'buy-buttons' %}
             <div class="input-row" {{ block.shopify_attributes }}>
               {% form 'product', product, id: product_form_id, class: 'form js-product-form', data-product-id: product.id %}
@@ -697,7 +702,7 @@
                   {% render 'gift-card-recipient', section: section %}
                 {% endif %}
 
-                {% render 'playtime-pack-selector', product: product, form_id: product_form_id %}
+                {% render 'playtime-pack-selector', product: product, form_id: product_form_id, exclude_mini: true %}
 
                 <div class="quantity-submit-row input-row {% if enable_dynamic_payment_button %}has-spb{% endif %}">
                   {% if block.settings.show_quantity_selector %}
@@ -1809,6 +1814,12 @@
     }
   ],
   "blocks": [
+    {
+      "type": "tps_mini_sets",
+      "name": "TPS Mini Play Blocks sets",
+      "limit": 1,
+      "settings": []
+    },
 {
   "type": "tps_social_media",
   "name": "TPS social media",

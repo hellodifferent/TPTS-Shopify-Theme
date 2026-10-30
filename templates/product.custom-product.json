@@ -87,6 +87,7 @@
             "size_chart_page": ""
           }
         },
+        "tps_mini_sets": {"type": "tps_mini_sets", "settings": {}},
         "buy_buttons_6Ukibb": {
           "type": "buy-buttons",
           "settings": {
@@ -310,6 +311,7 @@
         "richtext_fGXwM9",
         "sibling_product_swatches_YfdE3R",
         "variant_picker_8EVKbn",
+        "tps_mini_sets",
         "buy_buttons_6Ukibb",
         "tps_delivery_links",
         "tps_product_benefits",

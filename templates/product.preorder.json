@@ -92,6 +92,7 @@
             "show_in_quickbuy": false
           }
         },
+        "tps_mini_sets": {"type": "tps_mini_sets", "settings": {}},
         "buy_buttons_UxgnPc": {
           "type": "buy-buttons",
           "settings": {
@@ -185,6 +186,7 @@
         "variant_picker_fADnNA",
         "tps_social_media",
         "description",
+        "tps_mini_sets",
         "buy_buttons_UxgnPc",
         "image_rK4NTC",
         "f08d70f8-6536-4f68-92c3-8ddd992b0572",

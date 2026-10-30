@@ -63,6 +63,7 @@
             "enable_product_reviews_by_price": false
           }
         },
+        "tps_mini_sets": {"type": "tps_mini_sets", "settings": {}},
         "buy_buttons_6Ukibb": {
           "type": "buy-buttons",
           "settings": {
@@ -279,6 +280,7 @@
         "richtext_TzTtHp",
         "variant_picker_8EVKbn",
         "price",
+        "tps_mini_sets",
         "buy_buttons_6Ukibb",
         "tps_product_benefits_Fm3hD7",
         "custom_liquid_XHRybM",
