@@ -17,7 +17,7 @@
         "announcement_FMgndB": {
           "type": "announcement",
           "settings": {
-            "text": "Restocking in less than 2 weeks!",
+            "text": "Restocking this week!",
             "show_countdown": false,
             "hide_on_end": false,
             "end_date": "",
@@ -350,6 +350,24 @@
       ],
       "custom_css": [],
       "settings": {
+        "reveal_on_scroll_up": true,
+        "search_input_placeholder": "Search for products, articles or pages",
+        "search_clear_label": "Clear",
+        "search_popular_heading": "Popular searches",
+        "search_popular_terms": "Soft play\nBall pits\nPlay blocks",
+        "search_products_heading": "Trending products",
+        "search_featured_products": [
+          "mini-step-slide-white",
+          "pre-order-mini-play-blocks-copy",
+          "foldable-ball-pit-white"
+        ],
+        "search_show_all_label": "Shop all",
+        "search_contact_label": "Contact us",
+        "search_contact_url": "shopify://pages/contact-us",
+        "search_faq_label": "FAQs",
+        "search_faq_url": "shopify://pages/faqs",
+        "search_shipping_label": "Shipping and delivery",
+        "search_shipping_url": "shopify://pages/shipping-delivery-info",
         "logo": "shopify://shop_images/The_Playime_Store_Primary_Black.jpg",
         "logo_img_width_int": 205,
         "mobile_logo_img_width_int": 130,
@@ -374,25 +392,7 @@
         "search_recommendations_title": "",
         "search_recommendations_menu": "",
         "icon_strategy": "icons_only",
-        "cart_icon": "bag",
-        "reveal_on_scroll_up": true,
-        "search_input_placeholder": "Search for products, articles or pages",
-        "search_clear_label": "Clear",
-        "search_popular_heading": "Popular searches",
-        "search_popular_terms": "Soft play\nBall pits\nPlay blocks",
-        "search_products_heading": "Trending products",
-        "search_featured_products": [
-          "mini-step-slide-white",
-          "pre-order-mini-play-blocks-copy",
-          "foldable-ball-pit-white"
-        ],
-        "search_show_all_label": "Shop all",
-        "search_contact_label": "Contact us",
-        "search_contact_url": "shopify://pages/contact-us",
-        "search_faq_label": "FAQs",
-        "search_faq_url": "shopify://pages/faqs",
-        "search_shipping_label": "Shipping and delivery",
-        "search_shipping_url": "shopify://pages/shipping-delivery-info"
+        "cart_icon": "bag"
       }
     },
     "store-messages": {
