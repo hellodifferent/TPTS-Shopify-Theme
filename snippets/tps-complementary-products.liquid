@@ -34,11 +34,26 @@
       {%- endif -%}
     </div>
     <div class="collection-listing{% if block.settings.enable_carousel and product_count > 2 %} slider slider--no-scrollbar{% endif %}">
-      <ul class="tps-complementary__grid product-grid product-grid--per-row-2 product-grid--per-row-mob-2{% if product_count == 1 %} tps-complementary__grid--single{% endif %}{% if block.settings.enable_carousel and product_count > 2 %} slider__grid product-grid--carousel{% endif %}" role="list">
+      <ul class="tps-complementary__grid product-grid product-grid--per-row-1 product-grid--per-row-mob-1{% if block.settings.enable_carousel and product_count > 2 %} slider__grid product-grid--carousel{% endif %}" role="list">
         {%- for related_product in complementary_products limit: product_limit -%}
           <li class="tps-complementary__item{% if block.settings.enable_carousel and product_count > 2 %} slider__item{% endif %}">
-            {% render 'product-block', product: related_product, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: 1, grid: 5 %}
-            {% render 'tps-cart-quick-add', product: related_product, form_prefix: form_prefix %}
+            <a class="tps-complementary__image" href="{{ related_product.url }}" tabindex="-1" aria-hidden="true">
+              {%- if related_product.featured_media.preview_image != blank -%}
+                {% render 'image', image: related_product.featured_media.preview_image, custom_aspect_ratio: 1, size_cols_desktop: 5, size_cols_mobile: 4, widths: '80, 96, 160, 192', loading: 'lazy' %}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'tps-complementary__placeholder' }}
+              {%- endif -%}
+            </a>
+            <div class="tps-complementary__details">
+              <a class="tps-complementary__title" href="{{ related_product.url }}">{{ related_product.title | escape }}</a>
+              <div class="tps-complementary__price">
+                {%- if related_product.price_varies -%}{{ 'products.product.from' | t }} {% endif -%}{{ related_product.price | money }}
+                {%- if related_product.compare_at_price > related_product.price and related_product.price_varies == false -%}
+                  <s>{{ related_product.compare_at_price | money }}</s>
+                {%- endif -%}
+              </div>
+              {% render 'tps-cart-quick-add', product: related_product, form_prefix: form_prefix %}
+            </div>
           </li>
         {%- endfor -%}
       </ul>
