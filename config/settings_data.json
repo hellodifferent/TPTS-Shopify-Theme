@@ -629,6 +629,28 @@
     "free_shipping_bar_col_under": "#171717",
     "cart_currency_code_enabled": true,
     "custom_html_head": "<!-- Hotjar Tracking Code for Site 4934725 (name missing) -->\n<script>\n    (function(h,o,t,j,a,r){\n        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};\n        h._hjSettings={hjid:4934725,hjsv:6};\n        a=o.getElementsByTagName('head')[0];\n        r=o.createElement('script');r.async=1;\n        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;\n        a.appendChild(r);\n    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');\n</script>\n\n<!-- Google tag (gtag.js) -->\n<script async=\"\" src=\"https://www.googletagmanager.com/gtag/js?id=AW-11014679908\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'AW-11014679908');\n</script>",
+    "playtime_header_icons": true,
+    "playtime_offer_preview": true,
+    "playtime_ball_products": [
+      "white-balls-100-pack",
+      "transparent-balls-100-pack",
+      "pink-balls-100-pack",
+      "blue-balls-100-pack"
+    ],
+    "playtime_ball_offer_ready": true,
+    "playtime_mini_products": [
+      "pre-order-mini-play-blocks-copy",
+      "mini-play-blocks-beige",
+      "mini-play-blocks-pastel",
+      "mini-play-blocks-pink-blossom"
+    ],
+    "playtime_mini_offer_ready": true,
+    "playtime_pit_products": [
+      "soft-play-ball-pit-white",
+      "soft-play-ball-pit-beige",
+      "soft-play-ball-pit-pastel",
+      "soft-play-ball-pit-pink-blossom"
+    ],
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
@@ -958,30 +980,13 @@
         "type": "shopify://apps/gorgias-live-chat-helpdesk/blocks/gorgias/a66db725-7b96-4e3f-916e-6c8e6f87aaaa",
         "disabled": false,
         "settings": {}
+      },
+      "14327677521557774844": {
+        "type": "shopify://apps/simprosys-google-shopping-feed/blocks/core_settings_block/1f0b859e-9fa6-4007-97e8-4513aff5ff3b",
+        "disabled": false,
+        "settings": {}
       }
-    },
-    "playtime_header_icons": true,
-    "playtime_offer_preview": true,
-    "playtime_ball_offer_ready": true,
-    "playtime_mini_offer_ready": true,
-    "playtime_ball_products": [
-      "white-balls-100-pack",
-      "transparent-balls-100-pack",
-      "pink-balls-100-pack",
-      "blue-balls-100-pack"
-    ],
-    "playtime_mini_products": [
-      "pre-order-mini-play-blocks-copy",
-      "mini-play-blocks-beige",
-      "mini-play-blocks-pastel",
-      "mini-play-blocks-pink-blossom"
-    ],
-    "playtime_pit_products": [
-      "soft-play-ball-pit-white",
-      "soft-play-ball-pit-beige",
-      "soft-play-ball-pit-pastel",
-      "soft-play-ball-pit-pink-blossom"
-    ]
+    }
   },
   "platform_customizations": {
     "custom_css": [
