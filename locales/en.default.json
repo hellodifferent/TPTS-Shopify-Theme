@@ -584,6 +584,7 @@
     "cloud_description": "200 white + 100 transparent balls",
     "ocean_description": "100 white + 100 blue + 100 transparent balls",
     "pink_description": "100 white + 100 pink + 100 transparent balls",
-    "colour_label": "Colour:"
+    "colour_label": "Colour:",
+    "add_balls_label": "Would you like to add 300 balls?"
   }
 }

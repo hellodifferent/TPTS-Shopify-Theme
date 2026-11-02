@@ -5,6 +5,10 @@
 {%- liquid
   assign pairings = product.metafields.custom.bundled_pairings.value
   assign pit_only = product.metafields.custom.ball_pit_only.value
+  assign mix_heading = 'tps_pit_selector.mix_label' | t
+  if pit_only == true
+    assign mix_heading = 'tps_pit_selector.add_balls_label' | t
+  endif
   assign pit_product = nil
   assign bundle_product = nil
   assign bundle_count = 0
@@ -48,8 +52,8 @@
       {%- endif -%}
     </nav>
     {%- if bundle_count > 0 -%}
-      <h3 class="tps-pit-selector__mix-heading">{{ 'tps_pit_selector.mix_label' | t }}</h3>
-      <nav class="tps-pit-selector__mixes" aria-label="{{ 'tps_pit_selector.mix_label' | t | escape }}">
+      <h3 class="tps-pit-selector__mix-heading">{{ mix_heading | escape }}</h3>
+      <nav class="tps-pit-selector__mixes" aria-label="{{ mix_heading | escape }}">
         {%- for pairing in pairings -%}
           {%- if pairing != blank and pairing.url != blank and pairing.metafields.custom.ball_pit_only.value != true -%}
             {%- liquid
