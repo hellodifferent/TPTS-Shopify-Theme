@@ -270,7 +270,7 @@ a.tps-social-viewer__handle { text-decoration: underline; text-underline-offset:
 .tps-pit-selector__ball-swatch--white { background: #fff; }
 .tps-pit-selector__ball-swatch--blue { background: #b5d9e5; }
 .tps-pit-selector__ball-swatch--pink { background: #f4d8df; }
-.tps-pit-selector__ball-swatch--transparent { background: linear-gradient(135deg, transparent 46%, #d8d5cf 48%, #d8d5cf 52%, transparent 54%), linear-gradient(135deg, #fff 30%, #efede8); }
+.tps-pit-selector__ball-swatch--transparent { background: #f1f1ef; }
 .tps-pit-selector__mix-description { grid-column: 1 / -1; font-size: 12px; }
 .tps-pit-selector__availability { grid-column: 2; grid-row: 1; font-size: 10px; align-self: center; color: #71695f; }
 @media (max-width: 767px) { .tps-pit-selector__option { padding: 12px 10px; } }
