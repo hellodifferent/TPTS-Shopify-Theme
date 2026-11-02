@@ -87,7 +87,7 @@
                 {%- endif -%}
               </span>
               {%- if mix_description != blank -%}<span class="tps-pit-selector__mix-description">{{ mix_description | escape }}</span>{%- endif -%}
-              {%- unless pairing.available -%}<span class="tps-pit-selector__availability">{{ 'sections.collection.restocking_soon' | t }}</span>{%- endunless -%}
+              {%- unless pairing.available or pairing.tags contains 'exclude-restocking-soon' -%}<span class="tps-pit-selector__availability">{{ 'sections.collection.restocking_soon' | t }}</span>{%- endunless -%}
             </a>
           {%- endif -%}
         {%- endfor -%}

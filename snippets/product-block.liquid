@@ -80,7 +80,7 @@ Parameters:
      <div class="product-card-labels">
       {% if settings.prod_sold_out_show and product.available == false %}
         <span class="price-label price-label--sold-out">{{ 'products.product.sold_out' | t }}</span>
-        <span class="price-label price-label--notify-me">Restocking soon</span>
+        {% unless product.tags contains 'exclude-restocking-soon' %}<span class="price-label price-label--notify-me">{{ 'sections.collection.restocking_soon' | t }}</span>{% endunless %}
       {% elsif settings.prod_pre_order_label_show and product.template_suffix contains 'preorder' %}
         <span class="price-label price-label--preorder">{{ 'products.product.preorder' | t }}</span>
       {% elsif settings.prod_sale_show and variant.compare_at_price > variant.price %}

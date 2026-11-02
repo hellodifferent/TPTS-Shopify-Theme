@@ -1,4 +1,10 @@
 {%- liquid
+  assign restock_badge_text = 'sections.collection.restocking_soon' | t | downcase | strip
+  assign configured_badge_text = section.settings.sold_out_label | downcase | strip
+  assign is_restock_badge = false
+  if configured_badge_text == restock_badge_text
+    assign is_restock_badge = true
+  endif
   assign configured_count = 0
   for block in section.blocks
     if block.settings.product != blank
@@ -24,6 +30,10 @@
               assign card_image = block.settings.image | default: card_product.featured_media.preview_image
               assign family = card_product.metafields.custom.product_family.value
               assign card_title = block.settings.title | default: card_product.title
+              assign hide_badge = card_product.available
+              if is_restock_badge and card_product.tags contains 'exclude-restocking-soon'
+                assign hide_badge = true
+              endif
             -%}
             <article class="pf-card" data-pf-card {{ block.shopify_attributes }}>
               <div class="pf-media">
@@ -37,7 +47,7 @@
                   </div>
                 </a>
                 {%- if section.settings.show_badge -%}
-                  <span class="pf-badge" data-pf-badge{% if card_product.available %} hidden{% endif %}>{{ section.settings.sold_out_label | escape }}</span>
+                  <span class="pf-badge" data-pf-badge{% if is_restock_badge %} data-pf-restock-only{% endif %}{% if hide_badge %} hidden{% endif %}>{{ section.settings.sold_out_label | escape }}</span>
                 {%- endif -%}
               </div>
               <h3 class="pf-title"><a href="{{ card_product.url }}" data-pf-link{% if block.settings.title == blank %} data-pf-dynamic-title{% endif %}>{{ card_title | escape }}</a></h3>

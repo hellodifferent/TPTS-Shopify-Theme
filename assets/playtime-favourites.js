@@ -24,10 +24,18 @@ if (!customElements.get('playtime-favourites')) {
         if (price) price.textContent = state.querySelector('[data-state-price]').textContent;
         const available = swatch.dataset.available === 'true';
         const badge = card.querySelector('[data-pf-badge]');
-        if (badge) badge.hidden = available;
+        const excludeRestocking = swatch.dataset.excludeRestocking === 'true';
+        if (badge) {
+          badge.hidden = available || (badge.hasAttribute('data-pf-restock-only') && excludeRestocking);
+          badge.querySelectorAll('[data-pf-restock-label]').forEach((label) => {
+            label.hidden = excludeRestocking;
+          });
+        }
         card.querySelectorAll('[data-pf-swatch]').forEach((link) => link.setAttribute('aria-current', String(link === swatch)));
+        const badgeLabels = Array.from(badge?.querySelectorAll('.price-label') || []);
+        const badgeText = badgeLabels.length ? badgeLabels.filter((label) => !label.hidden).map((label) => label.textContent).join('. ') : badge?.textContent;
         const announcement = card.querySelector('[data-pf-announcement]');
-        if (announcement) announcement.textContent = [swatch.dataset.colour, price?.textContent, available ? '' : badge?.textContent].filter(Boolean).join('. ');
+        if (announcement) announcement.textContent = [swatch.dataset.colour, price?.textContent, available || badge?.hidden ? '' : badgeText].filter(Boolean).join('. ');
       };
       this.addEventListener('click', this.handleClick);
     }

@@ -49,3 +49,5 @@
 @media (prefers-reduced-motion: reduce) {
   .playtime-favourites .pf-cta { transition: none; }
 }
+
+[data-pf-restock-label][hidden] { display: none; }

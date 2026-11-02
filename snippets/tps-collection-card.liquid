@@ -27,7 +27,7 @@
     {%- if settings.prod_sold_out_show -%}
       <div class="product-card-labels" data-pf-badge{% if product.available %} hidden{% endif %}>
         <span class="price-label price-label--sold-out">{{ 'products.product.sold_out' | t }}</span>
-        <span class="price-label price-label--notify-me">{{ 'sections.collection.restocking_soon' | t }}</span>
+        <span class="price-label price-label--notify-me" data-pf-restock-label{% if product.tags contains 'exclude-restocking-soon' %} hidden{% endif %}>{{ 'sections.collection.restocking_soon' | t }}</span>
       </div>
     {%- endif -%}
   </div>
