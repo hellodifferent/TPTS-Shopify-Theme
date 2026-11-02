@@ -494,6 +494,25 @@
         "autoplay_speed": 5
       }
     },
+    "product_template_product_list_zdCWFy": {
+      "type": "product-template-product-list",
+      "name": "Product list",
+      "settings": {
+        "title": "Meet your next playtime favourite",
+        "product_list": [
+          "explorer",
+          "step-slide-white",
+          "mini-play-blocks-pink-blossom",
+          "castle"
+        ],
+        "hide_if_empty": false,
+        "show_vendor": false,
+        "enable_carousel": true,
+        "grid": 4,
+        "color_scheme": "default",
+        "full_width": true
+      }
+    },
     "17065021823ac34344": {
       "type": "apps",
       "blocks": {
@@ -636,6 +655,7 @@
     "main",
     "collapsible_tabs_z3Gqcr",
     "review_testimonials_FE4FKe",
+    "product_template_product_list_zdCWFy",
     "17065021823ac34344",
     "related-products",
     "background_video_aGn97b",
