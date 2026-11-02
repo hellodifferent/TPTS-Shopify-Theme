@@ -17,7 +17,7 @@
         "announcement_FMgndB": {
           "type": "announcement",
           "settings": {
-            "text": "Restocking this week!",
+            "text": "Your favourites are back in stock!",
             "show_countdown": false,
             "hide_on_end": false,
             "end_date": "",
