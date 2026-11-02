@@ -11404,3 +11404,46 @@ model-viewer .container {
     flex-direction: row-reverse;
   }
 }
+
+#omnisend-form-6ae7c282bad6e6584899f64e-teaser-close-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: -6px;
+  border: 0;
+  border-radius: 50%;
+  background: #f0e7d8;
+  color: #6a6158;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease;
+}
+#omnisend-form-6ae7c282bad6e6584899f64e-teaser-close-btn #omnisend-form-6ae7c282bad6e6584899f64e-teaser-close-icon {
+  display: none;
+}
+#omnisend-form-6ae7c282bad6e6584899f64e-teaser-close-btn::before,
+#omnisend-form-6ae7c282bad6e6584899f64e-teaser-close-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1.4px;
+  border-radius: 1px;
+  background: currentColor;
+  pointer-events: none;
+}
+#omnisend-form-6ae7c282bad6e6584899f64e-teaser-close-btn::before { transform: translate(-50%, -50%) rotate(45deg); }
+#omnisend-form-6ae7c282bad6e6584899f64e-teaser-close-btn::after { transform: translate(-50%, -50%) rotate(-45deg); }
+#omnisend-form-6ae7c282bad6e6584899f64e-teaser-close-btn:hover { background: #e5d6c4; color: #292722; }
+#omnisend-form-6ae7c282bad6e6584899f64e-teaser-close-btn:focus-visible { outline: 2px solid #8d7460; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  #omnisend-form-6ae7c282bad6e6584899f64e-teaser-close-btn { transition: none; }
+}
