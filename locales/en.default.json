@@ -585,6 +585,10 @@
     "ocean_description": "100 white + 100 blue + 100 transparent balls",
     "pink_description": "100 white + 100 pink + 100 transparent balls",
     "colour_label": "Colour:",
-    "add_balls_label": "Would you like to add 300 balls?"
+    "add_balls_label": "Would you like to add 300 balls?",
+    "view_colour_guide": "View ball colour guide",
+    "colour_guide_title": "Ball colours",
+    "close_colour_guide": "Close ball colour guide",
+    "colour_guide_alt": "The Playtime Store ball colour guide showing White, Transparent, Pink and Blue balls"
   }
 }
