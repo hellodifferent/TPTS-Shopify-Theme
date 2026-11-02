@@ -283,6 +283,12 @@
           "settings": {
             "heading": "Choose your setup"
           }
+        },
+        "tps_ball_pit_swatches": {
+          "type": "sibling_product_swatches",
+          "settings": {
+            "ball_pits_only": true
+          }
         }
       },
       "block_order": [
@@ -292,6 +298,7 @@
         "variant_picker_8EVKbn",
         "price",
         "tps_mini_sets",
+        "tps_ball_pit_swatches",
         "tps_ball_pit_setup",
         "buy_buttons_6Ukibb",
         "tps_product_benefits_Fm3hD7",

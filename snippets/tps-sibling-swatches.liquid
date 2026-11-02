@@ -1,0 +1,60 @@
+{% doc %}
+  @param {product} product - Current sibling product or ball pit bundle.
+  @param {object} block - Product swatch block.
+{% enddoc %}
+{%- liquid
+  assign family = product.metafields.custom.product_family.value
+  assign show_swatches = true
+  assign keep_bundle = false
+  if block.settings.ball_pits_only and product.metafields.custom.bundled_pairings.value == blank
+    assign show_swatches = false
+  endif
+  if product.metafields.custom.ball_pit_only.value == false and product.metafields.custom.bundled_pairings.value != blank
+    assign keep_bundle = true
+    assign selected_mix = product.title | split: ' + 300 Balls - ' | last | remove: ' Mix' | strip | downcase
+  endif
+-%}
+{%- if show_swatches and family.products.value != blank -%}
+  <div class="sibling-swatches-wrapper" {{ block.shopify_attributes }}>
+    {%- assign swatch_name = product.metafields.custom.swatch_name.value -%}
+    {%- if swatch_name != blank -%}
+      <div class="SiblingSwatchesTitle"><strong>{{ 'tps_pit_selector.colour_label' | t }}</strong> <span>{{ swatch_name | escape }}</span></div>
+    {%- endif -%}
+    <div class="SiblingSwatches" role="list">
+      {%- for sibling in family.products.value -%}
+        {%- liquid
+          assign swatch_product = sibling
+          if keep_bundle
+            assign swatch_product = nil
+            for pairing in sibling.metafields.custom.bundled_pairings.value
+              if pairing != blank and pairing.url != blank and pairing.metafields.custom.ball_pit_only.value != true
+                assign pairing_mix = pairing.title | split: ' + 300 Balls - ' | last | remove: ' Mix' | strip | downcase
+                if pairing_mix == selected_mix
+                  assign swatch_product = pairing
+                  break
+                endif
+              endif
+            endfor
+          endif
+          assign swatch_image = sibling.metafields.custom.swatch_image.value
+          assign swatch_colour = sibling.metafields.custom.swatch_colour.value
+          assign swatch_style = ''
+          if swatch_image != blank
+            assign swatch_image_url = swatch_image | image_url: width: 80
+            assign swatch_style = 'background-image: url(' | append: swatch_image_url | append: '); background-size: cover; background-position: center;'
+          elsif swatch_colour != blank
+            assign color_hex = swatch_colour | color_to_hex
+            assign swatch_style = 'background-color: ' | append: color_hex | append: ';'
+          endif
+          assign label = sibling.metafields.custom.swatch_name.value | default: sibling.title
+        -%}
+        {%- if swatch_product != blank and swatch_product.url != blank -%}
+          <a href="{{ swatch_product.url }}" class="SiblingSwatch{% if swatch_product.id == product.id %} is-active{% endif %}" role="listitem" aria-label="{{ label | escape }}"{% if swatch_product.id == product.id %} aria-current="page"{% endif %}>
+            <span class="SwatchDot"{% if swatch_style != blank %} style="{{ swatch_style | escape }}"{% endif %}></span>
+            <span class="SwatchText">{{ label | escape }}</span>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}

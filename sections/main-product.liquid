@@ -465,98 +465,8 @@
 
 
           {%- when 'sibling_product_swatches' -%}
-            {% comment %}
-              ** Simplified Sibling Swatches (Image Reference Update) **
-              - FIX: The <span class="SwatchDot"> now renders even
-                if 'hex' is blank, showing the default CSS border.
-              - The 'style' attribute is only added if 'hex' has a value.
-            {% endcomment %}
+            {% render 'tps-sibling-swatches', product: product, block: block %}
 
-            {% comment %}
-              ** Sibling Swatches with Image Priority **
-              - Checks for 'custom.swatch_image' first.
-              - Falls back to 'custom.swatch_colour'.
-              - Correctly formats both metafield types (image and color).
-            {% endcomment %}
-
-            {% comment %}
-              ** Sibling Swatches with Custom Tooltip **
-              - Re-added the <span class="SwatchText">
-              - This span will be styled as a tooltip on hover.
-            {% endcomment %}
-
-            {% assign family_ref = product.metafields.custom.product_family %}
-            {% if family_ref.value %}
-              {% assign family = family_ref.value %}
-
-              {% if family.products.value %}
-                <div class="sibling-swatches-wrapper">
-                  {% assign swatch_name = product.metafields.custom.swatch_name.value %}
-                    {% if swatch_name != blank %}
-                      <div class="SiblingSwatchesTitle">
-                        <strong>Colour:</strong> <span>{{ swatch_name }}</span>
-                      </div>
-                  {% endif %}
-                    
-                  <div class="SiblingSwatches" role="list">
-                    {% for sibling in family.products.value %}
-
-                      {%- comment -%} 1) Get potential swatch values {%- endcomment -%}
-                      {% assign swatch_image = sibling.metafields.custom.swatch_image.value %}
-                      {% assign swatch_colour = sibling.metafields.custom.swatch_colour.value %}
-                      
-                      {% assign swatch_style = '' %}
-
-                      {%- comment -%} 2) Check for image first, then color {%- endcomment -%}
-                      {% if swatch_image %}
-                        {% assign image_url = swatch_image | image_url: width: 60 %}
-                        {% assign swatch_style = 'background-image: url(' | append: image_url | append: '); background-size: cover; background-position: center;' %}
-                      
-                      {% elsif swatch_colour %}
-                        {% assign color_hex = swatch_colour | color_to_hex %}
-                        {% assign swatch_style = 'background-color: ' | append: color_hex | append: ';' %}
-                      
-                      {% endif %}
-
-                      {%- comment -%} 3) The label is just the product title (for hover) {%- endcomment -%}
-                      {% assign label = sibling.title %}
-
-                      {%- comment -%} 4) Check if this is the active product {%- endcomment -%}
-                      {% assign is_active = false %}
-                      {% if sibling.id == product.id %}
-                        {% assign is_active = true %}
-                      {% endif %}
-
-                      <a
-                        href="{{ sibling.url }}"
-                        class="SiblingSwatch{% if is_active %} is-active{% endif %}"
-                        role="listitem"
-                        aria-label="{{ label }}"
-                      >
-                        <span
-                          class="SwatchDot"
-                          title="{{ label }}"
-                          {% if swatch_style != blank %}
-                            style="{{ swatch_style }}"
-                          {% endif %}
-                        ></span>
-                        
-                        {% comment %}
-                          This span is the new tooltip.
-                          It's hidden by default with CSS.
-                        {% endcomment %}
-                        <span class="SwatchText">{{ label }}</span>
-                      </a>
-
-                    {% endfor %}
-                  </div>
-                </div>
-              {% endif %}
-            {% endif %}
-
-            {% comment %}
-              Add this CSS to your theme's stylesheet (e.g., base.css)
-            {% endcomment %}
             <style>
               /* --- Sibling Swatches --- */
             /* This CSS is correct and does not need to be changed */
@@ -4161,7 +4071,15 @@
     },
     {
       "type": "sibling_product_swatches",
-      "name": "Sibling Product Swatches"
+      "name": "Sibling Product Swatches",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "ball_pits_only",
+          "label": "Only show for linked ball pits and bundles",
+          "default": false
+        }
+      ]
     },
     {
       "type": "complementary",
