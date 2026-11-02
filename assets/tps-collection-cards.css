@@ -40,3 +40,16 @@
 @media (max-width: 767px) {
   .tps-product-list .product-grid--carousel { grid-auto-columns: calc((100% - 10.2px * (var(--product-columns-desktop) - 1)) / var(--product-columns-desktop)); }
 }
+
+.tps-collection-empty { padding-bottom: 32px; }
+.tps-collection-empty__message { margin: 12px 0 48px; padding: 38px 24px; border-radius: 8px; background: #f7f5f1; text-align: center; }
+.tps-collection-empty__message h2 { margin: 0 0 12px; }
+.tps-collection-empty__message p { max-width: 520px; margin: 0 auto; }
+.tps-collection-empty__message .btn { display: inline-flex; align-items: center; justify-content: center; margin-top: 22px; line-height: 1.2; }
+.tps-collection-empty__heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.tps-collection-empty__heading h2 { margin: 0; }
+.tps-collection-empty__heading > a { flex-shrink: 0; text-decoration: underline; text-underline-offset: 3px; font-size: 13px; }
+@media (max-width: 767px) {
+  .tps-collection-empty__message { margin: 8px 0 32px; padding: 28px 18px; }
+  .tps-collection-empty__heading { align-items: flex-start; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+}

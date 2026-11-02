@@ -289,7 +289,7 @@
 
       <div class="filters-adjacent collection-listing playtime-favourites tps-collection-cards" data-ajax-container>
         {% if collection.products.size == 0 %}
-          <h5 class="align-centre fully-spaced-row">{{ 'sections.collection.empty' | t }}</h5>
+          {% render 'tps-collection-empty', collection: collection, section: section %}
         {% else %}
           <playtime-favourites class="product-grid product-grid--per-row-{{ section.settings.grid }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }}">
             {%- liquid
@@ -357,6 +357,12 @@
 {
   "name": "Collection pages",
   "settings": [
+    {
+      "type": "collection",
+      "id": "empty_collection",
+      "label": "Empty collection recommendations",
+      "info": "Shows up to 12 products when no products match. Uses New Arrivals when left blank."
+    },
     {
       "type": "header",
       "content": "Heading"

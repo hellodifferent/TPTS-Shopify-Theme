@@ -198,7 +198,15 @@
       "list_layout": "List",
       "view_all_related_collections": "View all...",
       "shop_now": "Shop now",
-      "restocking_soon": "Restocking soon"
+      "restocking_soon": "Restocking soon",
+      "empty_heading": "More playtime is on the way",
+      "empty_text": "This little corner is waiting for its next favourites. In the meantime, find something to love in our latest arrivals.",
+      "empty_filtered_heading": "Let’s find their next playtime favourite",
+      "empty_filtered_text": "We couldn’t find a match for those filters. Try a little less filtering, or explore our latest arrivals below.",
+      "empty_clear_filters": "Clear filters",
+      "empty_shop_all": "Shop all",
+      "empty_arrivals_heading": "Fresh finds for playtime",
+      "empty_view_arrivals": "Shop New Arrivals"
     },
     "countdown": {
       "days_short": "Day",
