@@ -1,5 +1,8 @@
+{{ 'playtime-favourites.css' | asset_url | stylesheet_tag }}
+{{ 'tps-collection-cards.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'playtime-favourites.js' | asset_url }}" defer></script>
 {% if section.settings.hide_if_empty == false or section.settings.product_list != blank %}
-<div class="section-id-{{ section.id }} collection-slider-row {% if section.settings.color_scheme != 'default' %}use-color-scheme use-color-scheme--{{ section.settings.color_scheme }}{% endif %}">
+<div class="section-id-{{ section.id }} collection-slider-row tps-product-list tps-collection-cards playtime-favourites {% if section.settings.color_scheme != 'default' %}use-color-scheme use-color-scheme--{{ section.settings.color_scheme }}{% endif %}">
   <div class="container{% if section.settings.enable_carousel %} container--not-mobile{% endif %}{% if section.settings.full_width %} container--no-max{% endif %}">
     {%- if section.settings.enable_carousel -%}
       <carousel-slider class="carousel block collection-slider">
@@ -22,7 +25,7 @@
     </div>
 
     <div class="collection-listing fade-in-up{% if section.settings.enable_carousel %} slider {% if section.settings.full_width %}slider--edge-peek{% endif %} slider--mobile-container-pad slider--no-scrollbar{% endif %}" {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
-      <div class="product-grid product-grid--per-row-{{ section.settings.grid }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }}{% if section.settings.enable_carousel %} slider__grid product-grid--carousel{% endif %}">
+      <playtime-favourites class="product-grid product-grid--per-row-{{ section.settings.grid }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }}{% if section.settings.enable_carousel %} slider__grid product-grid--carousel{% endif %}">
         {%- liquid
           if section.settings.product_list == blank
             for i in (1..4)
@@ -35,43 +38,19 @@
               endif
             endfor
           else
-            if settings.prod_thumb_shape == 'portrait-23'
-              assign chosen_aspect_ratio = 0.67
-            elsif settings.prod_thumb_shape == 'portrait-45'
-              assign chosen_aspect_ratio = 0.8
-            elsif settings.prod_thumb_shape == 'square'
-              assign chosen_aspect_ratio = 1.0
-            elsif settings.prod_thumb_shape == 'landscape-54'
-              assign chosen_aspect_ratio = 1.25
-            elsif settings.prod_thumb_shape == 'landscape-32'
-              assign chosen_aspect_ratio = 1.50
-            elsif settings.prod_thumb_shape == 'tallest'
-              assign chosen_aspect_ratio = 99
-              for product in section.settings.product_list
-                if product.featured_media.preview_image.aspect_ratio < chosen_aspect_ratio
-                  assign chosen_aspect_ratio = product.featured_media.preview_image.aspect_ratio
-                endif
-              endfor
-            else
-              assign chosen_aspect_ratio = 0
-              for product in section.settings.product_list
-                if product.featured_media.preview_image.aspect_ratio > chosen_aspect_ratio
-                  assign chosen_aspect_ratio = product.featured_media.preview_image.aspect_ratio
-                endif
-              endfor
-            endif
             for product in section.settings.product_list
               if section.settings.enable_carousel
                 echo '<div class="slider__item">'
               endif
-              render 'product-block', product: product, custom_aspect_ratio: chosen_aspect_ratio, no_swiping: section.settings.enable_carousel, no_quick_buy_markup: section.settings.enable_carousel
+              assign card_id = section.id | append: '-' | append: product.id
+              render 'tps-collection-card', product: product, columns: section.settings.grid, show_vendor: section.settings.show_vendor, card_id: card_id
               if section.settings.enable_carousel
                 echo '</div>'
               endif
             endfor
           endif
         -%}
-      </div>
+      </playtime-favourites>
     </div>
 
     {%- if section.settings.enable_carousel -%}
@@ -79,12 +58,7 @@
     {%- endif -%}
   </div>
 
-  {% if settings.quickbuy_style != 'off' and section.settings.enable_carousel %}
-    <div class="quickbuy-container use-color-scheme use-color-scheme--{{ settings.quickbuy_color_scheme }} js-quickbuy">
-      <a href="#" class="close-detail" aria-label="{{ 'accessibility.close' | t }}" tabindex="-1" aria-hidden="true">{% render 'icon-close', stroke_width: 1 %}</a>
-      <div class="inner"></div>
-    </div>
-  {% endif %}
+
   </div>
 {% endif %}
 

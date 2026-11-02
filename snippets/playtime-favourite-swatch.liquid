@@ -4,8 +4,10 @@
   @param {product} selected_product - Initially selected product.
   @param {image} selected_image - Initial card image.
   @param {boolean} [collection_actions] - Include a collection card action preview.
+  @param {string} [card_id] - Section-specific identifier for card forms.
 {% enddoc %}
 {%- liquid
+  assign action_card_id = card_id | default: selected_product.id
   assign swatch_image = sibling.metafields.custom.swatch_image.value
   assign swatch_colour = sibling.metafields.custom.swatch_colour.value
   assign colour_name = sibling.metafields.custom.swatch_name.value | default: sibling.title
@@ -23,7 +25,7 @@
   </a>
   <template data-pf-state>
     {%- if collection_actions -%}
-      <div data-state-action>{% render 'tps-collection-action', product: sibling, card_id: selected_product.id %}</div>
+      <div data-state-action>{% render 'tps-collection-action', product: sibling, card_id: action_card_id %}</div>
     {%- endif -%}
     <div data-state-visual>
       {%- if preview_image != blank -%}

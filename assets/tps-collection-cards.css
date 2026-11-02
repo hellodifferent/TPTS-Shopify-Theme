@@ -34,3 +34,9 @@
 .tps-collection-product-count { margin: 24px auto 0; text-align: center; font-size: 13px; }
 .tps-collection-product-count .utility-bar__centre { position: static; transform: none; width: auto; text-align: center; }
 .tps-collection-product-count .utility-bar__item { margin: 0; padding: 0; }
+
+.tps-product-list .product-grid--carousel { grid-auto-columns: calc((100% - 17px * (var(--product-columns-desktop) - 1)) / var(--product-columns-desktop)); }
+.tps-product-list .slider__item > .pf-card { flex: 1; }
+@media (max-width: 767px) {
+  .tps-product-list .product-grid--carousel { grid-auto-columns: calc((100% - 10.2px * (var(--product-columns-desktop) - 1)) / var(--product-columns-desktop)); }
+}

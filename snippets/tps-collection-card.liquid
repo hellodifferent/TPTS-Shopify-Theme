@@ -3,8 +3,10 @@
   @param {number} columns - Desktop column count.
   @param {boolean} prioritised_loading - Load first-row images eagerly.
   @param {boolean} show_vendor - Show the product vendor.
+  @param {string} [card_id] - Section-specific identifier for card forms.
 {% enddoc %}
 {%- liquid
+  assign card_id = card_id | default: product.id
   assign card_image = product.featured_media.preview_image
   assign family = product.metafields.custom.product_family.value
   assign loading = 'lazy'
@@ -23,7 +25,7 @@
         {%- endif -%}
       </div>
     </a>
-    <div class="tps-collection-action" data-pf-action>{% render 'tps-collection-action', product: product, card_id: product.id %}</div>
+    <div class="tps-collection-action" data-pf-action>{% render 'tps-collection-action', product: product, card_id: card_id %}</div>
     {%- if settings.prod_sold_out_show -%}
       <div class="product-card-labels" data-pf-badge{% if product.available %} hidden{% endif %}>
         <span class="price-label price-label--sold-out">{{ 'products.product.sold_out' | t }}</span>
@@ -44,10 +46,10 @@
   </div>
   {%- if family.products.value != blank -%}
     <ul class="pf-swatches" aria-label="{{ 'sections.playtime_favourites.colours' | t: product: product.title | escape }}">
-      {% render 'playtime-favourite-swatch', sibling: product, selected_product: product, selected_image: card_image, collection_actions: true %}
+      {% render 'playtime-favourite-swatch', sibling: product, selected_product: product, selected_image: card_image, collection_actions: true, card_id: card_id %}
       {%- for sibling in family.products.value -%}
         {%- if sibling != blank and sibling.id != product.id -%}
-          {% render 'playtime-favourite-swatch', sibling: sibling, selected_product: product, selected_image: card_image, collection_actions: true %}
+          {% render 'playtime-favourite-swatch', sibling: sibling, selected_product: product, selected_image: card_image, collection_actions: true, card_id: card_id %}
         {%- endif -%}
       {%- endfor -%}
     </ul>
