@@ -52,21 +52,7 @@
       {%- endif -%}
     </nav>
     {%- if bundle_count > 0 -%}
-      <div class="tps-pit-selector__mix-title">
-        <h3 class="tps-pit-selector__mix-heading">{{ mix_heading | escape }}</h3>
-        <tps-ball-colour-guide>
-          <button type="button" class="tps-ball-guide__trigger" aria-label="{{ 'tps_pit_selector.view_colour_guide' | t | escape }}" aria-haspopup="dialog">
-            <span aria-hidden="true">i</span>
-          </button>
-          <dialog class="tps-ball-guide__dialog" aria-label="{{ 'tps_pit_selector.colour_guide_title' | t | escape }}">
-            <div class="tps-ball-guide__header">
-              <h2 class="tps-ball-guide__title">{{ 'tps_pit_selector.colour_guide_title' | t }}</h2>
-              <button type="button" class="tps-ball-guide__close" aria-label="{{ 'tps_pit_selector.close_colour_guide' | t | escape }}"><span aria-hidden="true">×</span></button>
-            </div>
-            <img class="tps-ball-guide__image" data-src="https://cdn.shopify.com/s/files/1/0541/0504/7221/files/TPS_-_Ball_Colours.webp?v=1793580447" width="1094" height="1094" alt="{{ 'tps_pit_selector.colour_guide_alt' | t | escape }}" decoding="async">
-          </dialog>
-        </tps-ball-colour-guide>
-      </div>
+      <h3 class="tps-pit-selector__mix-heading">{{ mix_heading | escape }}</h3>
       <nav class="tps-pit-selector__mixes" aria-label="{{ mix_heading | escape }}">
         {%- for pairing in pairings -%}
           {%- if pairing != blank and pairing.url != blank and pairing.metafields.custom.ball_pit_only.value != true -%}
@@ -110,42 +96,3 @@
   </div>
 {%- endif -%}
 
-{% javascript %}
-  if (!customElements.get('tps-ball-colour-guide')) {
-    customElements.define('tps-ball-colour-guide', class extends HTMLElement {
-      connectedCallback() {
-        if (this.initialized) return;
-        this.initialized = true;
-        const trigger = this.querySelector('.tps-ball-guide__trigger');
-        const dialog = this.querySelector('dialog');
-        const image = this.querySelector('img');
-        const place = () => {
-          const gallery = this.closest('.shopify-section')?.querySelector('.tps-product-gallery');
-          if (gallery && window.innerWidth >= 768) {
-            const bounds = gallery.getBoundingClientRect();
-            dialog.style.setProperty('--tps-ball-guide-left', Math.max(16, bounds.left) + 'px');
-            dialog.style.setProperty('--tps-ball-guide-width', Math.min(620, bounds.width, window.innerWidth - 32) + 'px');
-          }
-        };
-        trigger.addEventListener('click', () => {
-          if (!image.hasAttribute('src')) image.src = image.dataset.src;
-          place();
-          if (!dialog.open) dialog.showModal();
-        });
-        this.querySelector('.tps-ball-guide__close').addEventListener('click', () => dialog.close());
-        dialog.addEventListener('click', event => {
-          if (event.target !== dialog) return;
-          const bounds = dialog.getBoundingClientRect();
-          if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
-        });
-        this.onResize = () => { if (dialog.open) place(); };
-        window.addEventListener('resize', this.onResize);
-      }
-      disconnectedCallback() {
-        window.removeEventListener('resize', this.onResize);
-        this.querySelector('dialog')?.close();
-        this.initialized = false;
-      }
-    });
-  }
-{% endjavascript %}
