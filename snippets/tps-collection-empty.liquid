@@ -4,39 +4,20 @@
   @param {section} section - Collection section settings.
 {% enddoc %}
 {%- liquid
-  assign has_active_filters = false
-  for filter in collection.filters
-    if filter.active_values.size > 0
-      assign has_active_filters = true
-    endif
-    if filter.type == 'price_range'
-      if filter.min_value.value != nil or filter.max_value.value != nil
-        assign has_active_filters = true
-      endif
-    endif
-  endfor
   assign recovery_collection = section.settings.empty_collection | default: collections['new-arrivals']
 -%}
 <div class="tps-collection-empty">
   <div class="tps-collection-empty__message">
-    {%- if has_active_filters -%}
-      <h2 class="h3">{{ 'sections.collection.empty_filtered_heading' | t }}</h2>
-      <p>{{ 'sections.collection.empty_filtered_text' | t }}</p>
-      <a class="btn btn--secondary" href="{{ collection.url }}">{{ 'sections.collection.empty_clear_filters' | t }}</a>
-    {%- else -%}
-      <h2 class="h3">{{ 'sections.collection.empty_heading' | t }}</h2>
-      <p>{{ 'sections.collection.empty_text' | t }}</p>
-    {%- endif -%}
+    <h2 class="h3">{{ 'sections.collection.empty_heading' | t }}</h2>
+    <p>{{ 'sections.collection.empty_text' | t }}</p>
     {%- unless recovery_collection.products.size > 0 -%}
       <a class="btn btn--primary" href="{{ routes.all_products_collection_url }}">{{ 'sections.collection.empty_shop_all' | t }}</a>
+    {%- else -%}
+      <a class="btn btn--primary" href="{{ recovery_collection.url }}">{{ 'sections.collection.empty_view_arrivals' | t }}</a>
     {%- endunless -%}
   </div>
   {%- if recovery_collection.products.size > 0 -%}
-    <section class="tps-collection-empty__arrivals" aria-labelledby="EmptyArrivals-{{ section.id }}">
-      <div class="tps-collection-empty__heading">
-        <h2 class="h3" id="EmptyArrivals-{{ section.id }}">{{ 'sections.collection.empty_arrivals_heading' | t }}</h2>
-        <a href="{{ recovery_collection.url }}">{{ 'sections.collection.empty_view_arrivals' | t }}</a>
-      </div>
+    <section class="tps-collection-empty__arrivals" aria-label="{{ 'sections.collection.empty_view_arrivals' | t | escape }}">
       <playtime-favourites class="product-grid product-grid--per-row-{{ section.settings.grid }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }}">
         {%- for product in recovery_collection.products limit: 12 -%}
           {%- liquid
