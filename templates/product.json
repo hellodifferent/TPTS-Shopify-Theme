@@ -289,6 +289,14 @@
           "settings": {
             "ball_pits_only": true
           }
+        },
+        "tps_complementary_products": {
+          "type": "complementary",
+          "settings": {
+            "heading": "Pairs well with",
+            "enable_carousel": true,
+            "max_products": 4
+          }
         }
       },
       "block_order": [
@@ -318,7 +326,8 @@
         "2a2f8118-ccb9-4eee-b0b7-0f183c1795f6",
         "0308c122-cde7-4593-b354-f30739551e27",
         "7724e8aa-e0b4-47e4-ae8e-efd5ab746965",
-        "65a87f77-6a2f-4d19-bbd0-d6d80c0a487b"
+        "65a87f77-6a2f-4d19-bbd0-d6d80c0a487b",
+        "tps_complementary_products"
       ],
       "custom_css": [
         ".zip-container span {font-size: 14px;}"

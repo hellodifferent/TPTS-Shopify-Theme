@@ -1,0 +1,50 @@
+{% doc %}
+  Renders the product's selected complementary products as compact tiles.
+  @param {product} product - The current product.
+  @param {block} block - Complementary products block settings.
+  @param {string} section_id - Section identifier for unique forms.
+{% enddoc %}
+{%- assign complementary_products = product.metafields['shopify--discovery--product_recommendation'].complementary_products.value -%}
+{%- if complementary_products != blank -%}
+  {{ 'tps-product-complementary.css' | asset_url | stylesheet_tag }}
+  {%- liquid
+    assign product_limit = block.settings.max_products | default: 4
+    assign product_count = complementary_products.size | at_most: product_limit
+    assign form_prefix = 'ProductComplementary-' | append: section_id | append: '-' | append: block.id
+  -%}
+  <div class="tps-complementary not-in-quickbuy" data-dynamic-product-content="{{ block.id }}" {{ block.shopify_attributes }}>
+    {%- if block.settings.enable_carousel and product_count > 2 -%}
+      <carousel-slider class="carousel block collection-slider">
+    {%- endif -%}
+    <div class="tps-complementary__heading">
+      {%- if block.settings.heading != blank -%}
+        <h2 class="label m-0">{{ block.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if block.settings.enable_carousel and product_count > 2 -%}
+        <div class="slider-nav">
+          <button type="button" name="prev" class="slider-nav__btn has-ltr-icon">
+            <span class="visually-hidden">{{ 'general.slider.previous' | t }}</span>
+            {% render 'icon-chevron-left' %}
+          </button>
+          <button type="button" name="next" class="slider-nav__btn has-ltr-icon">
+            <span class="visually-hidden">{{ 'general.slider.next' | t }}</span>
+            {% render 'icon-chevron-right' %}
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="collection-listing{% if block.settings.enable_carousel and product_count > 2 %} slider slider--no-scrollbar{% endif %}">
+      <ul class="tps-complementary__grid product-grid product-grid--per-row-2 product-grid--per-row-mob-2{% if product_count == 1 %} tps-complementary__grid--single{% endif %}{% if block.settings.enable_carousel and product_count > 2 %} slider__grid product-grid--carousel{% endif %}" role="list">
+        {%- for related_product in complementary_products limit: product_limit -%}
+          <li class="tps-complementary__item{% if block.settings.enable_carousel and product_count > 2 %} slider__item{% endif %}">
+            {% render 'product-block', product: related_product, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: 1, grid: 5 %}
+            {% render 'tps-cart-quick-add', product: related_product, form_prefix: form_prefix %}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+    {%- if block.settings.enable_carousel and product_count > 2 -%}
+      </carousel-slider>
+    {%- endif -%}
+  </div>
+{%- endif -%}

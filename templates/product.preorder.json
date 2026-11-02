@@ -92,7 +92,10 @@
             "show_in_quickbuy": false
           }
         },
-        "tps_mini_sets": {"type": "tps_mini_sets", "settings": {}},
+        "tps_mini_sets": {
+          "type": "tps_mini_sets",
+          "settings": {}
+        },
         "buy_buttons_UxgnPc": {
           "type": "buy-buttons",
           "settings": {
@@ -173,6 +176,14 @@
             "open": false,
             "show_in_quickbuy": false
           }
+        },
+        "tps_complementary_products": {
+          "type": "complementary",
+          "settings": {
+            "heading": "Pairs well with",
+            "enable_carousel": true,
+            "max_products": 4
+          }
         }
       },
       "block_order": [
@@ -193,7 +204,8 @@
         "0b402ec6-ea3a-42fb-9c89-c301f84dc4a1",
         "58f8bad6-012b-43cc-b77b-a582df91c7bf",
         "a2c5fb77-22da-4465-a91a-2f59a941f614",
-        "a4b64cb0-156d-4d35-b96f-2486396ba570"
+        "a4b64cb0-156d-4d35-b96f-2486396ba570",
+        "tps_complementary_products"
       ],
       "settings": {
         "show_breadcrumbs": false,
