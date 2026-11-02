@@ -65,7 +65,7 @@
 .tps-cart-drawer .collection-slider .product-block__detail { margin-top: 10px; }
 .tps-cart-drawer .cart-drawer__footer {
   padding-top: 20px;
-  padding-bottom: max(18px, env(safe-area-inset-bottom));
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
   border-color: #ece9e4;
   background: #fff;
   max-height: 55dvh;
