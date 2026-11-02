@@ -55,19 +55,33 @@
             {%- liquid
               assign mix_name = pairing.title | split: ' + 300 Balls - ' | last | remove: ' Mix'
               assign mix_description = ''
+              assign mix_colours = ''
               if mix_name == 'Cloud'
+                assign mix_colours = 'white,white,transparent'
                 assign mix_name = 'tps_pit_selector.cloud' | t
                 assign mix_description = 'tps_pit_selector.cloud_description' | t
               elsif mix_name == 'Ocean'
+                assign mix_colours = 'white,blue,transparent'
                 assign mix_name = 'tps_pit_selector.ocean' | t
                 assign mix_description = 'tps_pit_selector.ocean_description' | t
               elsif mix_name == 'Pink Blossom'
+                assign mix_colours = 'white,pink,transparent'
                 assign mix_name = 'tps_pit_selector.pink_blossom' | t
                 assign mix_description = 'tps_pit_selector.pink_description' | t
               endif
             -%}
             <a class="tps-pit-selector__mix{% if pairing.id == product.id %} is-selected{% endif %}" href="{{ pairing.url }}"{% if pairing.id == product.id %} aria-current="page"{% endif %}>
-              <span class="tps-pit-selector__mix-name">{{ mix_name | escape }}</span>
+              <span class="tps-pit-selector__mix-header">
+                <span class="tps-pit-selector__mix-name">{{ mix_name | escape }}</span>
+                {%- if mix_colours != blank -%}
+                  {%- assign ball_colours = mix_colours | split: ',' -%}
+                  <span class="tps-pit-selector__ball-swatches" aria-hidden="true">
+                    {%- for ball_colour in ball_colours -%}
+                      <span class="tps-pit-selector__ball-swatch tps-pit-selector__ball-swatch--{{ ball_colour }}"></span>
+                    {%- endfor -%}
+                  </span>
+                {%- endif -%}
+              </span>
               {%- if mix_description != blank -%}<span class="tps-pit-selector__mix-description">{{ mix_description | escape }}</span>{%- endif -%}
               {%- unless pairing.available -%}<span class="tps-pit-selector__availability">{{ 'sections.collection.restocking_soon' | t }}</span>{%- endunless -%}
             </a>
