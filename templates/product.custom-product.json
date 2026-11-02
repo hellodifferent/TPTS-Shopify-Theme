@@ -72,7 +72,9 @@
         },
         "sibling_product_swatches_YfdE3R": {
           "type": "sibling_product_swatches",
-          "settings": {}
+          "settings": {
+            "ball_pits_only": false
+          }
         },
         "variant_picker_8EVKbn": {
           "type": "variant-picker",
@@ -90,6 +92,12 @@
         "tps_mini_sets": {
           "type": "tps_mini_sets",
           "settings": {}
+        },
+        "tps_ball_pit_setup": {
+          "type": "tps_ball_pit_setup",
+          "settings": {
+            "heading": "Choose your setup"
+          }
         },
         "buy_buttons_6Ukibb": {
           "type": "buy-buttons",
@@ -161,7 +169,16 @@
         "tps_social_media": {
           "type": "tps_social_media",
           "settings": {
-            "heading": "Playtime in real life"
+            "heading": "Playtime in real life",
+            "handle_1": "",
+            "social_url_1": "",
+            "caption_1": "",
+            "handle_2": "",
+            "social_url_2": "",
+            "caption_2": "",
+            "handle_3": "",
+            "social_url_3": "",
+            "caption_3": ""
           }
         },
         "description": {
@@ -305,12 +322,6 @@
             "variant_content": false,
             "show_in_quickbuy": false
           }
-        },
-        "tps_ball_pit_setup": {
-          "type": "tps_ball_pit_setup",
-          "settings": {
-            "heading": "Choose your setup"
-          }
         }
       },
       "block_order": [
@@ -402,14 +413,14 @@
           "type": "question",
           "settings": {
             "title": "Do you offer a payment instalment plan?",
-            "answer": "<p>Yes! We offer both Afterpay and Zip. </p><p>Paypal is also available at checkout.</p>"
+            "answer": "<p>Yes!&nbsp;We offer Afterpay, ShopPay and Zip.&nbsp;</p><p>Paypal is also available at checkout.</p>"
           }
         },
         "question_bVa6gE": {
           "type": "question",
           "settings": {
             "title": "What if I change my mind after purchasing?",
-            "answer": "<p>The Playtime Store offers all customers a 100% money back guarantee for any change of mind purchases, provided that the following terms are met:</p><ul><li>All returns must be unused and in their original condition (including all original, protective packaging).</li><li>You must complete your return within 30 days of the date of your order and you are responsible for arranging the return and all costs associated with this.</li><li>The original shipping costs to you are not refunded.</li><li>See the full refund policy <a href=\"/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\">here</a>.</li></ul>"
+            "answer": "<p>The Playtime Store&nbsp;offers all customers a 100% money back guarantee for any change of mind purchases, provided that the following terms are met:</p><ul><li>All returns&nbsp;must be unused and in their original condition (including all original, protective packaging).</li><li>You must complete your return within 30 days of the date of your order and you are responsible for arranging the return and all costs associated with this.</li><li>The original shipping costs to you are not refunded.</li><li>See the full refund policy <a href=\"/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\">here</a>.</li></ul>"
           }
         }
       },
