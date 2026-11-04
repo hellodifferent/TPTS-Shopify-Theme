@@ -11,7 +11,7 @@
   endif
   if product.metafields.custom.ball_pit_only.value == false and product.metafields.custom.bundled_pairings.value != blank
     assign keep_bundle = true
-    assign selected_mix = product.title | split: ' + 300 Balls - ' | last | remove: ' Mix' | strip | downcase
+    assign selected_mix = product.title | split: ' Balls - ' | last | remove: ' Mix' | strip | downcase
   endif
 -%}
 {%- if show_swatches and family.products.value != blank -%}
@@ -28,7 +28,7 @@
             assign swatch_product = nil
             for pairing in sibling.metafields.custom.bundled_pairings.value
               if pairing != blank and pairing.url != blank and pairing.metafields.custom.ball_pit_only.value != true
-                assign pairing_mix = pairing.title | split: ' + 300 Balls - ' | last | remove: ' Mix' | strip | downcase
+                assign pairing_mix = pairing.title | split: ' Balls - ' | last | remove: ' Mix' | strip | downcase
                 if pairing_mix == selected_mix
                   assign swatch_product = pairing
                   break

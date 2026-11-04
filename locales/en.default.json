@@ -589,6 +589,11 @@
     "ocean_description": "100 white + 100 blue + 100 transparent balls",
     "pink_description": "100 white + 100 pink + 100 transparent balls",
     "colour_label": "Colour:",
-    "add_balls_label": "Would you like to add 300 balls?"
+    "add_balls_label": "Would you like to add 300 balls?",
+    "with_balls_count": "Ball Pit + {{ count }} Balls",
+    "add_balls_count_label": "Would you like to add {{ count }} balls?",
+    "cloud_200_description": "100 white + 100 transparent balls",
+    "ocean_200_description": "100 white + 100 blue balls",
+    "pink_200_description": "100 white + 100 pink balls"
   }
 }

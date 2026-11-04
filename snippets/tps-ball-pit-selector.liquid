@@ -5,9 +5,19 @@
 {%- liquid
   assign pairings = product.metafields.custom.bundled_pairings.value
   assign pit_only = product.metafields.custom.ball_pit_only.value
+  assign ball_count = 300
+  if product.title contains 'Boucle' or product.title contains 'Bouclé'
+    assign ball_count = 200
+  endif
+  for pairing in pairings
+    if pairing.title contains ' Balls - '
+      assign ball_count = pairing.title | split: ' + ' | last | split: ' ' | first | plus: 0
+      break
+    endif
+  endfor
   assign mix_heading = 'tps_pit_selector.mix_label' | t
   if pit_only == true
-    assign mix_heading = 'tps_pit_selector.add_balls_label' | t
+    assign mix_heading = 'tps_pit_selector.add_balls_count_label' | t: count: ball_count
   endif
   assign pit_product = nil
   assign bundle_product = nil
@@ -41,12 +51,12 @@
       </a>
       {%- if bundle_product != nil -%}
         <a class="tps-pit-selector__option{% if pit_only == false %} is-selected{% endif %}" href="{{ bundle_product.url }}"{% if product.id == bundle_product.id %} aria-current="page"{% endif %}>
-          <span>{{ 'tps_pit_selector.with_balls' | t }}</span>
+          <span>{{ 'tps_pit_selector.with_balls_count' | t: count: ball_count }}</span>
           <span class="tps-pit-selector__price">{{ bundle_product.price | money }}</span>
         </a>
       {%- else -%}
         <span class="tps-pit-selector__option tps-pit-selector__option--pending" aria-disabled="true">
-          <span>{{ 'tps_pit_selector.with_balls' | t }}</span>
+          <span>{{ 'tps_pit_selector.with_balls_count' | t: count: ball_count }}</span>
           <span class="tps-pit-selector__price">{{ 'tps_pit_selector.coming_soon' | t }}</span>
         </span>
       {%- endif -%}
@@ -57,21 +67,45 @@
         {%- for pairing in pairings -%}
           {%- if pairing != blank and pairing.url != blank and pairing.metafields.custom.ball_pit_only.value != true -%}
             {%- liquid
-              assign mix_name = pairing.title | split: ' + 300 Balls - ' | last | remove: ' Mix'
+              assign mix_name = pairing.title | split: ' Balls - ' | last | remove: ' Mix'
               assign mix_description = ''
               assign mix_colours = ''
               if mix_name == 'Cloud'
-                assign mix_colours = 'white,white,transparent'
+                if ball_count == 200
+                  assign mix_colours = 'white,transparent'
+                else
+                  assign mix_colours = 'white,white,transparent'
+                endif
                 assign mix_name = 'tps_pit_selector.cloud' | t
-                assign mix_description = 'tps_pit_selector.cloud_description' | t
+                if ball_count == 200
+                  assign mix_description = 'tps_pit_selector.cloud_200_description' | t
+                else
+                  assign mix_description = 'tps_pit_selector.cloud_description' | t
+                endif
               elsif mix_name == 'Ocean'
-                assign mix_colours = 'white,blue,transparent'
+                if ball_count == 200
+                  assign mix_colours = 'white,blue'
+                else
+                  assign mix_colours = 'white,blue,transparent'
+                endif
                 assign mix_name = 'tps_pit_selector.ocean' | t
-                assign mix_description = 'tps_pit_selector.ocean_description' | t
+                if ball_count == 200
+                  assign mix_description = 'tps_pit_selector.ocean_200_description' | t
+                else
+                  assign mix_description = 'tps_pit_selector.ocean_description' | t
+                endif
               elsif mix_name == 'Pink Blossom'
-                assign mix_colours = 'white,pink,transparent'
+                if ball_count == 200
+                  assign mix_colours = 'white,pink'
+                else
+                  assign mix_colours = 'white,pink,transparent'
+                endif
                 assign mix_name = 'tps_pit_selector.pink_blossom' | t
-                assign mix_description = 'tps_pit_selector.pink_description' | t
+                if ball_count == 200
+                  assign mix_description = 'tps_pit_selector.pink_200_description' | t
+                else
+                  assign mix_description = 'tps_pit_selector.pink_description' | t
+                endif
               endif
             -%}
             <a class="tps-pit-selector__mix{% if pairing.id == product.id %} is-selected{% endif %}" href="{{ pairing.url }}"{% if pairing.id == product.id %} aria-current="page"{% endif %}>
