@@ -1,0 +1,33 @@
+{% doc %}
+  Renders the Castle stock quantity experiment.
+  @param {product} product - Current product.
+  @param {variant} current_variant - Selected variant.
+  @param {block} block - Experiment settings.
+  @param {string} product_form_id - Main purchase form identifier.
+{% enddoc %}
+{%- liquid
+  assign castle_ids = '8107740135605,10228578451637,10479766208693,10479774007477' | split: ','
+  assign product_id_string = product.id | append: ''
+  assign eligible = false
+  if current_variant.available and current_variant.inventory_management != blank and current_variant.inventory_policy == 'deny'
+    if current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= block.settings.threshold
+      assign eligible = true
+    endif
+  endif
+-%}
+{%- if castle_ids contains product_id_string -%}
+  <tps-castle-stock-test hidden class="not-in-quickbuy"
+    data-enabled="{{ block.settings.enabled }}"
+    data-eligible="{{ eligible }}"
+    data-experiment="castle_stock_20261105_v1"
+    data-measurement-id="{{ block.settings.measurement_id | escape }}"
+    data-ends-at="{{ block.settings.ends_at | escape }}"
+    data-product-id="{{ product.id }}"
+    data-variant-id="{{ current_variant.id }}"
+    data-quantity="{{ current_variant.inventory_quantity }}"
+    data-form-id="{{ product_form_id | escape }}">
+    <span>{{ 'products.inventory.only_x_left' | t: quantity: current_variant.inventory_quantity }}</span>
+  </tps-castle-stock-test>
+  {{ 'tps-castle-stock-test.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'tps-castle-stock-test.js' | asset_url }}" defer></script>
+{%- endif -%}

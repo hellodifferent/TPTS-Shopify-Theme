@@ -678,6 +678,11 @@
               {%- endif -%}
             </div>
 
+          {% when 'tps_castle_stock_test' %}
+            <div data-dynamic-variant-content="{{ block.id }}" {{ block.shopify_attributes }}>
+              {% render 'tps-castle-stock-test', product: product, current_variant: current_variant, block: block, product_form_id: product_form_id %}
+            </div>
+
           {% when 'inventory-level' %}
             <div {% unless block.settings.show_in_quickbuy %}class="not-in-quickbuy"{% endunless %} data-dynamic-variant-content="{{ block.id }}" {{ block.shopify_attributes }}>
               {%- render 'product-inventory', product: product, current_variant: current_variant, block: block -%}
@@ -2247,6 +2252,17 @@
           "label": "Show recipient information form for gift cards",
           "info": "Allow customers to send gift cards to a recipient along with a personal message. When enabled, the dynamic checkout button will be disabled for gift cards. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-gift-card-recipient-fields)"
         }
+      ]
+    },
+    {
+      "type": "tps_castle_stock_test",
+      "name": "Castle stock A/B test",
+      "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "enabled", "label": "Run 50/50 test", "default": false },
+        { "type": "range", "id": "threshold", "label": "Show quantity when stock is at most", "min": 1, "max": 30, "step": 1, "default": 10 },
+        { "type": "text", "id": "measurement_id", "label": "GA4 measurement ID", "default": "G-WQGDEEPH80" },
+        { "type": "text", "id": "ends_at", "label": "Test ends at (AEDT)", "default": "2026-11-19T23:59:59+11:00" }
       ]
     },
     {

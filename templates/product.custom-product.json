@@ -330,6 +330,15 @@
             "enable_carousel": true,
             "max_products": 4
           }
+        },
+        "tps_castle_stock_test": {
+          "type": "tps_castle_stock_test",
+          "settings": {
+            "enabled": false,
+            "threshold": 10,
+            "measurement_id": "G-WQGDEEPH80",
+            "ends_at": "2026-11-19T23:59:59+11:00"
+          }
         }
       },
       "block_order": [
@@ -343,6 +352,7 @@
         "variant_picker_8EVKbn",
         "tps_mini_sets",
         "tps_ball_pit_setup",
+        "tps_castle_stock_test",
         "buy_buttons_6Ukibb",
         "tps_delivery_links",
         "tps_product_benefits",
