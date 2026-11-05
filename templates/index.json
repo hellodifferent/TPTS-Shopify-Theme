@@ -545,6 +545,7 @@
         },
         "castle": {
           "type": "product",
+          "disabled": true,
           "settings": {
             "product": "castle-limited-edition",
             "title": "Castle Soft Play",
@@ -558,13 +559,52 @@
             "title": "Soft Play Ball Pits",
             "description": "Their own little happy place"
           }
+        },
+        "product_67FYML": {
+          "type": "product",
+          "settings": {
+            "product": "wave-climb-white",
+            "title": "Wave & Climb",
+            "description": "Inspired by rolling waves"
+          }
+        },
+        "product_bb9aTh": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "mini-step-slide-pastel",
+            "title": "Mini Step & Slide",
+            "description": "Their own little happy place"
+          }
+        },
+        "product_iyJqK7": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "step-slide-white",
+            "title": "Step & Slide",
+            "description": "Their own little happy place"
+          }
+        },
+        "product_CGCxTN": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "boucle-ball-pit-white-200-balls-cloud-mix",
+            "title": "Bouclé Ball Pit Bundles",
+            "description": "Their own little happy place"
+          }
         }
       },
       "block_order": [
         "blocks",
         "mini",
         "castle",
-        "ballpit"
+        "ballpit",
+        "product_67FYML",
+        "product_bb9aTh",
+        "product_iyJqK7",
+        "product_CGCxTN"
       ],
       "settings": {
         "eyebrow": "",
