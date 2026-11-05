@@ -6,8 +6,8 @@ if (!customElements.get('tps-castle-stock-test')) {
       this.preview = new URLSearchParams(location.search).get('tps_castle_stock');
       this.qa = ['A', 'B', 'QA_A', 'QA_B'].includes(this.preview);
       this.form = document.getElementById(this.dataset.formId);
-      this.exposed = false;
-      this.attempts = 0;
+      this.exposed = this.exposed || false;
+      this.pendingEvents = [];
       if (this.dataset.eligible !== 'true' || !this.form) return;
       if (this.qa) {
         this.group = this.preview.endsWith('B') ? 'B' : 'A';
@@ -37,27 +37,29 @@ if (!customElements.get('tps-castle-stock-test')) {
         if (window.Shopify?.customerPrivacy?.analyticsProcessingAllowed() !== true) {
           this.stop();
         } else {
-          this.attempts = 0;
-          this.begin();
+          if (this.running) this.hidden = this.group !== 'B';
+          else this.begin();
         }
       };
       document.addEventListener('visitorConsentCollected', this.onConsent);
-      if (window.Shopify?.customerPrivacy) {
-        this.begin();
-      } else if (window.Shopify?.loadFeatures) {
-        window.Shopify.loadFeatures([{ name: 'consent-tracking-api', version: '0.2' }], (error) => {
-          if (!error && this.isConnected) this.begin();
+      this.onPageShow = () => {
+        if (!this.isConnected) return;
+        if (Date.now() >= Date.parse(this.dataset.endsAt)) {
+          this.stop();
+          return;
+        }
+        if (window.Shopify?.customerPrivacy) this.onConsent();
+        else window.Shopify?.loadFeatures?.([{ name: 'consent-tracking-api', version: '0.2' }], (error) => {
+          if (!error && this.isConnected) this.onConsent();
         });
-      }
+      };
+      window.addEventListener('pageshow', this.onPageShow);
+      this.onPageShow();
     }
 
     begin() {
       if (!this.isConnected || this.running || window.Shopify?.customerPrivacy?.analyticsProcessingAllowed() !== true) return;
       if (Date.now() >= Date.parse(this.dataset.endsAt)) return;
-      if (typeof window.gtag !== 'function') {
-        if (this.attempts++ < 20) this.timer = setTimeout(() => this.begin(), 250);
-        return;
-      }
       try {
         const existing = localStorage.getItem(this.dataset.experiment);
         this.group = existing === 'A' || existing === 'B' ? existing : (crypto.getRandomValues(new Uint32Array(1))[0] % 2 ? 'B' : 'A');
@@ -98,7 +100,29 @@ if (!customElements.get('tps-castle-stock-test')) {
     }
 
     track(action) {
-      if (!this.running || window.Shopify?.customerPrivacy?.analyticsProcessingAllowed() !== true || typeof window.gtag !== 'function') return;
+      if (!this.running || window.Shopify?.customerPrivacy?.analyticsProcessingAllowed() !== true) return;
+      this.pendingEvents.push(action);
+      if (!this.trackingTimer) this.flushEvents();
+    }
+
+    flushEvents() {
+      this.trackingTimer = null;
+      if (!this.isConnected || !this.running || window.Shopify?.customerPrivacy?.analyticsProcessingAllowed() !== true) return;
+      if (Date.now() >= Date.parse(this.dataset.endsAt)) {
+        this.stop();
+        return;
+      }
+      if (typeof window.gtag !== 'function') {
+        if ((this.trackingAttempts = (this.trackingAttempts || 0) + 1) <= 120) {
+          this.trackingTimer = setTimeout(() => this.flushEvents(), 500);
+        }
+        return;
+      }
+      this.trackingAttempts = 0;
+      while (this.pendingEvents.length) this.sendEvent(this.pendingEvents.shift());
+    }
+
+    sendEvent(action) {
       const eventName = 'tps_castle_stock_' + this.group.toLowerCase() + '_' + action;
       window.gtag('event', eventName, {
         send_to: this.dataset.measurementId,
@@ -120,13 +144,18 @@ if (!customElements.get('tps-castle-stock-test')) {
       this.property?.remove();
       if (this.onSubmit) this.form?.removeEventListener('submit', this.onSubmit, true);
       if (this.onAdd) document.removeEventListener('on:cart:add', this.onAdd);
-      clearTimeout(this.timer);
+      clearTimeout(this.trackingTimer);
+      this.trackingTimer = null;
+      this.trackingAttempts = 0;
+      this.pendingEvents = [];
       clearTimeout(this.expiryTimer);
     }
 
     disconnectedCallback() {
       this.stop();
       if (this.onConsent) document.removeEventListener('visitorConsentCollected', this.onConsent);
+      if (this.onPageShow) window.removeEventListener('pageshow', this.onPageShow);
+      this.started = false;
     }
   });
 }
