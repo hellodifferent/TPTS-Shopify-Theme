@@ -162,6 +162,7 @@
       "in_stock": "In stock",
       "low_stock": "Low stock",
       "only_x_left": "{{ quantity }} in stock",
+      "castle_test_only_left": "Only {{ quantity }} left",
       "x_left": "{{ quantity }} in stock, ready to ship"
     },
     "transfers": {

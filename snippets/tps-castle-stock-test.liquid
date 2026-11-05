@@ -26,7 +26,7 @@
     data-variant-id="{{ current_variant.id }}"
     data-quantity="{{ current_variant.inventory_quantity }}"
     data-form-id="{{ product_form_id | escape }}">
-    <span>{{ 'products.inventory.only_x_left' | t: quantity: current_variant.inventory_quantity }}</span>
+    <span>{{ 'products.inventory.castle_test_only_left' | t: quantity: current_variant.inventory_quantity }}</span>
   </tps-castle-stock-test>
   {{ 'tps-castle-stock-test.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'tps-castle-stock-test.js' | asset_url }}" defer></script>
