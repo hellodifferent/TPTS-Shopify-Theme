@@ -210,6 +210,15 @@
             "link_url": "shopify://collections/eco-leather-ball-pits"
           }
         },
+        "menu_promotion_small_DjdxBX": {
+          "type": "menu-promotion-small",
+          "settings": {
+            "dropdown_link_title": "Ball Pits",
+            "image": "shopify://shop_images/565845462_24785606577749101_952762319952349855_n.jpg",
+            "title": "Boucle Ball Pit",
+            "link_url": "shopify://collections/boucle-ball-pits"
+          }
+        },
         "c75d7add-b64a-4b4c-9cb2-80345049b38a": {
           "type": "menu-promotion-small",
           "settings": {
@@ -217,15 +226,6 @@
             "image": "shopify://shop_images/4_623872dd-0c27-4ecc-89c9-cfb7693f6a93.png",
             "title": "Foldable Ball Pit",
             "link_url": "shopify://collections/foldable-ball-pits"
-          }
-        },
-        "menu_promotion_small_DjdxBX": {
-          "type": "menu-promotion-small",
-          "settings": {
-            "dropdown_link_title": "Ball Pits",
-            "image": "shopify://shop_images/Untitled_design.png",
-            "title": "Boucle Ball Pit",
-            "link_url": "shopify://collections/boucle-ball-pits"
           }
         },
         "f2797bda-33f1-4969-85f8-49fc034d8329": {
@@ -250,9 +250,9 @@
           "type": "menu-promotion-small",
           "settings": {
             "dropdown_link_title": "Soft Play Sets",
-            "image": "shopify://shop_images/3_fb01dc8b-acd6-4c48-b144-fe2e11a79d25.png",
-            "title": "Castle",
-            "link_url": "shopify://collections/castle-soft-play"
+            "image": "shopify://shop_images/Photo_3-2-2025_8_09_19_AM_72.jpg",
+            "title": "Explorer",
+            "link_url": "shopify://products/explorer-limited-edition"
           }
         },
         "1358f48a-f643-47c3-8d35-5da5ac20b238": {
@@ -334,8 +334,8 @@
       "block_order": [
         "menu_promotion_small_7B6Dx6",
         "65aaa6b2-9f5d-4170-a989-af781bb4cbd7",
-        "c75d7add-b64a-4b4c-9cb2-80345049b38a",
         "menu_promotion_small_DjdxBX",
+        "c75d7add-b64a-4b4c-9cb2-80345049b38a",
         "f2797bda-33f1-4969-85f8-49fc034d8329",
         "menu_promotion_small_AqKUQT",
         "menu_promotion_small_kgP3cG",
