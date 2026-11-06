@@ -316,6 +316,7 @@
           "type": "icon",
           "settings": {
             "icon": "truck",
+            "image": "shopify://shop_images/quick_dispatch.svg",
             "text": "Australian Owned & Ships Next Day from Brisbane",
             "link_url": "",
             "desktop_max_width": 220
