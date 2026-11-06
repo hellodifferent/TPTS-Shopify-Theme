@@ -1,3 +1,4 @@
+{% render 'tps-section-spacing', section: section, target: '.related-products > .container' %}
 <div class="related-products"
     data-section-id="{{ section.id }}"
     data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&limit={{ section.settings.grid }}&product_id={{ product.id }}"
@@ -104,6 +105,36 @@ loadProductRecommendationsIntoSection();
       "max": 5,
       "step": 1,
       "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_vertical_padding",
+      "label": "Use custom vertical padding",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
     }
   ]
 }

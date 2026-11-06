@@ -1,3 +1,4 @@
+{% render 'tps-section-spacing', section: section, target: '> .collection-slider-row' %}
 {{ 'playtime-favourites.css' | asset_url | stylesheet_tag }}
 {{ 'tps-collection-cards.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'playtime-favourites.js' | asset_url }}" defer></script>
@@ -43,7 +44,7 @@
                 echo '<div class="slider__item">'
               endif
               assign card_id = section.id | append: '-' | append: product.id
-              render 'tps-collection-card', product: product, columns: section.settings.grid, show_vendor: section.settings.show_vendor, card_id: card_id
+              render 'tps-collection-card', product: product, columns: section.settings.grid, prioritised_loading: false, show_vendor: section.settings.show_vendor, card_id: card_id
               if section.settings.enable_carousel
                 echo '</div>'
               endif
@@ -137,6 +138,36 @@
       "type": "checkbox",
       "label": "Full page width",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_vertical_padding",
+      "label": "Use custom vertical padding",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
     }
   ],
   "presets": [

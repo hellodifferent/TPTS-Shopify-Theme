@@ -1,3 +1,4 @@
+{% render 'tps-section-spacing', section: section, target: '> .collection-slider-row' %}
 <div class="section-id-{{ section.id }} collection-slider-row for-collections {% if section.settings.color_scheme != 'default' %}use-color-scheme use-color-scheme--{{ section.settings.color_scheme }}{% endif %}">
   <div class="container{% if section.settings.enable_carousel %} container--not-mobile{% endif %}{% if section.settings.full_width %} container--no-max{% endif %}">
     {%- if section.settings.enable_carousel -%}
@@ -351,6 +352,36 @@
           "value": "link"
         }
       ]
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_vertical_padding",
+      "label": "Use custom vertical padding",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
     }
   ],
   "blocks": [
@@ -385,11 +416,8 @@
     {
       "name": "Collection list",
       "category": "Collections",
-      "settings": {
-      },
-      "blocks": [
-
-      ]
+      "settings": {},
+      "blocks": []
     }
   ]
 }

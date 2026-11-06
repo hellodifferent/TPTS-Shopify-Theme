@@ -1,4 +1,5 @@
-<div class="{% if section.settings.color_scheme != 'default' %}use-color-scheme use-color-scheme--{{ section.settings.color_scheme }} fully-padded-row--{{ section.settings.height }}{% else %}fully-spaced-row--{{ section.settings.height }}{% endif %}" {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
+{% render 'tps-section-spacing', section: section, target: '> .tps-rich-text' %}
+<div class="tps-rich-text {% if section.settings.color_scheme != 'default' %}use-color-scheme use-color-scheme--{{ section.settings.color_scheme }} fully-padded-row--{{ section.settings.height }}{% else %}fully-spaced-row--{{ section.settings.height }}{% endif %}" {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
   <div class="container{% unless section.settings.full_width %} container--reading-width{% endunless %}">
     <div class="align-ltr-{{ section.settings.text_alignment }} spaced-column">
       {% assign skip_block_count = 0 %}
@@ -148,6 +149,42 @@
           "label": "2"
         }
       ]
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background colour",
+      "info": "Leave blank to use the selected colour scheme."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_vertical_padding",
+      "label": "Use custom vertical padding",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
     }
   ],
   "blocks": [
@@ -534,8 +571,7 @@
     {
       "name": "Rich text",
       "category": "Storytelling",
-      "settings": {
-      },
+      "settings": {},
       "blocks": [
         {
           "type": "heading"

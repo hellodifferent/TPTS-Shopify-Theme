@@ -22,7 +22,7 @@
 .tps-collection-action__error { margin-bottom: 6px; padding: 8px; background: #fff; color: #a02424; font-size: 12px; }
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   .tps-collection-action { opacity: 0; pointer-events: none; transition: opacity .15s ease; }
-  .tps-collection-cards .pf-card:hover .tps-collection-action, .tps-collection-cards .pf-card:focus-within .tps-collection-action { opacity: 1; pointer-events: auto; }
+  .tps-collection-cards .pf-card:hover .tps-collection-action, .tps-collection-cards .pf-card:focus-within .tps-collection-action, .pf-featured .pf-card:hover .tps-collection-action, .pf-featured .pf-card:focus-within .tps-collection-action { opacity: 1; pointer-events: auto; }
 }
 @media (max-width: 767px) {
   .tps-collection-action { display: none; }
