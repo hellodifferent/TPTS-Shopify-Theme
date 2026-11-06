@@ -22,7 +22,7 @@
       assign column_width = 'full'
     endif
   %}
-  <tps-promo-strip data-layout="{{ section.settings.layout_style }}" data-autoplay="{{ section.settings.autoplay }}" data-interval="{{ section.settings.autoplay_speed | times: 1000 }}" id="section-id-{{ section.id }}" class="cross-page-promos{% if section.settings.layout_style == 'inline' %} cross-page-promos--inline{% endif %}">
+  <div id="section-id-{{ section.id }}" class="cross-page-promos{% if section.settings.layout_style == 'inline' %} cross-page-promos--inline{% endif %}">
     <div class="container">
       <div class="flexible-layout {% if column_width == 'quarter' %}layout-all-quarters{% endif %}">
         {%- for block in section.blocks -%}
@@ -87,16 +87,9 @@
           </div>
         {%- endfor -%}
       </div>
-      {%- if section.settings.layout_style == 'inline' and section.blocks.size > 1 -%}
-        <div class="tps-promo-controls">
-          <button type="button" class="tps-promo-pause" data-pause-text="{{ 'tps_promos.pause' | t }}" data-play-text="{{ 'tps_promos.play' | t }}">{{ 'tps_promos.pause' | t }}</button>
-        </div>
-      {%- endif -%}
+
     </div>
-  </tps-promo-strip>
-  {%- if section.settings.layout_style == 'inline' -%}
-    <script src="{{ 'tps-promo-strip.js' | asset_url }}" defer></script>
-  {%- endif -%}
+  </div>
 {%- endif -%}
 
 {% style %}
@@ -114,11 +107,7 @@
   {%- endfor -%}
 
   #section-id-{{ section.id }} { display: block; }
-  #section-id-{{ section.id }} .tps-promo-controls { display: none; }
-  #section-id-{{ section.id }} .tps-promo-rail { display: contents; }
   #section-id-{{ section.id }}.cross-page-promos--inline .icon--type-heart { stroke: #97745b; }
-  #section-id-{{ section.id }} [data-promo-clone] { display: none; }
-  #section-id-{{ section.id }} .tps-promo-controls [hidden] { display: none !important; }
   #section-id-{{ section.id }}.cross-page-promos--inline { padding: 28px 0 !important; }
   #section-id-{{ section.id }}.cross-page-promos--inline .flexible-layout {
     display: flex;
@@ -167,48 +156,28 @@
     text-align: left;
     text-transform: none;
   }
-  @keyframes tps-promo-loop {
-    to { transform: translate3d(var(--tps-loop-distance), 0, 0); }
-  }
   @media (max-width: 1023.98px) {
-    #section-id-{{ section.id }}.cross-page-promos--inline { position: relative; padding: 20px 0 !important; }
-    #section-id-{{ section.id }}.cross-page-promos--inline > .container { padding: 0; max-width: none; }
+    #section-id-{{ section.id }}.cross-page-promos--inline { padding: 24px 0 !important; }
     #section-id-{{ section.id }}.cross-page-promos--inline .flexible-layout {
-      display: block;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    #section-id-{{ section.id }}.cross-page-promos--inline .flexible-layout::-webkit-scrollbar { display: none; }
-    #section-id-{{ section.id }}.cross-page-promos--inline .tps-promo-rail {
-      display: flex;
-      align-items: center;
-      width: max-content;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 20px;
     }
     #section-id-{{ section.id }}.cross-page-promos--inline .column {
-      flex: 0 0 auto !important;
-      width: max-content !important;
+      width: 100% !important;
       max-width: none !important;
-      padding: 0 26px !important;
+      margin: 0 !important;
+      padding: 0 !important;
     }
-    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption { gap: 12px; min-height: 28px; }
-    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__text .heading-font { font-size: 14px; white-space: nowrap; }
-    #section-id-{{ section.id }}.cross-page-promos--inline[data-loop-ready="true"] .flexible-layout { overflow: hidden; }
-    #section-id-{{ section.id }}.cross-page-promos--inline[data-loop-ready="true"] [data-promo-clone] { display: block; }
-    #section-id-{{ section.id }}.cross-page-promos--inline[data-loop-ready="true"] .tps-promo-rail {
-      animation: tps-promo-loop var(--tps-loop-duration) linear infinite;
-      will-change: transform;
+    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption {
+      flex-direction: column;
+      gap: 10px;
     }
-    #section-id-{{ section.id }}.cross-page-promos--inline[data-paused="true"] .tps-promo-rail,
-    #section-id-{{ section.id }}.cross-page-promos--inline:hover .tps-promo-rail,
-    #section-id-{{ section.id }}.cross-page-promos--inline:focus-within .tps-promo-rail { animation-play-state: paused; }
-    #section-id-{{ section.id }}.cross-page-promos--inline[data-loop-ready="true"] .tps-promo-controls { display: block; position: absolute; right: 0; bottom: 0; }
-    #section-id-{{ section.id }} .tps-promo-pause { padding: 2px 10px; font: inherit; font-size: 10px; line-height: 1.4; text-decoration: underline; text-underline-offset: 2px; color: inherit; border: 0; background: var(--bg-color); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    #section-id-{{ section.id }}.cross-page-promos--inline .tps-promo-rail { animation: none !important; transform: none !important; }
-    #section-id-{{ section.id }}.cross-page-promos--inline [data-promo-clone] { display: none !important; }
-    #section-id-{{ section.id }}.cross-page-promos--inline .flexible-layout { overflow-x: auto !important; }
-    #section-id-{{ section.id }}.cross-page-promos--inline .tps-promo-controls { display: none !important; }
+    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__text .heading-font {
+      font-size: 13px;
+      text-align: center;
+      white-space: normal;
+    }
   }
 {% endstyle %}
 
@@ -243,22 +212,6 @@
       "step": 4,
       "unit": "px",
       "default": 32
-    },
-    {
-      "type": "checkbox",
-      "id": "autoplay",
-      "label": "Auto-scroll on tablet and mobile",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "autoplay_speed",
-      "label": "Scroll time per 100px",
-      "min": 3,
-      "max": 10,
-      "step": 1,
-      "unit": "s",
-      "default": 4
     },
     {
       "type": "color",
