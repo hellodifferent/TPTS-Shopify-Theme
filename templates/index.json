@@ -289,9 +289,9 @@
           "type": "icon",
           "settings": {
             "icon": "heart",
-            "text": "30,000+ Happy Playtime Customers",
+            "text": "30,000+ Happy Playtimers",
             "link_url": "",
-            "desktop_max_width": 180
+            "desktop_max_width": 160
           }
         },
         "icon_4wmjtF": {
@@ -307,9 +307,9 @@
           "type": "icon",
           "settings": {
             "icon": "tps_play",
-            "text": "Designed for Safe, Active Play",
+            "text": "Designed for Safe, Active, Everyday Play",
             "link_url": "",
-            "desktop_max_width": 170
+            "desktop_max_width": 190
           }
         },
         "icon_8f6WDD": {
