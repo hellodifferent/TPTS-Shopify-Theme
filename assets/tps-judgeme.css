@@ -1,0 +1,124 @@
+.jdgm-rev-snippet-widget-v2__inner .jdgm-rev-snippet-card,
+.jdgm-rev-snippet-widget-v2__arrow {
+  box-shadow: none !important;
+}
+
+.jdgm-rev-snippet-widget-v2__inner .jdgm-rev-snippet-card {
+  border: 1px solid #d2bca6 !important;
+}
+
+.template-product .jdgm-preview-badge {
+  cursor: pointer;
+}
+
+.template-product .jdgm-preview-badge:focus-visible,
+.template-product [data-widget="reviews-grid"] .jdgm-review-card:focus-visible {
+  outline: 2px solid #97745b;
+  outline-offset: 4px;
+}
+
+.template-product [data-widget="reviews-grid"] {
+  scroll-margin-top: calc(var(--theme-header-height, 160px) + 24px);
+  padding-block: 20px;
+  color: #3c3a38;
+  font-family: inherit;
+}
+
+.template-product [data-widget="reviews-grid"] [data-widget-container="reviews-grid-widget"] {
+  --jm-reviews-grid-widget-header-text-color: #3c3a38 !important;
+  --jm-reviews-grid-widget-star-and-reviewer-name-color: #3c3a38 !important;
+  --jm-reviews-grid-widget-content-color: #3c3a38 !important;
+  --jm-reviews-grid-widget-overlay-and-background-color: #f7f5f1 !important;
+  --jm-reviews-grid-widget-drop-shadow-color: transparent !important;
+}
+
+.template-product [data-widget="reviews-grid"] .jm-grid-header {
+  margin-bottom: 24px;
+}
+
+.template-product [data-widget="reviews-grid"] .jm-grid-header__text {
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  font-size: clamp(28px, 3vw, 40px) !important;
+  line-height: 1.2;
+  letter-spacing: normal;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-grid-body {
+  gap: 18px !important;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card {
+  border: 1px solid #e4d9cd;
+  border-radius: 8px !important;
+  background: #f7f5f1 !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) {
+  aspect-ratio: auto !important;
+  min-height: 250px;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__preview {
+  display: none;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__details {
+  position: relative !important;
+  inset: auto !important;
+  height: 100%;
+  min-height: 250px;
+  padding: 24px !important;
+  opacity: 1 !important;
+  transform: none !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card__details-description {
+  font-family: inherit;
+  font-size: 14px !important;
+  line-height: 1.65;
+  text-align: left;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__details-description {
+  display: block;
+  -webkit-line-clamp: unset;
+  max-height: none;
+  overflow: visible;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__details-body {
+  flex: 1;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card__footer-inner--details {
+  align-items: flex-start;
+  padding-top: 18px;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card__reviewer-name {
+  font-size: 13px !important;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card__details .jm-star-rating__font-icon,
+.template-product [data-widget="reviews-grid"] .jm-average-rating-display .jm-star-rating__font-icon {
+  color: #97745b !important;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card:has(img, video) .jdgm-review-card__preview .jdgm-review-card__footer {
+  background: linear-gradient(transparent, rgba(0, 0, 0, .65));
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card:has(img, video) .jdgm-review-card__preview {
+  --jm-reviews-grid-widget-star-and-reviewer-name-color: #fff;
+}
+
+@media (max-width: 767.98px) {
+  .template-product [data-widget="reviews-grid"] .jdgm-grid-body { gap: 12px !important; }
+  .template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__details { padding: 16px !important; }
+  .template-product [data-widget="reviews-grid"] .jdgm-review-card__details-description { font-size: 13px !important; }
+}

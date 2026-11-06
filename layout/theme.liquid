@@ -178,6 +178,10 @@
   {%- endif -%}
 
   <script>!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"Wegqs1RnXKccw8pjWf7BNZ",debug:true});</script>
+  {{ 'tps-judgeme.css' | asset_url | stylesheet_tag }}
+  {%- if request.page_type == 'product' -%}
+    <script src="{{ 'tps-judgeme.js' | asset_url }}" defer></script>
+  {%- endif -%}
 </head>
 
 <body class="template-{{ template | split: '.' | first | handle }}
