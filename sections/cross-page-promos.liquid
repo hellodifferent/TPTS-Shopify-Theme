@@ -94,7 +94,7 @@
     --text-color: {{ section.settings.cross_page_promo_color }};
     --promo-font-size: {{ section.settings.font_size | default: 17.2 }}px;
     --promo-icon-size: {{ promo_icon_size }}px;
-    padding-block: {{ section.settings.vertical_padding | default: 40 }}px;
+    padding-block: {{ section.settings.vertical_padding | default: 40 }}px !important;
   }
 
   #section-id-{{ section.id }} .icon-with-caption__icon {
