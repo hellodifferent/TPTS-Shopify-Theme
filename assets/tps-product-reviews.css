@@ -14,7 +14,7 @@
 .tps-review-feature__track::-webkit-scrollbar { display: none; }
 .tps-review-feature__card { flex: 0 0 250px; min-height: 380px; margin: 0; padding: 26px; background: #fff; border-radius: 10px; display: flex; flex-direction: column; scroll-snap-align: start; }
 .tps-review-feature__stars { color: #97745b; letter-spacing: 2px; font-size: 17px; margin-bottom: 20px; }
-.tps-review-feature__quote { font-size: 19px; line-height: 1.4; margin: 0 0 24px; padding: 0; border: 0; font-style: normal; display: -webkit-box; -webkit-line-clamp: 9; -webkit-box-orient: vertical; overflow: hidden; }
+.tps-review-feature__quote { font-size: 19px; line-height: 1.4; margin: 0 0 24px; padding: 0; border: 0; font-style: normal; text-align: left; display: -webkit-box; -webkit-line-clamp: 9; -webkit-box-orient: vertical; overflow: hidden; }
 .tps-review-feature__author { font-size: 13px; font-weight: 600; margin: auto 0 12px; }
 .tps-review-feature__read { font: inherit; font-size: 12px; color: inherit; background: none; border: 0; padding: 0; text-align: left; text-decoration: underline; text-underline-offset: 3px; align-self: flex-start; }
 .tps-review-feature__card--media { padding: 0; border: 0; position: relative; overflow: hidden; }

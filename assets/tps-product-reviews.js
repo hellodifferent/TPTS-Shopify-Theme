@@ -24,13 +24,13 @@ if (!customElements.get('tps-product-reviews')) {
 
     populate() {
       const limit = Number(this.dataset.featureLimit) || 6;
-      const reviews = [...this.widget.querySelectorAll('.jm-review-item, .jdgm-rev')].map(item => {
+      const reviews = [...this.widget.querySelectorAll('.jm-review-item, .jdgm-rev')].filter(item => !item.closest('.jdgm-legacy-widget-content')).map(item => {
         const body = item.querySelector('.jdgm-review-content__body-content, .jm-review-content__body, .jdgm-rev__body');
         const author = item.querySelector('.jm-reviewer-info__name, .jdgm-rev__author');
         const rating = item.querySelector('.jm-star-rating, .jdgm-rev__rating');
         const score = Number(rating?.dataset.score || rating?.getAttribute('data-score') || rating?.getAttribute('aria-label')?.match(/[\d.]+/)?.[0]);
         return { item, text: body?.textContent.trim(), author: author?.textContent.trim(), score };
-      }).filter(review => review.text && review.author && review.score >= 4);
+      }).filter(review => review.text && review.author && review.score >= 4).sort((a, b) => Number(b.text.length >= 70) - Number(a.text.length >= 70));
       const media = [...this.widget.querySelectorAll('.jm-media-grid__item, .jdgm-gallery__thumbnail-link')].map(item => ({ item, img: item.querySelector('img') })).filter(entry => entry.img?.getAttribute('src'));
       if (!reviews.length && !media.length) return;
       const signature = JSON.stringify([reviews.map(r => [r.text, r.author, r.score]), media.map(m => m.img.getAttribute('src'))]);
@@ -43,7 +43,8 @@ if (!customElements.get('tps-product-reviews')) {
       }
       this.track.replaceChildren(...cards);
       const summary = this.widget.querySelector('.jm-average-rating-display, .jdgm-rev-widg__summary-text');
-      this.querySelector('[data-review-summary]').textContent = summary?.textContent.trim().replace(/\s+/g, ' ') || '';
+      const summaryParts = summary ? [...summary.querySelectorAll('.jm-text')].map(part => part.textContent.trim()).filter(Boolean) : [];
+      this.querySelector('[data-review-summary]').textContent = summaryParts.length ? summaryParts.join(' · ') : summary?.textContent.trim().replace(/\s+/g, ' ') || '';
       this.feature.hidden = false;
       this.updateControls();
     }
@@ -83,10 +84,12 @@ if (!customElements.get('tps-product-reviews')) {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'tps-review-feature__media-button';
-      button.setAttribute('aria-label', entry.img.alt || this.dataset.openLabel);
+      button.setAttribute('aria-label', this.dataset.openLabel);
       const img = document.createElement('img');
-      img.src = entry.img.getAttribute('src');
-      img.alt = entry.img.alt || '';
+      const source = new URL(entry.img.getAttribute('src'), location.href);
+      if (source.hostname === 'review-images.judgeme.com') source.searchParams.set('width', '800');
+      img.src = source.href;
+      img.alt = '';
       img.loading = 'lazy';
       const label = document.createElement('span');
       label.className = 'tps-review-feature__media-action';
