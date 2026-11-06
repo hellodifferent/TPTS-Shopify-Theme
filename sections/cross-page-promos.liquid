@@ -1,5 +1,9 @@
 {%- liquid
   assign show_promos = false
+  assign promo_icon_size = section.settings.icon_size | default: 34
+  assign promo_icon_size_2x = promo_icon_size | times: 2
+  assign promo_icon_sizes = promo_icon_size | append: 'px'
+  assign promo_icon_widths = promo_icon_size | append: ', ' | append: promo_icon_size_2x
 
   if section.blocks.size > 0
     if section.settings.show_on_home_page
@@ -59,7 +63,7 @@
                         {%- render 'icon', icon: block.settings.icon, size: 'medium' -%}
                       {%- else -%}
                         <div class="icon-with-caption__image-icon">
-                          {%- render 'image' with block.settings.image, sizes: '34px', widths: '34, 68', loading: 'lazy' -%}
+                          {%- render 'image' with block.settings.image, sizes: promo_icon_sizes, widths: promo_icon_widths, loading: 'lazy' -%}
                         </div>
                       {%- endif -%}
                     </div>
@@ -89,6 +93,22 @@
     --bg-color: {{ section.settings.cross_page_promo_bg }};
     --text-color: {{ section.settings.cross_page_promo_color }};
     --promo-font-size: {{ section.settings.font_size | default: 17.2 }}px;
+    --promo-icon-size: {{ promo_icon_size }}px;
+    padding-block: {{ section.settings.vertical_padding | default: 40 }}px;
+  }
+
+  #section-id-{{ section.id }} .icon-with-caption__icon {
+    width: max(50px, var(--promo-icon-size));
+    height: max(50px, var(--promo-icon-size));
+    flex-shrink: 0;
+  }
+  #section-id-{{ section.id }} .icon-with-caption__icon svg,
+  #section-id-{{ section.id }} .icon-with-caption__image-icon {
+    width: var(--promo-icon-size);
+    height: var(--promo-icon-size);
+  }
+  #section-id-{{ section.id }} .icon-with-caption__image-icon img {
+    object-fit: contain;
   }
 
   #section-id-{{ section.id }} .heading-font,
@@ -142,6 +162,28 @@
       "step": 0.2,
       "unit": "px",
       "default": 17.2
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40,
+      "info": "Applies equally above and below the section."
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 16,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 34,
+      "info": "Applies to built-in icons and uploaded custom icons."
     }
   ],
   "blocks": [
