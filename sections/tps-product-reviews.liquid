@@ -3,7 +3,7 @@
   {% if section.settings.show_featured %}
     <div data-store-review-source hidden aria-hidden="true">
       {% for block in section.blocks %}
-        {% if block.type contains '/all_reviews_page/' %}
+        {% if block.id contains 'all_reviews_page' %}
           {% render block %}
         {% endif %}
       {% endfor %}
@@ -26,7 +26,7 @@
   <section class="tps-review-full">
     <div class="tps-review-full__inner">
       {% for block in section.blocks %}
-        {% unless block.type contains '/all_reviews_page/' %}
+        {% unless block.id contains 'all_reviews_page' %}
           {% render block %}
         {% endunless %}
       {% endfor %}
