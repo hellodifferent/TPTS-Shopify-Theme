@@ -133,32 +133,6 @@
             "returns_url": ""
           }
         },
-        "judge_me_reviews_store_summary_xywWUk": {
-          "type": "shopify://apps/judge-me-reviews/blocks/store_summary/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "data_source": "sample",
-            "theme": "expanded",
-            "button_theme_color": "#ffffff",
-            "button_theme_text_color": "#000000",
-            "show_keywords": true,
-            "keywords_visibility": "shown",
-            "show_button": true,
-            "button_visibility": "shown",
-            "alignment": "left",
-            "title_size": "default",
-            "text_size": "default",
-            "corner_styling": "soft",
-            "widget_color": "#f9f9f9",
-            "text_color": "#000000",
-            "lighter_text_color": "#787878",
-            "button_color": "#d1c9c0",
-            "button_text_color": "#ffffff",
-            "show_sentiment_colors": false,
-            "max_width": 1100,
-            "heading_text": "What customers have to say",
-            "button_text": "See AI reviews summary"
-          }
-        },
         "tps_product_benefits": {
           "type": "tps_product_benefits",
           "settings": {
@@ -502,32 +476,6 @@
             "enable_carousel": true,
             "max_products": 4
           }
-        },
-        "judge_me_reviews_store_summary_TejqmW": {
-          "type": "shopify://apps/judge-me-reviews/blocks/store_summary/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "data_source": "sample",
-            "theme": "expanded",
-            "button_theme_color": "#ffffff",
-            "button_theme_text_color": "#000000",
-            "show_keywords": true,
-            "keywords_visibility": "shown",
-            "show_button": true,
-            "button_visibility": "shown",
-            "alignment": "left",
-            "title_size": "default",
-            "text_size": "default",
-            "corner_styling": "soft",
-            "widget_color": "#f9f9f9",
-            "text_color": "#000000",
-            "lighter_text_color": "#787878",
-            "button_color": "#108474",
-            "button_text_color": "#ffffff",
-            "show_sentiment_colors": false,
-            "max_width": 1100,
-            "heading_text": "Customers rate this store",
-            "button_text": "See AI reviews summary"
-          }
         }
       },
       "block_order": [
@@ -545,7 +493,6 @@
         "tps_castle_stock_test",
         "buy_buttons_6Ukibb",
         "tps_delivery_links",
-        "judge_me_reviews_store_summary_xywWUk",
         "tps_product_benefits",
         "tps_benefits_step_slide",
         "tps_benefits_explorer",
@@ -572,8 +519,7 @@
         "7724e8aa-e0b4-47e4-ae8e-efd5ab746965",
         "accordion_PEyq34",
         "65a87f77-6a2f-4d19-bbd0-d6d80c0a487b",
-        "tps_complementary_products",
-        "judge_me_reviews_store_summary_TejqmW"
+        "tps_complementary_products"
       ],
       "custom_css": [
         ".zip-container span {font-size: 14px;}",
