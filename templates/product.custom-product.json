@@ -508,7 +508,7 @@
           "settings": {
             "data_source": "sample",
             "theme": "expanded",
-            "button_theme_color": "#FFFFFF",
+            "button_theme_color": "#ffffff",
             "button_theme_text_color": "#000000",
             "show_keywords": true,
             "keywords_visibility": "shown",
@@ -518,11 +518,11 @@
             "title_size": "default",
             "text_size": "default",
             "corner_styling": "soft",
-            "widget_color": "#F9F9F9",
+            "widget_color": "#f9f9f9",
             "text_color": "#000000",
             "lighter_text_color": "#787878",
             "button_color": "#108474",
-            "button_text_color": "#FFFFFF",
+            "button_text_color": "#ffffff",
             "show_sentiment_colors": false,
             "max_width": 1100,
             "heading_text": "Customers rate this store",
@@ -738,7 +738,6 @@
       "blocks": {
         "judge_me_reviews_all_reviews_page_eNRUQg": {
           "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_page/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": false,
           "settings": {
             "max_width": 1200,
             "review_source": "product",
@@ -749,6 +748,7 @@
         },
         "judge_me_reviews_reviews_grid_widget_FJDMiX": {
           "type": "shopify://apps/judge-me-reviews/blocks/reviews_grid_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
           "settings": {
             "show_sample_reviews": true,
             "review_selection": "current_product",
@@ -770,15 +770,14 @@
             "corner_styling": "soft",
             "card_spacing": "small",
             "header_text_color": "#000000",
-            "star_and_reviewer_name_color": "#FFFFFF",
-            "drop_shadow_color": "#FFFFFF",
-            "overlay_and_background_color": "#E5DFD8",
+            "star_and_reviewer_name_color": "#ffffff",
+            "drop_shadow_color": "#ffffff",
+            "overlay_and_background_color": "#e5dfd8",
             "content_color": "#f9f9f9",
             "header_text": "From our customers",
             "show_average_rating": true,
             "rating_display": "default"
-          },
-          "disabled": true
+          }
         },
         "loox_reviews_loox_dynamic_section_XgETMn": {
           "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
@@ -796,7 +795,12 @@
         },
         "tps_full_review_widget": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
         }
       },
       "block_order": [
@@ -805,15 +809,15 @@
         "loox_reviews_loox_dynamic_section_XgETMn",
         "tps_full_review_widget"
       ],
+      "name": "TPS product reviews",
       "settings": {
         "show_featured": true,
-        "eyebrow": "Playtime, in real life",
+        "eyebrow": "Reviews",
         "heading": "Loved by little ones. Trusted by parents.",
         "feature_count": 6,
         "feature_background": "#e8d8c6",
         "reviews_background": "#f7f5f1"
-      },
-      "name": "TPS product reviews"
+      }
     },
     "related-products": {
       "type": "related-products",
@@ -930,11 +934,11 @@
   },
   "order": [
     "main",
-    "collapsible_tabs_z3Gqcr",
     "review_testimonials_FE4FKe",
     "product_template_product_list_zdCWFy",
-    "17065021823ac34344",
     "related-products",
+    "17065021823ac34344",
+    "collapsible_tabs_z3Gqcr",
     "background_video_aGn97b",
     "custom_content_C4rdYD",
     "custom_liquid_xrQ7WD"
