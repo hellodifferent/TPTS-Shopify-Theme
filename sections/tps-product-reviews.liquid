@@ -23,17 +23,6 @@
       </div>
     </section>
   {% endif %}
-  {% if request.page_type == 'product' %}
-  <section class="tps-review-full">
-    <div class="tps-review-full__inner">
-      {% for block in section.blocks %}
-        {% unless block.id contains 'all_reviews_page' %}
-          {% render block %}
-        {% endunless %}
-      {% endfor %}
-    </div>
-  </section>
-  {% endif %}
   <dialog class="tps-review-story-dialog" data-story-dialog aria-labelledby="tps-story-title-{{ section.id }}">
     <button type="button" class="tps-review-story-dialog__close" data-story-close aria-label="{{ 'general.navigation.close' | t | escape }}">{% render 'icon-close' %}</button>
     <p class="tps-review-feature__stars" data-story-stars></p>
@@ -45,7 +34,7 @@
 
 {% schema %}
 {
-  "name": "TPS product reviews",
+  "name": "TPS customer stories",
   "enabled_on": { "templates": ["product", "index"] },
   "settings": [
     { "type": "checkbox", "id": "show_featured", "label": "Show featured customer stories", "default": true },
@@ -53,10 +42,9 @@
     { "type": "text", "id": "heading", "label": "Featured heading", "default": "Loved by little ones. Trusted by parents." },
     { "type": "range", "id": "feature_count", "label": "Featured cards", "min": 2, "max": 8, "step": 1, "default": 6 },
     { "type": "color", "id": "feature_background", "label": "Featured background", "default": "#e8d8c6" },
-    { "type": "color", "id": "reviews_background", "label": "Reviews background", "default": "#f7f5f1" },
     { "type": "paragraph", "content": "Featured cards use published reviews and customer photos/videos from across the store, alternating quotes and media. Manage reviews and widget options in Judge.me." }
   ],
   "blocks": [{ "type": "@app" }],
-  "presets": [{ "name": "TPS product reviews" }]
+  "presets": [{ "name": "TPS customer stories" }]
 }
 {% endschema %}

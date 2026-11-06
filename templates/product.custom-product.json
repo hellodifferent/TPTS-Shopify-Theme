@@ -734,18 +734,8 @@
       }
     },
     "17065021823ac34344": {
-      "type": "tps-product-reviews",
+      "type": "tps-customer-reviews",
       "blocks": {
-        "judge_me_reviews_all_reviews_page_eNRUQg": {
-          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_page/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "max_width": 1200,
-            "review_source": "product",
-            "show_all_reviews_in_same_tab": false,
-            "show_first": "product",
-            "empty_state": "empty_widget"
-          }
-        },
         "judge_me_reviews_reviews_grid_widget_FJDMiX": {
           "type": "shopify://apps/judge-me-reviews/blocks/reviews_grid_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "disabled": true,
@@ -804,18 +794,12 @@
         }
       },
       "block_order": [
-        "judge_me_reviews_all_reviews_page_eNRUQg",
         "judge_me_reviews_reviews_grid_widget_FJDMiX",
         "loox_reviews_loox_dynamic_section_XgETMn",
         "tps_full_review_widget"
       ],
-      "name": "TPS product reviews",
+      "name": "TPS customer reviews",
       "settings": {
-        "show_featured": true,
-        "eyebrow": "Reviews",
-        "heading": "Loved by little ones. Trusted by parents.",
-        "feature_count": 6,
-        "feature_background": "#e8d8c6",
         "reviews_background": "#f7f5f1"
       }
     },
@@ -930,6 +914,32 @@
         "show_space": true,
         "code": "<script>\nwindow.addEventListener('load', function() {\nvar _learnq = window._learnq || [];\nfunction addedToCart() {\n  fetch(`${window.location.origin}/cart.js`)\n  .then(res => res.clone().json().then(data => {\n    var cart = {\n      total_price: data.total_price/100,\n      $value: data.total_price/100,\n      total_discount: data.total_discount,\n      original_total_price: data.original_total_price/100,\n      items: data.items\n    }\n    if (item !== 'undefined') {\n      cart = Object.assign(cart, item)\n    }\n    if (klAjax) {\n        _learnq.push(['track', 'Added to Cart', cart]);\n        klAjax = false;\n      }\n  }))\n};\n(function (ns, fetch) {\n  ns.fetch = function() {\n    const response = fetch.apply(this, arguments);\n    response.then(res => {\n      if (`${window.location.origin}/cart/add.js`\n      \t.includes(res.url)) {\n        \taddedToCart()\n      }\n    });\n    return response\n  }\n}(window, window.fetch));\nvar klAjax = true;\nvar atcButtons = document.querySelectorAll(\"form[action*='/cart/add'] button[type='submit']\");\nfor (var i = 0; i < atcButtons.length; i++) {\n    atcButtons[i].addEventListener(\"click\", function() {\n      if (klAjax) {\n        _learnq.push(['track', 'Added to Cart', item]);\n        klAjax = false;\n      }\n    })\n}\n});\n</script>"
       }
+    },
+    "tps_customer_stories": {
+      "type": "tps-product-reviews",
+      "name": "TPS customer stories",
+      "blocks": {
+        "judge_me_reviews_all_reviews_page_eNRUQg": {
+          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_page/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "max_width": 1200,
+            "review_source": "product",
+            "show_all_reviews_in_same_tab": false,
+            "show_first": "product",
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_all_reviews_page_eNRUQg"
+      ],
+      "settings": {
+        "show_featured": true,
+        "eyebrow": "Reviews",
+        "heading": "Loved by little ones. Trusted by parents.",
+        "feature_count": 6,
+        "feature_background": "#e8d8c6"
+      }
     }
   },
   "order": [
@@ -937,6 +947,7 @@
     "review_testimonials_FE4FKe",
     "product_template_product_list_zdCWFy",
     "related-products",
+    "tps_customer_stories",
     "17065021823ac34344",
     "collapsible_tabs_z3Gqcr",
     "background_video_aGn97b",

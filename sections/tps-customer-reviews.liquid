@@ -1,0 +1,22 @@
+{{ 'tps-product-reviews.css' | asset_url | stylesheet_tag }}
+<div class="tps-product-reviews" style="--tps-review-list-bg: {{ section.settings.reviews_background }};">
+  <section class="tps-review-full">
+    <div class="tps-review-full__inner">
+      {% for block in section.blocks %}
+        {% render block %}
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "name": "TPS customer reviews",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "color", "id": "reviews_background", "label": "Reviews background", "default": "#f7f5f1" },
+    { "type": "paragraph", "content": "Product-specific customer reviews. Manage published reviews and widget options in Judge.me." }
+  ],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "TPS customer reviews" }]
+}
+{% endschema %}
