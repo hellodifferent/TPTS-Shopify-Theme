@@ -289,18 +289,18 @@
           "type": "icon",
           "settings": {
             "icon": "heart",
-            "text": "30,000+ Happy Customers",
+            "text": "30,000+ Happy Playtime Customers",
             "link_url": "",
-            "desktop_max_width": 220
+            "desktop_max_width": 180
           }
         },
         "icon_4wmjtF": {
           "type": "icon",
           "settings": {
             "icon": "tps_payment",
-            "text": "Buy Now, Pay Later — options available",
+            "text": "Buy Now, Pay Later available at checkout",
             "link_url": "",
-            "desktop_max_width": 260
+            "desktop_max_width": 190
           }
         },
         "icon_bMtJQx": {
@@ -309,16 +309,16 @@
             "icon": "tps_play",
             "text": "Designed for Safe, Active Play",
             "link_url": "",
-            "desktop_max_width": 230
+            "desktop_max_width": 170
           }
         },
         "icon_8f6WDD": {
           "type": "icon",
           "settings": {
             "icon": "truck",
-            "text": "Australian Owned & Shipping from Brisbane",
+            "text": "Australian Owned & Ships Next Day from Brisbane",
             "link_url": "",
-            "desktop_max_width": 280
+            "desktop_max_width": 220
           }
         }
       },
@@ -330,13 +330,13 @@
       ],
       "name": "Cross-page promos",
       "settings": {
-        "cross_page_promo_bg": "#f7f5f1",
-        "cross_page_promo_color": "#68655f",
-        "show_on_home_page": true,
         "layout_style": "inline",
         "desktop_gap": 32,
         "autoplay": true,
-        "autoplay_speed": 4
+        "autoplay_speed": 4,
+        "cross_page_promo_bg": "#f7f5f1",
+        "cross_page_promo_color": "#68655f",
+        "show_on_home_page": true
       }
     },
     "collection_slider_9Rd7Fi": {
