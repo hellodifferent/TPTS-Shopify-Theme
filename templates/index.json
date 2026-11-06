@@ -336,7 +336,9 @@
         "cross_page_promo_bg": "#f5eddf",
         "cross_page_promo_color": "#3c3a38",
         "show_on_home_page": true,
-        "font_size": 15
+        "font_size": 15,
+        "vertical_padding": 22,
+        "icon_size": 32
       }
     },
     "collection_slider_9Rd7Fi": {
