@@ -482,7 +482,10 @@
         "coll_text_position_under_mobile": false,
         "coll_thumb_text_align_x": "center",
         "coll_thumb_text_align_y": "center",
-        "coll_button_style": "primary"
+        "coll_button_style": "primary",
+        "custom_vertical_padding": false,
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "collection_list_HLG6Uw": {
@@ -529,7 +532,10 @@
         "coll_text_position_under_mobile": false,
         "coll_thumb_text_align_x": "center",
         "coll_thumb_text_align_y": "center",
-        "coll_button_style": "primary"
+        "coll_button_style": "primary",
+        "custom_vertical_padding": false,
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "16359278676808bea5": {
@@ -621,8 +627,10 @@
         "show_price": true,
         "show_badge": true,
         "sold_out_label": "Restocking soon",
-        "cta_label": "Shop now",
-        "background": "#ffffff"
+        "background": "#ffffff",
+        "custom_vertical_padding": false,
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "rich_text_EKR8Ly": {
@@ -651,7 +659,11 @@
         "height": "small",
         "text_alignment": "center",
         "full_width": false,
-        "color_scheme": "default"
+        "color_scheme": "default",
+        "background_color": "",
+        "custom_vertical_padding": true,
+        "padding_top": 40,
+        "padding_bottom": 100
       }
     },
     "17518600637111cf4c": {
@@ -996,7 +1008,10 @@
         "coll_text_position_under_mobile": false,
         "coll_thumb_text_align_x": "center",
         "coll_thumb_text_align_y": "center",
-        "coll_button_style": "primary"
+        "coll_button_style": "primary",
+        "custom_vertical_padding": true,
+        "padding_top": 100,
+        "padding_bottom": 72
       }
     },
     "16359285201c71bbb1": {
@@ -1082,7 +1097,10 @@
         "coll_text_position_under_mobile": false,
         "coll_thumb_text_align_x": "center",
         "coll_thumb_text_align_y": "center",
-        "coll_button_style": "primary"
+        "coll_button_style": "primary",
+        "custom_vertical_padding": true,
+        "padding_top": 100,
+        "padding_bottom": 80
       }
     },
     "slideshow_3RpJaV": {
@@ -1254,7 +1272,10 @@
         "coll_text_position_under_mobile": false,
         "coll_thumb_text_align_x": "center",
         "coll_thumb_text_align_y": "center",
-        "coll_button_style": "primary"
+        "coll_button_style": "primary",
+        "custom_vertical_padding": false,
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "featured_collection_4cYPKg": {

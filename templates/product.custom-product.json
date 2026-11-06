@@ -567,7 +567,10 @@
         "enable_carousel": true,
         "grid": 4,
         "color_scheme": "default",
-        "full_width": true
+        "full_width": true,
+        "custom_vertical_padding": true,
+        "padding_top": 12,
+        "padding_bottom": 44
       }
     },
     "review_testimonials_FE4FKe": {
@@ -658,7 +661,10 @@
       "settings": {
         "title": "Build Your Collection",
         "show_vendor": false,
-        "grid": 4
+        "grid": 4,
+        "custom_vertical_padding": true,
+        "padding_top": 88,
+        "padding_bottom": 40
       }
     },
     "17065021823ac34344": {
@@ -728,7 +734,7 @@
       ],
       "name": "TPS customer reviews",
       "settings": {
-        "reviews_background": "#FFFFFF"
+        "reviews_background": "#ffffff"
       }
     },
     "collapsible_tabs_z3Gqcr": {
