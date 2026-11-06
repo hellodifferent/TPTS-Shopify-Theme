@@ -289,7 +289,23 @@
           "type": "icon",
           "settings": {
             "icon": "heart",
-            "text": "30,000+ happy customers",
+            "text": "30,000+ Happy Customers",
+            "link_url": ""
+          }
+        },
+        "icon_4wmjtF": {
+          "type": "icon",
+          "settings": {
+            "icon": "credit_card",
+            "text": "Buy Now, Pay Later — options available",
+            "link_url": ""
+          }
+        },
+        "icon_bMtJQx": {
+          "type": "icon",
+          "settings": {
+            "icon": "check_mark_in_circle",
+            "text": "Designed for Safe, Active Play",
             "link_url": ""
           }
         },
@@ -297,13 +313,15 @@
           "type": "icon",
           "settings": {
             "icon": "truck",
-            "text": "Shipping from Brisbane",
+            "text": "Australian Owned & Shipping from Brisbane",
             "link_url": ""
           }
         }
       },
       "block_order": [
         "icon_bRxnir",
+        "icon_4wmjtF",
+        "icon_bMtJQx",
         "icon_8f6WDD"
       ],
       "name": "Cross-page promos",
