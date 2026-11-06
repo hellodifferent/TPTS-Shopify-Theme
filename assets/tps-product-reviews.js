@@ -3,11 +3,10 @@ if (!customElements.get('tps-product-reviews')) {
     connectedCallback() {
       if (this.controller) return;
       this.controller = new AbortController();
-      this.widget = this.querySelector('.tps-review-full #judgeme_product_reviews');
       this.source = this.querySelector('[data-store-review-source]');
       this.feature = this.querySelector('[data-review-feature]');
       this.track = this.querySelector('[data-review-track]');
-      if (!this.widget || !this.feature || !this.source) return;
+      if (!this.feature || !this.source) return;
       this.dialog = this.querySelector('[data-story-dialog]');
       const on = (target, type, fn) => target.addEventListener(type, fn, { signal: this.controller.signal });
       on(this.querySelector('[data-story-close]'), 'click', () => this.dialog.close());
@@ -58,7 +57,27 @@ if (!customElements.get('tps-product-reviews')) {
       this.track.replaceChildren(...cards);
       const summary = this.source.querySelector('.jm-average-rating-display, .jdgm-rev-widg__summary-text');
       const summaryParts = summary ? [...summary.querySelectorAll('.jm-text')].map(part => part.textContent.trim()).filter(Boolean) : [];
-      this.querySelector('[data-review-summary]').textContent = summaryParts.length ? summaryParts.join(' · ') : summary?.textContent.trim().replace(/\s+/g, ' ') || '';
+      const score = Number(summaryParts[0]?.match(/[\d.]+/)?.[0]);
+      const summaryNode = this.querySelector('[data-review-summary]');
+      summaryNode.replaceChildren();
+      if (score > 0 && score <= 5) {
+        const label = document.createElement('span');
+        label.textContent = this.dataset.ratedLabel + ' ' + score.toFixed(1);
+        const stars = document.createElement('span');
+        stars.className = 'tps-review-feature__rating-stars';
+        stars.textContent = '★★★★★';
+        stars.style.setProperty('--rating-fill', (score / 5 * 100) + '%');
+        stars.setAttribute('role', 'img');
+        stars.setAttribute('aria-label', score.toFixed(1) + ' ' + this.dataset.ratingLabel);
+        summaryNode.append(label, stars);
+        if (summaryParts[1]) {
+          const count = document.createElement('span');
+          count.className = 'tps-review-feature__rating-count';
+          count.textContent = summaryParts[1];
+          summaryNode.append(count);
+        }
+      }
+      summaryNode.hidden = !summaryNode.childElementCount;
       this.feature.hidden = false;
       this.updateControls();
     }

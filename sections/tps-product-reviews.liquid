@@ -1,5 +1,5 @@
 {{ 'tps-product-reviews.css' | asset_url | stylesheet_tag }}
-<tps-product-reviews class="tps-product-reviews" style="--tps-review-feature-bg: {{ section.settings.feature_background }}; --tps-review-list-bg: {{ section.settings.reviews_background }};" data-feature-limit="{{ section.settings.feature_count }}" data-open-label="{{ 'tps_reviews.open_review' | t | escape }}" data-read-label="{{ 'tps_reviews.read_review' | t | escape }}">
+<tps-product-reviews class="tps-product-reviews" style="--tps-review-feature-bg: {{ section.settings.feature_background }}; --tps-review-list-bg: {{ section.settings.reviews_background }};" data-feature-limit="{{ section.settings.feature_count }}" data-open-label="{{ 'tps_reviews.open_review' | t | escape }}" data-rated-label="{{ 'tps_reviews.rated' | t | escape }}" data-rating-label="{{ 'tps_reviews.rating_label' | t | escape }}" data-read-label="{{ 'tps_reviews.read_review' | t | escape }}">
   {% if section.settings.show_featured %}
     <div data-store-review-source hidden aria-hidden="true">
       {% for block in section.blocks %}
@@ -23,6 +23,7 @@
       </div>
     </section>
   {% endif %}
+  {% if request.page_type == 'product' %}
   <section class="tps-review-full">
     <div class="tps-review-full__inner">
       {% for block in section.blocks %}
@@ -32,6 +33,7 @@
       {% endfor %}
     </div>
   </section>
+  {% endif %}
   <dialog class="tps-review-story-dialog" data-story-dialog aria-labelledby="tps-story-title-{{ section.id }}">
     <button type="button" class="tps-review-story-dialog__close" data-story-close aria-label="{{ 'general.navigation.close' | t | escape }}">{% render 'icon-close' %}</button>
     <p class="tps-review-feature__stars" data-story-stars></p>
@@ -44,7 +46,7 @@
 {% schema %}
 {
   "name": "TPS product reviews",
-  "enabled_on": { "templates": ["product"] },
+  "enabled_on": { "templates": ["product", "index"] },
   "settings": [
     { "type": "checkbox", "id": "show_featured", "label": "Show featured customer stories", "default": true },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Playtime, in real life" },
