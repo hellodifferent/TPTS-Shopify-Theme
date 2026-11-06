@@ -102,11 +102,17 @@
 .template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__details-body {
   flex: 1;
   display: block;
+  padding: 0 !important;
 }
 
 .template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__details > .jdgm-review-card__footer {
   position: static !important;
   margin-top: 20px;
+  padding: 0 !important;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__footer-inner--details {
+  padding: 0 !important;
 }
 
 .template-product [data-widget="reviews-grid"] .jdgm-review-card__footer-inner--details {
