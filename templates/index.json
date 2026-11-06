@@ -290,7 +290,8 @@
           "settings": {
             "icon": "heart",
             "text": "30,000+ Happy Playtimers",
-            "link_url": ""
+            "link_url": "",
+            "max_width": 600
           }
         },
         "icon_4wmjtF": {
@@ -299,7 +300,8 @@
             "icon": "tps_payment",
             "image": "shopify://shop_images/easy_to_clean.svg",
             "text": "Buy Now, Pay Later",
-            "link_url": ""
+            "link_url": "",
+            "max_width": 600
           }
         },
         "icon_bMtJQx": {
@@ -308,7 +310,8 @@
             "icon": "tps_play",
             "image": "shopify://shop_images/made_for_everyday_play.svg",
             "text": "Designed for Safe, Active, Everyday Play",
-            "link_url": ""
+            "link_url": "",
+            "max_width": 180
           }
         },
         "icon_8f6WDD": {
@@ -317,7 +320,8 @@
             "icon": "truck",
             "image": "shopify://shop_images/quick_dispatch.svg",
             "text": "Australian Owned & Ships Next Day from Brisbane",
-            "link_url": ""
+            "link_url": "",
+            "max_width": 210
           }
         }
       },
@@ -329,9 +333,10 @@
       ],
       "name": "Cross-page promos",
       "settings": {
-        "cross_page_promo_bg": "#F5EDDF",
-        "cross_page_promo_color": "#68655f",
-        "show_on_home_page": true
+        "cross_page_promo_bg": "#f5eddf",
+        "cross_page_promo_color": "#3c3a38",
+        "show_on_home_page": true,
+        "font_size": 15
       }
     },
     "collection_slider_9Rd7Fi": {
