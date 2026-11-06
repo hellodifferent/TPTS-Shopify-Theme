@@ -291,7 +291,7 @@
             "icon": "heart",
             "text": "30,000+ Happy Playtimers",
             "link_url": "",
-            "desktop_max_width": 160
+            "desktop_max_width": 170
           }
         },
         "icon_4wmjtF": {
@@ -300,7 +300,7 @@
             "icon": "tps_payment",
             "text": "Buy Now, Pay Later",
             "link_url": "",
-            "desktop_max_width": 180
+            "desktop_max_width": 200
           }
         },
         "icon_bMtJQx": {
@@ -309,7 +309,7 @@
             "icon": "tps_play",
             "text": "Designed for Safe, Active, Everyday Play",
             "link_url": "",
-            "desktop_max_width": 190
+            "desktop_max_width": 210
           }
         },
         "icon_8f6WDD": {
@@ -319,7 +319,7 @@
             "image": "shopify://shop_images/quick_dispatch.svg",
             "text": "Australian Owned & Ships Next Day from Brisbane",
             "link_url": "",
-            "desktop_max_width": 220
+            "desktop_max_width": 240
           }
         }
       },
@@ -333,8 +333,6 @@
       "settings": {
         "layout_style": "inline",
         "desktop_gap": 32,
-        "autoplay": true,
-        "autoplay_speed": 4,
         "cross_page_promo_bg": "#f7f5f1",
         "cross_page_promo_color": "#68655f",
         "show_on_home_page": true
