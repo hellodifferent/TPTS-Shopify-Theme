@@ -298,9 +298,9 @@
           "type": "icon",
           "settings": {
             "icon": "tps_payment",
-            "text": "Buy Now, Pay Later available at checkout",
+            "text": "Buy Now, Pay Later",
             "link_url": "",
-            "desktop_max_width": 190
+            "desktop_max_width": 180
           }
         },
         "icon_bMtJQx": {
