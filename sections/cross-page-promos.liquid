@@ -89,11 +89,6 @@
       </div>
       {%- if section.settings.layout_style == 'inline' and section.blocks.size > 1 -%}
         <div class="tps-promo-controls">
-          <div class="tps-promo-dots">
-            {%- for block in section.blocks -%}
-              <button type="button" class="tps-promo-dot" data-promo-index="{{ forloop.index0 }}" aria-label="{{ 'tps_promos.show_promotion' | t: number: forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"><span></span></button>
-            {%- endfor -%}
-          </div>
           <button type="button" class="tps-promo-pause" data-pause-text="{{ 'tps_promos.pause' | t }}" data-play-text="{{ 'tps_promos.play' | t }}">{{ 'tps_promos.pause' | t }}</button>
         </div>
       {%- endif -%}
@@ -120,6 +115,8 @@
 
   #section-id-{{ section.id }} { display: block; }
   #section-id-{{ section.id }} .tps-promo-controls { display: none; }
+  #section-id-{{ section.id }} .tps-promo-rail { display: contents; }
+  #section-id-{{ section.id }} [data-promo-clone] { display: none; }
   #section-id-{{ section.id }} .tps-promo-controls [hidden] { display: none !important; }
   #section-id-{{ section.id }}.cross-page-promos--inline { padding: 28px 0 !important; }
   #section-id-{{ section.id }}.cross-page-promos--inline .flexible-layout {
@@ -169,36 +166,48 @@
     text-align: left;
     text-transform: none;
   }
+  @keyframes tps-promo-loop {
+    to { transform: translate3d(var(--tps-loop-distance), 0, 0); }
+  }
   @media (max-width: 1023.98px) {
-    #section-id-{{ section.id }}.cross-page-promos--inline { padding: 18px 0 6px !important; }
+    #section-id-{{ section.id }}.cross-page-promos--inline { position: relative; padding: 20px 0 !important; }
+    #section-id-{{ section.id }}.cross-page-promos--inline > .container { padding: 0; max-width: none; }
     #section-id-{{ section.id }}.cross-page-promos--inline .flexible-layout {
-      justify-content: flex-start;
-      gap: 0;
+      display: block;
       overflow-x: auto;
-      scroll-snap-type: x mandatory;
       scrollbar-width: none;
-      overscroll-behavior-x: contain;
-      -webkit-overflow-scrolling: touch;
     }
     #section-id-{{ section.id }}.cross-page-promos--inline .flexible-layout::-webkit-scrollbar { display: none; }
-    #section-id-{{ section.id }}.cross-page-promos--inline .column {
-      flex: 0 0 50%;
-      width: 50%;
-      max-width: none;
-      padding: 0 14px;
-      scroll-snap-align: start;
+    #section-id-{{ section.id }}.cross-page-promos--inline .tps-promo-rail {
+      display: flex;
+      align-items: center;
+      width: max-content;
     }
-    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption { gap: 12px; min-height: 42px; }
-    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__text .heading-font { font-size: 14px; }
-    #section-id-{{ section.id }}.cross-page-promos--inline .tps-promo-controls { display: flex; align-items: center; justify-content: center; gap: 12px; }
-    #section-id-{{ section.id }} .tps-promo-dots { display: flex; }
-    #section-id-{{ section.id }} .tps-promo-dot { display: grid; place-items: center; width: 32px; height: 44px; padding: 0; background: none; border: 0; color: inherit; }
-    #section-id-{{ section.id }} .tps-promo-dot span { display: block; width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: .3; }
-    #section-id-{{ section.id }} .tps-promo-dot[aria-current="true"] span { opacity: 1; }
-    #section-id-{{ section.id }} .tps-promo-pause { min-height: 44px; padding: 0 8px; font: inherit; font-size: 11px; text-decoration: underline; text-underline-offset: 3px; color: inherit; border: 0; background: none; }
+    #section-id-{{ section.id }}.cross-page-promos--inline .column {
+      flex: 0 0 auto;
+      width: auto;
+      max-width: none;
+      padding: 0 26px;
+    }
+    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption { gap: 12px; min-height: 28px; }
+    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__text .heading-font { font-size: 14px; white-space: nowrap; }
+    #section-id-{{ section.id }}.cross-page-promos--inline[data-loop-ready="true"] .flexible-layout { overflow: hidden; }
+    #section-id-{{ section.id }}.cross-page-promos--inline[data-loop-ready="true"] [data-promo-clone] { display: block; }
+    #section-id-{{ section.id }}.cross-page-promos--inline[data-loop-ready="true"] .tps-promo-rail {
+      animation: tps-promo-loop var(--tps-loop-duration) linear infinite;
+      will-change: transform;
+    }
+    #section-id-{{ section.id }}.cross-page-promos--inline[data-paused="true"] .tps-promo-rail,
+    #section-id-{{ section.id }}.cross-page-promos--inline:hover .tps-promo-rail,
+    #section-id-{{ section.id }}.cross-page-promos--inline:focus-within .tps-promo-rail { animation-play-state: paused; }
+    #section-id-{{ section.id }}.cross-page-promos--inline[data-loop-ready="true"] .tps-promo-controls { display: block; position: absolute; right: 0; bottom: 0; }
+    #section-id-{{ section.id }} .tps-promo-pause { padding: 2px 10px; font: inherit; font-size: 10px; line-height: 1.4; text-decoration: underline; text-underline-offset: 2px; color: inherit; border: 0; background: var(--bg-color); }
   }
-  @media (max-width: 767.98px) {
-    #section-id-{{ section.id }}.cross-page-promos--inline .column { flex-basis: 100%; width: 100%; }
+  @media (prefers-reduced-motion: reduce) {
+    #section-id-{{ section.id }}.cross-page-promos--inline .tps-promo-rail { animation: none !important; transform: none !important; }
+    #section-id-{{ section.id }}.cross-page-promos--inline [data-promo-clone] { display: none !important; }
+    #section-id-{{ section.id }}.cross-page-promos--inline .flexible-layout { overflow-x: auto !important; }
+    #section-id-{{ section.id }}.cross-page-promos--inline .tps-promo-controls { display: none !important; }
   }
 {% endstyle %}
 
@@ -243,7 +252,7 @@
     {
       "type": "range",
       "id": "autoplay_speed",
-      "label": "Time between promotions",
+      "label": "Scroll time per 100px",
       "min": 3,
       "max": 10,
       "step": 1,
