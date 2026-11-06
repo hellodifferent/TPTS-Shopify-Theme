@@ -22,11 +22,11 @@
       assign column_width = 'full'
     endif
   %}
-  <div id="section-id-{{ section.id }}" class="cross-page-promos{% if section.settings.layout_style == 'inline' %} cross-page-promos--inline{% endif %}">
+  <div id="section-id-{{ section.id }}" class="cross-page-promos">
     <div class="container">
       <div class="flexible-layout {% if column_width == 'quarter' %}layout-all-quarters{% endif %}">
         {%- for block in section.blocks -%}
-          <div style="--tps-promo-max-width: {{ block.settings.desktop_max_width | default: 260 }}px;" class="column column--{{ column_width }} align-center block-id-{{ block.id }}" {{ block.shopify_attributes }}>
+          <div class="column column--{{ column_width }} align-center block-id-{{ block.id }}" {{ block.shopify_attributes }}>
             <div class="relative">
               {% if block.settings.link_url != blank %}
               <a class="block" href="{{ block.settings.link_url }}">
@@ -56,14 +56,7 @@
                   <div class="icon-with-caption">
                     <div class="icon-with-caption__icon">
                       {%- if block.settings.image == blank -%}
-                        {%- case block.settings.icon -%}
-                          {%- when 'tps_payment' -%}
-                            {{ 'tps-promo-payment.svg' | inline_asset_content }}
-                          {%- when 'tps_play' -%}
-                            {{ 'tps-promo-play.svg' | inline_asset_content }}
-                          {%- else -%}
-                            {%- render 'icon', icon: block.settings.icon, size: 'medium' -%}
-                        {%- endcase -%}
+                        {%- render 'icon', icon: block.settings.icon, size: 'medium' -%}
                       {%- else -%}
                         <div class="icon-with-caption__image-icon">
                           {%- render 'image' with block.settings.image, sizes: '34px', widths: '34, 68', loading: 'lazy' -%}
@@ -87,7 +80,6 @@
           </div>
         {%- endfor -%}
       </div>
-
     </div>
   </div>
 {%- endif -%}
@@ -105,87 +97,6 @@
       }
     {%- endif -%}
   {%- endfor -%}
-
-  #section-id-{{ section.id }} { display: block; }
-  #section-id-{{ section.id }}.cross-page-promos--inline .icon--type-heart { stroke: #97745b; }
-  #section-id-{{ section.id }}.cross-page-promos--inline { padding: 28px 0 !important; }
-  #section-id-{{ section.id }}.cross-page-promos--inline .flexible-layout {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: {{ section.settings.desktop_gap | default: 32 }}px;
-    margin: 0;
-  }
-  #section-id-{{ section.id }}.cross-page-promos--inline .column {
-    flex: 1 1 0;
-    width: auto;
-    min-width: 0;
-    max-width: var(--tps-promo-max-width);
-    margin: 0;
-    padding: 0;
-  }
-  #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
-  }
-  #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__icon {
-    flex: 0 0 auto;
-    margin: 0;
-    padding: 0;
-    width: 28px;
-    height: 28px;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-    line-height: 0;
-  }
-  #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__text { margin: 0; min-width: 0; }
-  #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__icon svg,
-  #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__image-icon { width: 28px; height: 28px; }
-  #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__text .heading-font {
-    margin: 0;
-    font-family: inherit;
-    font-size: clamp(14px, 1.3vw, 16px);
-    font-weight: 400;
-    line-height: 1.4;
-    letter-spacing: normal;
-    text-align: left;
-    text-transform: none;
-  }
-  @media (max-width: 767.98px) {
-    #section-id-{{ section.id }}.cross-page-promos--inline { padding: 18px 0 !important; }
-    #section-id-{{ section.id }}.cross-page-promos--inline .flexible-layout {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px 18px;
-    }
-    #section-id-{{ section.id }}.cross-page-promos--inline .column {
-      width: 100% !important;
-      max-width: none !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption {
-      flex-direction: row;
-      justify-content: flex-start;
-      gap: 8px;
-    }
-    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__icon,
-    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__icon svg,
-    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__image-icon {
-      width: 22px;
-      height: 22px;
-    }
-    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__text .heading-font {
-      font-size: 12.5px;
-      text-align: left;
-      white-space: normal;
-    }
-  }
 {% endstyle %}
 
 
@@ -194,32 +105,6 @@
   "name": "Cross-page promos",
   "max_blocks": 4,
   "settings": [
-    {
-      "type": "select",
-      "id": "layout_style",
-      "label": "Layout",
-      "default": "stacked",
-      "options": [
-        {
-          "value": "stacked",
-          "label": "Icon above text"
-        },
-        {
-          "value": "inline",
-          "label": "Icon beside text"
-        }
-      ]
-    },
-    {
-      "type": "range",
-      "id": "desktop_gap",
-      "label": "Minimum desktop gap",
-      "min": 16,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "default": 32
-    },
     {
       "type": "color",
       "id": "cross_page_promo_bg",
@@ -269,16 +154,6 @@
           "type": "url",
           "id": "link_url",
           "label": "Image link"
-        },
-        {
-          "type": "range",
-          "id": "desktop_max_width",
-          "label": "Desktop maximum width",
-          "min": 160,
-          "max": 400,
-          "step": 10,
-          "unit": "px",
-          "default": 260
         }
       ]
     },
@@ -447,14 +322,6 @@
             {
               "value": "world",
               "label": "World"
-            },
-            {
-              "value": "tps_payment",
-              "label": "TPS payment sparkles"
-            },
-            {
-              "value": "tps_play",
-              "label": "TPS everyday play"
             }
           ]
         },
@@ -473,16 +340,6 @@
           "type": "url",
           "id": "link_url",
           "label": "Icon link"
-        },
-        {
-          "type": "range",
-          "id": "desktop_max_width",
-          "label": "Desktop maximum width",
-          "min": 160,
-          "max": 400,
-          "step": 10,
-          "unit": "px",
-          "default": 260
         }
       ]
     }
@@ -490,7 +347,8 @@
   "presets": [
     {
       "name": "Cross-page promos",
-      "blocks": []
+      "blocks": [
+      ]
     }
   ]
 }
