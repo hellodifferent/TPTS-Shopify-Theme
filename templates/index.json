@@ -329,7 +329,7 @@
       ],
       "name": "Cross-page promos",
       "settings": {
-        "cross_page_promo_bg": "#f7f5f1",
+        "cross_page_promo_bg": "#F5EDDF",
         "cross_page_promo_color": "#68655f",
         "show_on_home_page": true
       }
