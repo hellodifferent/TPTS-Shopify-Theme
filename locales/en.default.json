@@ -601,5 +601,11 @@
     "show_promotion": "Show promotion {{ number }}",
     "pause": "Pause",
     "play": "Play"
+  },
+  "tps_reviews": {
+    "open_review": "View customer story",
+    "read_review": "Read full review",
+    "previous": "Previous customer stories",
+    "next": "Next customer stories"
   }
 }
