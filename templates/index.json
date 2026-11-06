@@ -290,23 +290,26 @@
           "settings": {
             "icon": "heart",
             "text": "30,000+ Happy Customers",
-            "link_url": ""
+            "link_url": "",
+            "desktop_max_width": 220
           }
         },
         "icon_4wmjtF": {
           "type": "icon",
           "settings": {
-            "icon": "credit_card",
+            "icon": "tps_payment",
             "text": "Buy Now, Pay Later — options available",
-            "link_url": ""
+            "link_url": "",
+            "desktop_max_width": 260
           }
         },
         "icon_bMtJQx": {
           "type": "icon",
           "settings": {
-            "icon": "check_mark_in_circle",
+            "icon": "tps_play",
             "text": "Designed for Safe, Active Play",
-            "link_url": ""
+            "link_url": "",
+            "desktop_max_width": 230
           }
         },
         "icon_8f6WDD": {
@@ -314,7 +317,8 @@
           "settings": {
             "icon": "truck",
             "text": "Australian Owned & Shipping from Brisbane",
-            "link_url": ""
+            "link_url": "",
+            "desktop_max_width": 280
           }
         }
       },
@@ -329,7 +333,10 @@
         "cross_page_promo_bg": "#f7f5f1",
         "cross_page_promo_color": "#68655f",
         "show_on_home_page": true,
-        "layout_style": "inline"
+        "layout_style": "inline",
+        "desktop_gap": 32,
+        "autoplay": true,
+        "autoplay_speed": 4
       }
     },
     "collection_slider_9Rd7Fi": {

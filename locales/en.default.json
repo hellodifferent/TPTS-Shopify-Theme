@@ -596,5 +596,10 @@
     "cloud_200_description": "100 white + 100 transparent balls",
     "ocean_200_description": "100 white + 100 blue balls",
     "pink_200_description": "100 white + 100 pink balls"
+  },
+  "tps_promos": {
+    "show_promotion": "Show promotion {{ number }}",
+    "pause": "Pause",
+    "play": "Play"
   }
 }
