@@ -1,6 +1,13 @@
 {{ 'tps-product-reviews.css' | asset_url | stylesheet_tag }}
 <tps-product-reviews class="tps-product-reviews" style="--tps-review-feature-bg: {{ section.settings.feature_background }}; --tps-review-list-bg: {{ section.settings.reviews_background }};" data-feature-limit="{{ section.settings.feature_count }}" data-open-label="{{ 'tps_reviews.open_review' | t | escape }}" data-read-label="{{ 'tps_reviews.read_review' | t | escape }}">
   {% if section.settings.show_featured %}
+    <div data-store-review-source hidden aria-hidden="true">
+      {% for block in section.blocks %}
+        {% if block.type contains '/all_reviews_page/' %}
+          {% render block %}
+        {% endif %}
+      {% endfor %}
+    </div>
     <section class="tps-review-feature" data-review-feature hidden aria-labelledby="tps-review-feature-title-{{ section.id }}">
       <div class="tps-review-feature__inner">
         <div class="tps-review-feature__intro">
@@ -19,10 +26,18 @@
   <section class="tps-review-full">
     <div class="tps-review-full__inner">
       {% for block in section.blocks %}
-        {% render block %}
+        {% unless block.type contains '/all_reviews_page/' %}
+          {% render block %}
+        {% endunless %}
       {% endfor %}
     </div>
   </section>
+  <dialog class="tps-review-story-dialog" data-story-dialog aria-labelledby="tps-story-title-{{ section.id }}">
+    <button type="button" class="tps-review-story-dialog__close" data-story-close aria-label="{{ 'general.navigation.close' | t | escape }}">{% render 'icon-close' %}</button>
+    <p class="tps-review-feature__stars" data-story-stars></p>
+    <h3 id="tps-story-title-{{ section.id }}" data-story-title></h3>
+    <blockquote data-story-quote></blockquote>
+  </dialog>
 </tps-product-reviews>
 <script src="{{ 'tps-product-reviews.js' | asset_url }}" defer></script>
 
@@ -37,7 +52,7 @@
     { "type": "range", "id": "feature_count", "label": "Featured cards", "min": 2, "max": 8, "step": 1, "default": 6 },
     { "type": "color", "id": "feature_background", "label": "Featured background", "default": "#e8d8c6" },
     { "type": "color", "id": "reviews_background", "label": "Reviews background", "default": "#f7f5f1" },
-    { "type": "paragraph", "content": "Featured cards use your published product reviews and customer photos/videos automatically. Manage reviews and widget options in Judge.me." }
+    { "type": "paragraph", "content": "Featured cards use published reviews and customer photos/videos from across the store, alternating quotes and media. Manage reviews and widget options in Judge.me." }
   ],
   "blocks": [{ "type": "@app" }],
   "presets": [{ "name": "TPS product reviews" }]
