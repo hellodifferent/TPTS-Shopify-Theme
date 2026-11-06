@@ -22,7 +22,7 @@
       assign column_width = 'full'
     endif
   %}
-  <div id="section-id-{{ section.id }}" class="cross-page-promos">
+  <div id="section-id-{{ section.id }}" class="cross-page-promos{% if section.settings.layout_style == 'inline' %} cross-page-promos--inline{% endif %}">
     <div class="container">
       <div class="flexible-layout {% if column_width == 'quarter' %}layout-all-quarters{% endif %}">
         {%- for block in section.blocks -%}
@@ -97,6 +97,58 @@
       }
     {%- endif -%}
   {%- endfor -%}
+
+  #section-id-{{ section.id }}.cross-page-promos--inline {
+    padding: 24px 0;
+  }
+  #section-id-{{ section.id }}.cross-page-promos--inline .flexible-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(32px, 8vw, 120px);
+    margin: 0;
+  }
+  #section-id-{{ section.id }}.cross-page-promos--inline .column {
+    flex: 0 1 auto;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+  }
+  #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__icon {
+    flex: 0 0 auto;
+    margin: 0;
+    line-height: 0;
+  }
+  #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__text .heading-font {
+    margin: 0;
+    font-family: inherit;
+    font-size: clamp(14px, 1.6vw, 20px);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: left;
+    text-transform: none;
+  }
+  @media (max-width: 767.98px) {
+    #section-id-{{ section.id }}.cross-page-promos--inline { padding: 18px 0; }
+    #section-id-{{ section.id }}.cross-page-promos--inline .flexible-layout { gap: 18px; }
+    #section-id-{{ section.id }}.cross-page-promos--inline .column { flex: 1 1 0; min-width: 0; }
+    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption { gap: 8px; }
+    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__icon svg { width: 22px; height: 22px; }
+    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__text { min-width: 0; }
+    #section-id-{{ section.id }}.cross-page-promos--inline .icon-with-caption__text .heading-font { font-size: 12.5px; }
+  }
 {% endstyle %}
 
 
@@ -105,6 +157,16 @@
   "name": "Cross-page promos",
   "max_blocks": 4,
   "settings": [
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Layout",
+      "default": "stacked",
+      "options": [
+        { "value": "stacked", "label": "Icon above text" },
+        { "value": "inline", "label": "Icon beside text" }
+      ]
+    },
     {
       "type": "color",
       "id": "cross_page_promo_bg",

@@ -1823,13 +1823,25 @@
     {
       "type": "tps_product_benefits",
       "name": "TPS product benefits",
-      "limit": 1,
+      "limit": 12,
       "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Block name",
+          "info": "For identifying this set in the theme editor. This name is not shown to customers."
+        },
         {
           "type": "text",
           "id": "product_title_contains",
           "label": "Only show for titles containing",
           "info": "Leave blank to show on all physical products using this template. Use a shared product name to keep product-specific facts within that range."
+        },
+        {
+          "type": "text",
+          "id": "exclude_title_contains",
+          "label": "Hide for titles containing",
+          "info": "Optional. For example, exclude Mini from the Step & Slide block."
         },
         {
           "type": "textarea",

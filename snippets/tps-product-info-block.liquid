@@ -15,6 +15,10 @@
         assign show_block = false
       endunless
     endif
+    assign excluded_title = block.settings.exclude_title_contains | strip | downcase
+    if excluded_title != blank and current_title contains excluded_title
+      assign show_block = false
+    endif
     if block.settings.introduction == blank and block.settings.benefit_1 == blank and block.settings.benefit_2 == blank and block.settings.benefit_3 == blank
       assign show_block = false
     endif

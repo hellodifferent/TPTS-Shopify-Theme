@@ -289,48 +289,29 @@
           "type": "icon",
           "settings": {
             "icon": "heart",
-            "text": "30,000+ Happy <br> Customers",
-            "link_url": ""
-          }
-        },
-        "icon_4wmjtF": {
-          "type": "icon",
-          "settings": {
-            "icon": "star",
-            "text": "Buy Now, Pay Later <br> options available",
-            "link_url": ""
-          }
-        },
-        "icon_bMtJQx": {
-          "type": "icon",
-          "settings": {
-            "icon": "sun-high",
-            "image": "shopify://shop_images/play_block_icon_8de45818-2882-4920-84c1-78765a3e9ed6.png",
-            "text": "Designed for Safe, <br> Active Play",
+            "text": "30,000+ happy customers",
             "link_url": ""
           }
         },
         "icon_8f6WDD": {
           "type": "icon",
           "settings": {
-            "icon": "award",
-            "image": "shopify://shop_images/noun-australia-7447256.svg",
-            "text": "Australian Owned <br> & Shipping from Brisbane",
+            "icon": "truck",
+            "text": "Shipping from Brisbane",
             "link_url": ""
           }
         }
       },
       "block_order": [
         "icon_bRxnir",
-        "icon_4wmjtF",
-        "icon_bMtJQx",
         "icon_8f6WDD"
       ],
       "name": "Cross-page promos",
       "settings": {
-        "cross_page_promo_bg": "#f5eddf",
-        "cross_page_promo_color": "#4c4c4b",
-        "show_on_home_page": true
+        "cross_page_promo_bg": "#f7f5f1",
+        "cross_page_promo_color": "#68655f",
+        "show_on_home_page": true,
+        "layout_style": "inline"
       }
     },
     "collection_slider_9Rd7Fi": {

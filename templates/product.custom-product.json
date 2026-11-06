@@ -127,7 +127,8 @@
             "benefit_1": "Four individual soft play pieces",
             "benefit_2": "20 cm at its highest point",
             "benefit_3": "Easy-clean finish for everyday play",
-            "background": "#f9f7f3"
+            "background": "#f9f7f3",
+            "title": "Mini Step & Slide"
           }
         },
         "vendor": {
@@ -339,6 +340,110 @@
             "measurement_id": "G-WQGDEEPH80",
             "ends_at": "2026-11-19T23:59:59+11:00"
           }
+        },
+        "tps_benefits_step_slide": {
+          "type": "tps_product_benefits",
+          "settings": {
+            "title": "Step & Slide",
+            "product_title_contains": "Step & Slide",
+            "exclude_title_contains": "Mini",
+            "introduction": "Room for their next big adventure. Our Step & Slide gives little explorers a place to climb, crawl, slide and make play their own.",
+            "benefit_1": "Four individual soft play pieces",
+            "benefit_2": "Climb, crawl and slide",
+            "benefit_3": "Easy-clean finish for everyday play",
+            "background": "#f9f7f3"
+          }
+        },
+        "tps_benefits_explorer": {
+          "type": "tps_product_benefits",
+          "settings": {
+            "title": "Explorer",
+            "product_title_contains": "Explorer",
+            "exclude_title_contains": "",
+            "introduction": "A new adventure with every rearrange. The Explorer brings climbing, crawling and balancing together in one imaginative play space.",
+            "benefit_1": "Modular pieces for obstacle courses",
+            "benefit_2": "Climb, crawl and balance",
+            "benefit_3": "Rearrange for a new adventure",
+            "background": "#f9f7f3"
+          }
+        },
+        "tps_benefits_castle": {
+          "type": "tps_product_benefits",
+          "settings": {
+            "title": "Castle",
+            "product_title_contains": "Castle",
+            "exclude_title_contains": "",
+            "introduction": "A little kingdom of their own. Our Castle Soft Play turns everyday play into towers, hideaways and make-believe adventures.",
+            "benefit_1": "Eleven individual soft play pieces",
+            "benefit_2": "Build castles and imaginative play spaces",
+            "benefit_3": "Easy-clean finish for everyday play",
+            "background": "#f9f7f3"
+          }
+        },
+        "tps_benefits_wave_climb": {
+          "type": "tps_product_benefits",
+          "settings": {
+            "title": "Wave & Climb",
+            "product_title_contains": "Wave & Climb",
+            "exclude_title_contains": "",
+            "introduction": "Little waves. Big adventures. The Wave & Climb invites little ones to climb, balance and explore, with a new way to play every day.",
+            "benefit_1": "Curved shapes for climbing and balancing",
+            "benefit_2": "Create their own obstacle course",
+            "benefit_3": "Encourages active, open-ended play",
+            "background": "#f9f7f3"
+          }
+        },
+        "tps_benefits_play_blocks": {
+          "type": "tps_product_benefits",
+          "settings": {
+            "title": "Play Blocks",
+            "product_title_contains": "Play Blocks",
+            "exclude_title_contains": "",
+            "introduction": "Stack them high, knock them down and start again. Our Mini Play Blocks make room for little builders and big imaginations.",
+            "benefit_1": "Six soft play blocks",
+            "benefit_2": "Stack, balance, build and climb",
+            "benefit_3": "Mix and match for more ways to play",
+            "background": "#f9f7f3"
+          }
+        },
+        "tps_benefits_rainbow": {
+          "type": "tps_product_benefits",
+          "settings": {
+            "title": "Rainbow",
+            "product_title_contains": "Rainbow",
+            "exclude_title_contains": "",
+            "introduction": "A rainbow of possibilities. These playful curved pieces become a slide, a rocker or the start of a whole new adventure.",
+            "benefit_1": "Three individual soft play pieces",
+            "benefit_2": "Slide, rock, climb and imagine",
+            "benefit_3": "Wipe clean with a damp cloth",
+            "background": "#f9f7f3"
+          }
+        },
+        "tps_benefits_boucle": {
+          "type": "tps_product_benefits",
+          "settings": {
+            "title": "Bouclé Soft Play",
+            "product_title_contains": "Boucle Soft Play",
+            "exclude_title_contains": "Mini Ball Pit",
+            "introduction": "Soft textures for little adventures. Our Bouclé Soft Play Set brings climbing, building and imaginative play into a cosy corner of your home.",
+            "benefit_1": "Four individual soft play pieces",
+            "benefit_2": "Soft, tactile bouclé finish",
+            "benefit_3": "Washable bouclé fabric covers",
+            "background": "#f9f7f3"
+          }
+        },
+        "tps_benefits_boucle_pit": {
+          "type": "tps_product_benefits",
+          "settings": {
+            "title": "Bouclé Soft Play + Mini Ball Pit",
+            "product_title_contains": "Boucle Soft Play Set With Mini Ball Pit",
+            "exclude_title_contains": "",
+            "introduction": "A cosy little world of play. Soft bouclé pieces and a mini ball pit come together for climbing, exploring and everyday fun.",
+            "benefit_1": "Soft bouclé play pieces",
+            "benefit_2": "Mini ball pit with 50 transparent balls",
+            "benefit_3": "Rearrange for imaginative play",
+            "background": "#f9f7f3"
+          }
         }
       },
       "block_order": [
@@ -356,6 +461,14 @@
         "buy_buttons_6Ukibb",
         "tps_delivery_links",
         "tps_product_benefits",
+        "tps_benefits_step_slide",
+        "tps_benefits_explorer",
+        "tps_benefits_castle",
+        "tps_benefits_wave_climb",
+        "tps_benefits_play_blocks",
+        "tps_benefits_rainbow",
+        "tps_benefits_boucle",
+        "tps_benefits_boucle_pit",
         "vendor",
         "divider",
         "loox_reviews_loox_snippets_widget_wdPRf7",
