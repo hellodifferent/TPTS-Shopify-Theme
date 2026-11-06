@@ -74,3 +74,8 @@
 .tps-review-story-dialog__close svg { width: 20px; height: 20px; }
 .tps-review-story-dialog h3 { font-size: 24px; margin-bottom: 18px; }
 .tps-review-story-dialog blockquote { font-family: inherit; font-size: 16px; line-height: 1.65; text-align: left; margin: 0; padding: 0; border: 0; }
+
+.tps-review-feature__quote::before,
+.tps-review-feature__quote::after,
+.tps-review-story-dialog blockquote::before,
+.tps-review-story-dialog blockquote::after { content: none; }
