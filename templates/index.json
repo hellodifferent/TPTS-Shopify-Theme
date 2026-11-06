@@ -654,6 +654,32 @@
         "color_scheme": "default"
       }
     },
+    "17518600637111cf4c": {
+      "type": "tps-product-reviews",
+      "blocks": {
+        "judge_me_reviews_all_reviews_page_home": {
+          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_page/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "max_width": 1200,
+            "review_source": "product",
+            "show_all_reviews_in_same_tab": false,
+            "show_first": "product",
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_all_reviews_page_home"
+      ],
+      "name": "TPS customer stories",
+      "settings": {
+        "show_featured": true,
+        "eyebrow": "Playtime, in real life",
+        "heading": "Loved by little ones. Trusted by parents.",
+        "feature_count": 6,
+        "feature_background": "#e8d8c6"
+      }
+    },
     "collapsible_tabs_2_qb4CAd": {
       "type": "collapsible-tabs-2",
       "blocks": {
@@ -889,6 +915,7 @@
         "loox_reviews_loox_snippets_widget_kt8rDb",
         "button_LbtRBF"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/Photo_1-11-2023_3_25_29_AM.jpg",
         "image_2": "shopify://shop_images/Photo_1-11-2023_3_33_01_AM.jpg",
@@ -983,33 +1010,6 @@
         "height_mobile": 480,
         "full_width": true,
         "overlay_style": "full image-overlay--bg-shadow"
-      }
-    },
-    "17518600637111cf4c": {
-      "type": "tps-product-reviews",
-      "blocks": {
-        "judge_me_reviews_all_reviews_page_home": {
-          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_page/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "max_width": 1200,
-            "review_source": "product",
-            "show_all_reviews_in_same_tab": false,
-            "show_first": "product",
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_all_reviews_page_home"
-      ],
-      "name": "TPS customer stories",
-      "settings": {
-        "show_featured": true,
-        "eyebrow": "Playtime, in real life",
-        "heading": "Loved by little ones. Trusted by parents.",
-        "feature_count": 6,
-        "feature_background": "#e8d8c6",
-        "reviews_background": "#f7f5f1"
       }
     },
     "collection_list_YhcXbL": {
@@ -1546,12 +1546,12 @@
     "collection_list_HLG6Uw",
     "16359278676808bea5",
     "rich_text_EKR8Ly",
+    "17518600637111cf4c",
     "collapsible_tabs_2_qb4CAd",
     "collection_slider_WimTDM",
     "image_with_text_FcV9zN",
     "63c0115a-f2d4-4418-bdc6-ec94619300cb",
     "16359285201c71bbb1",
-    "17518600637111cf4c",
     "collection_list_YhcXbL",
     "slideshow_3RpJaV",
     "collection_list_Ybjwbf",

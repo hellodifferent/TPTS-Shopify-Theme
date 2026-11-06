@@ -605,56 +605,23 @@
         "media_grouping_option": "Color,Colour,Couleur,Farbe"
       }
     },
-    "collapsible_tabs_z3Gqcr": {
-      "type": "collapsible-tabs",
-      "blocks": {
-        "question_XVbyTj": {
-          "type": "question",
-          "settings": {
-            "title": "Why open-ended play?",
-            "answer": "<p>Have you ever wondered why kids love playing with cardboard boxes for so long? Their imagination runs wild, turning the box into a robot, a fort, a tunnel or a punching bag. Open-ended play is an activity that has no pre-determined limitations. The Playtime Store's products encapsulate this concept to help grow your child's creativity and provide endless enjoyment during the most developmental stages of their life. </p>"
-          }
-        },
-        "question_PDGDrM": {
-          "type": "question",
-          "settings": {
-            "title": "What makes our products different?",
-            "answer": "<p>At The Playtime Store we pride ourselves on the quality and style of our products. We've worked tirelessly to source the quality that will last the test of time, steering away from low quality items that frequently need replacing. We believe investing in quality provides a more sustainable future for everyone. </p>"
-          }
-        },
-        "question_DY6nhD": {
-          "type": "question",
-          "settings": {
-            "title": "How does it benefit my child?",
-            "answer": "<p>Our products are fantastic for your child's development because it encourages creativity, independence, and critical thinking. They learn to challenge themselves, build balance and take risks. </p>"
-          }
-        },
-        "question_JWWUg6": {
-          "type": "question",
-          "settings": {
-            "title": "Do you offer a payment instalment plan?",
-            "answer": "<p>Yes!&nbsp;We offer Afterpay, ShopPay and Zip.&nbsp;</p><p>Paypal is also available at checkout.</p>"
-          }
-        },
-        "question_bVa6gE": {
-          "type": "question",
-          "settings": {
-            "title": "What if I change my mind after purchasing?",
-            "answer": "<p>The Playtime Store&nbsp;offers all customers a 100% money back guarantee for any change of mind purchases, provided that the following terms are met:</p><ul><li>All returns&nbsp;must be unused and in their original condition (including all original, protective packaging).</li><li>You must complete your return within 30 days of the date of your order and you are responsible for arranging the return and all costs associated with this.</li><li>The original shipping costs to you are not refunded.</li><li>See the full refund policy <a href=\"/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\">here</a>.</li></ul>"
-          }
-        }
-      },
-      "block_order": [
-        "question_XVbyTj",
-        "question_PDGDrM",
-        "question_DY6nhD",
-        "question_JWWUg6",
-        "question_bVa6gE"
-      ],
+    "product_template_product_list_zdCWFy": {
+      "type": "product-template-product-list",
+      "name": "Product list",
       "settings": {
-        "title": "FAQs",
-        "open_tab": false,
-        "enable_faq_schema": false
+        "title": "Meet your next playtime favourite",
+        "product_list": [
+          "explorer",
+          "step-slide-white",
+          "mini-play-blocks-pink-blossom",
+          "castle"
+        ],
+        "hide_if_empty": false,
+        "show_vendor": false,
+        "enable_carousel": true,
+        "grid": 4,
+        "color_scheme": "default",
+        "full_width": true
       }
     },
     "review_testimonials_FE4FKe": {
@@ -714,23 +681,38 @@
         "autoplay_speed": 5
       }
     },
-    "product_template_product_list_zdCWFy": {
-      "type": "product-template-product-list",
-      "name": "Product list",
+    "tps_customer_stories": {
+      "type": "tps-product-reviews",
+      "blocks": {
+        "judge_me_reviews_all_reviews_page_eNRUQg": {
+          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_page/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "max_width": 1200,
+            "review_source": "product",
+            "show_all_reviews_in_same_tab": false,
+            "show_first": "product",
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_all_reviews_page_eNRUQg"
+      ],
+      "name": "TPS customer stories",
       "settings": {
-        "title": "Meet your next playtime favourite",
-        "product_list": [
-          "explorer",
-          "step-slide-white",
-          "mini-play-blocks-pink-blossom",
-          "castle"
-        ],
-        "hide_if_empty": false,
+        "show_featured": true,
+        "eyebrow": "Reviews",
+        "heading": "Loved by little ones. Trusted by parents.",
+        "feature_count": 6,
+        "feature_background": "#e8d8c6"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "title": "Build Your Collection",
         "show_vendor": false,
-        "enable_carousel": true,
-        "grid": 4,
-        "color_scheme": "default",
-        "full_width": true
+        "grid": 4
       }
     },
     "17065021823ac34344": {
@@ -800,15 +782,59 @@
       ],
       "name": "TPS customer reviews",
       "settings": {
-        "reviews_background": "#f7f5f1"
+        "reviews_background": "#FFFFFF"
       }
     },
-    "related-products": {
-      "type": "related-products",
+    "collapsible_tabs_z3Gqcr": {
+      "type": "collapsible-tabs",
+      "blocks": {
+        "question_XVbyTj": {
+          "type": "question",
+          "settings": {
+            "title": "Why open-ended play?",
+            "answer": "<p>Have you ever wondered why kids love playing with cardboard boxes for so long? Their imagination runs wild, turning the box into a robot, a fort, a tunnel or a punching bag. Open-ended play is an activity that has no pre-determined limitations. The Playtime Store's products encapsulate this concept to help grow your child's creativity and provide endless enjoyment during the most developmental stages of their life. </p>"
+          }
+        },
+        "question_PDGDrM": {
+          "type": "question",
+          "settings": {
+            "title": "What makes our products different?",
+            "answer": "<p>At The Playtime Store we pride ourselves on the quality and style of our products. We've worked tirelessly to source the quality that will last the test of time, steering away from low quality items that frequently need replacing. We believe investing in quality provides a more sustainable future for everyone. </p>"
+          }
+        },
+        "question_DY6nhD": {
+          "type": "question",
+          "settings": {
+            "title": "How does it benefit my child?",
+            "answer": "<p>Our products are fantastic for your child's development because it encourages creativity, independence, and critical thinking. They learn to challenge themselves, build balance and take risks. </p>"
+          }
+        },
+        "question_JWWUg6": {
+          "type": "question",
+          "settings": {
+            "title": "Do you offer a payment instalment plan?",
+            "answer": "<p>Yes!&nbsp;We offer Afterpay, ShopPay and Zip.&nbsp;</p><p>Paypal is also available at checkout.</p>"
+          }
+        },
+        "question_bVa6gE": {
+          "type": "question",
+          "settings": {
+            "title": "What if I change my mind after purchasing?",
+            "answer": "<p>The Playtime Store&nbsp;offers all customers a 100% money back guarantee for any change of mind purchases, provided that the following terms are met:</p><ul><li>All returns&nbsp;must be unused and in their original condition (including all original, protective packaging).</li><li>You must complete your return within 30 days of the date of your order and you are responsible for arranging the return and all costs associated with this.</li><li>The original shipping costs to you are not refunded.</li><li>See the full refund policy <a href=\"/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\">here</a>.</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "question_XVbyTj",
+        "question_PDGDrM",
+        "question_DY6nhD",
+        "question_JWWUg6",
+        "question_bVa6gE"
+      ],
       "settings": {
-        "title": "Build Your Collection",
-        "show_vendor": false,
-        "grid": 4
+        "title": "FAQs",
+        "open_tab": false,
+        "enable_faq_schema": false
       }
     },
     "background_video_aGn97b": {
@@ -914,40 +940,14 @@
         "show_space": true,
         "code": "<script>\nwindow.addEventListener('load', function() {\nvar _learnq = window._learnq || [];\nfunction addedToCart() {\n  fetch(`${window.location.origin}/cart.js`)\n  .then(res => res.clone().json().then(data => {\n    var cart = {\n      total_price: data.total_price/100,\n      $value: data.total_price/100,\n      total_discount: data.total_discount,\n      original_total_price: data.original_total_price/100,\n      items: data.items\n    }\n    if (item !== 'undefined') {\n      cart = Object.assign(cart, item)\n    }\n    if (klAjax) {\n        _learnq.push(['track', 'Added to Cart', cart]);\n        klAjax = false;\n      }\n  }))\n};\n(function (ns, fetch) {\n  ns.fetch = function() {\n    const response = fetch.apply(this, arguments);\n    response.then(res => {\n      if (`${window.location.origin}/cart/add.js`\n      \t.includes(res.url)) {\n        \taddedToCart()\n      }\n    });\n    return response\n  }\n}(window, window.fetch));\nvar klAjax = true;\nvar atcButtons = document.querySelectorAll(\"form[action*='/cart/add'] button[type='submit']\");\nfor (var i = 0; i < atcButtons.length; i++) {\n    atcButtons[i].addEventListener(\"click\", function() {\n      if (klAjax) {\n        _learnq.push(['track', 'Added to Cart', item]);\n        klAjax = false;\n      }\n    })\n}\n});\n</script>"
       }
-    },
-    "tps_customer_stories": {
-      "type": "tps-product-reviews",
-      "name": "TPS customer stories",
-      "blocks": {
-        "judge_me_reviews_all_reviews_page_eNRUQg": {
-          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_page/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "max_width": 1200,
-            "review_source": "product",
-            "show_all_reviews_in_same_tab": false,
-            "show_first": "product",
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_all_reviews_page_eNRUQg"
-      ],
-      "settings": {
-        "show_featured": true,
-        "eyebrow": "Reviews",
-        "heading": "Loved by little ones. Trusted by parents.",
-        "feature_count": 6,
-        "feature_background": "#e8d8c6"
-      }
     }
   },
   "order": [
     "main",
-    "review_testimonials_FE4FKe",
     "product_template_product_list_zdCWFy",
-    "related-products",
+    "review_testimonials_FE4FKe",
     "tps_customer_stories",
+    "related-products",
     "17065021823ac34344",
     "collapsible_tabs_z3Gqcr",
     "background_video_aGn97b",
