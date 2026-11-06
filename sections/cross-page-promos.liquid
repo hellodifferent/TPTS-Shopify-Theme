@@ -88,9 +88,19 @@
   #section-id-{{ section.id }} {
     --bg-color: {{ section.settings.cross_page_promo_bg }};
     --text-color: {{ section.settings.cross_page_promo_color }};
+    --promo-font-size: {{ section.settings.font_size | default: 17.2 }}px;
+  }
+
+  #section-id-{{ section.id }} .heading-font,
+  #section-id-{{ section.id }} .second-line {
+    font-size: var(--promo-font-size);
   }
 
   {%- for block in section.blocks -%}
+    #section-id-{{ section.id }} .block-id-{{ block.id }} > .relative {
+      max-width: {{ block.settings.max_width | default: 600 }}px;
+      margin-inline: auto;
+    }
     {%- if block.type == 'image' and block.settings.text != blank -%}
       .cross-page-promos .block-id-{{ block.id }} .text-overlay .text-overlay__text {
         color: {{ block.settings.overlay_color }};
@@ -122,6 +132,16 @@
       "id": "show_on_home_page",
       "label": "Show on home page",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 28,
+      "step": 0.2,
+      "unit": "px",
+      "default": 17.2
     }
   ],
   "blocks": [
@@ -154,6 +174,17 @@
           "type": "url",
           "id": "link_url",
           "label": "Image link"
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "label": "Maximum width",
+          "min": 100,
+          "max": 600,
+          "step": 10,
+          "unit": "px",
+          "default": 600,
+          "info": "Limits the content width within this block. Content stays centred in its grid column."
         }
       ]
     },
@@ -340,6 +371,17 @@
           "type": "url",
           "id": "link_url",
           "label": "Icon link"
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "label": "Maximum width",
+          "min": 100,
+          "max": 600,
+          "step": 10,
+          "unit": "px",
+          "default": 600,
+          "info": "Limits the content width within this block. Content stays centred in its grid column."
         }
       ]
     }
@@ -347,8 +389,7 @@
   "presets": [
     {
       "name": "Cross-page promos",
-      "blocks": [
-      ]
+      "blocks": []
     }
   ]
 }
