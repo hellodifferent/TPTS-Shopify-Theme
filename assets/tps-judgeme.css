@@ -58,7 +58,14 @@
 
 .template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) {
   aspect-ratio: auto !important;
+  height: auto !important;
   min-height: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video))::before {
+  display: none !important;
 }
 
 .template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__preview {
@@ -68,7 +75,8 @@
 .template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__details {
   position: relative !important;
   inset: auto !important;
-  height: 100%;
+  height: auto !important;
+  flex: 1;
   min-height: 250px;
   padding: 24px !important;
   opacity: 1 !important;
@@ -93,6 +101,12 @@
 
 .template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__details-body {
   flex: 1;
+  display: block;
+}
+
+.template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__details > .jdgm-review-card__footer {
+  position: static !important;
+  margin-top: 20px;
 }
 
 .template-product [data-widget="reviews-grid"] .jdgm-review-card__footer-inner--details {
