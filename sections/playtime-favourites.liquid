@@ -42,7 +42,9 @@
               <div class="pf-media">
                 <a class="pf-image-link" href="{{ card_product.url }}" data-pf-link aria-label="{{ card_title | escape }}">
                   <div data-pf-visual>
-                    {%- if card_image != blank -%}
+                    {%- if card_product.featured_media.media_type == 'video' -%}
+                      {% render 'tps-card-video', media: card_product.featured_media, aspect_ratio: 1, columns: 4 %}
+                    {%- elsif card_image != blank -%}
                       {% render 'image', image: card_image, custom_aspect_ratio: 1, size_cols_desktop: 4, size_cols_mobile: 2, class: 'pf-image', widths: '180, 260, 360, 540, 740, 980', loading: 'lazy' %}
                     {%- else -%}
                       {{ 'product-1' | placeholder_svg_tag: 'pf-placeholder' }}

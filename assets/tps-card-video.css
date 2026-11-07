@@ -1,0 +1,4 @@
+tps-card-video { display: block; position: relative; width: 100%; overflow: hidden; }
+tps-card-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: var(--tps-card-video-fit, cover); opacity: 0; pointer-events: none; }
+tps-card-video[data-playing] video { opacity: 1; }
+.playtime-favourites .pf-media tps-card-video { height: 100%; }

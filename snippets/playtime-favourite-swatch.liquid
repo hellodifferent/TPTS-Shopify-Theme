@@ -28,7 +28,9 @@
       <div data-state-action>{% render 'tps-collection-action', product: sibling, card_id: action_card_id %}</div>
     {%- endif -%}
     <div data-state-visual>
-      {%- if preview_image != blank -%}
+      {%- if sibling.featured_media.media_type == 'video' -%}
+        {% render 'tps-card-video', media: sibling.featured_media, aspect_ratio: 1, columns: 4 %}
+      {%- elsif preview_image != blank -%}
         {% render 'image', image: preview_image, custom_aspect_ratio: 1, size_cols_desktop: 4, size_cols_mobile: 2, class: 'pf-image', widths: '180, 260, 360, 540, 740, 980', loading: 'lazy' %}
       {%- else -%}
         {{ 'product-1' | placeholder_svg_tag: 'pf-placeholder' }}

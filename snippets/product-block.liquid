@@ -44,6 +44,10 @@ Parameters:
     assign compact = false
   endif
 
+  if product.featured_media.media_type == 'video'
+    assign show_hover_image = false
+  endif
+
   assign cheapest_variant = product.variants | sort: 'price' | first
 
   if settings.qb_allow_selling_plans == false and product.selected_or_first_available_selling_plan_allocation
@@ -136,7 +140,11 @@ Parameters:
                   {%- endfor -%}
                 {%- else -%}
                   <div class="product-block__image product-block__image--primary product-block__image--active" data-media-id="{{ product.featured_media.id }}">
-                    {%- render 'image' with product.featured_media.preview_image, loading: loading, size_cols_mobile: 2, size_cols_desktop: size_cols_desktop, custom_aspect_ratio: custom_aspect_ratio, custom_crop: custom_crop -%}
+                    {%- if product.featured_media.media_type == 'video' -%}
+                      {% render 'tps-card-video', media: product.featured_media, aspect_ratio: custom_aspect_ratio, crop: custom_crop, columns: size_cols_desktop %}
+                    {%- else -%}
+                      {%- render 'image' with product.featured_media.preview_image, loading: loading, size_cols_mobile: 2, size_cols_desktop: size_cols_desktop, custom_aspect_ratio: custom_aspect_ratio, custom_crop: custom_crop -%}
+                    {%- endif -%}
                   </div>
                 {%- endif -%}
               </div>

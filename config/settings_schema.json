@@ -1897,7 +1897,7 @@
         "type": "text",
         "id": "tps_shipping_offer_heading",
         "label": "Heading",
-        "default": "Free shipping all weekend"
+        "default": "Free Shipping all weekend"
       },
       {
         "type": "text",

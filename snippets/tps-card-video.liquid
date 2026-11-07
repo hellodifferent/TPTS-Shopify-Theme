@@ -1,0 +1,25 @@
+{% doc %}
+  @param {video} media - Featured Shopify-hosted video.
+  @param {number} [aspect_ratio] - Card crop ratio.
+  @param {string} [crop] - Image fit.
+  @param {number} [columns] - Desktop column count.
+{% enddoc %}
+{%- liquid
+  assign sources = media.sources | where: 'mime_type', 'video/mp4' | sort: 'height'
+  assign video_source = sources | first
+  for source in sources
+    if source.height <= 720
+      assign video_source = source
+    endif
+  endfor
+  assign video_fit = 'cover'
+  if crop == 'contain'
+    assign video_fit = 'contain'
+  endif
+-%}
+<tps-card-video style="--tps-card-video-fit: {{ video_fit }};">
+  {% render 'image', image: media.preview_image, custom_aspect_ratio: aspect_ratio, custom_crop: crop, size_cols_desktop: columns, size_cols_mobile: 2, widths: '180, 260, 360, 540, 740, 980', loading: 'lazy' %}
+  <video autoplay muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture>
+    <template><source src="{{ video_source.url | escape }}" type="{{ video_source.mime_type | escape }}"></template>
+  </video>
+</tps-card-video>

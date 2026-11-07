@@ -1,8 +1,8 @@
-.tps-shipping-offer { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid #e5d9cc; border-radius: 8px; background: #f7f5f1; color: #3c3a38; text-align: left; }
+.tps-shipping-offer { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border: 1px solid #e5d9cc; border-radius: 8px; background: #fcfbf9; color: #3c3a38; text-align: left; }
 .tps-shipping-offer__icon { display: flex; flex: 0 0 24px; align-items: center; justify-content: center; color: #97745b; }
 .tps-shipping-offer__icon svg { width: 24px; height: 24px; }
 .tps-shipping-offer__content { min-width: 0; }
-.tps-shipping-offer .tps-shipping-offer__heading { margin: 0 0 6px; font-family: var(--base-font-family); font-size: 14px; font-weight: 600; line-height: 1.35; }
+.tps-shipping-offer .tps-shipping-offer__heading { margin: 0 0 6px; font-family: var(--heading-font-family); font-size: 18px; font-weight: var(--heading-font-weight); line-height: 1.35; }
 .tps-shipping-offer .tps-shipping-offer__detail { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin: 0; font-size: 12px; line-height: 1.5; }
 .tps-shipping-offer__code { display: inline-block; padding: 2px 7px; border: 1px dashed #b39982; border-radius: 3px; background: #fff; color: #80644f; font-size: 11.5px; font-weight: 600; letter-spacing: .06em; user-select: all; }
 .tps-shipping-offer--product { margin-top: 14px; }
