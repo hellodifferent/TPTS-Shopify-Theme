@@ -1,7 +1,7 @@
 .tps-expert { padding-block: var(--tps-expert-padding, 32px); background: var(--tps-expert-bg, #f7f5f1); color: #3c3a38; }
-.tps-expert__layout { display: grid; grid-template-columns: minmax(180px, .65fr) minmax(0, 2fr); gap: 40px; align-items: center; max-width: 1280px; }
-.tps-expert .tps-expert__heading { margin: 0; max-width: 250px; font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: 30px; line-height: 1.2; letter-spacing: 0; }
-.tps-expert__body { min-width: 0; }
+.tps-expert__layout { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: start; max-width: 1280px; }
+.tps-expert .tps-expert__heading { margin: 0; max-width: none; text-align: center; font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: 30px; line-height: 1.2; letter-spacing: 0; }
+.tps-expert__body { min-width: 0; width: 100%; max-width: 960px; margin-inline: auto; }
 .tps-expert slide-show { display: block; }
 .tps-expert .slideshow { display: block; min-height: 0; height: auto; overflow: visible; }
 .tps-expert .slideshow__slide { position: static; width: 100%; height: auto; padding: 0; transform: none; }
@@ -26,7 +26,7 @@
 .tps-expert__details[open] .tps-expert__excerpt, .tps-expert__details[open] .tps-expert__closed-label, .tps-expert__open-label { display: none; }
 .tps-expert__details[open] .tps-expert__open-label { display: inline; }
 .tps-expert__details[open] .tps-expert__read { margin-top: 0; margin-bottom: 12px; }
-.review-testimonials .tps-expert .tps-expert__nav { position: static; display: flex; justify-content: flex-end !important; align-items: center; gap: 10px; margin: 12px 0 0; transform: none; }
+.review-testimonials .tps-expert .tps-expert__nav { position: static; display: flex; justify-content: center !important; align-items: center; gap: 10px; margin: 12px 0 0; transform: none; }
 .tps-expert__nav button { display: grid; place-items: center; width: 32px; height: 32px; padding: 7px; border: 1px solid #d2bca6; border-radius: 50%; background: transparent; color: inherit; }
 .tps-expert__nav button > * { pointer-events: none; }
 .tps-expert__nav svg { width: 16px; height: 16px; }

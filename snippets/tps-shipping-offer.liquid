@@ -3,6 +3,10 @@
 {% enddoc %}
 {%- liquid
   assign show_offer = settings.tps_shipping_offer_enabled
+  assign offer_heading = settings.tps_shipping_offer_heading
+  if placement == 'product' and settings.tps_shipping_offer_product_heading != blank
+    assign offer_heading = settings.tps_shipping_offer_product_heading
+  endif
   if settings.tps_shipping_offer_ends_at != blank
     assign offer_ends_at = settings.tps_shipping_offer_ends_at | date: '%s' | plus: 0
     assign current_time = 'now' | date: '%s' | plus: 0
@@ -13,10 +17,10 @@
 -%}
 {%- if show_offer and settings.tps_shipping_offer_code != blank -%}
   {{ 'tps-shipping-offer.css' | asset_url | stylesheet_tag }}
-  <aside class="tps-shipping-offer tps-shipping-offer--{{ placement }}" aria-label="{{ settings.tps_shipping_offer_heading | escape }}">
+  <aside class="tps-shipping-offer tps-shipping-offer--{{ placement }}" aria-label="{{ offer_heading | escape }}">
     <span class="tps-shipping-offer__icon" aria-hidden="true">{% render 'icon', icon: 'truck', size: 'small' %}</span>
     <div class="tps-shipping-offer__content">
-      <p class="tps-shipping-offer__heading">{{ settings.tps_shipping_offer_heading | escape }}</p>
+      <p class="tps-shipping-offer__heading">{{ offer_heading | escape }}</p>
       <p class="tps-shipping-offer__detail">{{ 'tps_shipping_offer.use_code' | t }} <strong class="tps-shipping-offer__code">{{ settings.tps_shipping_offer_code | escape }}</strong> <span>{{ 'tps_shipping_offer.at_checkout' | t }}</span></p>
     </div>
   </aside>

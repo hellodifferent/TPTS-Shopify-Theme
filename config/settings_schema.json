@@ -1901,6 +1901,12 @@
       },
       {
         "type": "text",
+        "id": "tps_shipping_offer_product_heading",
+        "label": "Product page heading",
+        "default": "Free Shipping this weekend"
+      },
+      {
+        "type": "text",
         "id": "tps_shipping_offer_code",
         "label": "Discount code",
         "default": "PLAYTIMEONUS"
