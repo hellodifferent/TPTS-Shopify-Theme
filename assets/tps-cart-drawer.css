@@ -48,7 +48,7 @@
   padding-top: 20px;
   padding-bottom: 22px;
   border-top: 1px solid #ece9e4;
-  background: #faf8f4;
+  background: #fdfcfb;
   color: #5c5c5c;
 }
 .tps-cart-drawer .collection-slider .product-info-label { font-size: 14px; font-weight: 500; }
@@ -71,7 +71,7 @@
   max-height: 55dvh;
   overflow-y: auto;
 }
-.tps-cart-drawer .subtotal { font-size: 22px; margin-bottom: 10px; }
+.tps-cart-drawer .subtotal { font-size: 18px; margin-bottom: 10px; }
 .tps-cart-drawer .cart-policies { font-size: 12px; line-height: 1.5; }
 .tps-cart-drawer .cart-policies a { color: inherit; }
 .tps-cart-drawer #CartDrawerNoteToggle { display: inline-block; padding-top: 6px; color: #666; font-size: 12px; }
@@ -120,7 +120,7 @@
   .tps-cart-drawer .cart-item__price { font-size: 13px; }
   .tps-cart-drawer .collection-slider .slider__grid { grid-auto-columns: 136px; }
   .tps-cart-drawer .cart-drawer__footer { padding-top: 16px; }
-  .tps-cart-drawer .subtotal { font-size: 21px; }
+  .tps-cart-drawer .subtotal { font-size: 17px; }
   .tps-cart-empty-card { padding: 30px 20px; }
   .tps-cart-empty-card h2 { font-size: 27px; }
 }

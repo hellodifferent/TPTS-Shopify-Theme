@@ -202,7 +202,7 @@
             </ul>
           {%- endif -%}
           <div class="subtotal h4 heading-font opposing-items">
-            {{ 'cart.summary.subtotal' | t }}:
+            {{ 'cart.drawer.cart_total' | t }}
             <span class="theme-money">
               {%- if settings.cart_currency_code_enabled -%}
                 {{- cart.total_price | money_with_currency -}}
@@ -213,16 +213,6 @@
           </div>
 
           <div class="lightly-spaced-row">
-            {%- if section.settings.show_tax_and_shipping -%}
-              <div class="cart-policies rte">
-                {%- if shop.shipping_policy.body != blank -%}
-                  {{- 'cart.drawer.shipping_at_checkout_html' | t: link: shop.shipping_policy.url -}}
-                {%- else -%}
-                  {{- 'cart.drawer.shipping_at_checkout' | t -}}
-                {%- endif -%}
-              </div>
-            {%- endif -%}
-
             {% if section.settings.show_order_note %}
               <toggle-target id="CartDrawerNoteToggle" role="button" tabindex="0" class="toggle-target-toggler--is-hidden link underline" data-toggle-target="#CartDrawerNote">{{ 'cart.note.label' | t }}</toggle-target>
               <div id="CartDrawerNote" class="cart-drawer__note toggle-target toggle-target--hidden">

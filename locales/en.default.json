@@ -358,6 +358,7 @@
       "confirmation": "You must agree to the terms and conditions before continuing."
     },
     "drawer": {
+      "cart_total": "Cart total",
       "accepted_payments": "Accepted payment methods",
       "shop_bestsellers": "Shop bestsellers",
       "shipping_at_checkout_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
