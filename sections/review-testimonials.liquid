@@ -36,7 +36,7 @@
             {%- if show_image and block.settings.image != blank -%}
               <figure class="tps-expert__portrait">
                 {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" aria-label="{{ block.settings.author | escape }}">{%- endif -%}
-                {% render 'image', image: block.settings.image, custom_aspect_ratio: image_aspect_ratio, sizes: '84px', widths: '84, 168, 252', loading: 'lazy' %}
+                {% render 'image', image: block.settings.image, custom_aspect_ratio: image_aspect_ratio, sizes: '(max-width: 767px) 80px, 120px', widths: '80, 120, 160, 240, 360', loading: 'lazy' %}
                 {%- if block.settings.link != blank -%}</a>{%- endif -%}
                 {%- if block.settings.image_caption != blank -%}<figcaption>{{ block.settings.image_caption | escape }}</figcaption>{%- endif -%}
               </figure>
@@ -225,7 +225,7 @@ document.addEventListener('toggle', event => {
       "max": 80,
       "step": 4,
       "unit": "px",
-      "default": 32
+      "default": 52
     }
   ],
   "blocks": [
