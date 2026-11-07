@@ -53,3 +53,5 @@
   .tps-expert__card--no-image { grid-template-columns: 1fr; }
   .tps-expert__card--no-image .tps-expert__identity { grid-column: 1; }
 }
+
+.tps-expert slide-show[data-transition] .slideshow > .slideshow__slide { transform: none; }
