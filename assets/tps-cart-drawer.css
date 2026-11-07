@@ -137,3 +137,19 @@
 .tps-cart-quick-add__error { margin-bottom: 8px; font-size: 12px; color: #a02424; }
 
 .tps-cart-quick-add { text-align: center; }
+
+@media (max-width: 767px) {
+  body:has(.tps-cart-drawer[open]) #gorgias-chat-container {
+    position: relative;
+    z-index: 7999 !important;
+  }
+  body:has(.tps-cart-drawer[open]) [class*="omnisend-form-"][class*="-teaser"]:has([class*="-rectangle-teaser"]) {
+    z-index: 7999 !important;
+  }
+  .tps-cart-drawer .cart-drawer__header { min-height: 52px; padding-block: 4px; }
+  .tps-cart-drawer .cart-drawer__title { margin: 0; font-size: 18px; line-height: 1.2; }
+  .tps-cart-drawer .tps-cart-payments { display: none; }
+  .tps-cart-drawer .cart-drawer__content-upper { flex: 0 0 auto; }
+  .tps-cart-drawer .cart-item-upsells { margin-top: 24px; }
+  .tps-cart-drawer .cart-drawer__footer { padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
+}
