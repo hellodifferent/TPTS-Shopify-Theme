@@ -74,7 +74,7 @@
           </div>
         {%- endif -%}
 
-        {%- if section.settings.announcement_position == 'above-items' -%}
+        {%- if section.settings.show_announcement and section.settings.announcement_position == 'above-items' -%}
           <div class="cart-drawer__content-item">
             <div class="cart-info-block cart-info-block--lmtb">{{- announcement -}}</div>
           </div>
@@ -94,7 +94,7 @@
           </div>
         </div>
 
-        {%- if section.settings.announcement_position == 'below-items' -%}
+        {%- if section.settings.show_announcement and section.settings.announcement_position == 'below-items' -%}
           <div class="cart-drawer__content-item">
             <div class="cart-info-block cart-info-block--lmtb">{{- announcement -}}</div>
           </div>
@@ -182,7 +182,7 @@
     </div>
 
     <div class="cart-drawer__footer{% if cart.items == empty %} cart-drawer__footer--hidden{% endif %}" data-merge-attributes="footer-container">
-      {%- if section.settings.announcement_position == 'above-subtotal' -%}
+      {%- if section.settings.show_announcement and section.settings.announcement_position == 'above-subtotal' -%}
         <div class="cart-info-block cart-info-block--smb">{{- announcement -}}</div>
       {%- endif -%}
 
@@ -251,7 +251,7 @@
         </ul>
       {%- endif -%}
 
-      {%- if section.settings.announcement_position == 'below-checkout' -%}
+      {%- if section.settings.show_announcement and section.settings.announcement_position == 'below-checkout' -%}
         <div class="cart-info-block cart-info-block--smt">{{- announcement -}}</div>
       {%- endif -%}
     </div>
