@@ -609,5 +609,9 @@
     "next": "Next customer stories",
     "rated": "Rated",
     "rating_label": "out of 5 stars"
+  },
+  "tps_shipping_offer": {
+    "use_code": "Use code:",
+    "at_checkout": "at checkout"
   }
 }

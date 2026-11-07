@@ -670,6 +670,7 @@
                   {% endif %}
                 </div>
               {% endform %}
+              <div class="not-in-quickbuy">{% render 'tps-shipping-offer', placement: 'product' %}</div>
 
               {%- if block.settings.show_pickup_availability -%}
                 <div data-dynamic-variant-content="{{ block.id }}-pickup-availability"{% unless product.available %} hidden{% endunless %}>

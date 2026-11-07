@@ -1883,5 +1883,35 @@
         "limit": 12
       }
     ]
+  },
+  {
+    "name": "Shipping promotion",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "tps_shipping_offer_enabled",
+        "label": "Show shipping promotion",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "tps_shipping_offer_heading",
+        "label": "Heading",
+        "default": "Free shipping all weekend"
+      },
+      {
+        "type": "text",
+        "id": "tps_shipping_offer_code",
+        "label": "Discount code",
+        "default": "PLAYTIMEONUS"
+      },
+      {
+        "type": "text",
+        "id": "tps_shipping_offer_ends_at",
+        "label": "Ends at",
+        "default": "2026-11-09T00:00:00+11:00",
+        "info": "ISO date and time with timezone. This offer ends at midnight Sunday 8 November, Sydney time. Leave blank for no expiry."
+      }
+    ]
   }
 ]
