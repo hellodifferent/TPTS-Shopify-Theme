@@ -613,5 +613,9 @@
   "tps_shipping_offer": {
     "use_code": "Use code:",
     "at_checkout": "at checkout"
+  },
+  "tps_experts": {
+    "read_full": "Read full endorsement",
+    "show_less": "Show less"
   }
 }

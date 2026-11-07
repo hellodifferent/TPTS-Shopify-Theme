@@ -1,154 +1,94 @@
 {%- liquid
-  assign image_aspect_ratio = false
+  assign image_aspect_ratio = 1
   if section.settings.image_shape == 'landscape'
     assign image_aspect_ratio = 1.25
-  elsif section.settings.image_shape == 'square'
-    assign image_aspect_ratio = 1.0
   elsif section.settings.image_shape == 'portrait'
     assign image_aspect_ratio = 0.8
+  elsif section.settings.image_shape == 'natural'
+    assign image_aspect_ratio = false
   endif
-
-  assign show_image = false
-  if section.settings.layout == 'image-left' or section.settings.layout == 'image-right'
-    assign show_image = true
+  assign show_image = true
+  if section.settings.layout == 'no-image'
+    assign show_image = false
   endif
-
   assign use_slideshow = false
   if section.blocks.size > 1
     assign use_slideshow = true
   endif
 -%}
-
-{%- if use_slideshow -%}
-  <script src="{{ 'slideshow.js' | asset_url }}" defer></script>
-{%- endif -%}
-<link rel="stylesheet" href="{{ 'testimonials.css' | asset_url }}" {%- render 'lazy-stylesheet-attrs' %}>
-
-<div id="section-id-{{ section.id }}" class="{% if section.settings.color_scheme != 'default' %}use-color-scheme use-color-scheme--{{ section.settings.color_scheme }} fully-padded-row--medium{% else %}fully-spaced-row--medium{% endif %}">
-  {%- style -%}
-    #section-id-{{ section.id }} .testimonial__blockquote {
-      font-size: {{ section.settings.quote_text_size_mobile }}px;
-      {%- if section.settings.quote_text_size_mobile >= 90 -%}
-      line-height: 1em;
-      {%- endif %}
-    }
-    @media (min-width: 768px) {
-      #section-id-{{ section.id }} .testimonial__blockquote {
-        {%- assign quote_text_size_medium = section.settings.quote_text_size | times: 0.7 | at_least: section.settings.quote_text_size_mobile -%}
-        font-size: {{ quote_text_size_medium }}px;
-        {%- if quote_text_size_medium >= 90 -%}
-        line-height: 1em;
-        {%- endif %}
-      }
-    }
-    @media (min-width: 1100px) {
-      #section-id-{{ section.id }} .testimonial__blockquote {
-        font-size: {{ section.settings.quote_text_size }}px;
-        {%- if section.settings.quote_text_size >= 90 -%}
-        line-height: 1em;
-        {%- endif %}
-      }
-    }
-  {%- endstyle -%}
-
-  <div class="container fade-in" {%- render 'animation-attrs', attrs: 'data-cc-animate data-cc-animate-delay="0.2s"' -%}>
-    <div class="testimonial-list testimonial-list--{{ section.settings.layout }} testimonial-list--{% if show_image %}with-images {% else %}without-images{% endif %}" data-testimonial-count="{{ section.blocks.size }}">
-      {%- if section.settings.title != blank -%}
-        <div class="subheading">{{ section.settings.title | escape }}</div>
-      {%- endif -%}
-
+{{ 'tps-expert-testimonials.css' | asset_url | stylesheet_tag }}
+{%- if use_slideshow -%}<script src="{{ 'slideshow.js' | asset_url }}" defer></script>{%- endif -%}
+<section class="tps-expert" style="--tps-expert-bg: {{ section.settings.background }}; --tps-expert-padding: {{ section.settings.vertical_padding }}px; --tps-expert-font: {{ section.settings.quote_text_size }}px; --tps-expert-mobile-font: {{ section.settings.quote_text_size_mobile }}px;"{% if section.settings.title != blank %} aria-labelledby="ExpertTitle-{{ section.id }}"{% endif %}>
+  <div class="container tps-expert__layout">
+    {%- if section.settings.title != blank -%}<h2 id="ExpertTitle-{{ section.id }}" class="tps-expert__heading">{{ section.settings.title | escape }}</h2>{%- endif -%}
+    <div class="tps-expert__body">
       {%- if use_slideshow -%}
-        <slide-show role="region" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed }}" data-transition="fade" data-transition-out-delay="0" data-pause-autoplay-on-mouseover="true">
-          <div class="slideshow slideshow--navigation-arrows testimonial-list__inner" id="slideshow-{{ section.id }}" aria-live="polite" aria-atomic="true">
-      {%- else -%}
-        <div class="testimonial-list__inner">
+        <slide-show role="region" aria-label="{{ section.settings.title | escape }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed }}" data-transition="fade" data-transition-out-delay="0" data-pause-autoplay-on-mouseover="true">
+          <div class="slideshow" id="ExpertSlides-{{ section.id }}" aria-live="polite" aria-atomic="true">
       {%- endif -%}
-
       {%- for block in section.blocks -%}
-        {%- if use_slideshow -%}<div class="slideshow__slide{% if forloop.first %} is-active{% endif %}" style="--slide-index: {{ forloop.index }}">{%- endif -%}
-
-        <div class="testimonial testimonial-{{ forloop.index }}{% if show_image == false %} reading-width{% endif %}" {{ block.shopify_attributes }}>
-          <div class="testimonial__column testimonial__column--text">
-  
-
-            <div class="testimonial__content">
-                {% if show_image %}
-            <div class="testimonial__column testimonial__column--image">
-              <figure class="testimonial__image-with-caption">
-                {%- if block.settings.link != blank -%}<a class="testimonial__image-with-caption__link" href="{{ block.settings.link }}">{%- endif -%}
-                <div class="testimonial__image-wrapper">
-                  {% if block.settings.image != blank %}
-                    {%- render 'image' with block.settings.image, size_cols_desktop: 2.5, custom_aspect_ratio: image_aspect_ratio -%}
-                  {% else %}
-                    <div class="placeholder-image" style="padding-top:{{ 100.0 | divided_by: image_aspect_ratio | round }}%">{{ 'image' | placeholder_svg_tag }}</div>
-                  {% endif %}
-                </div>
-
-                {% if block.settings.image_caption != blank %}
-                  <figcaption class="testimonial__image-with-caption__caption{% if block.settings.link != blank %} underline{% endif %}">
-                    {{ block.settings.image_caption | escape }}
-                  </figcaption>
-                {% endif %}
+        {%- liquid
+          assign full_text = block.settings.testimonial | replace: '<br>', ' ' | strip_html | strip
+          assign preview_text = block.settings.preview_quote | default: full_text | truncatewords: 40
+        -%}
+        {%- if use_slideshow -%}<div class="slideshow__slide{% if forloop.first %} is-active{% endif %}" style="--slide-index: {{ forloop.index0 }}">{%- endif -%}
+          <article class="tps-expert__card{% if show_image == false or block.settings.image == blank %} tps-expert__card--no-image{% endif %}{% if section.settings.layout == 'image-right' %} tps-expert__card--image-right{% endif %}" {{ block.shopify_attributes }}>
+            {%- if show_image and block.settings.image != blank -%}
+              <figure class="tps-expert__portrait">
+                {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" aria-label="{{ block.settings.author | escape }}">{%- endif -%}
+                {% render 'image', image: block.settings.image, custom_aspect_ratio: image_aspect_ratio, sizes: '84px', widths: '84, 168, 252', loading: 'lazy' %}
                 {%- if block.settings.link != blank -%}</a>{%- endif -%}
+                {%- if block.settings.image_caption != blank -%}<figcaption>{{ block.settings.image_caption | escape }}</figcaption>{%- endif -%}
               </figure>
+            {%- endif -%}
+            <div class="tps-expert__content">
+              <header class="tps-expert__identity">
+                {%- if block.settings.author != blank -%}<h3>{{ block.settings.author | escape }}</h3>{%- endif -%}
+                {%- if block.settings.sub-heading != blank -%}<p>{{ block.settings.sub-heading | escape }}</p>{%- endif -%}
+              </header>
+              {%- if block.settings.star_rating > 0 -%}<div class="tps-expert__stars" aria-label="{{ block.settings.star_rating }} {{ 'tps_reviews.rating_label' | t }}">{%- for i in (1..block.settings.star_rating) -%}<span aria-hidden="true">{% render 'icon-star' %}</span>{%- endfor -%}</div>{%- endif -%}
+              {%- if full_text != blank -%}
+                {%- if preview_text != full_text -%}
+                  <details class="tps-expert__details">
+                    <summary><span class="tps-expert__excerpt{% if section.settings.text_caps %} tps-expert__quote--caps{% endif %}">{{ preview_text | escape }}</span><span class="tps-expert__read"><span class="tps-expert__closed-label">{{ 'tps_experts.read_full' | t }}</span><span class="tps-expert__open-label">{{ 'tps_experts.show_less' | t }}</span></span></summary>
+                    <blockquote class="tps-expert__quote{% if section.settings.text_caps %} tps-expert__quote--caps{% endif %}">{% render 'multiline-text', multiline-text: block.settings.testimonial %}</blockquote>
+                  </details>
+                {%- else -%}
+                  <blockquote class="tps-expert__quote{% if section.settings.text_caps %} tps-expert__quote--caps{% endif %}">{% render 'multiline-text', multiline-text: block.settings.testimonial %}</blockquote>
+                {%- endif -%}
+              {%- endif -%}
             </div>
-          {% endif %}
-              {%- if block.settings.star_rating > 0 -%}
-                <div class="testimonial__star-rating heading-font">
-                  {%- for i in (1..block.settings.star_rating) -%}
-                  <span class="testimonial__star">{% render 'icon-star' %}</span>
-                  {%- endfor -%}
-                </div>
-              {%- endif -%}
-
-                {%- if block.settings.author != blank -%}
-                <div class="testimonial__author">
-                  &mdash; {{ block.settings.author | escape }}
-                </div>
-              {%- endif -%}
-               {%- if block.settings.sub-heading != blank -%}
-                <div class="testimonial__sub-heading">
-                  &mdash; {{ block.settings.sub-heading | escape }}
-                </div>
-              {%- endif -%}
-              {%- if block.settings.testimonial != blank -%}
-                <div class="testimonial__text">
-                  <blockquote class="testimonial__blockquote{% if section.settings.text_caps %} testimonial__blockquote--caps{% endif %} heading-font">{% render 'multiline-text' with block.settings.testimonial %}</blockquote>
-                </div>
-              {%- endif -%}
-
-            
-            </div>
-          </div>
-
-        
-        </div>
-
+          </article>
         {%- if use_slideshow -%}</div>{%- endif -%}
       {%- endfor -%}
-
       {%- if use_slideshow -%}
           </div>
-          <div class="slideshow-ctrl js-only">
-            <div class="slideshow-nav">
-              <button type="button" class="slideshow-nav__btn has-ltr-icon" name="prev" aria-controls="slideshow-{{ section.id }}">
-                <span class="visually-hidden">{{ 'general.slider.previous' | t }}</span>
-                {% render 'icon-chevron-left' %}
-              </button>
-              <button type="button" class="slideshow-nav__btn has-ltr-icon" name="next" aria-controls="slideshow-{{ section.id }}">
-                <span class="visually-hidden">{{ 'general.slider.next' | t }}</span>
-                {% render 'icon-chevron-right' %}
-              </button>
-            </div>
+          <div class="slideshow-nav tps-expert__nav">
+            <button type="button" name="prev" aria-controls="ExpertSlides-{{ section.id }}" aria-label="{{ 'general.slider.previous' | t }}">{% render 'icon-chevron-left' %}</button>
+            <span class="tps-expert__counter" aria-hidden="true"><span class="slideshow-nav__counter-current">1</span> / {{ section.blocks.size }}</span>
+            <button type="button" name="next" aria-controls="ExpertSlides-{{ section.id }}" aria-label="{{ 'general.slider.next' | t }}">{% render 'icon-chevron-right' %}</button>
           </div>
         </slide-show>
-      {%- else -%}
-        </div>
       {%- endif -%}
     </div>
   </div>
-</div>
-
+</section>
+{% javascript %}
+document.addEventListener('toggle', event => {
+  if (!event.target.matches('.tps-expert__details')) return;
+  const slideshow = event.target.closest('slide-show');
+  if (!slideshow || !slideshow.stopAutoplay) return;
+  if (event.target.open) {
+    if (slideshow.expertAutoplay === undefined) slideshow.expertAutoplay = slideshow.autoplayEnabled;
+    slideshow.autoplayEnabled = false;
+    slideshow.stopAutoplay();
+  } else if (!slideshow.querySelector('details[open]') && slideshow.expertAutoplay !== undefined) {
+    slideshow.autoplayEnabled = slideshow.expertAutoplay;
+    delete slideshow.expertAutoplay;
+    if (slideshow.autoplayEnabled) slideshow.startAutoplay();
+  }
+}, true);
+{% endjavascript %}
 {% schema %}
 {
   "name": "Review Testimonials",
@@ -270,6 +210,22 @@
       "unit": "s",
       "label": "Change testimonials every",
       "default": 5
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#f7f5f1"
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
     }
   ],
   "blocks": [
@@ -291,9 +247,15 @@
           "id": "testimonial",
           "label": "Testimonial",
           "default": "Add customer reviews and testimonials to showcase your store’s happy customers.",
-          "info": "Enter <br> for a line-break. For best results, keep the word count similar in each quote."
+          "info": "The full endorsement is preserved behind Read full endorsement."
         },
-           {
+        {
+          "type": "text",
+          "id": "preview_quote",
+          "label": "Preview quote (optional)",
+          "info": "Use an exact excerpt. Leave blank to automatically show the first 40 words."
+        },
+        {
           "type": "image_picker",
           "id": "image",
           "label": "Image",
@@ -305,10 +267,10 @@
           "label": "Author",
           "default": "Author's name"
         },
-           {
+        {
           "type": "text",
           "id": "sub-heading",
-          "label": "Author",
+          "label": "Credentials / role",
           "default": "Sub heading"
         },
         {
@@ -327,18 +289,15 @@
   "presets": [
     {
       "name": "Review Testimonials",
-      "settings": {
-      },
+      "settings": {},
       "blocks": [
         {
           "type": "testimonial",
-          "settings": {
-          }
+          "settings": {}
         },
         {
           "type": "testimonial",
-          "settings": {
-          }
+          "settings": {}
         }
       ]
     }
