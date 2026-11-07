@@ -36,7 +36,7 @@
             {%- if show_image and block.settings.image != blank -%}
               <figure class="tps-expert__portrait">
                 {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" aria-label="{{ block.settings.author | escape }}">{%- endif -%}
-                {% render 'image', image: block.settings.image, custom_aspect_ratio: image_aspect_ratio, sizes: '(max-width: 767px) 80px, 120px', widths: '80, 120, 160, 240, 360', loading: 'lazy' %}
+                {% render 'image', image: block.settings.image, custom_aspect_ratio: image_aspect_ratio, sizes: '(max-width: 767px) 160px, 240px', widths: '160, 240, 320, 480, 720', loading: 'lazy' %}
                 {%- if block.settings.link != blank -%}</a>{%- endif -%}
                 {%- if block.settings.image_caption != blank -%}<figcaption>{{ block.settings.image_caption | escape }}</figcaption>{%- endif -%}
               </figure>
@@ -222,10 +222,10 @@ document.addEventListener('toggle', event => {
       "id": "vertical_padding",
       "label": "Vertical padding",
       "min": 0,
-      "max": 80,
+      "max": 120,
       "step": 4,
       "unit": "px",
-      "default": 52
+      "default": 80
     }
   ],
   "blocks": [
