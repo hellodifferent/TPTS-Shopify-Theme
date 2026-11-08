@@ -651,6 +651,7 @@
       "soft-play-ball-pit-pastel",
       "soft-play-ball-pit-pink-blossom"
     ],
+    "tps_shipping_offer_enabled": false,
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",

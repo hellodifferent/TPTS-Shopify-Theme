@@ -106,13 +106,13 @@
         },
         "tps_castle_stock_test": {
           "type": "tps_castle_stock_test",
+          "disabled": true,
           "settings": {
             "enabled": false,
             "threshold": 10,
             "measurement_id": "G-WQGDEEPH80",
             "ends_at": "2026-11-19T23:59:59+11:00"
-          },
-          "disabled": true
+          }
         },
         "buy_buttons_6Ukibb": {
           "type": "buy-buttons",
@@ -127,7 +127,7 @@
         "tps_delivery_links": {
           "type": "tps_delivery_links",
           "settings": {
-            "shipping_text": "Next day dispatch from Brisbane",
+            "shipping_text": "Next business day dispatch from Brisbane",
             "delivery_label": "",
             "delivery_url": "",
             "returns_label": "",
@@ -582,6 +582,7 @@
           "settings": {
             "star_rating": 0,
             "testimonial": "As a paediatric occupational therapist, I highly recommend the Playtime Store soft play equipment for children. Their products offer a safe and stimulating environment for kids to explore, develop motor skills, and build confidence. The design promotes sensory integration and encourages social interaction, making it an invaluable tool. I've seen firsthand how it enhances children's physical and cognitive abilities, making playtime not only fun but also therapeutic. I highly recommend the Playtime Store products to fellow therapists and parents for their ability to support and enrich children's development.",
+            "preview_quote": "",
             "image": "shopify://shop_images/IMG_1444.jpg",
             "author": "Brooke Ottey",
             "sub-heading": "Paediatric Occupational Therapist",
@@ -594,6 +595,7 @@
           "settings": {
             "star_rating": 0,
             "testimonial": "As a pediatric occupational therapist and mother, I have witnessed the positive impact the Playtime Stores soft play equipment and ball pits has on a child’s development and overall well-being. The variety of sensory experiences provided by their play structures enables children to improve their motor skills, balance, coordination,sensory integration and imagination! The soft and safe environment allows children to explore, take risks, and build confidence in all of their abilities. I have seen firsthand how children with various abilities, such as autism, ADHD, and developmental delays, thrive in this inclusive and stimulating environment. The Playtime Store team truly understands the unique needs of children with all abilities and provides a welcoming and therapeutic equipment for them to play, learn, and grow.",
+            "preview_quote": "",
             "image": "shopify://shop_images/corina.jpg",
             "author": "Corina Younis",
             "sub-heading": "Pediatric Occupational Therapist",
@@ -606,6 +608,7 @@
           "settings": {
             "star_rating": 0,
             "testimonial": "As an Early Child Educator it's so amazing to see carefully designed, quality play equipment that is accessible for families to use in their home environment. From an education perspective the opportunities for motor and cognitive development are endless. Benefits include opportunities for children to develop their gross motor skills through physical challenge and safe risk taking. Cognitive development is extended through the development of skills such as problem solving, concentration and memory recall.",
+            "preview_quote": "",
             "image": "shopify://shop_images/1000021249.jpg",
             "author": "Laura Newell",
             "sub-heading": "Qualified Early Childhood Educator",
@@ -628,7 +631,9 @@
         "image_shape": "square",
         "color_scheme": "default",
         "autoplay": true,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "background": "#f7f5f1",
+        "vertical_padding": 80
       }
     },
     "tps_customer_stories": {
