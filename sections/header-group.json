@@ -33,7 +33,7 @@
         "announcement_8LKewf": {
           "type": "announcement",
           "settings": {
-            "text": "<a href=\"/collections/all-products\" title=\"ALL PRODUCTS\">Shop original & award winning designs since <strong>2020 </strong></a>",
+            "text": "<a href=\"/collections/all-products\" title=\"ALL PRODUCTS\">Shop original & award winning designs since <strong>2020&nbsp;</strong></a>",
             "show_countdown": false,
             "hide_on_end": false,
             "end_date": "",
@@ -78,23 +78,6 @@
             "bg_color": "#4a4a4a",
             "bg_gradient": "",
             "text_color": "#ffffff"
-          }
-        },
-        "announcement-2": {
-          "type": "announcement",
-          "disabled": true,
-          "settings": {
-            "text": "<strong>EOFY SALE ON NOW</strong>",
-            "show_countdown": false,
-            "hide_on_end": false,
-            "end_date": "",
-            "end_time": "",
-            "number_font": "base",
-            "countdown_separator": "box",
-            "use_custom_colors": false,
-            "bg_color": "#d2bca6",
-            "bg_gradient": "",
-            "text_color": "#171717"
           }
         },
         "announcement_VnYXGq": {
@@ -147,23 +130,6 @@
             "bg_gradient": "",
             "text_color": "#ffffff"
           }
-        },
-        "announcement_TrgJef": {
-          "type": "announcement",
-          "disabled": true,
-          "settings": {
-            "text": "Ends Sunday at Midnight!",
-            "show_countdown": false,
-            "hide_on_end": false,
-            "end_date": "",
-            "end_time": "",
-            "number_font": "base",
-            "countdown_separator": "box",
-            "use_custom_colors": false,
-            "bg_color": "#4a4a4a",
-            "bg_gradient": "",
-            "text_color": "#ffffff"
-          }
         }
       },
       "block_order": [
@@ -171,11 +137,9 @@
         "announcement_8LKewf",
         "announcement_EVkaih",
         "announcement_M3rrAb",
-        "announcement-2",
         "announcement_VnYXGq",
         "announcement_FgWN7h",
-        "announcement_ttUQ3c",
-        "announcement_TrgJef"
+        "announcement_ttUQ3c"
       ],
       "settings": {
         "message_font_size": 14,
