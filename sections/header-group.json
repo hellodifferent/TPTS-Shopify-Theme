@@ -17,7 +17,7 @@
         "announcement_FMgndB": {
           "type": "announcement",
           "settings": {
-            "text": "Sign up & Receive Free Shipping on your first order!",
+            "text": "Sign up for a welcome gift on your first order!",
             "show_countdown": false,
             "hide_on_end": false,
             "end_date": "",
