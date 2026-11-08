@@ -12,5 +12,30 @@
     "market": "new-zealand"
   },
   "parent": "index.json",
-  "sections": {}
+  "sections": {
+    "16359278676808bea5": {
+      "settings": {},
+      "blocks": {
+        "mini": {
+          "settings": {
+            "product": "mini-step-slide-pastel",
+            "title": "Mini Step & Slide"
+          }
+        },
+        "ballpit": {
+          "settings": {
+            "product": "boucle-ball-pit",
+            "title": "Bouclé Ball Pit"
+          }
+        },
+        "product_67FYML": {
+          "settings": {
+            "title": "Boucle Soft Play Set",
+            "product": "boucle-soft-play-set",
+            "description": "Soft textures for little adventures"
+          }
+        }
+      }
+    }
+  }
 }
