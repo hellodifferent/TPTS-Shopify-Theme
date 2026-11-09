@@ -92,6 +92,7 @@
       "block_order": [
         "button_rwVT76"
       ],
+      "disabled": true,
       "name": "TPS split hero",
       "settings": {
         "eyebrow": "Kids Soft Play Sets",
@@ -101,8 +102,8 @@
         "text_alignment": "center",
         "mobile_text_alignment": "center",
         "vertical_alignment": "center",
-        "content_width": 440,
-        "heading_size": 56,
+        "content_width": 500,
+        "heading_size": 52,
         "mobile_heading_size": 34,
         "text_size": 14,
         "image": "shopify://shop_images/The-Playtime-Store-Price-Drop-Mobile.png",
@@ -113,7 +114,7 @@
         "desktop_height": 560,
         "mobile_ratio": "1",
         "mobile_order": "text-first",
-        "background": "#FFFFFF",
+        "background": "#ffffff",
         "text_color": "#3c3a38",
         "image_background": "#f7f5f1",
         "full_width": true,
@@ -313,7 +314,6 @@
         "image_TjAKiq",
         "d8062a60-7b1c-468f-8c16-844960d098ba"
       ],
-      "disabled": true,
       "settings": {
         "height": "fixed",
         "height_desktop": 500,
