@@ -618,5 +618,8 @@
   "tps_experts": {
     "read_full": "Read full endorsement",
     "show_less": "Show less"
+  },
+  "tps_product_badges": {
+    "limited_edition": "Limited edition"
   }
 }

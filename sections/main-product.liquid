@@ -3,6 +3,14 @@
 <script src="{{ 'tps-gallery-more.js' | asset_url }}" defer></script>
 <script src="{{ 'tps-gallery-thumbnails.js' | asset_url }}" defer></script>
 {%- liquid
+  assign tps_edition_title = product.title | split: ' + ' | first | downcase
+  assign tps_limited_edition = false
+  if tps_edition_title contains 'pink blossom'
+    if tps_edition_title contains 'explorer' or tps_edition_title contains 'castle' or tps_edition_title contains 'ball pit' or tps_edition_title contains 'play blocks'
+      assign tps_limited_edition = true
+    endif
+  endif
+
   assign zoom_size = 5000
   assign min_aspect_ratio = 0.6
 
@@ -282,6 +290,9 @@
 
           {% when 'title' %}
             <div class="title-row" data-dynamic-variant-content="{{ block.id }}" {{ block.shopify_attributes }}>
+              {%- if tps_limited_edition -%}
+                <span class="tps-product-edition">{{ 'tps_product_badges.limited_edition' | t }}</span>
+              {%- endif -%}
               <h1 class="product-title">{{ product.title | escape }}</h1>
             </div>
 
