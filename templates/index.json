@@ -77,6 +77,51 @@
         "space": 110
       }
     },
+    "tps_split_hero_Kp4TqE": {
+      "type": "tps-split-hero",
+      "blocks": {
+        "button_rwVT76": {
+          "type": "button",
+          "settings": {
+            "label": "SHOP NEW ARRIVALS",
+            "link": "shopify://collections/new-arrivals",
+            "style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "button_rwVT76"
+      ],
+      "name": "TPS split hero",
+      "settings": {
+        "eyebrow": "Kids Soft Play Sets",
+        "heading": "Made for little everyday adventures",
+        "use_h1": true,
+        "text": "<p>Our soft play is back with all your favourite colours and sets, all ready to ship next business day from our Brisbane warehouse.</p>",
+        "text_alignment": "center",
+        "mobile_text_alignment": "center",
+        "vertical_alignment": "center",
+        "content_width": 440,
+        "heading_size": 56,
+        "mobile_heading_size": 34,
+        "text_size": 14,
+        "image": "shopify://shop_images/The-Playtime-Store-Price-Drop-Mobile.png",
+        "image_link": "shopify://collections/new-arrivals",
+        "image_link_label": "Soft Play Sets new arrivals",
+        "image_fit": "cover",
+        "image_width": 50,
+        "desktop_height": 560,
+        "mobile_ratio": "1",
+        "mobile_order": "text-first",
+        "background": "#FFFFFF",
+        "text_color": "#3c3a38",
+        "image_background": "#f7f5f1",
+        "full_width": true,
+        "desktop_padding": 60,
+        "mobile_padding": 36,
+        "section_padding": 0
+      }
+    },
     "16359276425da8ce46": {
       "type": "slideshow",
       "blocks": {
@@ -268,6 +313,7 @@
         "image_TjAKiq",
         "d8062a60-7b1c-468f-8c16-844960d098ba"
       ],
+      "disabled": true,
       "settings": {
         "height": "fixed",
         "height_desktop": 500,
@@ -773,104 +819,6 @@
         "color_scheme": "1"
       }
     },
-    "collection_slider_WimTDM": {
-      "type": "collection-slider",
-      "blocks": {
-        "select_78QwF7": {
-          "type": "select",
-          "settings": {
-            "link": "",
-            "linktext": ""
-          }
-        },
-        "select_MVU3Ge": {
-          "type": "select",
-          "settings": {
-            "coll-img": "shopify://shop_images/Playtimestore_2893.jpg",
-            "link": "shopify://collections/ball-pits",
-            "linktext": "Balls pits"
-          }
-        },
-        "select_6gymdq": {
-          "type": "select",
-          "settings": {
-            "coll-img": "shopify://shop_images/Photo_3-2-2025_8_49_42_AM_116.jpg",
-            "link": "shopify://collections/soft-play-sets",
-            "linktext": "Soft Play"
-          }
-        },
-        "select_ebRfUr": {
-          "type": "select",
-          "settings": {
-            "coll-img": "shopify://shop_images/Playtimestore_3732.jpg",
-            "link": "shopify://collections/wooden",
-            "linktext": "Wooden"
-          }
-        },
-        "select_trhqRc": {
-          "type": "select",
-          "settings": {
-            "coll-img": "shopify://shop_images/Our.Home.Trio3.jpg",
-            "link": "shopify://collections/leather-popups",
-            "linktext": "Popups"
-          }
-        },
-        "select_wfUATV": {
-          "type": "select",
-          "settings": {
-            "coll-img": "shopify://shop_images/Playtimestore_4084.jpg",
-            "link": "shopify://collections/inflatables",
-            "linktext": "Inflatables"
-          }
-        },
-        "select_EptpRV": {
-          "type": "select",
-          "settings": {
-            "coll-img": "shopify://shop_images/BoucleSoftPlaySet-ShantelWhite.jpg",
-            "link": "shopify://collections/boucle-range",
-            "linktext": "Boucle"
-          }
-        },
-        "select_arx7a8": {
-          "type": "select",
-          "settings": {
-            "coll-img": "shopify://shop_images/Screenshot_2025-03-03_at_14.13.46.png",
-            "link": "shopify://collections/leather",
-            "linktext": "Eco Leather"
-          }
-        },
-        "select_WehJU7": {
-          "type": "select",
-          "settings": {
-            "coll-img": "shopify://shop_images/velvet_lifestyle.jpg",
-            "link": "shopify://collections/velvet",
-            "linktext": "Velvet"
-          }
-        },
-        "select_VP9M8x": {
-          "type": "select",
-          "settings": {
-            "coll-img": "shopify://shop_images/Playtimestore_2899_4c8c8325-e398-4f9c-a9a5-51a9e3c85c03.jpg",
-            "link": "shopify://collections/ball-pit-balls",
-            "linktext": "Balls Only"
-          }
-        }
-      },
-      "block_order": [
-        "select_78QwF7",
-        "select_MVU3Ge",
-        "select_6gymdq",
-        "select_ebRfUr",
-        "select_trhqRc",
-        "select_wfUATV",
-        "select_EptpRV",
-        "select_arx7a8",
-        "select_WehJU7",
-        "select_VP9M8x"
-      ],
-      "disabled": true,
-      "settings": {}
-    },
     "image_with_text_FcV9zN": {
       "type": "image-with-text",
       "blocks": {
@@ -1316,6 +1264,7 @@
           "settings": {
             "star_rating": 0,
             "testimonial": "As a paediatric occupational therapist, I highly recommend the Playtime Store soft play equipment for children. Their products offer a safe and stimulating environment for kids to explore, develop motor skills, and build confidence. The design promotes sensory integration and encourages social interaction, making it an invaluable tool. I've seen firsthand how it enhances children's physical and cognitive abilities, making playtime not only fun but also therapeutic. I highly recommend the Playtime Store products to fellow therapists and parents for their ability to support and enrich children's development.",
+            "preview_quote": "",
             "image": "shopify://shop_images/IMG_1444.jpg",
             "author": "Brooke Ottey",
             "sub-heading": "Paediatric Occupational Therapist",
@@ -1328,6 +1277,7 @@
           "settings": {
             "star_rating": 0,
             "testimonial": "As a pediatric occupational therapist and mother, I have witnessed the positive impact the Playtime Stores soft play equipment and ball pits has on a child’s development and overall well-being. The variety of sensory experiences provided by their play structures enables children to improve their motor skills, balance, coordination,sensory integration and imagination! The soft and safe environment allows children to explore, take risks, and build confidence in all of their abilities. I have seen firsthand how children with various abilities, such as autism, ADHD, and developmental delays, thrive in this inclusive and stimulating environment. The Playtime Store team truly understands the unique needs of children with all abilities and provides a welcoming and therapeutic equipment for them to play, learn, and grow.",
+            "preview_quote": "",
             "image": "shopify://shop_images/corina.jpg",
             "author": "Corina Younis",
             "sub-heading": "Pediatric Occupational Therapist",
@@ -1340,6 +1290,7 @@
           "settings": {
             "star_rating": 0,
             "testimonial": "As an Early Child Educator it's so amazing to see carefully designed, quality play equipment that is accessible for families to use in their home environment. From an education perspective the opportunities for motor and cognitive development are endless. Benefits include opportunities for children to develop their gross motor skills through physical challenge and safe risk taking. Cognitive development is extended through the development of skills such as problem solving, concentration and memory recall.",
+            "preview_quote": "",
             "image": "shopify://shop_images/laura.png",
             "author": "Laura Newell",
             "sub-heading": "Qualified Early Childhood Educator",
@@ -1363,7 +1314,9 @@
         "image_shape": "square",
         "color_scheme": "default",
         "autoplay": false,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "background": "#f7f5f1",
+        "vertical_padding": 80
       }
     },
     "scrolling_banner_8AYnik": {
@@ -1560,6 +1513,7 @@
   },
   "order": [
     "scrolling_banner_73cFJz",
+    "tps_split_hero_Kp4TqE",
     "16359276425da8ce46",
     "cross_page_promos_RYBAir",
     "collection_slider_9Rd7Fi",
@@ -1569,7 +1523,6 @@
     "rich_text_EKR8Ly",
     "17518600637111cf4c",
     "collapsible_tabs_2_qb4CAd",
-    "collection_slider_WimTDM",
     "image_with_text_FcV9zN",
     "63c0115a-f2d4-4418-bdc6-ec94619300cb",
     "16359285201c71bbb1",
