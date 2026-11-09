@@ -1,0 +1,406 @@
+{%- liquid
+  assign hero_image = section.settings.image | default: section.settings.mobile_image
+  assign hero_link_label = section.settings.image_link_label | default: section.settings.heading | default: shop.name | strip_html
+  assign hero_loading = 'lazy'
+  assign hero_priority = 'auto'
+  if section.index == 1
+    assign hero_loading = 'eager'
+    assign hero_priority = 'high'
+  endif
+  assign hero_sizes = '(min-width: 768px) ' | append: section.settings.image_width | append: 'vw, 100vw'
+-%}
+<div class="tps-split-hero{% unless section.settings.full_width %} tps-split-hero--contained{% endunless %} tps-split-hero--{{ section.settings.mobile_order }}"
+  style="--hero-bg: {{ section.settings.background }}; --hero-text: {{ section.settings.text_color }}; --hero-image-bg: {{ section.settings.image_background }}; --hero-image-width: {{ section.settings.image_width }}%; --hero-height: {{ section.settings.desktop_height }}px; --hero-content-width: {{ section.settings.content_width }}px; --hero-align: {{ section.settings.text_alignment }}; --hero-mobile-align: {{ section.settings.mobile_text_alignment }}; --hero-valign: {{ section.settings.vertical_alignment }}; --hero-heading-size: {{ section.settings.heading_size }}px; --hero-mobile-heading-size: {{ section.settings.mobile_heading_size }}px; --hero-text-size: {{ section.settings.text_size }}px; --hero-padding: {{ section.settings.desktop_padding }}px; --hero-mobile-padding: {{ section.settings.mobile_padding }}px; --hero-section-padding: {{ section.settings.section_padding }}px; --hero-mobile-ratio: {{ section.settings.mobile_ratio }}; --hero-fit: {{ section.settings.image_fit }};">
+  <div class="tps-split-hero__layout">
+    <div class="tps-split-hero__copy">
+      <div class="tps-split-hero__inner">
+        {%- if section.settings.eyebrow != blank -%}<p class="tps-split-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          {%- if section.settings.use_h1 -%}<h1 class="tps-split-hero__heading">{{ section.settings.heading }}</h1>{%- else -%}<h2 class="tps-split-hero__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}<div class="tps-split-hero__text rte">{{ section.settings.text }}</div>{%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="tps-split-hero__buttons">
+            {%- for block in section.blocks -%}
+              {%- if block.settings.label != blank and block.settings.link != blank -%}
+                <a class="tps-split-hero__button {% if block.settings.style == 'link' %}small-feature-link{% else %}btn btn--{{ block.settings.style }}{% endif %}" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</a>
+              {%- elsif request.design_mode and block.settings.label != blank -%}
+                <span class="tps-split-hero__button {% if block.settings.style == 'link' %}small-feature-link{% else %}btn btn--{{ block.settings.style }}{% endif %}" aria-disabled="true" {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="tps-split-hero__media">
+      {%- if section.settings.image_link != blank -%}<a class="tps-split-hero__image-link" href="{{ section.settings.image_link }}" aria-label="{{ hero_link_label | escape }}">{%- endif -%}
+      {%- if hero_image != blank -%}
+        <picture>
+          {%- if section.settings.mobile_image != blank -%}
+            {%- render 'image', image: section.settings.mobile_image, sizes: '100vw', widths: '360, 540, 750, 1000, 1500', as_mobile_source: true -%}
+          {%- endif -%}
+          {%- render 'image', image: hero_image, sizes: hero_sizes, widths: '480, 750, 1000, 1280, 1600, 2000, 2600', loading: hero_loading, fetchpriority: hero_priority -%}
+        </picture>
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'tps-split-hero__placeholder' }}
+      {%- endif -%}
+      {%- if section.settings.image_link != blank -%}</a>{%- endif -%}
+    </div>
+  </div>
+</div>
+{% stylesheet %}
+.tps-split-hero { padding-block: var(--hero-section-padding); }
+.tps-split-hero--contained { padding-inline: var(--container-pad-x, 20px); }
+.tps-split-hero--contained .tps-split-hero__layout { max-width: var(--page-width, 1600px); margin-inline: auto; }
+.tps-split-hero__layout { display: grid; grid-template-columns: minmax(0, 1fr) var(--hero-image-width); min-height: var(--hero-height); }
+.tps-split-hero__copy { display: flex; flex-direction: column; justify-content: var(--hero-valign); min-width: 0; padding: var(--hero-padding) clamp(24px, 4vw, 80px); background: var(--hero-bg); color: var(--hero-text); text-align: var(--hero-align); }
+.tps-split-hero__inner { width: 100%; max-width: var(--hero-content-width); margin-inline: auto; }
+.tps-split-hero__eyebrow { margin: 0 0 16px; font-size: 12px; line-height: 1.5; letter-spacing: .08em; }
+.tps-split-hero .tps-split-hero__heading { margin: 0; color: inherit; font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: clamp(28px, 4vw, var(--hero-heading-size)); line-height: 1.12; letter-spacing: 0; overflow-wrap: anywhere; }
+.tps-split-hero__text { margin-top: 20px; color: inherit; font-size: var(--hero-text-size); line-height: 1.65; }
+.tps-split-hero__text > :first-child { margin-top: 0; }
+.tps-split-hero__text > :last-child { margin-bottom: 0; }
+.tps-split-hero__text a { color: inherit; }
+.tps-split-hero__buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.tps-split-hero__copy[style] { color: var(--hero-text); }
+.tps-split-hero__buttons { justify-content: var(--hero-align); }
+.tps-split-hero__button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; max-width: 100%; margin: 0; line-height: 1.2; text-align: center; }
+.tps-split-hero__button.small-feature-link { color: inherit; }
+.tps-split-hero__media { position: relative; min-width: 0; overflow: hidden; background: var(--hero-image-bg); }
+.tps-split-hero__media :is(picture, .tps-split-hero__image-link) { display: block; width: 100%; height: 100%; }
+.tps-split-hero__media :is(img, .tps-split-hero__placeholder) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: var(--hero-fit); }
+.tps-split-hero :is(a, [aria-disabled]):focus-visible { outline: 2px solid currentColor; outline-offset: -4px; }
+@media (max-width: 767.98px) {
+  .tps-split-hero__layout { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .tps-split-hero__copy { padding: var(--hero-mobile-padding) 24px; text-align: var(--hero-mobile-align); }
+  .tps-split-hero .tps-split-hero__heading { font-size: var(--hero-mobile-heading-size); }
+  .tps-split-hero__media { aspect-ratio: var(--hero-mobile-ratio); }
+  .tps-split-hero--image-first .tps-split-hero__media { grid-row: 1; }
+  .tps-split-hero__buttons { justify-content: var(--hero-mobile-align); gap: 10px; margin-top: 24px; }
+}
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "TPS split hero",
+  "tag": "section",
+  "class": "section-tps-split-hero",
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  },
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Small heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Made for little adventures."
+    },
+    {
+      "type": "checkbox",
+      "id": "use_h1",
+      "label": "Use as the main page heading",
+      "default": true,
+      "info": "Use only one main heading per page."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Beautiful soft play for big imaginations. Find their next playtime favourite.</p>"
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Desktop text alignment",
+      "default": "left"
+    },
+    {
+      "type": "text_alignment",
+      "id": "mobile_text_alignment",
+      "label": "Mobile text alignment",
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Desktop vertical alignment",
+      "default": "center",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Middle"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Text maximum width",
+      "min": 240,
+      "max": 640,
+      "step": 20,
+      "unit": "px",
+      "default": 440
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Desktop heading size",
+      "min": 28,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Mobile heading size",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Body text size",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image (optional)",
+      "info": "Uses the desktop image when left blank."
+    },
+    {
+      "type": "url",
+      "id": "image_link",
+      "label": "Image link"
+    },
+    {
+      "type": "text",
+      "id": "image_link_label",
+      "label": "Image link description",
+      "info": "Optional accessible description. Defaults to the heading."
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "default": "cover",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Fill and crop"
+        },
+        {
+          "value": "contain",
+          "label": "Fit whole image"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Desktop image width",
+      "min": 40,
+      "max": 65,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop minimum height",
+      "min": 320,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "default": 560
+    },
+    {
+      "type": "select",
+      "id": "mobile_ratio",
+      "label": "Mobile image shape",
+      "default": "1",
+      "options": [
+        {
+          "value": "1.3333",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "1",
+          "label": "Square"
+        },
+        {
+          "value": "0.8",
+          "label": "Portrait (4:5)"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_order",
+      "label": "Mobile layout",
+      "default": "image-first",
+      "options": [
+        {
+          "value": "image-first",
+          "label": "Image above text"
+        },
+        {
+          "value": "text-first",
+          "label": "Text above image"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Colours and spacing"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Text panel background",
+      "default": "#f7f5f1"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text colour",
+      "default": "#3c3a38"
+    },
+    {
+      "type": "color",
+      "id": "image_background",
+      "label": "Image background",
+      "default": "#f7f5f1"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding",
+      "label": "Desktop text vertical padding",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding",
+      "label": "Mobile text vertical padding",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section vertical padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button label",
+          "default": "Shop now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Button style",
+          "default": "primary",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "secondary",
+              "label": "Secondary"
+            },
+            {
+              "value": "link",
+              "label": "Text link"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TPS split hero",
+      "blocks": [
+        {
+          "type": "button",
+          "settings": {
+            "label": "Shop the range",
+            "link": "/collections/favourites"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
