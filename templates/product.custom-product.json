@@ -128,7 +128,7 @@
           "type": "tps_delivery_links",
           "settings": {
             "shipping_text": "Dispatches next business day from Brisbane",
-            "free_shipping_text": "Free shipping on Australian orders over $300",
+            "free_shipping_text": "Free shipping on all orders over $300",
             "delivery_label": "",
             "delivery_url": "",
             "returns_label": "",
