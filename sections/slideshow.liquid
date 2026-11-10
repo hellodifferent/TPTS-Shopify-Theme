@@ -4,6 +4,7 @@
 
 <div id="section-id-{{ section.id }}" {%- render 'animation-attrs', attrs: 'data-cc-animate data-cc-animate-delay="0.2s"' -%}>
     {% style %}
+      #section-id-{{ section.id }} .text-overlay__rte { max-width: var(--subtext-max-width, 60ch); }
       {%- if section.settings.autoplay -%}
         #section-id-{{ section.id }} slide-show {
           --duration: {{ section.settings.autoplay_speed }}s;
@@ -76,7 +77,7 @@
         #section-id-{{ section.id }} .text-overlay__text { display: grid; gap: 16px; }
         #section-id-{{ section.id }} .text-overlay__subheading { margin-block: 0; line-height: 1.4; }
         #section-id-{{ section.id }} .text-overlay__title { margin-block: 0; line-height: 1.06; }
-        #section-id-{{ section.id }} .text-overlay__rte { max-width: 60ch; margin-block: 0; line-height: 1.5; }
+        #section-id-{{ section.id }} .text-overlay__rte { max-width: var(--subtext-max-width, 60ch); margin-block: 0; line-height: 1.5; }
         #section-id-{{ section.id }} .text-overlay__rte p { margin: 0; }
         #section-id-{{ section.id }} .text-overlay__rte p + p { margin-top: 8px; }
         #section-id-{{ section.id }} .text-overlay__button-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0 0; }
@@ -86,7 +87,7 @@
         @media (max-width: 767.98px) {
           #section-id-{{ section.id }} .text-overlay__text { gap: 12px; }
           #section-id-{{ section.id }} .text-overlay__inner { padding: 28px 20px 60px; }
-          #section-id-{{ section.id }} .text-overlay__rte { max-width: 38ch; font-size: 14px; line-height: 1.45; }
+          #section-id-{{ section.id }} .text-overlay__rte { max-width: min(38ch, var(--subtext-max-width, 60ch)); font-size: 14px; line-height: 1.45; }
           #section-id-{{ section.id }} .text-overlay__button-row { gap: 10px; margin-top: 6px; }
           #section-id-{{ section.id }} .text-overlay__button-row .text-overlay__button { padding: 14px 18px; }
           {%- for block in section.blocks -%}
@@ -159,7 +160,7 @@
 
           {%- if show_overlay_text -%}
             <div class="text-overlay text-overlay--with-reveal text-overlay--for-banner text-overlay--v-{{ block.settings.text_alignment | split: ' ' | first }} text-overlay--h-{{ block.settings.text_alignment | split: ' ' | last }} image-overlay__over has-motion">
-              <div class="text-overlay__inner" style="--heading-max-width: {{ block.settings.heading_max_width }}em">
+              <div class="text-overlay__inner" style="--heading-max-width: {{ block.settings.heading_max_width }}em; --subtext-max-width: {{ block.settings.subtext_max_width | default: 60 }}ch">
                 <div class="text-overlay__text slideshow__motion-overlay has-motion">
                   {%- if block.settings.subheading != blank -%}
                     <div class="text-overlay__reveal"><div class="text-overlay__subheading subheading subheading--over has-motion">{{ block.settings.subheading | escape }}</div></div>
@@ -492,6 +493,17 @@
           "id": "text",
           "label": "Text",
           "default": "<p>And optional subtext</p>"
+        },
+        {
+          "type": "range",
+          "id": "subtext_max_width",
+          "label": "Subtext maximum width",
+          "min": 20,
+          "max": 90,
+          "step": 1,
+          "unit": "ch",
+          "default": 60,
+          "info": "Approximate characters per line. Automatically fits smaller screens."
         },
         {
           "type": "checkbox",
