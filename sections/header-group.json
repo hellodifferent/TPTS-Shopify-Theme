@@ -14,8 +14,25 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_dmPENM": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free Australian shipping on orders over $300",
+            "show_countdown": false,
+            "hide_on_end": false,
+            "end_date": "",
+            "end_time": "",
+            "number_font": "base",
+            "countdown_separator": "box",
+            "use_custom_colors": false,
+            "bg_color": "#4a4a4a",
+            "bg_gradient": "",
+            "text_color": "#ffffff"
+          }
+        },
         "announcement_FMgndB": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "Sign up for a welcome gift on your first order!",
             "show_countdown": false,
@@ -133,6 +150,7 @@
         }
       },
       "block_order": [
+        "announcement_dmPENM",
         "announcement_FMgndB",
         "announcement_8LKewf",
         "announcement_EVkaih",

@@ -127,7 +127,7 @@
         "tps_delivery_links": {
           "type": "tps_delivery_links",
           "settings": {
-            "shipping_text": "Next business day dispatch from Brisbane",
+            "shipping_text": "Free Next business day dispatch from Brisbane",
             "delivery_label": "",
             "delivery_url": "",
             "returns_label": "",
