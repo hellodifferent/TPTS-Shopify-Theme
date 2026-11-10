@@ -5,11 +5,17 @@
   line-height: 1.5;
 }
 .tps-product-delivery__origin,
+.tps-product-delivery__shipping,
 .tps-product-delivery__links a {
   display: flex;
   align-items: center;
   gap: 7px;
 }
+.tps-product-delivery__shipping { margin-top: 6px; }
+.tps-product-delivery__origin,
+.tps-product-delivery__shipping { align-items: flex-start; }
+.tps-product-delivery__origin .icon,
+.tps-product-delivery__shipping .icon { margin-top: 1px; }
 .tps-product-delivery__links {
   display: flex;
   flex-wrap: wrap;
