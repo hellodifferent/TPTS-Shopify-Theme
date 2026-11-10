@@ -140,7 +140,7 @@
             "use_h1": true,
             "text": "<p>Discover soft play sets, ball pits and play blocks made for big imaginations, and beautiful spaces.</p>",
             "subtext_max_width": 40,
-            "enlarge_text": true,
+            "enlarge_text": false,
             "button_label_1": "SHOP NEW ARRIVALS",
             "button_url_1": "shopify://collections/new-arrivals",
             "button_label_2": "",
