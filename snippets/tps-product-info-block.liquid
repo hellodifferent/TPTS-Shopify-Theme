@@ -28,16 +28,16 @@
   {%- case block.type -%}
     {%- when 'tps_delivery_links' -%}
       <div class="tps-product-delivery not-in-quickbuy" {{ block.shopify_attributes }}>
-        {%- if block.settings.shipping_text != blank -%}
-          <div class="tps-product-delivery__origin">
-            {% render 'icon', icon: 'truck', size: 'small' %}
-            <span>{{ block.settings.shipping_text | escape }}</span>
-          </div>
-        {%- endif -%}
         {%- if block.settings.free_shipping_text != blank -%}
           <div class="tps-product-delivery__shipping">
             {% render 'icon', icon: 'box', size: 'small' %}
             <span>{{ block.settings.free_shipping_text | escape }}</span>
+          </div>
+        {%- endif -%}
+        {%- if block.settings.shipping_text != blank -%}
+          <div class="tps-product-delivery__origin">
+            {% render 'icon', icon: 'truck', size: 'small' %}
+            <span>{{ block.settings.shipping_text | escape }}</span>
           </div>
         {%- endif -%}
         <div class="tps-product-delivery__links">
