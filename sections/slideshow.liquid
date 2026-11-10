@@ -71,6 +71,29 @@
         }
         {%- endfor -%}
       }
+
+      {%- if request.page_type == 'index' and section.id contains '16359276425da8ce46' -%}
+        #section-id-{{ section.id }} .text-overlay__text { display: grid; gap: 16px; }
+        #section-id-{{ section.id }} .text-overlay__subheading { margin-block: 0; line-height: 1.4; }
+        #section-id-{{ section.id }} .text-overlay__title { margin-block: 0; line-height: 1.06; }
+        #section-id-{{ section.id }} .text-overlay__rte { max-width: 60ch; margin-block: 0; line-height: 1.5; }
+        #section-id-{{ section.id }} .text-overlay__rte p { margin: 0; }
+        #section-id-{{ section.id }} .text-overlay__rte p + p { margin-top: 8px; }
+        #section-id-{{ section.id }} .text-overlay__button-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0 0; }
+        #section-id-{{ section.id }} .text-overlay--h-center .text-overlay__button-row { justify-content: center; }
+        #section-id-{{ section.id }} .text-overlay--h-right .text-overlay__button-row { justify-content: flex-end; }
+        #section-id-{{ section.id }} .text-overlay__button-row .text-overlay__button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; margin: 0; line-height: 1.2; }
+        @media (max-width: 767.98px) {
+          #section-id-{{ section.id }} .text-overlay__text { gap: 12px; }
+          #section-id-{{ section.id }} .text-overlay__inner { padding: 28px 20px 60px; }
+          #section-id-{{ section.id }} .text-overlay__rte { max-width: 38ch; font-size: 14px; line-height: 1.45; }
+          #section-id-{{ section.id }} .text-overlay__button-row { gap: 10px; margin-top: 6px; }
+          #section-id-{{ section.id }} .text-overlay__button-row .text-overlay__button { padding: 14px 18px; }
+          {%- for block in section.blocks -%}
+            #section-id-{{ section.id }} .slide-{{ forloop.index }} .text-overlay__title { font-size: clamp(28px, 9vw, {{ block.settings.title_size_mobile }}px); line-height: 1.08; }
+          {%- endfor -%}
+        }
+      {%- endif -%}
     {% endstyle %}
 
   {%- unless section.settings.full_width -%}<div class="container container--not-mobile fully-spaced-row--medium fully-spaced-row--not-mobile">{%- endunless -%}
