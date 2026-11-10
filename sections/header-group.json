@@ -16,6 +16,7 @@
       "blocks": {
         "announcement_dmPENM": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "Free Australian shipping on orders over $300",
             "show_countdown": false,
@@ -32,7 +33,6 @@
         },
         "announcement_FMgndB": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
             "text": "Sign up for a welcome gift on your first order!",
             "show_countdown": false,
