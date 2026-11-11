@@ -36,6 +36,6 @@
         {{ 'product-1' | placeholder_svg_tag: 'pf-placeholder' }}
       {%- endif -%}
     </div>
-    <span data-state-price>{%- if sibling.price_varies -%}{{ 'products.product.from' | t }} {% endif -%}{{ sibling.price | money }}</span>
+    <span data-state-price>{% render 'tps-card-price', product: sibling %}</span>
   </template>
 </li>

@@ -81,3 +81,27 @@
   .tps-mobile-bestsellers__title { color: #171717; font-size: 14px; line-height: 1.4; }
   .tps-mobile-bestsellers__price { font-size: 13px; line-height: 1.4; }
 }
+
+.tps-nav-early-access {
+  display: inline-block;
+  margin-inline-start: 7px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: #f4ebe1;
+  color: #6a5141;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+@media (max-width: 767.98px) {
+  .mobile-navigation-drawer .navigation__tier-1 > .navigation__item > .navigation__link:has(> .tps-nav-early-access) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .mobile-navigation-drawer .tps-nav-early-access { margin-inline-start: auto; }
+}

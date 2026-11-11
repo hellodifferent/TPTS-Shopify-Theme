@@ -964,6 +964,13 @@
       },
       {
         "type": "text",
+        "id": "tps_early_access_nav_label",
+        "label": "Black Friday nav label",
+        "default": "Early Access",
+        "info": "Appears next to the Black Friday link. Leave blank to hide."
+      },
+      {
+        "type": "text",
         "id": "tps_sale_message",
         "label": "Product page sale message",
         "info": "Shown below the price when the selected variant is on sale. Leave blank to hide."

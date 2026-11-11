@@ -1,0 +1,11 @@
+{% doc %}
+  @param {product} product - Product whose price is shown on the card.
+{% enddoc %}
+{%- if product.price_varies -%}
+  {{ 'products.product.from' | t }} {{ product.price | money }}
+{%- elsif product.compare_at_price > product.price -%}
+  <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span> {{ product.price | money }}
+  <s class="tps-collection-compare"><span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span> {{ product.compare_at_price | money }}</s>
+{%- else -%}
+  {{ product.price | money }}
+{%- endif -%}

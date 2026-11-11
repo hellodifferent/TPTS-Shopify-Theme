@@ -41,10 +41,7 @@
     <p class="pf-description">{{ product.metafields.descriptors.subtitle | escape }}</p>
   {%- endif -%}
   <div class="pf-price" data-pf-price>
-    {%- if product.price_varies -%}{{ 'products.product.from' | t }} {% endif -%}{{ product.price | money }}
-    {%- if product.compare_at_price > product.price and product.price_varies == false -%}
-      <s class="tps-collection-compare">{{ product.compare_at_price | money }}</s>
-    {%- endif -%}
+    {% render 'tps-card-price', product: product %}
   </div>
   {%- if family.products.value != blank -%}
     <ul class="pf-swatches" aria-label="{{ 'sections.playtime_favourites.colours' | t: product: product.title | escape }}">

@@ -21,7 +21,8 @@ if (!customElements.get('playtime-favourites')) {
         const title = card.querySelector('[data-pf-dynamic-title]');
         if (title) title.textContent = swatch.dataset.productTitle;
         const price = card.querySelector('[data-pf-price]');
-        if (price) price.textContent = state.querySelector('[data-state-price]').textContent;
+        const nextPrice = state.querySelector('[data-state-price]');
+        if (price && nextPrice) price.replaceChildren(...Array.from(nextPrice.childNodes, (node) => node.cloneNode(true)));
         const available = swatch.dataset.available === 'true';
         const badge = card.querySelector('[data-pf-badge]');
         const excludeRestocking = swatch.dataset.excludeRestocking === 'true';
@@ -35,7 +36,7 @@ if (!customElements.get('playtime-favourites')) {
         const badgeLabels = Array.from(badge?.querySelectorAll('.price-label') || []);
         const badgeText = badgeLabels.length ? badgeLabels.filter((label) => !label.hidden).map((label) => label.textContent).join('. ') : badge?.textContent;
         const announcement = card.querySelector('[data-pf-announcement]');
-        if (announcement) announcement.textContent = [swatch.dataset.colour, price?.textContent, available || badge?.hidden ? '' : badgeText].filter(Boolean).join('. ');
+        if (announcement) announcement.textContent = [swatch.dataset.colour, price?.textContent.trim().replace(/\s+/g, ' '), available || badge?.hidden ? '' : badgeText].filter(Boolean).join('. ');
       };
       this.addEventListener('click', this.handleClick);
     }
