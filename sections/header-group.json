@@ -17,7 +17,7 @@
         "announcement_dmPENM": {
           "type": "announcement",
           "settings": {
-            "text": "Free shipping on all orders over $300",
+            "text": "Black Friday • Free shipping on all orders over $250",
             "show_countdown": false,
             "hide_on_end": false,
             "end_date": "",
