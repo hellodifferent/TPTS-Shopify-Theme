@@ -53,15 +53,42 @@
     return node;
   };
 
+  const initialReviewCount = 5;
+
+  function reviewPriority(product) {
+    const title = product.toLowerCase();
+    if (title.includes('explorer') && title.includes('white')) return 0;
+    if (title.includes('step & slide') && title.includes('white')) return 1;
+    if (title.includes('pink blossom')) return 2;
+    if (title.includes('step & slide')) return 3;
+    return 4;
+  }
+
   function reviewData(source) {
-    return Array.from(source.querySelectorAll('.jm-review-item')).map(item => {
+    const reviews = Array.from(source.querySelectorAll('.jm-review-item')).map(item => {
       const text = item.querySelector('.jdgm-review-content__body-content, .jm-review-content__body')?.textContent.trim();
       const author = item.querySelector('.jm-reviewer-info__name')?.textContent.trim();
       const rating = item.querySelector('.jm-star-rating');
       const score = Number(rating?.dataset.score || rating?.getAttribute('aria-label')?.match(/[\d.]+/)?.[0]);
-      return { item, text, author, score };
+      const product = item.querySelector('.jm-product-variant-card__product-link')?.textContent.trim() || '';
+      return { item, text, author, score, product };
     }).filter(review => review.text && review.author && review.score >= 4 && review.score <= 5)
-      .sort((a, b) => Number(b.text.length >= 70) - Number(a.text.length >= 70));
+      .sort((a, b) => reviewPriority(a.product) - reviewPriority(b.product)
+        || Number(b.text.length >= 70) - Number(a.text.length >= 70));
+
+    const featured = [];
+    const remaining = [];
+    const seenProducts = new Set();
+    for (const review of reviews) {
+      const key = review.product.toLowerCase();
+      if (reviewPriority(key) < 4 && !seenProducts.has(key)) {
+        featured.push(review);
+        seenProducts.add(key);
+      } else {
+        remaining.push(review);
+      }
+    }
+    return [...featured, ...remaining];
   }
 
   function quoteCard(review) {
@@ -70,7 +97,7 @@
     stars.setAttribute('aria-label', review.score + ' out of 5 stars');
     const text = review.text.length > 240 ? review.text.slice(0, 240).replace(/\s+\S*$/, '') + '…' : review.text;
     card.append(stars, element('blockquote', 'tps-floating-reviews__quote', text),
-      element('p', 'tps-floating-reviews__author', review.author));
+      element('p', 'tps-floating-reviews__author', [review.author, review.product].filter(Boolean).join(' · ')));
     return card;
   }
 
@@ -135,14 +162,14 @@
     panel.append(intro);
 
     const stack = element('div', 'tps-floating-reviews__stack');
-    const quoteReviews = reviews.slice(0, 2);
+    const quoteReviews = reviews.slice(0, initialReviewCount);
     quoteReviews.forEach((review, index) => {
       stack.append(quoteCard(review));
       if (photos[index]) stack.append(photos[index]);
     });
     panel.append(stack);
 
-    const moreReviews = reviews.slice(2, 10);
+    const moreReviews = reviews.slice(initialReviewCount, 10);
     if (moreReviews.length) {
       const details = element('details', 'tps-floating-reviews__more');
       const toggle = element('summary', 'tps-floating-reviews__all', 'Read more reviews');
