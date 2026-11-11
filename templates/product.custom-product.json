@@ -127,8 +127,8 @@
         "tps_delivery_links": {
           "type": "tps_delivery_links",
           "settings": {
-            "shipping_text": "Dispatches next business day from Brisbane (*additional time may be needed during Black Friday)",
-            "free_shipping_text": "Black Friday • Free shipping on all orders over $250",
+            "shipping_text": "Dispatched within 1-3 business days from Brisbane during Black Friday",
+            "free_shipping_text": "Free shipping on all orders over $250 during Black Friday",
             "delivery_label": "",
             "delivery_url": "",
             "returns_label": "",
