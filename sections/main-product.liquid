@@ -303,13 +303,6 @@
     role="status"
     data-dynamic-variant-content="{{ block.id }}-price"
   >
-    {% render 'price',
-      product: product,
-      show_currency_code: settings.product_currency_code_enabled,
-      for_variant_picker: true,
-      current_variant: current_variant
-    %}
-
     {%- liquid
       assign afterpay_variant = current_variant | default: product.selected_or_first_available_variant
       assign afterpay_amount = afterpay_variant.price | divided_by: 100.0
@@ -320,6 +313,13 @@
     {%- if settings.tps_sale_message != blank and afterpay_variant.compare_at_price > afterpay_variant.price -%}
       <p class="tps-product-sale-message">{{ settings.tps_sale_message | escape }}</p>
     {%- endif -%}
+
+    {% render 'price',
+      product: product,
+      show_currency_code: settings.product_currency_code_enabled,
+      for_variant_picker: true,
+      current_variant: current_variant
+    %}
 
     <square-placement
       data-mpid="1cd545f1-5fde-429c-88b9-a6f15c53fa3e"
