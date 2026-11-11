@@ -52,7 +52,7 @@
           assign amount = amount | times: 100.0 | round
           assign sale_label_text = 'products.product.percent_reduction' | t: amount: amount
         else
-          assign amount = current_variant.compare_at_price | minus: current_variant.price | money
+          assign amount = current_variant.compare_at_price | minus: current_variant.price | money_without_trailing_zeros
           assign sale_label_text = 'products.product.value_reduction_html' | t: amount: amount
         endif
       endif

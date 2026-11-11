@@ -35,9 +35,15 @@
     assign show_selector = false
   endif
   assign single_price = product.price | money_without_trailing_zeros
+  assign single_regular_cents = product.price
+  if product.compare_at_price > product.price
+    assign single_regular_cents = product.compare_at_price
+  endif
   assign pair_price_cents = 16000
   assign pair_price = pair_price_cents | money_without_trailing_zeros
-  assign saving = product.price | times: 2 | minus: pair_price_cents | money_without_trailing_zeros
+  assign pair_regular_cents = single_regular_cents | times: 2
+  assign saving_cents = pair_regular_cents | minus: pair_price_cents
+  assign saving = saving_cents | money_without_trailing_zeros
 -%}
 {%- if kind != blank and kind != 'pit' and show_selector and cart.currency.iso_code == 'AUD' -%}
   <playtime-pack-selector class="pt-pack" data-pt-mode="product" data-product-form-id="{{ form_id }}" data-kind="{{ kind }}" data-ready="{{ ready }}" data-available="{{ product.available }}" data-preview-label="{{ 'playtime.offers.preview_only' | t | escape }}">
@@ -46,8 +52,33 @@
       <legend>{% if kind == 'mini' %}{{ 'playtime.offers.choose_set' | t }}{% else %}{{ 'playtime.offers.choose_balls' | t }}{% endif %}</legend>
       <div class="pt-pack__options{% unless kind == 'mini' %} pt-pack__options--balls{% endunless %}">
         {%- if kind == 'mini' -%}
-          <label class="pt-pack__option"><input type="radio" data-pack-size name="pt-pack-{{ form_id }}" value="1" checked><span><span class="pt-pack__name">{{ 'playtime.offers.six_blocks' | t }}</span><strong>{{ single_price }}</strong></span></label>
-          <label class="pt-pack__option"><input type="radio" data-pack-size name="pt-pack-{{ form_id }}" value="2"><span><span class="pt-pack__name">{{ 'playtime.offers.twelve_blocks' | t }}</span><strong>{{ pair_price }}</strong></span><small class="pt-pack__saving">{{ 'playtime.offers.save_amount' | t: saving: saving }}</small></label>
+          <label class="pt-pack__option">
+            <input type="radio" data-pack-size name="pt-pack-{{ form_id }}" value="1" checked>
+            <span>
+              <span class="pt-pack__name">{{ 'playtime.offers.six_blocks' | t }}</span>
+              <span class="pt-pack__prices">
+                <strong>{{ single_price }}</strong>
+                {%- if single_regular_cents > product.price -%}
+                  <s><span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>{{ single_regular_cents | money_without_trailing_zeros }}</s>
+                {%- endif -%}
+              </span>
+            </span>
+          </label>
+          <label class="pt-pack__option">
+            <input type="radio" data-pack-size name="pt-pack-{{ form_id }}" value="2">
+            <span>
+              <span class="pt-pack__name">{{ 'playtime.offers.twelve_blocks' | t }}</span>
+              <span class="pt-pack__prices">
+                <strong>{{ pair_price }}</strong>
+                {%- if saving_cents > 0 -%}
+                  <s><span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>{{ pair_regular_cents | money_without_trailing_zeros }}</s>
+                {%- endif -%}
+              </span>
+            </span>
+            {%- if saving_cents > 0 -%}
+              <small class="pt-pack__saving">{{ 'playtime.offers.save_amount' | t: saving: saving }}</small>
+            {%- endif -%}
+          </label>
         {%- else -%}
           {%- if kind == 'pit' -%}<label class="pt-pack__option"><input type="radio" data-pack-size name="pt-pack-{{ form_id }}" value="0" checked><span class="pt-pack__name">{{ 'playtime.offers.no_balls' | t }}</span></label>{%- endif -%}
           {%- for bags in (1..3) -%}
