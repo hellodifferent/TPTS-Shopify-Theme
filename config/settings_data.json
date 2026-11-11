@@ -565,7 +565,6 @@
     "color_scheme_2_btn_color_hover": "#d2bca6",
     "prod_over_redu_text": "#6a5141",
     "prod_over_redu_bg": "#f4ebe1",
-    "tps_sale_message": "Black Friday Early Access",
     "prod_over_low_bg": "#09728c",
     "prod_over_new_text": "#ffffff",
     "prod_over_new_bg": "#c16452",
@@ -596,6 +595,7 @@
     "prod_block_label_loc": "top right",
     "prod_reduction_show": true,
     "prod_reduction_type": "percent",
+    "tps_sale_message": "Black Friday Early Access",
     "prod_stock_warn_show": false,
     "prod_stock_warn_limit_int": 5,
     "prod_new_show": false,
@@ -998,6 +998,20 @@
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
+      },
+      "13047258039897440615": {
+        "type": "shopify://apps/judge-me-reviews/blocks/cart_drawer_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
+        "settings": {
+          "widget_type": "review-widget"
+        }
+      },
+      "12120936241911852800": {
+        "type": "shopify://apps/judge-me-reviews/blocks/reviews_tab/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {
+          "position": "right"
+        }
       }
     }
   },
