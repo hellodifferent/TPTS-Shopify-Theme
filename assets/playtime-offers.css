@@ -34,9 +34,6 @@
 .pt-pack__option strong{font-size:14px;font-weight:400;white-space:nowrap}
 .pt-pack__prices{display:inline-flex;align-items:baseline;gap:5px;flex-shrink:0;white-space:nowrap}
 .pt-pack__prices s{font-size:.85em;opacity:.75}
-@media(max-width:380px){
-  .pt-pack[data-kind="mini"] .pt-pack__option>span{flex-direction:column;align-items:flex-start;gap:4px}
-}
 .pt-pack__option .pt-pack__saving{position:absolute;right:9px;top:-9px;display:block;margin:0;padding:2px 7px;border-radius:4px;background:#d2bca6;color:#ffffff;font-size:11.5px;font-weight:500;line-height:1.4;white-space:nowrap;box-shadow:0 0 0 1px rgb(var(--body-bg-color))}
 .pt-pack__colour{display:block;margin:16px 0 0;font-size:13px}
 .pt-pack__colour>span{display:block;margin-bottom:6px}
@@ -67,3 +64,11 @@
 .pt-pack__selection .pt-pack__swatch { display: flex; align-items: center; justify-content: center; }
 .pt-pack__selection .pt-pack__swatch-dot { width: 35px; height: 35px; }
 .pt-pack__selection .pt-pack__swatch--unavailable:after { left: 4px; width: 35px; }
+
+@media (max-width: 384px) {
+  .pt-pack[data-kind="mini"] .pt-pack__option > span {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
