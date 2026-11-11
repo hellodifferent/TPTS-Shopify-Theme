@@ -142,3 +142,159 @@
   .template-product [data-widget="reviews-grid"] .jdgm-review-card:not(:has(img, video)) .jdgm-review-card__details { padding: 16px !important; }
   .template-product [data-widget="reviews-grid"] .jdgm-review-card__details-description { font-size: 13px !important; }
 }
+
+.tps-floating-reviews-enabled [data-widget-name="reviews_tab"] .jdgm-revs-tab-btn {
+  background: #d2bca6 !important;
+  color: #3d3028 !important;
+  border: 0;
+  border-radius: 0 3px 3px 0;
+  font-family: var(--base-font-family, inherit);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+}
+
+.tps-floating-reviews-enabled [data-widget-name="reviews_tab"] .jdgm-revs-tab-btn:focus-visible {
+  outline: 2px solid #634c3e;
+  outline-offset: 2px;
+}
+
+.jdgm-modal__content .jdgm-modal__container.tps-floating-reviews__shell {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: min(100%, 440px);
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  overflow: hidden;
+  border-radius: 0;
+  background: #f7f5f1;
+  animation: tps-reviews-slide-in 220ms ease-out;
+}
+
+.tps-floating-reviews__shell .all-reviews-widget-content {
+  background: #f7f5f1;
+  overscroll-behavior: contain;
+}
+
+.tps-floating-reviews__shell .all-reviews-widget-content-inner[hidden] {
+  display: none !important;
+}
+
+.tps-floating-reviews__shell .jm-indicator__close {
+  width: 44px;
+  height: 44px;
+  color: #44382f;
+}
+
+.tps-floating-reviews__panel {
+  display: grid;
+  align-content: start;
+  gap: 22px;
+  padding: 36px 24px max(28px, env(safe-area-inset-bottom));
+  color: #3c3a38;
+  font: 400 14px/1.55 var(--base-font-family, sans-serif);
+}
+
+.tps-floating-reviews__intro { padding-inline-end: 36px; }
+
+.tps-floating-reviews__heading {
+  margin: 0;
+  color: #1c1917;
+  font: 400 clamp(25px, 6vw, 34px)/1.12 var(--heading-font-family, Georgia, serif);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.tps-floating-reviews__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 7px;
+  margin: 12px 0 0;
+  font-size: 13px;
+}
+
+.tps-floating-reviews__stack {
+  display: grid;
+  gap: 12px;
+}
+
+.tps-floating-reviews__quote-card,
+.tps-floating-reviews__photo {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #e6dace;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.tps-floating-reviews__quote-card { padding: 16px; }
+
+.tps-floating-reviews__stars {
+  margin: 0;
+  color: #96775f;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: .04em;
+}
+
+.tps-floating-reviews__quote {
+  margin: 8px 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-indent: 0;
+}
+
+.tps-floating-reviews__quote::before,
+.tps-floating-reviews__quote::after { content: none; }
+.tps-floating-reviews__author { margin: 0; font-size: 13px; font-weight: 600; }
+
+.tps-floating-reviews__photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.tps-floating-reviews__caption { padding: 10px 14px; font-size: 13px; }
+
+.tps-floating-reviews__all {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #544031;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@keyframes tps-reviews-slide-in {
+  from { transform: translateX(-100%); }
+}
+
+@media (max-width: 767.98px) {
+  body:has(cart-drawer[aria-hidden="false"], .mobile-navigation-drawer[aria-hidden="false"], .mobile-navigation-drawer--open, .mobile-navigation-drawer--active) [data-widget-name="reviews_tab"] .jdgm-revs-tab-btn {
+    visibility: hidden;
+  }
+
+  .jdgm-modal__content .jdgm-modal__container.tps-floating-reviews__shell {
+    inset: auto 0 0;
+    width: 100%;
+    height: min(88%, 760px);
+    border-radius: 12px 12px 0 0;
+    animation-name: tps-reviews-sheet-in;
+  }
+
+  .tps-floating-reviews__panel { padding-inline: 18px; }
+}
+
+@keyframes tps-reviews-sheet-in {
+  from { transform: translateY(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jdgm-modal__content .jdgm-modal__container.tps-floating-reviews__shell { animation: none; }
+}
