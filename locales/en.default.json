@@ -139,7 +139,7 @@
       "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
       "sku": "SKU:",
       "sold_out": "Sold out",
-      "value_reduction_html": "{{ amount }} off",
+      "value_reduction_html": "Save {{ amount }}",
       "vendor": "By",
       "view_details": "View details",
       "xr_button": "View in your space"
