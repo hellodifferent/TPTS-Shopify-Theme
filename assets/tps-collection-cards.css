@@ -38,6 +38,7 @@
 .tps-product-list .product-grid--carousel { grid-auto-columns: calc((100% - 17px * (var(--product-columns-desktop) - 1)) / var(--product-columns-desktop)); }
 .tps-product-list .slider__item > .pf-card { flex: 1; }
 @media (max-width: 767px) {
+  .template-product .tps-product-list .collection-listing.slider { position: relative; }
   .tps-product-list .product-grid--carousel { grid-auto-columns: calc((100% - 10.2px * (var(--product-columns-desktop) - 1)) / var(--product-columns-desktop)); }
 }
 
