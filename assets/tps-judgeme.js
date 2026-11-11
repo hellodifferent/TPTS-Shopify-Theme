@@ -210,7 +210,7 @@
       if (content && buildPanel(content)) stopWatching?.();
     };
     const observer = new MutationObserver(tryUpgrade);
-    const timer = setTimeout(() => stopWatching(), 6000);
+    const timer = setTimeout(() => stopWatching?.(), 15000);
     stopWatching = () => {
       observer.disconnect();
       clearTimeout(timer);
