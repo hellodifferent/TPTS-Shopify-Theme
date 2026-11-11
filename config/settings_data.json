@@ -628,7 +628,7 @@
     "show_free_shipping_bar": false,
     "free_shipping_bar_col_under": "#171717",
     "cart_currency_code_enabled": true,
-    "custom_html_head": "<!-- Hotjar Tracking Code for Site 4934725 (name missing) -->\n<script>\n    (function(h,o,t,j,a,r){\n        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};\n        h._hjSettings={hjid:4934725,hjsv:6};\n        a=o.getElementsByTagName('head')[0];\n        r=o.createElement('script');r.async=1;\n        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;\n        a.appendChild(r);\n    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');\n</script>\n\n<!-- Google tag (gtag.js) -->\n<script async=\"\" src=\"https://www.googletagmanager.com/gtag/js?id=AW-11014679908\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'AW-11014679908');\n</script>",
+    "custom_html_head": "",
     "playtime_header_icons": true,
     "playtime_offer_preview": true,
     "playtime_ball_products": [
