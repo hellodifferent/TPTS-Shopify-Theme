@@ -141,6 +141,20 @@
       if (photos[index]) stack.append(photos[index]);
     });
     panel.append(stack);
+
+    const moreReviews = reviews.slice(2, 10);
+    if (moreReviews.length) {
+      const details = element('details', 'tps-floating-reviews__more');
+      const toggle = element('summary', 'tps-floating-reviews__all', 'Read more reviews');
+      const additional = element('div', 'tps-floating-reviews__stack');
+      additional.append(...moreReviews.map(quoteCard));
+      details.append(toggle, additional);
+      details.addEventListener('toggle', () => {
+        toggle.textContent = details.open ? 'Show fewer reviews' : 'Read more reviews';
+      });
+      panel.append(details);
+    }
+
     const link = element('a', 'tps-floating-reviews__all', 'Read all reviews');
     link.href = document.querySelector('#pagefooter a[href$="/pages/reviews"]')?.href || '/pages/reviews';
     panel.append(link);
