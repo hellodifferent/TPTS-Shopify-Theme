@@ -92,3 +92,30 @@
   vertical-align: middle;
   white-space: nowrap;
 }
+
+:where(#main-nav, #proxy-nav, .mobile-navigation-drawer) .navigation__tier-1 > .navigation__item > .navigation__link[href$="/collections/black-friday"]:not(:has(> .tps-nav-black-friday)) {
+  isolation: isolate;
+  color: #6a5141;
+}
+
+:where(#main-nav, #proxy-nav, .mobile-navigation-drawer) .navigation__tier-1 > .navigation__item > .navigation__link[href$="/collections/black-friday"]:not(:has(> .tps-nav-black-friday))::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset-block-start: calc(50% - 2px);
+  inset-inline: 10px;
+  block-size: 24px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: #f4ebe1;
+  pointer-events: none;
+}
+
+@media (max-width: 767.98px) {
+  .mobile-navigation-drawer .navigation__tier-1 > .navigation__item > .navigation__link[href$="/collections/black-friday"]:not(:has(> .tps-nav-black-friday))::after {
+    inset-block-start: 50%;
+    inset-inline: -8px auto;
+    inline-size: 8.25em;
+    block-size: 28px;
+  }
+}
