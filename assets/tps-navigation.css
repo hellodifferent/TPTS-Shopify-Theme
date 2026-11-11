@@ -85,7 +85,7 @@
 .tps-nav-black-friday {
   display: inline-block;
   padding: 3px 8px;
-  border-radius: 999px;
+  border-radius: 2px;
   background: #f4ebe1;
   color: #6a5141;
   line-height: 1.35;
@@ -106,7 +106,7 @@
   inset-inline: 10px;
   block-size: 24px;
   transform: translateY(-50%);
-  border-radius: 999px;
+  border-radius: 2px;
   background: #f4ebe1;
   pointer-events: none;
 }
