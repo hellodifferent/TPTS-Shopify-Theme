@@ -639,7 +639,12 @@
       "blue-balls-100-pack"
     ],
     "playtime_ball_offer_ready": true,
-    "playtime_mini_products": [],
+    "playtime_mini_products": [
+      "pre-order-mini-play-blocks-copy",
+      "mini-play-blocks-beige",
+      "mini-play-blocks-pastel",
+      "mini-play-blocks-pink-blossom"
+    ],
     "playtime_mini_offer_ready": true,
     "playtime_pit_products": [
       "soft-play-ball-pit-white",
