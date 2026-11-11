@@ -87,7 +87,6 @@
   display: inline-block;
   inline-size: 14px;
   block-size: 14px;
-  margin-inline-start: 6px;
   vertical-align: -2px;
   background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%2396775f%22%20d%3D%22m12%202%203.09%206.26L22%209.27l-5%204.87%201.18%206.88L12%2017.77l-6.18%203.25L7%2014.14%202%209.27l6.91-1.01L12%202z%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
 }
