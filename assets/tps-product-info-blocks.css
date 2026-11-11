@@ -68,6 +68,17 @@
   font-size: 18px;
   line-height: 1.4;
 }
+.tps-product-sale-message {
+  display: table;
+  margin: 6px 0 0;
+  padding: 3px 9px;
+  border-radius: 4px;
+  background: #f4ebe1;
+  color: #6a5141;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
 .product-form .product-info__price square-placement {
   --messaging-font-size: 12px;
   --messaging-line-height: 1.5;

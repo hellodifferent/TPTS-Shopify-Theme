@@ -317,6 +317,10 @@
       assign afterpay_categories = product.collections | map: 'title' | join: ','
     -%}
 
+    {%- if settings.tps_sale_message != blank and afterpay_variant.compare_at_price > afterpay_variant.price -%}
+      <p class="tps-product-sale-message">{{ settings.tps_sale_message | escape }}</p>
+    {%- endif -%}
+
     <square-placement
       data-mpid="1cd545f1-5fde-429c-88b9-a6f15c53fa3e"
       data-placement-id="414257f9-2092-45c5-a062-ad13fd0ec514"
