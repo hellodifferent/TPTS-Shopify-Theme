@@ -276,7 +276,8 @@
 }
 
 @media (max-width: 767.98px) {
-  body:has(cart-drawer[aria-hidden="false"], .mobile-navigation-drawer[aria-hidden="false"], .mobile-navigation-drawer--open, .mobile-navigation-drawer--active) [data-widget-name="reviews_tab"] .jdgm-revs-tab-btn {
+  body.reveal-mobile-nav [data-widget-name="reviews_tab"] .jdgm-revs-tab-btn,
+  body:has(cart-drawer[aria-hidden="false"]) [data-widget-name="reviews_tab"] .jdgm-revs-tab-btn {
     visibility: hidden;
   }
 
