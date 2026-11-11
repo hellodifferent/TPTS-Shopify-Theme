@@ -35,8 +35,9 @@
     assign show_selector = false
   endif
   assign single_price = product.price | money_without_trailing_zeros
-  assign pair_price = 19000 | money_without_trailing_zeros
-  assign saving = product.price | times: 2 | minus: 19000 | money_without_trailing_zeros
+  assign pair_price_cents = 16000
+  assign pair_price = pair_price_cents | money_without_trailing_zeros
+  assign saving = product.price | times: 2 | minus: pair_price_cents | money_without_trailing_zeros
 -%}
 {%- if kind != blank and kind != 'pit' and show_selector and cart.currency.iso_code == 'AUD' -%}
   <playtime-pack-selector class="pt-pack" data-pt-mode="product" data-product-form-id="{{ form_id }}" data-kind="{{ kind }}" data-ready="{{ ready }}" data-available="{{ product.available }}" data-preview-label="{{ 'playtime.offers.preview_only' | t | escape }}">
