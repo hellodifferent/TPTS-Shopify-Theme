@@ -17,7 +17,7 @@
         "announcement_dmPENM": {
           "type": "announcement",
           "settings": {
-            "text": "Black Friday • Free shipping on all orders over $250",
+            "text": "Black Friday is here with up to 20% off",
             "show_countdown": false,
             "hide_on_end": false,
             "end_date": "",
@@ -30,11 +30,10 @@
             "text_color": "#ffffff"
           }
         },
-        "announcement_FMgndB": {
+        "announcement_nXPLAQ": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
-            "text": "Sign up for a welcome gift on your first order!",
+            "text": "Black Friday • Free shipping on all orders over $250",
             "show_countdown": false,
             "hide_on_end": false,
             "end_date": "",
@@ -151,7 +150,7 @@
       },
       "block_order": [
         "announcement_dmPENM",
-        "announcement_FMgndB",
+        "announcement_nXPLAQ",
         "announcement_8LKewf",
         "announcement_EVkaih",
         "announcement_M3rrAb",
