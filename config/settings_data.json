@@ -594,7 +594,7 @@
     "quickbuy_style": "off",
     "prod_block_label_loc": "top right",
     "prod_reduction_show": true,
-    "prod_reduction_type": "percent",
+    "prod_reduction_type": "value",
     "tps_sale_message": "Black Friday Early Access",
     "prod_stock_warn_show": false,
     "prod_stock_warn_limit_int": 5,
