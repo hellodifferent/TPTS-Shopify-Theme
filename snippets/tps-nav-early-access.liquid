@@ -1,8 +1,0 @@
-{% doc %}
-  @param {link} link - Top-level navigation link.
-  @param {string} label - Badge text configured in the header.
-{% enddoc %}
-{%- assign link_handle = link.title | handleize -%}
-{%- if link_handle == 'black-friday' and label != blank -%}
-  <span class="tps-nav-early-access">{{ label | escape }}</span>
-{%- endif -%}

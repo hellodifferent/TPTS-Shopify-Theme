@@ -1,0 +1,9 @@
+{% doc %}
+  @param {link} link - Top-level navigation link.
+{% enddoc %}
+{%- assign link_handle = link.title | handleize -%}
+{%- if settings.tps_highlight_black_friday_nav and link_handle == 'black-friday' -%}
+  <span class="tps-nav-black-friday">{{ link.title | escape }}</span>
+{%- else -%}
+  {{- link.title | escape -}}
+{%- endif -%}

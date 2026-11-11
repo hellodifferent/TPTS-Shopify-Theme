@@ -963,11 +963,10 @@
         ]
       },
       {
-        "type": "text",
-        "id": "tps_early_access_nav_label",
-        "label": "Black Friday nav label",
-        "default": "Early Access",
-        "info": "Appears next to the Black Friday link. Leave blank to hide."
+        "type": "checkbox",
+        "id": "tps_highlight_black_friday_nav",
+        "label": "Highlight Black Friday nav link",
+        "default": true
       },
       {
         "type": "text",
