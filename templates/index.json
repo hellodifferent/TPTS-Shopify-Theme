@@ -9,74 +9,6 @@
  */
 {
   "sections": {
-    "scrolling_banner_73cFJz": {
-      "type": "scrolling-banner",
-      "blocks": {
-        "text_zfXy7C": {
-          "type": "text",
-          "settings": {
-            "text": "Same day dispatch before 10am",
-            "color": "rgba(0,0,0,0)",
-            "link": "",
-            "use_h1": false,
-            "stencil_all_text": false,
-            "stencil_text": ""
-          }
-        },
-        "text_8jzbBb": {
-          "type": "text",
-          "settings": {
-            "text": "AFTERPAY AVAILABLE",
-            "color": "rgba(0,0,0,0)",
-            "link": "",
-            "use_h1": false,
-            "stencil_all_text": false,
-            "stencil_text": ""
-          }
-        },
-        "text_fiHrcM": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "WAREHOUSE SALE ONLINE NOW",
-            "color": "rgba(0,0,0,0)",
-            "link": "shopify://collections/all-products",
-            "use_h1": false,
-            "stencil_all_text": false,
-            "stencil_text": ""
-          }
-        },
-        "text_d3dpw4": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "BOXING DAY SALE ON NOW",
-            "color": "rgba(0,0,0,0)",
-            "link": "shopify://collections/all",
-            "use_h1": false,
-            "stencil_all_text": false,
-            "stencil_text": ""
-          }
-        }
-      },
-      "block_order": [
-        "text_zfXy7C",
-        "text_8jzbBb",
-        "text_fiHrcM",
-        "text_d3dpw4"
-      ],
-      "disabled": true,
-      "settings": {
-        "full_width": true,
-        "color_scheme": "default",
-        "text_size": 18,
-        "vertical_padding": 23,
-        "speed": 21,
-        "direction": "left",
-        "font": "heading",
-        "space": 110
-      }
-    },
     "tps_split_hero_Kp4TqE": {
       "type": "tps-split-hero",
       "blocks": {
@@ -126,8 +58,31 @@
     "16359276425da8ce46": {
       "type": "slideshow",
       "blocks": {
+        "image_mwxexP": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/TPS_-_Black_Friday_desktop.webp",
+            "mobile_image": "shopify://shop_images/TPS_-_Black_Friday.webp",
+            "slide_link": "shopify://collections/black-friday",
+            "subheading": "",
+            "title": "",
+            "heading_max_width": 15,
+            "title_size": 84,
+            "title_size_mobile": 46,
+            "use_h1": false,
+            "text": "",
+            "subtext_max_width": 60,
+            "enlarge_text": false,
+            "button_label_1": "",
+            "button_url_1": "",
+            "button_label_2": "",
+            "button_url_2": "",
+            "text_alignment": "center center"
+          }
+        },
         "image_haepGQ": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/The-Playtime-Store-Soft-Play.png",
             "mobile_image": "shopify://shop_images/The-Playtime-Store-Soft-Play-01.png",
@@ -150,6 +105,7 @@
         },
         "image_BD8F6N": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/The-Playtime-Store-Soft-Play.png",
             "mobile_image": "shopify://shop_images/The-Playtime-Store-Soft-Play-01.png",
@@ -183,30 +139,6 @@
             "heading_max_width": 15,
             "title_size": 60,
             "title_size_mobile": 36,
-            "use_h1": false,
-            "text": "",
-            "subtext_max_width": 60,
-            "enlarge_text": false,
-            "button_label_1": "",
-            "button_url_1": "shopify://collections/all-products",
-            "button_label_2": "",
-            "button_url_2": "",
-            "text_alignment": "center center"
-          }
-        },
-        "image_7E8Jxk": {
-          "type": "image",
-          "name": "FREE Pool",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/TPS-Warehouse-Sale-IG.png",
-            "mobile_image": "shopify://shop_images/TPS-Warehouse-Sale-IG.png",
-            "slide_link": "shopify://collections/all-products",
-            "subheading": "",
-            "title": "",
-            "heading_max_width": 15,
-            "title_size": 60,
-            "title_size_mobile": 50,
             "use_h1": false,
             "text": "",
             "subtext_max_width": 60,
@@ -312,25 +244,25 @@
         }
       },
       "block_order": [
+        "image_mwxexP",
         "image_haepGQ",
         "image_BD8F6N",
         "image_MidWzh",
-        "image_7E8Jxk",
         "image_nHQFDq",
         "image_FANBCL",
         "image_TjAKiq",
         "d8062a60-7b1c-468f-8c16-844960d098ba"
       ],
       "settings": {
-        "height": "fixed",
+        "height": "adapt",
         "height_desktop": 500,
         "height_mobile": 460,
         "full_width": true,
         "mobile_overlay_under": false,
-        "overlay_style": "full image-overlay--bg-shadow",
+        "overlay_style": "no_background",
         "transition": "fade",
         "navigation": "dots",
-        "autoplay": true,
+        "autoplay": false,
         "autoplay_speed": 7,
         "accessibility_info": ""
       }
@@ -1525,7 +1457,6 @@
     }
   },
   "order": [
-    "scrolling_banner_73cFJz",
     "tps_split_hero_Kp4TqE",
     "16359276425da8ce46",
     "cross_page_promos_RYBAir",
