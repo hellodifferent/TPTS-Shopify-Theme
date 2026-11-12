@@ -24,6 +24,8 @@
 .pt-pack [hidden]{display:none!important}
 .pt-pack__fieldset,.pt-pack__colour--swatches{border:0;padding:0;margin:0;min-width:0}
 .pt-pack__fieldset legend{padding:0;margin:0 0 15px;font-size:13px;font-weight:500}
+.pt-pack[data-kind="mini"] .pt-pack__fieldset legend { margin-bottom: 4px; }
+.pt-pack__hint { margin: 0 0 14px; font-size: 12px; line-height: 1.45; }
 .pt-pack__options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .pt-pack__option{position:relative;display:flex;align-items:center;min-height:48px;padding:10px 13px;border:1px solid #d8d3cb;border-radius:6px;cursor:pointer;line-height:1.4;background:#fff;min-width:0}
 .pt-pack__option:has(input:checked){border-color:#d2bca6;background:#f7f5f1;box-shadow:none}

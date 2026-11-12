@@ -2,17 +2,19 @@
   @param {product} product - Product whose price is shown on the card.
   @param {boolean} [show_from] - Prefix a grouped product card price with From.
 {% enddoc %}
-{%- if show_from and product.price_varies == false -%}
-  {{ 'products.product.from' | t }}{{ ' ' }}
-{%- endif -%}
-{%- if product.price_varies -%}
-  {{ 'products.product.from' | t }} {{ product.price | money }}
-{%- elsif product.compare_at_price > product.price -%}
-  <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span> {{ product.price | money }}
-  <s class="tps-collection-compare"><span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span> {{ product.compare_at_price | money }}</s>
-{%- else -%}
-  {{ product.price | money }}
-{%- endif -%}
+<span class="tps-collection-single-price">
+  {%- if show_from and product.price_varies == false -%}
+    {{ 'products.product.from' | t }}{{ ' ' }}
+  {%- endif -%}
+  {%- if product.price_varies -%}
+    {{ 'products.product.from' | t }} {{ product.price | money }}
+  {%- elsif product.compare_at_price > product.price -%}
+    <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span> {{ product.price | money }}
+    <s class="tps-collection-compare"><span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span> {{ product.compare_at_price | money }}</s>
+  {%- else -%}
+    {{ product.price | money }}
+  {%- endif -%}
+</span>
 {%- if request.page_type == 'collection' and settings.playtime_mini_offer_ready and cart.currency.iso_code == 'AUD' -%}
   {%- assign eligible_mini_products = settings.playtime_mini_products | map: 'id' -%}
   {%- if eligible_mini_products contains product.id -%}

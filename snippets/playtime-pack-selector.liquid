@@ -56,6 +56,9 @@
           {{ 'playtime.offers.choose_balls' | t }}
         {%- endif -%}
       </legend>
+      {%- if kind == 'mini' -%}
+        <p class="pt-pack__hint">{{ 'playtime.offers.mini_colour_hint' | t }}</p>
+      {%- endif -%}
       <div class="pt-pack__options{% unless kind == 'mini' %} pt-pack__options--balls{% endunless %}">
         {%- if kind == 'mini' -%}
           <label class="pt-pack__option">
