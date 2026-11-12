@@ -201,6 +201,39 @@
               {%- endfor -%}
             </ul>
           {%- endif -%}
+          {%- liquid
+            assign original_cart_total = cart.original_total_price
+            for item in cart.items
+              if item.selling_plan_allocation
+                continue
+              endif
+              if item.variant.compare_at_price > item.variant.price and item.variant.compare_at_price > item.original_price
+                assign compare_at_saving = item.variant.compare_at_price | minus: item.original_price | times: item.quantity
+                assign original_cart_total = original_cart_total | plus: compare_at_saving
+              endif
+            endfor
+            assign cart_savings = original_cart_total | minus: cart.total_price
+          -%}
+          {%- if cart_savings > 0 -%}
+            <dl class="tps-cart-totals">
+              <div class="tps-cart-totals__row">
+                <dt>{{ 'cart.drawer.original_total' | t }}</dt>
+                <dd class="theme-money">
+                  <s>
+                    {%- if settings.cart_currency_code_enabled -%}
+                      {{- original_cart_total | money_with_currency -}}
+                    {%- else -%}
+                      {{- original_cart_total | money -}}
+                    {%- endif -%}
+                  </s>
+                </dd>
+              </div>
+              <div class="tps-cart-totals__row tps-cart-totals__row--savings">
+                <dt>{{ 'cart.drawer.savings' | t }}</dt>
+                <dd class="theme-money">{{ cart_savings | money_without_trailing_zeros }}</dd>
+              </div>
+            </dl>
+          {%- endif -%}
           <div class="subtotal h4 heading-font opposing-items">
             {{ 'cart.drawer.cart_total' | t }}
             <span class="theme-money">
