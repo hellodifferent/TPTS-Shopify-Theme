@@ -12,12 +12,13 @@
     "main": {
       "type": "main-collection",
       "settings": {
+        "empty_collection": "",
         "show_title": true,
         "show_image_behind_heading": true,
         "heading_image_height": "medium",
         "overlay_style": "shadow",
         "coll_desc_pos": "above",
-        "coll_num_per_page_int": 32,
+        "coll_num_per_page_int": 50,
         "grid": 4,
         "show_vendor": false,
         "show_total": false,
