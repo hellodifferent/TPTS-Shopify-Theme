@@ -49,7 +49,13 @@
   <playtime-pack-selector class="pt-pack" data-pt-mode="product" data-product-form-id="{{ form_id }}" data-kind="{{ kind }}" data-ready="{{ ready }}" data-available="{{ product.available }}" data-preview-label="{{ 'playtime.offers.preview_only' | t | escape }}">
     {%- if kind == 'pit' -%}<details class="pt-pack__optional"><summary>{{ 'playtime.offers.optional_balls' | t }}</summary>{%- endif -%}
     <fieldset class="pt-pack__fieldset">
-      <legend>{% if kind == 'mini' %}{{ 'playtime.offers.choose_set' | t }}{% else %}{{ 'playtime.offers.choose_balls' | t }}{% endif %}</legend>
+      <legend>
+        {%- if kind == 'mini' -%}
+          {{ 'playtime.offers.choose_set' | t }}
+        {%- else -%}
+          {{ 'playtime.offers.choose_balls' | t }}
+        {%- endif -%}
+      </legend>
       <div class="pt-pack__options{% unless kind == 'mini' %} pt-pack__options--balls{% endunless %}">
         {%- if kind == 'mini' -%}
           <label class="pt-pack__option">

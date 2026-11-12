@@ -23,7 +23,7 @@
       assign regular_pair_price = regular_set_price | times: 2
     -%}
     <span class="tps-collection-mini-offer">
-      <span>{{ 'playtime.offers.two_sets_for' | t: price: pair_price }}</span>
+      <span>{{ 'playtime.offers.mini_collection_offer' | t: price: pair_price }}</span>
       {%- if regular_pair_price > pair_price_cents -%}
         <s><span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>{{ regular_pair_price | money_without_trailing_zeros }}</s>
       {%- endif -%}

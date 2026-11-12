@@ -67,6 +67,7 @@
 }
 
 .tps-collection-mini-offer s {
+  white-space: nowrap;
   font-weight: 400;
   opacity: .75;
 }
