@@ -216,7 +216,7 @@
           -%}
           {%- if cart_savings > 0 -%}
             <dl class="tps-cart-totals">
-              <div class="tps-cart-totals__row">
+              <div class="tps-cart-totals__row tps-cart-totals__row--original">
                 <dt>{{ 'cart.drawer.original_total' | t }}</dt>
                 <dd class="theme-money">
                   <s>
@@ -234,7 +234,7 @@
               </div>
             </dl>
           {%- endif -%}
-          <div class="subtotal h4 heading-font opposing-items">
+          <div class="subtotal opposing-items">
             {{ 'cart.drawer.cart_total' | t }}
             <span class="theme-money">
               {%- if settings.cart_currency_code_enabled -%}
