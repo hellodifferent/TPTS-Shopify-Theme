@@ -24,11 +24,6 @@
 .pt-pack [hidden]{display:none!important}
 .pt-pack__fieldset,.pt-pack__colour--swatches{border:0;padding:0;margin:0;min-width:0}
 .pt-pack__fieldset legend{padding:0;margin:0 0 15px;font-size:13px;font-weight:500}
-.pt-pack__fieldset .pt-pack__offer-legend{margin-bottom:5px;font-size:17px;font-weight:600}
-.pt-pack__offer-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 8px}
-.pt-pack__offer-price s{font-weight:400;opacity:.75;white-space:nowrap}
-.pt-pack__offer-note{margin:0 0 18px;font-size:13px}
-.pt-pack__block-count{display:block;font-size:11px;font-weight:400;opacity:.8}
 .pt-pack__options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .pt-pack__option{position:relative;display:flex;align-items:center;min-height:48px;padding:10px 13px;border:1px solid #d8d3cb;border-radius:6px;cursor:pointer;line-height:1.4;background:#fff;min-width:0}
 .pt-pack__option:has(input:checked){border-color:#d2bca6;background:#f7f5f1;box-shadow:none}

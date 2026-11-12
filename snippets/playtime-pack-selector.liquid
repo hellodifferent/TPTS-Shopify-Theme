@@ -49,28 +49,13 @@
   <playtime-pack-selector class="pt-pack" data-pt-mode="product" data-product-form-id="{{ form_id }}" data-kind="{{ kind }}" data-ready="{{ ready }}" data-available="{{ product.available }}" data-preview-label="{{ 'playtime.offers.preview_only' | t | escape }}">
     {%- if kind == 'pit' -%}<details class="pt-pack__optional"><summary>{{ 'playtime.offers.optional_balls' | t }}</summary>{%- endif -%}
     <fieldset class="pt-pack__fieldset">
-      {%- if kind == 'mini' -%}
-        <legend class="pt-pack__offer-legend">
-          <span class="pt-pack__offer-price">
-            <span>{{ 'playtime.offers.two_sets_for' | t: price: pair_price }}</span>
-            {%- if saving_cents > 0 -%}
-              <s><span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>{{ pair_regular_cents | money_without_trailing_zeros }}</s>
-            {%- endif -%}
-          </span>
-        </legend>
-        <p class="pt-pack__offer-note">{{ 'playtime.offers.two_sets_note' | t }}</p>
-      {%- else -%}
-        <legend>{{ 'playtime.offers.choose_balls' | t }}</legend>
-      {%- endif -%}
+      <legend>{% if kind == 'mini' %}{{ 'playtime.offers.choose_set' | t }}{% else %}{{ 'playtime.offers.choose_balls' | t }}{% endif %}</legend>
       <div class="pt-pack__options{% unless kind == 'mini' %} pt-pack__options--balls{% endunless %}">
         {%- if kind == 'mini' -%}
           <label class="pt-pack__option">
             <input type="radio" data-pack-size name="pt-pack-{{ form_id }}" value="1" checked>
             <span>
-              <span class="pt-pack__name">
-                {{ 'playtime.offers.one_set' | t }}
-                <small class="pt-pack__block-count">{{ 'playtime.offers.six_blocks' | t }}</small>
-              </span>
+              <span class="pt-pack__name">{{ 'playtime.offers.six_blocks' | t }}</span>
               <span class="pt-pack__prices">
                 <strong>{{ single_price }}</strong>
                 {%- if single_regular_cents > product.price -%}
@@ -82,10 +67,7 @@
           <label class="pt-pack__option">
             <input type="radio" data-pack-size name="pt-pack-{{ form_id }}" value="2">
             <span>
-              <span class="pt-pack__name">
-                {{ 'playtime.offers.two_sets' | t }}
-                <small class="pt-pack__block-count">{{ 'playtime.offers.twelve_blocks' | t }}</small>
-              </span>
+              <span class="pt-pack__name">{{ 'playtime.offers.twelve_blocks' | t }}</span>
               <span class="pt-pack__prices">
                 <strong>{{ pair_price }}</strong>
                 {%- if saving_cents > 0 -%}

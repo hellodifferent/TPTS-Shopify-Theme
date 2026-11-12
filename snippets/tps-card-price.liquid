@@ -13,3 +13,20 @@
 {%- else -%}
   {{ product.price | money }}
 {%- endif -%}
+{%- if request.page_type == 'collection' and settings.playtime_mini_offer_ready and cart.currency.iso_code == 'AUD' -%}
+  {%- assign eligible_mini_products = settings.playtime_mini_products | map: 'id' -%}
+  {%- if eligible_mini_products contains product.id -%}
+    {%- liquid
+      assign pair_price_cents = 16000
+      assign pair_price = pair_price_cents | money_without_trailing_zeros
+      assign regular_set_price = product.compare_at_price | default: 0 | at_least: product.price
+      assign regular_pair_price = regular_set_price | times: 2
+    -%}
+    <span class="tps-collection-mini-offer">
+      <span>{{ 'playtime.offers.two_sets_for' | t: price: pair_price }}</span>
+      {%- if regular_pair_price > pair_price_cents -%}
+        <s><span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>{{ regular_pair_price | money_without_trailing_zeros }}</s>
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+{%- endif -%}
