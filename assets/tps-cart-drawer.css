@@ -84,7 +84,8 @@
 .tps-cart-totals__prices { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-end; gap: 2px 8px; text-align: end; }
 .tps-cart-totals__original { opacity: .78; white-space: nowrap; }
 .tps-cart-totals__current { font-weight: 600; white-space: nowrap; }
-.tps-cart-totals__savings { margin: 3px 0 0; color: #6b5140; font-size: 12.5px; line-height: 1.4; text-align: end; }
+.tps-cart-totals__savings,
+.tps-cart-totals__shipping { margin: 3px 0 0; color: #6b5140; font-size: 12.5px; line-height: 1.4; text-align: end; }
 .tps-cart-drawer .cart-policies { font-size: 12px; line-height: 1.5; }
 .tps-cart-drawer .cart-policies a { color: inherit; }
 .tps-cart-drawer #CartDrawerNoteToggle { display: inline-block; padding-top: 6px; color: #666; font-size: 12px; }

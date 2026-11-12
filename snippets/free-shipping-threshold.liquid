@@ -1,0 +1,14 @@
+{%- liquid
+  assign amounts = settings.free_shipping_amounts | newline_to_br | strip_newlines | split: '<br />'
+  assign currency = cart.currency.iso_code | default: localization.country.currency.iso_code
+  for amount in amounts
+    assign parts = amount | strip | split: ':'
+    if parts.size == 2 and parts[0] == currency
+      echo parts.last | plus: 0
+      break
+    elsif parts.size == 3 and parts[0] == localization.country.iso_code and parts[1] == currency
+      echo parts.last | plus: 0
+      break
+    endif
+  endfor
+-%}

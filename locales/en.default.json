@@ -365,6 +365,7 @@
       "cart_total": "Cart total",
       "original_total": "Original total",
       "savings": "You save",
+      "free_shipping": "+ Free Shipping",
       "accepted_payments": "Accepted payment methods",
       "shop_bestsellers": "Shop bestsellers",
       "shipping_at_checkout_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",

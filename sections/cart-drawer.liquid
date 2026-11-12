@@ -238,6 +238,11 @@
                 {{ 'cart.drawer.savings' | t }} <span class="theme-money">{{ cart_savings | money_without_trailing_zeros }}</span>
               </p>
             {%- endif -%}
+            {%- capture free_shipping_threshold -%}{%- render 'free-shipping-threshold' -%}{%- endcapture -%}
+            {%- assign free_shipping_threshold = free_shipping_threshold | plus: 0 -%}
+            {%- if cart.requires_shipping and free_shipping_threshold > 0 and cart.total_price >= free_shipping_threshold -%}
+              <p class="tps-cart-totals__shipping">{{ 'cart.drawer.free_shipping' | t }}</p>
+            {%- endif -%}
           </div>
 
           <div class="lightly-spaced-row">

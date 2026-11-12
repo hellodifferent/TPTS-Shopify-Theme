@@ -627,6 +627,7 @@
     "after_add_to_cart": "drawer",
     "cart_item_show_single_variant": true,
     "show_free_shipping_bar": false,
+    "free_shipping_amounts": "AUD:25000",
     "free_shipping_bar_col_under": "#171717",
     "cart_currency_code_enabled": true,
     "custom_html_head": "",
