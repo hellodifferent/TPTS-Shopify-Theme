@@ -5,6 +5,7 @@
   @param {image} selected_image - Initial card image.
   @param {boolean} [collection_actions] - Include a collection card action preview.
   @param {string} [card_id] - Section-specific identifier for card forms.
+  @param {boolean} [grouped_ball_pit] - Keep the starting price and product-page action on grouped ball pit cards.
 {% enddoc %}
 {%- liquid
   assign action_card_id = card_id | default: selected_product.id
@@ -25,7 +26,7 @@
   </a>
   <template data-pf-state>
     {%- if collection_actions -%}
-      <div data-state-action>{% render 'tps-collection-action', product: sibling, card_id: action_card_id %}</div>
+      <div data-state-action>{% render 'tps-collection-action', product: sibling, card_id: action_card_id, force_product_page: grouped_ball_pit %}</div>
     {%- endif -%}
     <div data-state-visual>
       {%- if sibling.featured_media.media_type == 'video' -%}
@@ -36,6 +37,6 @@
         {{ 'product-1' | placeholder_svg_tag: 'pf-placeholder' }}
       {%- endif -%}
     </div>
-    <span data-state-price>{% render 'tps-card-price', product: sibling %}</span>
+    <span data-state-price>{% render 'tps-card-price', product: sibling, show_from: grouped_ball_pit %}</span>
   </template>
 </li>

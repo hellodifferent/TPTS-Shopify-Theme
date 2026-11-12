@@ -1,10 +1,11 @@
 {% doc %}
   @param {product} product - Product currently shown in the card.
   @param {number} card_id - Original card product ID, for unique form IDs.
+  @param {boolean} [force_product_page] - Send shoppers to the product page to choose an offer.
 {% enddoc %}
 {%- liquid
   assign can_quick_add = false
-  if product.available and product.variants.size == 1 and product.requires_selling_plan == false
+  if force_product_page != true and product.available and product.variants.size == 1 and product.requires_selling_plan == false
     assign can_quick_add = true
   endif
   assign form_id = 'CollectionQuickAdd-' | append: card_id | append: '-' | append: product.id

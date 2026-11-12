@@ -4,11 +4,30 @@
   @param {boolean} prioritised_loading - Load first-row images eagerly.
   @param {boolean} show_vendor - Show the product vendor.
   @param {string} [card_id] - Section-specific identifier for card forms.
+  @param {boolean} [group_ball_pits] - Present ball pit families as one card per style.
 {% enddoc %}
 {%- liquid
   assign card_id = card_id | default: product.id
   assign card_image = product.featured_media.preview_image
   assign family = product.metafields.custom.product_family.value
+  assign card_title = product.title
+  assign grouped_ball_pit = false
+  assign ball_count = nil
+  if group_ball_pits and family.products.value != blank
+    case family.system.handle
+      when 'soft-play-ball-pit'
+        assign card_title = 'sections.collection.soft_play_ball_pit' | t
+        assign ball_count = 300
+        assign grouped_ball_pit = true
+      when 'boucle-ball-pit'
+        assign card_title = 'sections.collection.boucle_ball_pit' | t
+        assign ball_count = 200
+        assign grouped_ball_pit = true
+      when 'foldable-ball-pit'
+        assign card_title = 'sections.collection.foldable_ball_pit' | t
+        assign grouped_ball_pit = true
+    endcase
+  endif
   assign loading = 'lazy'
   if prioritised_loading
     assign loading = 'eager'
@@ -16,7 +35,7 @@
 -%}
 <article class="pf-card" data-pf-card>
   <div class="pf-media">
-    <a class="pf-image-link" href="{{ product.url }}" data-pf-link aria-label="{{ product.title | escape }}">
+    <a class="pf-image-link" href="{{ product.url }}" data-pf-link aria-label="{{ card_title | escape }}">
       <div data-pf-visual>
         {%- if product.featured_media.media_type == 'video' -%}
           {% render 'tps-card-video', media: product.featured_media, aspect_ratio: 1, columns: columns %}
@@ -27,7 +46,7 @@
         {%- endif -%}
       </div>
     </a>
-    <div class="tps-collection-action" data-pf-action>{% render 'tps-collection-action', product: product, card_id: card_id %}</div>
+    <div class="tps-collection-action" data-pf-action>{% render 'tps-collection-action', product: product, card_id: card_id, force_product_page: grouped_ball_pit %}</div>
     {%- if settings.prod_sold_out_show -%}
       <div class="product-card-labels" data-pf-badge{% if product.available %} hidden{% endif %}>
         <span class="price-label price-label--sold-out">{{ 'products.product.sold_out' | t }}</span>
@@ -36,19 +55,21 @@
     {%- endif -%}
   </div>
   {%- if show_vendor -%}<p class="tps-collection-vendor">{{ product.vendor | escape }}</p>{%- endif -%}
-  <h3 class="pf-title"><a href="{{ product.url }}" data-pf-link data-pf-dynamic-title>{{ product.title | escape }}</a></h3>
-  {%- if settings.prod_thumb_show_subtitle and product.metafields.descriptors.subtitle != blank -%}
+  <h3 class="pf-title"><a href="{{ product.url }}" data-pf-link{% unless grouped_ball_pit %} data-pf-dynamic-title{% endunless %}>{{ card_title | escape }}</a></h3>
+  {%- if ball_count -%}
+    <p class="pf-description">{{ 'sections.collection.ball_pit_bundle_option' | t: count: ball_count }}</p>
+  {%- elsif settings.prod_thumb_show_subtitle and product.metafields.descriptors.subtitle != blank -%}
     <p class="pf-description">{{ product.metafields.descriptors.subtitle | escape }}</p>
   {%- endif -%}
   <div class="pf-price" data-pf-price>
-    {% render 'tps-card-price', product: product %}
+    {% render 'tps-card-price', product: product, show_from: grouped_ball_pit %}
   </div>
   {%- if family.products.value != blank -%}
-    <ul class="pf-swatches" aria-label="{{ 'sections.playtime_favourites.colours' | t: product: product.title | escape }}">
-      {% render 'playtime-favourite-swatch', sibling: product, selected_product: product, selected_image: card_image, collection_actions: true, card_id: card_id %}
+    <ul class="pf-swatches" aria-label="{{ 'sections.playtime_favourites.colours' | t: product: card_title | escape }}">
+      {% render 'playtime-favourite-swatch', sibling: product, selected_product: product, selected_image: card_image, collection_actions: true, card_id: card_id, grouped_ball_pit: grouped_ball_pit %}
       {%- for sibling in family.products.value -%}
         {%- if sibling != blank and sibling.id != product.id -%}
-          {% render 'playtime-favourite-swatch', sibling: sibling, selected_product: product, selected_image: card_image, collection_actions: true, card_id: card_id %}
+          {% render 'playtime-favourite-swatch', sibling: sibling, selected_product: product, selected_image: card_image, collection_actions: true, card_id: card_id, grouped_ball_pit: grouped_ball_pit %}
         {%- endif -%}
       {%- endfor -%}
     </ul>

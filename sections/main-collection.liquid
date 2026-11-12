@@ -319,12 +319,16 @@
                 endfor
               endif
 
+              assign group_ball_pits = false
+              if collection.handle == 'black-friday' or collection.handle == 'ball-pits' or collection.handle == 'favourites'
+                assign group_ball_pits = true
+              endif
               for product in collection.products
                 assign prioritised_loading = false
                 if forloop.index0 < section.settings.grid
                   assign prioritised_loading = true
                 endif
-                render 'tps-collection-card', product: product, columns: section.settings.grid, show_vendor: section.settings.show_vendor, prioritised_loading: prioritised_loading
+                render 'tps-collection-card', product: product, columns: section.settings.grid, show_vendor: section.settings.show_vendor, prioritised_loading: prioritised_loading, group_ball_pits: group_ball_pits
               endfor
             -%}
           </playtime-favourites>
