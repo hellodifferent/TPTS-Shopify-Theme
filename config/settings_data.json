@@ -654,6 +654,10 @@
       "soft-play-ball-pit-pink-blossom"
     ],
     "tps_shipping_offer_enabled": false,
+    "tps_shipping_offer_heading": "This weekend olay",
+    "tps_shipping_offer_product_heading": "BLACK FRIDAY OFFER",
+    "tps_shipping_offer_code": "",
+    "tps_shipping_offer_ends_at": "2026-11-15T00:00:00+11:00",
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
