@@ -1,0 +1,8 @@
+{% doc %}
+  @param {product} product - The product shown on the card.
+{% enddoc %}
+{%- if request.page_type == 'collection' -%}
+  {%- if product.handle == 'play-mat-white' or product.handle == 'play-mat-soft-blue' -%}
+    <span class="tps-collection-new-arrival">{{ 'tps_product_badges.new_arrival' | t }}</span>
+  {%- endif -%}
+{%- endif -%}

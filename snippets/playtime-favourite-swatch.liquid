@@ -29,6 +29,9 @@
       <div data-state-action>{% render 'tps-collection-action', product: sibling, card_id: action_card_id, force_product_page: grouped_ball_pit %}</div>
     {%- endif -%}
     <div data-state-visual>
+      {%- if collection_actions -%}
+        {%- render 'tps-play-mat-card-badge', product: sibling -%}
+      {%- endif -%}
       {%- if sibling.featured_media.media_type == 'video' -%}
         {% render 'tps-card-video', media: sibling.featured_media, aspect_ratio: 1, columns: 4 %}
       {%- elsif preview_image != blank -%}

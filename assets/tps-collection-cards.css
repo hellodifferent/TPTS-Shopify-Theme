@@ -9,6 +9,20 @@
 .tps-collection-compare { margin-inline-start: 8px; opacity: .7; }
 .tps-collection-rating { margin-top: 8px; }
 .tps-collection-cards .product-card-labels[hidden] { display: none; }
+.tps-collection-new-arrival {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 10px;
+  padding: 4px 9px;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  background: #fff;
+  color: #666;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.pf-media:has(.tps-collection-new-arrival) > .product-card-labels { top: 40px; }
 @media (max-width: 767px) {
   .tps-collection-cards .product-grid { column-gap: 10.2px; row-gap: 28px; }
 

@@ -37,6 +37,7 @@
   <div class="pf-media">
     <a class="pf-image-link" href="{{ product.url }}" data-pf-link aria-label="{{ card_title | escape }}">
       <div data-pf-visual>
+        {%- render 'tps-play-mat-card-badge', product: product -%}
         {%- if product.featured_media.media_type == 'video' -%}
           {% render 'tps-card-video', media: product.featured_media, aspect_ratio: 1, columns: columns %}
         {%- elsif card_image != blank -%}
