@@ -55,18 +55,19 @@
   .tps-collection-empty__heading { align-items: flex-start; flex-direction: column; gap: 10px; margin-bottom: 20px; }
 }
 
-.tps-collection-cards .pf-price:has(> .tps-collection-mini-offer) {
+.tps-collection-cards .pf-price:has(> :is(.tps-collection-mini-offer, .tps-collection-free-shipping)) {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 4px 8px;
 }
 
-.tps-collection-cards .pf-price:has(> .tps-collection-mini-offer) .tps-collection-single-price {
+.tps-collection-cards .pf-price:has(> :is(.tps-collection-mini-offer, .tps-collection-free-shipping)) .tps-collection-single-price {
   white-space: nowrap;
 }
 
-.tps-collection-mini-offer {
+.tps-collection-mini-offer,
+.tps-collection-free-shipping {
   display: inline-flex;
   align-items: baseline;
   gap: 5px;
@@ -79,6 +80,8 @@
   font-weight: 600;
   line-height: 1.35;
 }
+
+.tps-collection-free-shipping { font-weight: 500; }
 
 .tps-collection-mini-offer s {
   font-weight: 400;

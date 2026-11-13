@@ -61,6 +61,15 @@
       <span class="product-label product-label--sale">
         <span>{{ sale_label_text }}</span>
       </span>
+      {%- if request.page_type == 'product' and current_variant.requires_shipping -%}
+        {%- capture free_shipping_threshold -%}{%- render 'free-shipping-threshold' -%}{%- endcapture -%}
+        {%- assign free_shipping_threshold = free_shipping_threshold | plus: 0 -%}
+        {%- if free_shipping_threshold > 0 and current_variant.price >= free_shipping_threshold -%}
+          <span class="product-label tps-product-label--free-shipping">
+            <span>{{ 'cart.drawer.free_shipping' | t }}</span>
+          </span>
+        {%- endif -%}
+      {%- endif -%}
     {%- endif -%}
   {%- endif -%}
 </div>
