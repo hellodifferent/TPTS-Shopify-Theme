@@ -81,7 +81,11 @@
   line-height: 1.35;
 }
 
-.tps-collection-free-shipping { font-weight: 500; }
+.tps-collection-free-shipping {
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  font-weight: 500;
+}
 
 .tps-collection-mini-offer s {
   font-weight: 400;

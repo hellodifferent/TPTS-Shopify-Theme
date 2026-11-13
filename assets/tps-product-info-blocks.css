@@ -94,8 +94,9 @@
 }
 .product-label.tps-product-label--free-shipping > span {
   padding: 3px 7px;
+  border: 1px solid #e8e8e8;
   border-radius: 4px;
-  background: #f7f1e9;
+  background: #fff;
   color: #634c3c;
   font-size: 11px;
   line-height: 1.35;
