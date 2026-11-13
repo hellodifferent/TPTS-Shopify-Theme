@@ -292,6 +292,8 @@
             <div class="title-row" data-dynamic-variant-content="{{ block.id }}" {{ block.shopify_attributes }}>
               {%- if tps_limited_edition -%}
                 <span class="tps-product-edition{% if tps_edition_title contains 'castle' %} tps-product-edition--castle{% endif %}">{{ 'tps_product_badges.limited_edition' | t }}</span>
+              {%- elsif product.handle == 'play-mat-white' or product.handle == 'play-mat-soft-blue' -%}
+                <span class="tps-product-edition tps-product-edition--new-arrival">{{ 'tps_product_badges.new_arrival' | t }}</span>
               {%- endif -%}
               <h1 class="product-title">{{ product.title | escape }}</h1>
             </div>
