@@ -19,10 +19,12 @@
   {%- capture free_shipping_threshold -%}{%- render 'free-shipping-threshold' -%}{%- endcapture -%}
   {%- assign free_shipping_threshold = free_shipping_threshold | plus: 0 -%}
   {%- if free_shipping_threshold > 0 and product.price >= free_shipping_threshold -%}
-    {%- assign card_price_variant = product.variants | where: 'price', product.price | first -%}
-    {%- if card_price_variant.requires_shipping -%}
-      <span class="tps-collection-free-shipping">{{ 'cart.drawer.free_shipping' | t }}</span>
-    {%- endif -%}
+    {%- for variant in product.variants -%}
+      {%- if variant.price == product.price and variant.requires_shipping -%}
+        <span class="tps-collection-free-shipping">{{ 'cart.drawer.free_shipping' | t }}</span>
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
   {%- endif -%}
 {%- endif -%}
 {%- if request.page_type == 'collection' and settings.playtime_mini_offer_ready and cart.currency.iso_code == 'AUD' -%}
