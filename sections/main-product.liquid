@@ -333,6 +333,13 @@
       data-is-eligible="true"
     >
     </square-placement>
+    {%- if request.page_type == 'product' and afterpay_variant.requires_shipping -%}
+      {%- capture free_shipping_threshold -%}{%- render 'free-shipping-threshold' -%}{%- endcapture -%}
+      {%- assign free_shipping_threshold = free_shipping_threshold | plus: 0 -%}
+      {%- if free_shipping_threshold > 0 and afterpay_variant.price >= free_shipping_threshold -%}
+        <p class="tps-product-free-shipping">{{ 'cart.drawer.free_shipping' | t }}</p>
+      {%- endif -%}
+    {%- endif -%}
   </div>
 
   <div class="price-descriptors">
