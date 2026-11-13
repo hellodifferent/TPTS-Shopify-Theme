@@ -75,6 +75,7 @@
   gap: 4px 8px;
 }
 .tps-castle-weekend-label {
+  transform: translateY(-3px);
   padding: 3px 7px;
   border-radius: 4px;
   background: #f7f1e9;
