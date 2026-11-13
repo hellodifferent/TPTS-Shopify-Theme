@@ -629,6 +629,7 @@
     "show_less": "Show less"
   },
   "tps_product_badges": {
-    "limited_edition": "Limited edition"
+    "limited_edition": "Limited edition",
+    "castle_weekend_offer": "This weekend only"
   }
 }
