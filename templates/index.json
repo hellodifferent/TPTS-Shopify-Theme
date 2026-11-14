@@ -615,7 +615,7 @@
         "background": "#ffffff",
         "custom_vertical_padding": false,
         "padding_top": 56,
-        "padding_bottom": 56
+        "padding_bottom": 0
       }
     },
     "playtime_favourites_dgwdLG": {
