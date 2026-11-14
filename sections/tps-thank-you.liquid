@@ -1,0 +1,91 @@
+{%- liquid
+  assign shipping_url = pages['shipping-delivery-info'].url | default: shop.shipping_policy.url
+  assign contact_url = pages['contact-us'].url
+  assign faq_url = pages['faqs'].url
+  assign review_url = section.settings.review_url
+  if review_url == blank and section.blocks.size > 0
+    assign review_url = '#thank-you-reviews'
+  endif
+  assign offer_url = section.settings.offer_collection.url | default: routes.all_products_collection_url
+  assign offer_code = section.settings.offer_code | strip
+-%}
+<section class="tps-thank-you container">
+  <header class="tps-thank-you__hero">
+    <h1>Thanks for shopping with The Playtime Store!</h1>
+    <p>We’re so glad to be part of their playtime. Here’s what to expect next and how to keep in touch.</p>
+  </header>
+
+  <div class="tps-thank-you__cards">
+    <div class="tps-thank-you__card">
+      <h2>Need a hand?</h2>
+      <p>Check your confirmation email for your order details. We’ll send tracking once your order ships. If you get in touch, have your order number handy.</p>
+      <ul class="tps-thank-you__links" role="list">
+        <li><a href="{{ routes.account_url }}">View your orders</a></li>
+        <li><a href="{{ contact_url | escape }}">Contact us</a></li>
+        <li><a href="{{ shipping_url | escape }}">Shipping &amp; delivery</a></li>
+        <li><a href="{{ faq_url | escape }}">FAQs</a></li>
+      </ul>
+    </div>
+    {%- if review_url != blank -%}
+      <div class="tps-thank-you__card">
+        <h2>How was your playtime?</h2>
+        <p>Once you’ve had a chance to play, we’d love to hear what you think. Your honest review helps other families choose what’s right for them.</p>
+        <a href="{{ review_url | escape }}">Leave a review</a>
+      </div>
+    {%- endif -%}
+    {%- if settings.social_instagram_url != blank -%}
+      <div class="tps-thank-you__card">
+        <h2>Show us your play space</h2>
+        <p>We’d love to see what you create. Tag @theplaytimestore_ in your Instagram posts or stories.</p>
+        <a href="{{ settings.social_instagram_url | escape }}">Find us on Instagram</a>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.show_offer and offer_code != blank -%}
+    <div class="tps-thank-you__offer">
+      <div>
+        <h2>Looking to add to your collection?</h2>
+        <p>Use <strong class="tps-thank-you__code">{{ offer_code | escape }}</strong> at checkout for free shipping on your next order.</p>
+      </div>
+      <a class="btn btn--primary" href="{{ routes.root_url | append: '/discount/' | replace: '//', '/' }}{{ offer_code | url_encode }}?redirect={{ offer_url | url_encode }}">Shop with free shipping</a>
+    </div>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 and section.settings.review_url == blank -%}
+    <div id="thank-you-reviews" class="tps-thank-you__reviews">
+      {%- for block in section.blocks -%}{%- render block -%}{%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+{% stylesheet %}
+  .tps-thank-you { max-width: 1200px; padding-block: clamp(32px, 5vw, 64px); }
+  .tps-thank-you__hero { padding: clamp(24px, 5vw, 60px) 20px; background: #f7f1e9; border-radius: 8px; text-align: center; }
+  .tps-thank-you__hero h1 { margin: 0 0 12px; font-size: clamp(30px, 4vw, 48px); line-height: 1.15; }
+  .tps-thank-you__hero p { max-width: 48ch; margin: 0 auto; }
+  .tps-thank-you__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 16px; margin-block: 20px; }
+  .tps-thank-you__card { padding: 22px; border: 1px solid #ebe5dd; border-radius: 8px; }
+  .tps-thank-you h2 { margin: 0 0 8px; font-size: clamp(20px, 2vw, 24px); }
+  .tps-thank-you__card p { margin: 0 0 12px; }
+  .tps-thank-you__card a { text-decoration: underline; text-underline-offset: 3px; }
+  .tps-thank-you__links { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 0; margin: 0; list-style: none; }
+  .tps-thank-you__offer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: clamp(20px, 4vw, 36px); background: #f7f5f1; border-radius: 8px; }
+  .tps-thank-you__offer p { margin: 0; }
+  .tps-thank-you__code { white-space: nowrap; color: #634c3c; }
+  .tps-thank-you__reviews { margin-top: 32px; scroll-margin-top: calc(var(--header-group-height, 80px) + 24px); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "TPS Thank you",
+  "enabled_on": { "templates": ["page"] },
+  "settings": [
+    { "type": "url", "id": "review_url", "label": "Judge.me review link" },
+    { "type": "checkbox", "id": "show_offer", "label": "Show free-shipping offer", "default": true },
+    { "type": "text", "id": "offer_code", "label": "Free-shipping code", "default": "PLAYTIMEONUS" },
+    { "type": "collection", "id": "offer_collection", "label": "Offer button collection" }
+  ],
+  "blocks": [{ "type": "@app" }]
+}
+{% endschema %}
