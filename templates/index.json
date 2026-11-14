@@ -618,6 +618,101 @@
         "padding_bottom": 56
       }
     },
+    "playtime_favourites_dgwdLG": {
+      "type": "playtime-favourites",
+      "blocks": {
+        "product_NgJhp3": {
+          "type": "product",
+          "settings": {
+            "product": "mini-play-blocks-pink-blossom",
+            "title": "Mini Play Blocks",
+            "description": "Stack, build & play"
+          }
+        },
+        "product_nEC7Nh": {
+          "type": "product",
+          "settings": {
+            "product": "explorer",
+            "title": "Explorer",
+            "description": "Climb, crawl, balance & explore"
+          }
+        },
+        "product_fN6ebq": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "castle-limited-edition",
+            "title": "Castle Soft Play",
+            "description": "Imagine a world of their own"
+          }
+        },
+        "product_e98ttU": {
+          "type": "product",
+          "settings": {
+            "product": "soft-play-ball-pit-beige",
+            "title": "Soft Play Ball Pits",
+            "description": "Their own little happy place"
+          }
+        },
+        "product_KnEWjP": {
+          "type": "product",
+          "settings": {
+            "product": "wave-climb-white",
+            "title": "Wave & Climb",
+            "description": "Inspired by rolling waves"
+          }
+        },
+        "product_A4pYd9": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "mini-step-slide-pastel",
+            "title": "Mini Step & Slide",
+            "description": "Their own little happy place"
+          }
+        },
+        "product_YNiQnR": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "step-slide-white",
+            "title": "Step & Slide",
+            "description": "Their own little happy place"
+          }
+        },
+        "product_zBPfhQ": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "boucle-ball-pit-white-200-balls-cloud-mix",
+            "title": "Bouclé Ball Pit Bundles",
+            "description": "Their own little happy place"
+          }
+        }
+      },
+      "block_order": [
+        "product_NgJhp3",
+        "product_nEC7Nh",
+        "product_fN6ebq",
+        "product_e98ttU",
+        "product_KnEWjP",
+        "product_A4pYd9",
+        "product_YNiQnR",
+        "product_zBPfhQ"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "description": "",
+        "show_price": true,
+        "show_badge": true,
+        "sold_out_label": "Restocking soon",
+        "background": "#ffffff",
+        "custom_vertical_padding": false,
+        "padding_top": 0,
+        "padding_bottom": 56
+      }
+    },
     "rich_text_EKR8Ly": {
       "type": "rich-text",
       "blocks": {
@@ -1464,6 +1559,7 @@
     "collection_list_wgFicM",
     "collection_list_HLG6Uw",
     "16359278676808bea5",
+    "playtime_favourites_dgwdLG",
     "rich_text_EKR8Ly",
     "17518600637111cf4c",
     "collapsible_tabs_2_qb4CAd",
