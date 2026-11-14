@@ -21,7 +21,7 @@
     <div class="container">
       <header class="pf-heading">
         {%- if section.settings.eyebrow != blank -%}<p class="pf-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
-        <h2 id="PlaytimeFavourites-{{ section.id }}">{%- if section.settings.heading != blank -%}{{ section.settings.heading | escape }}{%- else -%}{{ 'sections.playtime_favourites.heading' | t }}{%- endif -%}</h2>
+        {%- if section.settings.heading != blank -%}<h2 id="PlaytimeFavourites-{{ section.id }}">{{ section.settings.heading | escape }}</h2>{%- endif -%}
         {%- if section.settings.description != blank -%}<div class="pf-intro rte">{{ section.settings.description }}</div>{%- endif -%}
       </header>
       <playtime-favourites class="pf-grid">
