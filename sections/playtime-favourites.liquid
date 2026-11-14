@@ -17,13 +17,15 @@
   {{ 'playtime-favourites.css' | asset_url | stylesheet_tag }}
   {{ 'tps-collection-cards.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'playtime-favourites.js' | asset_url }}" defer></script>
-  <section class="playtime-favourites pf-featured" aria-labelledby="PlaytimeFavourites-{{ section.id }}" style="--pf-background: {{ section.settings.background }};">
+  <section class="playtime-favourites pf-featured"{% if section.settings.heading != blank %} aria-labelledby="PlaytimeFavourites-{{ section.id }}"{% endif %} style="--pf-background: {{ section.settings.background }};">
     <div class="container">
+      {%- if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.description != blank -%}
       <header class="pf-heading">
         {%- if section.settings.eyebrow != blank -%}<p class="pf-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
         {%- if section.settings.heading != blank -%}<h2 id="PlaytimeFavourites-{{ section.id }}">{{ section.settings.heading | escape }}</h2>{%- endif -%}
         {%- if section.settings.description != blank -%}<div class="pf-intro rte">{{ section.settings.description }}</div>{%- endif -%}
       </header>
+      {%- endif -%}
       <playtime-favourites class="pf-grid">
         {%- for block in section.blocks -%}
           {%- assign card_product = block.settings.product -%}

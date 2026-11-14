@@ -613,9 +613,9 @@
         "show_badge": true,
         "sold_out_label": "Restocking soon",
         "background": "#ffffff",
-        "custom_vertical_padding": false,
+        "custom_vertical_padding": true,
         "padding_top": 56,
-        "padding_bottom": 0
+        "padding_bottom": 16
       }
     },
     "playtime_favourites_dgwdLG": {
@@ -626,7 +626,7 @@
           "settings": {
             "product": "castle-beige",
             "title": "Castle",
-            "description": "Stack, build & play"
+            "description": "Build a little kingdom of their own"
           }
         },
         "product_nEC7Nh": {
@@ -634,7 +634,7 @@
           "settings": {
             "product": "boucle-soft-play-set",
             "title": "Bouclé Soft Play Set",
-            "description": "Climb, crawl, balance & explore"
+            "description": "Soft bouclé for little climbs and crawls"
           }
         },
         "product_fN6ebq": {
@@ -651,7 +651,7 @@
           "settings": {
             "product": "mini-step-slide-white",
             "title": "Mini Step & Slide",
-            "description": "Their own little happy place"
+            "description": "Little steps and first slides"
           }
         },
         "product_KnEWjP": {
@@ -659,7 +659,7 @@
           "settings": {
             "product": "step-slide-pastel",
             "title": "Step & Slide",
-            "description": "Inspired by rolling waves"
+            "description": "Climb up, slide down, do it again"
           }
         },
         "product_A4pYd9": {
@@ -708,8 +708,8 @@
         "show_badge": true,
         "sold_out_label": "Restocking soon",
         "background": "#ffffff",
-        "custom_vertical_padding": false,
-        "padding_top": 0,
+        "custom_vertical_padding": true,
+        "padding_top": 8,
         "padding_bottom": 56
       }
     },
