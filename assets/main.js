@@ -2760,7 +2760,7 @@ const MediaGallery = class extends HTMLElement {
       if (deferredMedia) deferredMedia.loadContent(true);
 
       // video tag
-      const playableMedia = mediaEl.querySelector('video');
+      const playableMedia = mediaEl.querySelector('video:not(tps-gallery-video video)');
       if (playableMedia) {
         playableMedia.play();
       }

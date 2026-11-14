@@ -276,6 +276,7 @@
 }
 
 @media (max-width: 767.98px) {
+  html:not(.tps-reviews-scroll-ready) [data-widget-name="reviews_tab"] .jdgm-revs-tab-btn,
   body.reveal-mobile-nav [data-widget-name="reviews_tab"] .jdgm-revs-tab-btn,
   body:has(cart-drawer[aria-hidden="false"]) [data-widget-name="reviews_tab"] .jdgm-revs-tab-btn {
     visibility: hidden;

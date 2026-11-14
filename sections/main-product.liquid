@@ -2,6 +2,10 @@
 <script src="{{ 'tps-product-social-media.js' | asset_url }}" defer></script>
 <script src="{{ 'tps-gallery-more.js' | asset_url }}" defer></script>
 <script src="{{ 'tps-gallery-thumbnails.js' | asset_url }}" defer></script>
+{%- assign first_hosted_video = product.media | where: 'media_type', 'video' | first -%}
+{%- if first_hosted_video -%}
+  <script src="{{ 'tps-gallery-video.js' | asset_url }}" defer></script>
+{%- endif -%}
 {%- liquid
   assign tps_edition_title = product.title | split: ' + ' | first | downcase
   assign tps_limited_edition = false

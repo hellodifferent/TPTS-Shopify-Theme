@@ -210,6 +210,9 @@ a.tps-social-viewer__handle { text-decoration: underline; text-underline-offset:
   object-fit: cover;
   object-position: 50% 50%;
 }
+tps-gallery-video video { opacity: 0; pointer-events: none; }
+tps-gallery-video.is-playing video { opacity: 1; }
+tps-gallery-video video::-webkit-media-controls-start-playback-button { display: none; }
 .tps-product-video-crop iframe {
   top: 50%;
   left: 50%;

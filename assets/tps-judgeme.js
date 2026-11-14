@@ -221,6 +221,18 @@
   }
 
   document.documentElement.classList.add('tps-floating-reviews-enabled');
+  const mobile = matchMedia('(max-width: 767.98px)');
+  const revealAfterScroll = () => {
+    if (!mobile.matches || window.scrollY < window.innerHeight * 2) return;
+    document.documentElement.classList.add('tps-reviews-scroll-ready');
+    window.removeEventListener('scroll', revealAfterScroll);
+    window.removeEventListener('resize', revealAfterScroll);
+    window.removeEventListener('pageshow', revealAfterScroll);
+  };
+  window.addEventListener('scroll', revealAfterScroll, { passive: true });
+  window.addEventListener('resize', revealAfterScroll);
+  window.addEventListener('pageshow', revealAfterScroll);
+  revealAfterScroll();
   document.addEventListener('click', watchForPanel, true);
   document.addEventListener('keydown', watchForPanel, true);
 })();
