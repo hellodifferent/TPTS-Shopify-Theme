@@ -47,12 +47,12 @@
     <nav class="tps-pit-selector__setups" aria-label="{{ 'tps_pit_selector.setup_label' | t | escape }}">
       <a class="tps-pit-selector__option{% if product.id == pit_product.id %} is-selected{% endif %}" href="{{ pit_product.url }}"{% if product.id == pit_product.id %} aria-current="page"{% endif %}>
         <span>{{ 'tps_pit_selector.pit_only' | t }}</span>
-        <span class="tps-pit-selector__price">{{ pit_product.price | money }}</span>
+        {%- render 'tps-ball-pit-selector-price', product: pit_product -%}
       </a>
       {%- if bundle_product != nil -%}
         <a class="tps-pit-selector__option{% if pit_only == false %} is-selected{% endif %}" href="{{ bundle_product.url }}"{% if product.id == bundle_product.id %} aria-current="page"{% endif %}>
           <span>{{ 'tps_pit_selector.with_balls_count' | t: count: ball_count }}</span>
-          <span class="tps-pit-selector__price">{{ bundle_product.price | money }}</span>
+          {%- render 'tps-ball-pit-selector-price', product: bundle_product -%}
         </a>
       {%- else -%}
         <span class="tps-pit-selector__option tps-pit-selector__option--pending" aria-disabled="true">

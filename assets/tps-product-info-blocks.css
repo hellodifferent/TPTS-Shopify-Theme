@@ -315,7 +315,8 @@ a.tps-social-viewer__handle { text-decoration: underline; text-underline-offset:
 .tps-pit-selector a:hover { border-color: #d2bca6; color: inherit; }
 .tps-pit-selector .is-selected { border-color: #d2bca6; background: #f7f5f1; }
 .tps-pit-selector a:focus-visible { outline: 2px solid #8d7460; outline-offset: 3px; }
-.tps-pit-selector__price { font-size: 13.5px; }
+.tps-pit-selector__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 7px; font-size: 13.5px; }
+.tps-pit-selector__price s { opacity: .75; }
 .tps-pit-selector__option--pending { opacity: .65; }
 .tps-pit-selector__mix-heading { margin-top: 18px; }
 .tps-pit-selector__mixes { display: grid; gap: 8px; }

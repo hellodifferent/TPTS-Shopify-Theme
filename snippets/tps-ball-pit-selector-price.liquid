@@ -1,0 +1,13 @@
+{% doc %}
+  @param {product} product - The ball pit or bundle shown in the setup selector.
+{% enddoc %}
+{%- assign price_variant = product.variants | sort: 'price' | first -%}
+<span class="tps-pit-selector__price">
+  {%- if price_variant.compare_at_price > price_variant.price -%}
+    <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
+  {%- endif -%}
+  <span>{{ price_variant.price | money }}</span>
+  {%- if price_variant.compare_at_price > price_variant.price -%}
+    <s><span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>{{ price_variant.compare_at_price | money }}</s>
+  {%- endif -%}
+</span>
