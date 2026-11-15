@@ -1,3 +1,39 @@
+{%- liquid
+  assign show_nz_alternatives = false
+  if localization.country.iso_code == 'NZ'
+    assign product_path = request.path | split: '/products/'
+    assign requested_handle = product_path | last | remove_last: '/'
+    assign excluded_handles = section.settings.nz_excluded_handles | newline_to_br | strip_newlines | split: '<br />'
+    if product_path.size == 2 and excluded_handles contains requested_handle
+      assign show_nz_alternatives = true
+    endif
+  endif
+-%}
+{%- if show_nz_alternatives -%}
+  <div class="tps-nz-unavailable container">
+    <div class="tps-nz-unavailable__intro">
+      <h1>{{ 'templates.404.nz_unavailable.title' | t }}</h1>
+      <p>{{ 'templates.404.nz_unavailable.message' | t }}</p>
+    </div>
+    {%- if section.settings.nz_alternatives != blank -%}
+      <h2>{{ 'templates.404.nz_unavailable.alternatives' | t }}</h2>
+      <ul class="tps-nz-unavailable__grid" role="list">
+        {%- for alternative in section.settings.nz_alternatives -%}
+          <li>
+            <a href="{{ alternative.url | escape }}">
+              {%- if alternative.featured_image -%}
+                {%- render 'image', image: alternative.featured_image, custom_aspect_ratio: 1, size_cols_desktop: 4, size_cols_mobile: 2, loading: 'lazy' -%}
+              {%- endif -%}
+              <h3>{{ alternative.title | escape }}</h3>
+              <span>{{ alternative.price | money }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+    <a class="btn btn--primary" href="{{ routes.all_products_collection_url }}">{{ 'templates.404.nz_unavailable.shop' | t }}</a>
+  </div>
+{%- else -%}
 <div class="page-section-spacing">
   <div class="page-header">
     <h1 class="majortitle">{{ 'templates.404.title' | t }}</h1>
@@ -7,3 +43,31 @@
     <a class="underline" href="{{ routes.root_url }}">{{ 'templates.404.link' | t }}</a>
   </div>
 </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .tps-nz-unavailable { padding-block: clamp(32px, 5vw, 64px); text-align: center; }
+  .tps-nz-unavailable__intro { max-width: 680px; margin: 0 auto clamp(24px, 4vw, 40px); }
+  .tps-nz-unavailable__intro h1 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 42px); }
+  .tps-nz-unavailable__intro p { margin: 0; }
+  .tps-nz-unavailable h2 { margin-bottom: 20px; font-size: clamp(20px, 3vw, 28px); }
+  .tps-nz-unavailable__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; max-width: 1100px; padding: 0; margin: 0 auto 24px; list-style: none; text-align: start; }
+  .tps-nz-unavailable__grid a { display: block; }
+  .tps-nz-unavailable__grid img { border-radius: 6px; }
+  .tps-nz-unavailable__grid h3 { margin: 10px 0 4px; font-size: clamp(15px, 2vw, 21px); }
+  .tps-nz-unavailable__grid a:hover h3 { text-decoration: underline; }
+  .shopify-section:has(> .tps-nz-unavailable) + .section-featured-collection { display: none; }
+  @media (max-width: 767px) {
+    .tps-nz-unavailable__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "404 page",
+  "settings": [
+    { "type": "textarea", "id": "nz_excluded_handles", "label": "Products unavailable in New Zealand", "info": "Enter one product handle per line. These product links show the New Zealand shipping message when they return a 404." },
+    { "type": "product_list", "id": "nz_alternatives", "label": "New Zealand alternatives", "limit": 4 }
+  ]
+}
+{% endschema %}

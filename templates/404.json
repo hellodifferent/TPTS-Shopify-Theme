@@ -1,1 +1,33 @@
-{"sections":{"main":{"type":"main-404","settings":{}},"featured_collection_jTDcKV":{"type":"featured-collection","settings":{"title":"Best Sellers","collection":"best-sellers","show_vendor":false,"enable_carousel":true,"grid":4,"rows":1,"show_view_all":true,"full_width":true}}},"order":["main","featured_collection_jTDcKV"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "nz_excluded_handles": "boucle-ball-pit-beige-200-balls-cloud-mix\nboucle-ball-pit-beige-200-balls-ocean-mix\nboucle-ball-pit-beige-200-balls-pink-blossom-mix\ncastle\ncastle-beige\ncastle-limited-edition\ncastle-white\neco-leather-rainbow-set-limited-edition-pre-order\nexplorer\nexplorer-beige\nexplorer-limited-edition\nexplorer-white-1\nkitchen-helper-scandi\nsoft-play-ball-pit-beige\nsoft-play-ball-pit-beige-300-balls-cloud-mix\nsoft-play-ball-pit-beige-300-balls-ocean-mix\nsoft-play-ball-pit-beige-300-balls-pink-blossom-mix\nsoft-play-ball-pit-pastel\nsoft-play-ball-pit-pastel-300-balls-ocean-mix\nsoft-play-ball-pit-pastel-300-balls-pink-blossom\nsoft-play-ball-pit-pastel-300-white-transparent-balls\nsoft-play-ball-pit-pink-blossom\nsoft-play-ball-pit-pink-blossom-300-balls-cloud-mix\nsoft-play-ball-pit-pink-blossom-300-balls-ocean-mix\nsoft-play-ball-pit-pink-blossom-300-balls-pink-blossom-mix\nsoft-play-ball-pit-white\nsoft-play-ball-pit-white-300-balls-cloud-mix\nsoft-play-ball-pit-white-300-balls-ocean-mix\nsoft-play-ball-pit-white-300-balls-pink-blossom-mix\nstep-slide-beige\nstep-slide-pastel\nstep-slide-white\nwave-climb-beige\nwave-climb-pastel\nwave-climb-white",
+        "nz_alternatives": [
+          "mini-play-blocks-pink-blossom",
+          "mini-step-slide-white",
+          "boucle-ball-pit",
+          "foldable-ball-pit-white"
+        ]
+      }
+    },
+    "featured_collection_jTDcKV": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Best Sellers",
+        "collection": "best-sellers",
+        "show_vendor": false,
+        "enable_carousel": true,
+        "grid": 4,
+        "rows": 1,
+        "show_view_all": true,
+        "full_width": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "featured_collection_jTDcKV"
+  ]
+}

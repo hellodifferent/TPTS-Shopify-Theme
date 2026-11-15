@@ -239,7 +239,13 @@
     "404": {
       "title": "Page not found",
       "subtext": "Sorry, the page you requested does not exist.",
-      "link": "Back to home"
+      "link": "Back to home",
+      "nz_unavailable": {
+        "title": "This item doesn’t ship to New Zealand just yet",
+        "message": "Some of our larger pieces are tricky to ship affordably to New Zealand. We’re sorry this one can’t make the trip, but there’s still plenty of playtime to be had.",
+        "alternatives": "Explore what ships to New Zealand",
+        "shop": "Shop the New Zealand range"
+      }
     },
     "password": {
       "general": {
