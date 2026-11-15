@@ -1,17 +1,12 @@
 {%- liquid
-  assign show_nz_alternatives = false
   assign storefront_host = request.host | remove_first: 'www.'
+  assign nz_storefront = false
   if storefront_host == 'theplaytimestore.co.nz' or localization.country.iso_code == 'NZ'
-    assign product_path = request.path | split: '/products/'
-    assign requested_handle = product_path | last | remove_last: '/'
-    assign excluded_handles = section.settings.nz_excluded_handles | newline_to_br | strip_newlines | split: '<br />'
-    if product_path.size == 2 and excluded_handles contains requested_handle
-      assign show_nz_alternatives = true
-    endif
+    assign nz_storefront = true
   endif
 -%}
-{%- if show_nz_alternatives -%}
-  <div class="tps-nz-unavailable container">
+{%- if nz_storefront and section.settings.nz_excluded_handles != blank -%}
+  <div class="tps-nz-unavailable container" data-nz-excluded="{{ section.settings.nz_excluded_handles | escape }}" hidden>
     <div class="tps-nz-unavailable__intro">
       <h1>{{ 'templates.404.nz_unavailable.title' | t }}</h1>
       <p>{{ 'templates.404.nz_unavailable.message' | t }}</p>
@@ -34,8 +29,8 @@
     {%- endif -%}
     <a class="btn btn--primary" href="{{ routes.all_products_collection_url }}">{{ 'templates.404.nz_unavailable.shop' | t }}</a>
   </div>
-{%- else -%}
-<div class="page-section-spacing">
+{%- endif -%}
+<div class="page-section-spacing" id="Default404-{{ section.id }}">
   <div class="page-header">
     <h1 class="majortitle">{{ 'templates.404.title' | t }}</h1>
   </div>
@@ -44,6 +39,18 @@
     <a class="underline" href="{{ routes.root_url }}">{{ 'templates.404.link' | t }}</a>
   </div>
 </div>
+{%- if nz_storefront and section.settings.nz_excluded_handles != blank -%}
+  <script>
+    (() => {
+      const fallback = document.getElementById({{ section.id | prepend: 'Default404-' | json }});
+      const alternatives = fallback.previousElementSibling;
+      const handle = window.location.pathname.match(/\/products\/([a-z0-9-]+)\/?$/i)?.[1];
+      if (handle && alternatives.dataset.nzExcluded.split(/\r?\n/).some((entry) => entry.trim() === handle.toLowerCase())) {
+        fallback.hidden = true;
+        alternatives.hidden = false;
+      }
+    })();
+  </script>
 {%- endif -%}
 
 {% stylesheet %}
@@ -57,7 +64,7 @@
   .tps-nz-unavailable__grid img { border-radius: 6px; }
   .tps-nz-unavailable__grid h3 { margin: 10px 0 4px; font-size: clamp(15px, 2vw, 21px); }
   .tps-nz-unavailable__grid a:hover h3 { text-decoration: underline; }
-  .shopify-section:has(> .tps-nz-unavailable) + .section-featured-collection { display: none; }
+  .shopify-section:has(> .tps-nz-unavailable:not([hidden])) + .section-featured-collection { display: none; }
   @media (max-width: 767px) {
     .tps-nz-unavailable__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
