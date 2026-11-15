@@ -25,7 +25,7 @@ if (!customElements.get('tps-sale-hero')) {
 
       const populate = () => this.populate(source);
       this.observer = new MutationObserver(populate);
-      this.observer.observe(source, { childList: true, subtree: true, characterData: true });
+      this.observer.observe(source, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['src'] });
       populate();
     }
 
@@ -48,6 +48,7 @@ if (!customElements.get('tps-sale-hero')) {
         rating.hidden = false;
       }
 
+      this.populatePhoto(source);
       const story = this.querySelector('[data-sale-story]');
       if (!story.hidden) return;
       const normalizeTitle = title => title.toLowerCase().replace(/[–—]/g, '-').replace(/\s+/g, ' ').trim();
@@ -70,6 +71,23 @@ if (!customElements.get('tps-sale-hero')) {
       this.querySelector('[data-sale-quote]').textContent = excerpt;
       this.querySelector('[data-sale-credit]').textContent = review.author + ' · ' + review.product;
       story.hidden = false;
+    }
+
+    populatePhoto(source) {
+      const card = this.querySelector('[data-sale-photo]');
+      if (!card.hidden || card.firstElementChild) return;
+      const thumbnail = source.querySelector('.jm-media-grid__item img[src], .jdgm-gallery__thumbnail-link img[src]');
+      if (!thumbnail) return;
+
+      const url = new URL(thumbnail.getAttribute('src'), location.href);
+      if (url.hostname === 'review-images.judgeme.com') url.searchParams.set('width', '640');
+      const image = document.createElement('img');
+      image.alt = 'Photo shared by a Playtime Store customer';
+      image.src = url.href;
+      image.decoding = 'async';
+      image.addEventListener('load', () => { card.hidden = false; }, { once: true });
+      image.addEventListener('error', () => image.remove(), { once: true });
+      card.append(image);
     }
   });
 }
