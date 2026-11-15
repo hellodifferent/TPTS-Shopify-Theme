@@ -4,6 +4,17 @@ if (!customElements.get('tps-sale-hero')) {
       const source = this.querySelector('[data-sale-review-source]');
       const reviewsLink = this.querySelector('[data-sale-read-reviews]');
       this.controller = new AbortController();
+      this.querySelector('[data-sale-shop]').addEventListener('click', event => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const grid = document.getElementById('black-friday-products');
+        if (!grid) return;
+        event.preventDefault();
+        grid.focus({ preventScroll: true });
+        grid.scrollIntoView({
+          block: 'start',
+          behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
+        });
+      }, { signal: this.controller.signal });
       reviewsLink.addEventListener('click', event => {
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         const tab = document.querySelector('[data-widget-name="reviews_tab"] .jdgm-revs-tab-btn');
