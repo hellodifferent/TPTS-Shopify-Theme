@@ -1,0 +1,63 @@
+<tps-sale-hero class="tps-sale-hero" style="--sale-hero-bg: {{ section.settings.background }};" data-sale-products="{{ collection.products | map: 'handle' | join: ',' | escape }}">
+  <div class="container tps-sale-hero__inner">
+    <div class="tps-sale-hero__offer">
+      <h1>{{ section.settings.heading | default: collection.title | escape }}</h1>
+      <div class="rte">{{ section.settings.description }}</div>
+      <a class="btn" href="#black-friday-products">{{ section.settings.button_text | escape }}</a>
+    </div>
+    <div class="tps-sale-hero__reviews">
+      <h2>{{ section.settings.reviews_heading | escape }}</h2>
+      <p class="tps-sale-hero__rating" data-sale-rating hidden></p>
+      <div data-sale-story hidden>
+        <blockquote class="tps-sale-hero__quote" data-sale-quote></blockquote>
+        <p class="tps-sale-hero__credit" data-sale-credit></p>
+      </div>
+      <a href="{{ pages.reviews.url | default: '/pages/reviews' }}" data-sale-read-reviews>{{ section.settings.reviews_link_text | escape }}</a>
+    </div>
+  </div>
+  <div data-sale-review-source hidden aria-hidden="true">
+    {%- for block in section.blocks -%}
+      {% render block %}
+    {%- endfor -%}
+  </div>
+</tps-sale-hero>
+<script src="{{ 'tps-sale-hero.js' | asset_url }}" defer></script>
+
+{% stylesheet %}
+  .tps-sale-hero { display: block; background: var(--sale-hero-bg); }
+  .tps-sale-hero__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .85fr); align-items: center; gap: clamp(20px, 5vw, 76px); padding-block: clamp(28px, 5vw, 68px); }
+  .tps-sale-hero__offer h1 { margin: 0 0 12px; font-size: clamp(32px, 4vw, 58px); line-height: 1.1; text-align: start; }
+  .tps-sale-hero__offer .rte { max-width: 46ch; }
+  .tps-sale-hero__offer .rte p:last-child { margin-bottom: 0; }
+  .tps-sale-hero__offer .btn { margin-top: 18px; }
+  .tps-sale-hero__reviews { min-width: 0; background: #fff; padding: clamp(18px, 3vw, 30px); border-radius: 8px; font-size: 14px; }
+  .tps-sale-hero__reviews h2 { margin: 0 0 7px; font-size: clamp(19px, 2vw, 25px); }
+  .tps-sale-hero__rating { margin: 0 0 8px; font-size: 13px; }
+  .tps-sale-hero__stars { color: #80624e; letter-spacing: .08em; }
+  .tps-sale-hero__quote { margin: 0 0 7px; padding: 0; border: 0; font: inherit; line-height: 1.55; }
+  .tps-sale-hero__credit { margin: 0 0 8px; font-size: 12px; }
+  .tps-sale-hero__reviews a { text-decoration: underline; text-underline-offset: 3px; }
+  #black-friday-products { scroll-margin-top: calc(var(--header-group-height, 100px) + 12px); }
+  @media (max-width: 767px) {
+    .tps-sale-hero__inner { grid-template-columns: 1fr; gap: 16px; padding-block: 24px; }
+    .tps-sale-hero__reviews { padding: 13px 16px; }
+    .tps-sale-hero__reviews h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .tps-sale-hero__quote { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "TPS Black Friday hero",
+  "enabled_on": { "templates": ["collection"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Black Friday at The Playtime Store" },
+    { "type": "richtext", "id": "description", "label": "Offer copy", "default": "<p>Up to 20% off selected playtime favourites, with free shipping on orders over $250.</p>" },
+    { "type": "text", "id": "button_text", "label": "Shop button text", "default": "Shop the sale" },
+    { "type": "text", "id": "reviews_heading", "label": "Reviews heading", "default": "Loved by little ones. Trusted by parents." },
+    { "type": "text", "id": "reviews_link_text", "label": "Reviews link text", "default": "Read reviews" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#e8d8c6" }
+  ],
+  "blocks": [{ "type": "@app" }]
+}
+{% endschema %}

@@ -194,7 +194,7 @@
   {%- endif -%}
 
   <div class="container{% if settings.use_fullwidth_layout %} container--no-max{% endif %}{% if show_header == false %} lightly-spaced-row-above{% endif %}">
-    <div class="utility-bar" data-ajax-container data-ajax-scroll-to>
+    <div class="utility-bar"{% if template.suffix == 'black-friday' %} id="black-friday-products" tabindex="-1"{% endif %} data-ajax-container data-ajax-scroll-to>
       <div class="utility-bar__left">
         {% if section.settings.show_sort or show_filters %}
           <a href="#" class="toggle-btn utility-bar__item{% if section.settings.collapse_tag_sidebar_by_default == false %} toggle-btn--revealed-desktop{% endif %}{% if show_filters == false %} mobile-only{% endif %}" data-toggle-filters>
