@@ -61,6 +61,28 @@
         "image_mwxexP": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Castle_BF_Offer.webp",
+            "mobile_image": "shopify://shop_images/Castle_BF_Offer_-_Mobile.webp",
+            "slide_link": "shopify://collections/black-friday",
+            "subheading": "",
+            "title": "",
+            "heading_max_width": 15,
+            "title_size": 84,
+            "title_size_mobile": 46,
+            "use_h1": false,
+            "text": "",
+            "subtext_max_width": 60,
+            "enlarge_text": false,
+            "button_label_1": "",
+            "button_url_1": "",
+            "button_label_2": "",
+            "button_url_2": "",
+            "text_alignment": "center center"
+          }
+        },
+        "image_9ezeq4": {
+          "type": "image",
+          "settings": {
             "image": "shopify://shop_images/TPS_-_Black_Friday_desktop.webp",
             "mobile_image": "shopify://shop_images/TPS_-_Black_Friday.webp",
             "slide_link": "shopify://collections/black-friday",
@@ -198,27 +220,6 @@
             "text_alignment": "center center"
           }
         },
-        "image_TjAKiq": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "slide_link": "",
-            "subheading": "Tell your story",
-            "title": "Slide heading",
-            "heading_max_width": 15,
-            "title_size": 84,
-            "title_size_mobile": 46,
-            "use_h1": false,
-            "text": "<p>And optional subtext</p>",
-            "subtext_max_width": 60,
-            "enlarge_text": true,
-            "button_label_1": "Shop this",
-            "button_url_1": "",
-            "button_label_2": "Shop all",
-            "button_url_2": "",
-            "text_alignment": "center center"
-          }
-        },
         "d8062a60-7b1c-468f-8c16-844960d098ba": {
           "type": "image",
           "disabled": true,
@@ -245,12 +246,12 @@
       },
       "block_order": [
         "image_mwxexP",
+        "image_9ezeq4",
         "image_haepGQ",
         "image_BD8F6N",
         "image_MidWzh",
         "image_nHQFDq",
         "image_FANBCL",
-        "image_TjAKiq",
         "d8062a60-7b1c-468f-8c16-844960d098ba"
       ],
       "settings": {
