@@ -55,7 +55,9 @@
       "block_order": [
         "judge_me_all_reviews"
       ],
-      "settings": {}
+      "settings": {
+        "background": "#fffaf6"
+      }
     }
   },
   "order": [

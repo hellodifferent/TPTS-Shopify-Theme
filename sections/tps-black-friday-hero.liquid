@@ -8,11 +8,14 @@
     <div class="tps-sale-hero__reviews">
       <h2>{{ section.settings.reviews_heading | escape }}</h2>
       <p class="tps-sale-hero__rating" data-sale-rating hidden></p>
-      <div data-sale-story hidden>
-        <blockquote class="tps-sale-hero__quote" data-sale-quote></blockquote>
-        <p class="tps-sale-hero__credit" data-sale-credit></p>
+      <div class="tps-sale-hero__review-card">
+        <div data-sale-story hidden>
+          <p class="tps-sale-hero__review-stars" data-sale-review-stars></p>
+          <blockquote class="tps-sale-hero__quote" data-sale-quote></blockquote>
+          <p class="tps-sale-hero__credit" data-sale-credit></p>
+        </div>
+        <a href="{{ pages.reviews.url | default: '/pages/reviews' }}" data-sale-read-reviews>{{ section.settings.reviews_link_text | escape }}</a>
       </div>
-      <a href="{{ pages.reviews.url | default: '/pages/reviews' }}" data-sale-read-reviews>{{ section.settings.reviews_link_text | escape }}</a>
     </div>
   </div>
   <div data-sale-review-source hidden aria-hidden="true">
@@ -30,19 +33,21 @@
   .tps-sale-hero__offer .rte { max-width: 46ch; }
   .tps-sale-hero__offer .rte p:last-child { margin-bottom: 0; }
   .tps-sale-hero__offer .btn { margin-top: 18px; }
-  .tps-sale-hero__reviews { min-width: 0; background: #fff; padding: clamp(18px, 3vw, 30px); border-radius: 8px; font-size: 14px; }
-  .tps-sale-hero__reviews h2 { margin: 0 0 7px; font-size: clamp(19px, 2vw, 25px); }
-  .tps-sale-hero__rating { margin: 0 0 8px; font-size: 13px; }
-  .tps-sale-hero__stars { color: #80624e; letter-spacing: .08em; }
-  .tps-sale-hero__quote { margin: 0 0 7px; padding: 0; border: 0; font: inherit; line-height: 1.55; }
-  .tps-sale-hero__credit { margin: 0 0 8px; font-size: 12px; }
-  .tps-sale-hero__reviews a { text-decoration: underline; text-underline-offset: 3px; }
+  .tps-sale-hero__reviews { min-width: 0; }
+  .tps-sale-hero__reviews h2 { margin: 0 0 10px; font-size: clamp(21px, 2.4vw, 31px); line-height: 1.15; text-wrap: balance; }
+  .tps-sale-hero__rating { margin: 0 0 14px; font-size: 13px; }
+  .tps-sale-hero__stars, .tps-sale-hero__review-stars { color: #97745b; letter-spacing: 1px; }
+  .tps-sale-hero__stars { margin-inline: 5px; font-size: 16px; }
+  .tps-sale-hero__review-card { background: #fff; border: 1px solid #efe4da; border-radius: 10px; padding: clamp(16px, 2.4vw, 24px); color: #393735; }
+  .tps-sale-hero__review-stars { margin: 0 0 10px; font-size: 17px; line-height: 1; }
+  .tps-sale-hero__quote { margin: 0 0 14px; padding: 0; border: 0; font: inherit; font-size: clamp(15px, 1.6vw, 17px); line-height: 1.4; text-indent: 0; }
+  .tps-sale-hero__quote::before, .tps-sale-hero__quote::after { content: none; }
+  .tps-sale-hero__credit { margin: 0 0 8px; font-size: 13px; font-weight: 600; }
+  .tps-sale-hero__reviews a { color: inherit; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
   #black-friday-products { scroll-margin-top: calc(var(--header-group-height, 100px) + 12px); }
   @media (max-width: 767px) {
     .tps-sale-hero__inner { grid-template-columns: 1fr; gap: 16px; padding-block: 24px; }
-    .tps-sale-hero__reviews { padding: 13px 16px; }
-    .tps-sale-hero__reviews h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-    .tps-sale-hero__quote { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+    .tps-sale-hero__reviews h2 { text-wrap: initial; }
   }
 {% endstylesheet %}
 
@@ -56,7 +61,7 @@
     { "type": "text", "id": "button_text", "label": "Shop button text", "default": "Shop the sale" },
     { "type": "text", "id": "reviews_heading", "label": "Reviews heading", "default": "Loved by little ones. Trusted by parents." },
     { "type": "text", "id": "reviews_link_text", "label": "Reviews link text", "default": "Read reviews" },
-    { "type": "color", "id": "background", "label": "Background", "default": "#e8d8c6" }
+    { "type": "color", "id": "background", "label": "Background", "default": "#fffaf6" }
   ],
   "blocks": [{ "type": "@app" }]
 }

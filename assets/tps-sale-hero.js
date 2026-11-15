@@ -43,8 +43,8 @@ if (!customElements.get('tps-sale-hero')) {
         stars.className = 'tps-sale-hero__stars';
         stars.textContent = '★★★★★';
         stars.setAttribute('aria-hidden', 'true');
-        rating.append(stars, ' Rated ' + average.toFixed(1) + ' out of 5');
-        if (summary[1]) rating.append(' · ' + summary[1].textContent.trim());
+        rating.append('Rated ' + average.toFixed(1) + ' out of 5 ', stars);
+        if (summary[1]) rating.append(' ' + summary[1].textContent.trim());
         rating.hidden = false;
       }
 
@@ -63,7 +63,11 @@ if (!customElements.get('tps-sale-hero')) {
       if (!review) return;
 
       const excerpt = review.text.length > 145 ? review.text.slice(0, 145).replace(/\s+\S*$/, '') + '…' : review.text;
-      this.querySelector('[data-sale-quote]').textContent = '“' + excerpt + '”';
+      const reviewStars = this.querySelector('[data-sale-review-stars]');
+      const filledStars = Math.round(review.score);
+      reviewStars.textContent = '★'.repeat(filledStars) + '☆'.repeat(5 - filledStars);
+      reviewStars.setAttribute('aria-label', review.score + ' out of 5 stars');
+      this.querySelector('[data-sale-quote]').textContent = excerpt;
       this.querySelector('[data-sale-credit]').textContent = review.author + ' · ' + review.product;
       story.hidden = false;
     }
