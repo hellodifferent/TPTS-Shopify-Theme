@@ -1,6 +1,7 @@
 {%- liquid
   assign show_nz_alternatives = false
-  if localization.country.iso_code == 'NZ'
+  assign storefront_host = request.host | remove_first: 'www.'
+  if storefront_host == 'theplaytimestore.co.nz' or localization.country.iso_code == 'NZ'
     assign product_path = request.path | split: '/products/'
     assign requested_handle = product_path | last | remove_last: '/'
     assign excluded_handles = section.settings.nz_excluded_handles | newline_to_br | strip_newlines | split: '<br />'
