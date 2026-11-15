@@ -90,6 +90,24 @@
 .tps-cart-drawer .cart-policies a { color: inherit; }
 .tps-cart-drawer #CartDrawerNoteToggle { display: inline-block; padding-top: 6px; color: #666; font-size: 12px; }
 .tps-cart-drawer .checkout-buttons .btn { min-height: 48px; }
+.tps-cart-express { display: block; position: relative; }
+.tps-cart-express .additional-checkout-buttons {
+  display: flow-root;
+  margin: 0;
+  padding-top: 8px;
+}
+.tps-cart-express:not([data-single-row]) .additional-checkout-buttons {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  visibility: hidden;
+}
+.tps-cart-express .additional-checkout-buttons shopify-accelerated-checkout-cart {
+  --shopify-accelerated-checkout-button-block-size: 40px;
+  --shopify-accelerated-checkout-button-inline-size: 40px;
+  --shopify-accelerated-checkout-inline-alignment: center;
+  --shopify-accelerated-checkout-row-gap: 6px;
+}
 .tps-cart-drawer .tps-cart-payments {
   display: flex;
   flex-wrap: wrap;

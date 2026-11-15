@@ -273,6 +273,18 @@
         {% endif %}
       </div>
 
+      {%- if section.settings.show_additional_checkout_buttons and section.settings.enable_direct_cart and section.settings.cart_terms_page == blank -%}
+        <div data-merge="express-checkout">
+          {%- if cart.items != empty and additional_checkout_buttons -%}
+            <tps-cart-express class="tps-cart-express">
+              <div class="additional-checkout-buttons" inert>
+                {{ content_for_additional_checkout_buttons }}
+              </div>
+            </tps-cart-express>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
       {%- if section.settings.show_payment_icons and shop.enabled_payment_types != empty -%}
         <ul class="tps-cart-payments" role="list" aria-label="{{ 'cart.drawer.accepted_payments' | t | escape }}">
             <li>{{ 'afterpay' | payment_type_svg_tag: class: 'tps-cart-payments__icon' | replace: 'pi-', 'cart-pi-' }}</li>
@@ -350,6 +362,12 @@
       "id": "enable_direct_cart",
       "label": "Enable direct checkout",
       "info": "Disable to send customers to the cart page",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_additional_checkout_buttons",
+      "label": "Show express checkout",
       "default": true
     },
     {

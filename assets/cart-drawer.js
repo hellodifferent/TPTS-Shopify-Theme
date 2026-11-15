@@ -52,3 +52,26 @@ class CartDrawer extends SideDrawer {
 }
 
 window.customElements.define('cart-drawer', CartDrawer);
+
+class CartDrawerExpress extends HTMLElement {
+  connectedCallback() {
+    const buttons = this.firstElementChild;
+    if (!buttons) return;
+    this.observer = new ResizeObserver(() => {
+      const wallet = buttons.querySelector('shopify-accelerated-checkout-cart');
+      const height = wallet?.getBoundingClientRect().height || 0;
+      const rowHeight = wallet && parseFloat(getComputedStyle(wallet)
+        .getPropertyValue('--shopify-accelerated-checkout-button-block-size'));
+      const singleRow = height > 0 && height <= rowHeight + 1;
+      this.toggleAttribute('data-single-row', singleRow);
+      buttons.inert = !singleRow;
+    });
+    this.observer.observe(buttons);
+  }
+
+  disconnectedCallback() {
+    this.observer?.disconnect();
+  }
+}
+
+window.customElements.define('tps-cart-express', CartDrawerExpress);
