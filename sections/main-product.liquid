@@ -315,7 +315,7 @@
       assign afterpay_sku = afterpay_variant.sku | default: afterpay_variant.id
       assign afterpay_categories = product.collections | map: 'title' | join: ','
       assign castle_weekend_offer = false
-      assign castle_weekend_offer_ends = '2026-11-16T00:00:00+11:00' | date: '%s' | plus: 0
+      assign castle_weekend_offer_ends = '2026-11-17T00:00:00+11:00' | date: '%s' | plus: 0
       assign now_seconds = 'now' | date: '%s' | plus: 0
       if request.page_type == 'product' and tps_edition_title contains 'castle' and now_seconds < castle_weekend_offer_ends
         assign castle_weekend_offer = true
