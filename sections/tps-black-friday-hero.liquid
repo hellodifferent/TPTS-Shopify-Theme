@@ -1,4 +1,4 @@
-<tps-sale-hero class="tps-sale-hero" style="--sale-hero-bg: {{ section.settings.background }};" data-sale-products="{{ collection.products | map: 'handle' | join: ',' | escape }}">
+<tps-sale-hero class="tps-sale-hero" style="--sale-hero-bg: {{ section.settings.background }};" data-sale-products="{{ collection.products | map: 'title' | json | escape }}">
   <div class="container tps-sale-hero__inner">
     <div class="tps-sale-hero__offer">
       <h1>{{ section.settings.heading | default: collection.title | escape }}</h1>

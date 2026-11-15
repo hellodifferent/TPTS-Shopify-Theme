@@ -39,15 +39,15 @@ if (!customElements.get('tps-sale-hero')) {
 
       const story = this.querySelector('[data-sale-story]');
       if (!story.hidden) return;
-      const handles = new Set(this.dataset.saleProducts.split(','));
+      const normalizeTitle = title => title.toLowerCase().replace(/[–—]/g, '-').replace(/\s+/g, ' ').trim();
+      const productTitles = new Set(JSON.parse(this.dataset.saleProducts).map(normalizeTitle));
       const reviews = [...source.querySelectorAll('.jm-review-item')].map(item => {
         const product = item.querySelector('.jm-product-variant-card__product-link');
-        const handle = product?.href.match(/\/products\/([^/?#]+)/)?.[1];
         const score = Number(item.querySelector('.jm-star-rating')?.getAttribute('aria-label')?.match(/[\d.]+/)?.[0]);
         const text = item.querySelector('.jdgm-review-content__body-content, .jm-review-content__body')?.textContent.trim();
         const author = item.querySelector('.jm-reviewer-info__name')?.textContent.trim();
-        return { handle, product: product?.textContent.trim(), score, text, author };
-      }).filter(review => handles.has(review.handle) && review.score >= 4 && review.score <= 5 && review.text && review.author);
+        return { product: product?.textContent.trim(), score, text, author };
+      }).filter(review => review.product && productTitles.has(normalizeTitle(review.product)) && review.score >= 4 && review.score <= 5 && review.text && review.author);
       const review = reviews.find(entry => /castle|explorer|mini step/i.test(entry.product)) || reviews[0];
       if (!review) return;
 
