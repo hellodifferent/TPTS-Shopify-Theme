@@ -6,7 +6,7 @@
   assign pairings = product.metafields.custom.bundled_pairings.value
   assign pit_only = product.metafields.custom.ball_pit_only.value
   assign ball_count = 300
-  if product.title contains 'Boucle' or product.title contains 'Bouclé'
+  if product.title contains 'Boucle' or product.title contains 'Bouclé' or product.title contains 'Foldable Ball Pit'
     assign ball_count = 200
   endif
   for pairing in pairings
