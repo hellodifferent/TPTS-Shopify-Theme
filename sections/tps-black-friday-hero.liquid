@@ -38,23 +38,25 @@
   .tps-sale-hero__offer h1 { margin: 0 0 12px; font-size: clamp(32px, 4vw, 58px); line-height: 1.1; text-align: start; }
   .tps-sale-hero__offer .rte p:last-child { margin-bottom: 0; }
   .tps-sale-hero__offer .btn { margin-top: 18px; }
-  .tps-sale-hero__reviews { min-width: 0; }
-  .tps-sale-hero__cards { display: grid; gap: clamp(8px, 1.5vw, 16px); }
+  .tps-sale-hero__reviews { width: 100%; max-width: 436px; min-width: 0; justify-self: center; }
+  .tps-sale-hero__cards > :not([hidden]) { box-sizing: border-box; height: 340px; }
+  .tps-sale-hero__cards { display: grid; gap: 16px; }
   .tps-sale-hero__cards:has([data-sale-photo]:not([hidden])) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tps-sale-hero__rating { margin: 12px 0 0; font-size: 13px; text-align: center; }
   .tps-sale-hero__stars, .tps-sale-hero__review-stars { color: #97745b; letter-spacing: 1px; }
   .tps-sale-hero__stars { margin-inline: 5px; font-size: 16px; }
   .tps-sale-hero__review-card { display: flex; flex-direction: column; align-items: flex-start; background: #fff; border: 1px solid #efe4da; border-radius: 10px; padding: clamp(12px, 2vw, 24px); color: #393735; }
-  .tps-sale-hero__photo { position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 10px; background: #f2e9e0; }
+  .tps-sale-hero__photo { position: relative; overflow: hidden; border-radius: 10px; background: #f2e9e0; }
   .tps-sale-hero__photo img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
   .tps-sale-hero__story:not([hidden]) { display: flex; flex: 1; flex-direction: column; }
   .tps-sale-hero__review-stars { margin: 0 0 10px; font-size: 17px; line-height: 1; }
-  .tps-sale-hero__quote { margin: 0 0 14px; padding: 0; border: 0; font: inherit; font-size: clamp(15px, 1.6vw, 17px); line-height: 1.4; text-indent: 0; }
+  .tps-sale-hero__quote { margin: 0 0 14px; padding: 0; border: 0; font: inherit; font-size: clamp(15px, 1.6vw, 17px); line-height: 1.4; text-indent: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 7; overflow: hidden; }
   .tps-sale-hero__quote::before, .tps-sale-hero__quote::after { content: none; }
   .tps-sale-hero__credit { margin: auto 0 8px; font-size: 13px; font-weight: 600; }
   .tps-sale-hero__reviews a { color: inherit; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
   #black-friday-products { scroll-margin-top: calc(var(--header-group-height, 100px) + 12px); }
-  @media (max-width: 767px) {
+  @media (max-width: 767.98px) {
+    .tps-sale-hero__cards > :not([hidden]) { height: 320px; }
     .tps-sale-hero__inner { grid-template-columns: 1fr; gap: 16px; padding-block: 24px; }
     .tps-sale-hero__quote { font-size: 14px; }
     .tps-sale-hero__credit { font-size: 12px; }
