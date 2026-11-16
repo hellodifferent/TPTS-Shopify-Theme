@@ -1,6 +1,7 @@
 {% doc %}
   Shows progress toward the Australian automatic order discount.
   @param {cart} cart - Current cart.
+  @param {boolean} [show_progress] - Show a visual progress bar.
 {% enddoc %}
 {%- if settings.show_extra_play_cart_offer and localization.country.iso_code == 'AU' and cart.currency.iso_code == 'AUD' and cart.items_subtotal_price > 20000 -%}
   {%- liquid
@@ -15,14 +16,20 @@
       endif
     endfor
   -%}
-  <p class="tps-cart-extra-play" role="status">
-    {%- if applied -%}
-      {{ 'cart.extra_play_offer.applied' | t }}
-    {%- elsif remaining > 0 -%}
-      {%- assign remaining_money = remaining | money_without_trailing_zeros -%}
-      {{ 'cart.extra_play_offer.progress' | t: amount: remaining_money }}
-    {%- else -%}
-      {{ 'cart.extra_play_offer.eligible' | t }}
+  <div class="tps-cart-extra-play">
+    <div role="status">
+      {%- if applied -%}
+        {{ 'cart.extra_play_offer.applied' | t }}
+      {%- elsif remaining > 0 -%}
+        {%- assign remaining_money = remaining | money_without_trailing_zeros -%}
+        {{ 'cart.extra_play_offer.progress' | t: amount: remaining_money }}
+      {%- else -%}
+        {{ 'cart.extra_play_offer.eligible' | t }}
+      {%- endif -%}
+    </div>
+    {%- if show_progress -%}
+      {%- assign progress = cart.items_subtotal_price | at_most: offer_threshold -%}
+      <progress class="tps-cart-extra-play__progress" value="{{ progress }}" max="{{ offer_threshold }}" aria-label="{{ 'cart.extra_play_offer.progress_label' | t | escape }}"></progress>
     {%- endif -%}
-  </p>
+  </div>
 {%- endif -%}

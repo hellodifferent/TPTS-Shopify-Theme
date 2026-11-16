@@ -57,6 +57,26 @@ class CartDrawerExpress extends HTMLElement {
   connectedCallback() {
     const buttons = this.firstElementChild;
     if (!buttons) return;
+    const template = buttons.querySelector('template');
+    if (template) {
+      const content = template.content.cloneNode(true);
+      const wallet = content.querySelector('shopify-accelerated-checkout-cart[wallet-configs]');
+      if (!wallet) return;
+
+      // Filter before Shopify initializes its closed checkout component.
+      let allowedWallets;
+      try {
+        allowedWallets = JSON.parse(wallet.getAttribute('wallet-configs'))
+          .filter(({ name }) => name === 'shop_pay' || name === 'paypal');
+      } catch {
+        return;
+      }
+      if (!allowedWallets.length) return;
+
+      wallet.setAttribute('wallet-configs', JSON.stringify(allowedWallets));
+      buttons.replaceChildren(content);
+    }
+
     this.observer = new ResizeObserver(() => {
       const wallet = buttons.querySelector('shopify-accelerated-checkout-cart');
       const height = wallet?.getBoundingClientRect().height || 0;

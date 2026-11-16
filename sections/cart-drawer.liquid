@@ -274,29 +274,24 @@
             {%- endif -%}
           </div>
 
-          <div class="lightly-spaced-row">
-            {% if section.settings.show_order_note %}
+          {%- if section.settings.show_order_note -%}
+            <div class="lightly-spaced-row">
               <toggle-target id="CartDrawerNoteToggle" role="button" tabindex="0" class="toggle-target-toggler--is-hidden link underline" data-toggle-target="#CartDrawerNote">{{ 'cart.note.label' | t }}</toggle-target>
               <div id="CartDrawerNote" class="cart-drawer__note toggle-target toggle-target--hidden">
                 <cart-note class="block toggle-target-container">
                   <textarea name="note" aria-labelledby="CartDrawerNoteToggle">{{ cart.note }}</textarea>
                 </cart-note>
               </div>
-            {% endif %}
-          </div>
-          {%- render 'tps-cart-extra-play-offer', cart: cart -%}
-          <ul class="tps-cart-reassurance" role="list">
+            </div>
+          {%- endif -%}
+          {%- render 'tps-cart-extra-play-offer', cart: cart, show_progress: true -%}
+          <p class="tps-cart-reassurance">
             {%- if localization.country.iso_code == 'AU' and cart.currency.iso_code == 'AUD' and cart.total_price > 0 and cart.total_price <= 200000 -%}
-              {%- assign instalment = cart.total_price | divided_by: 4.0 | round | money -%}
-              <li>{{ 'cart.drawer.afterpay_instalments' | t: amount: instalment }}</li>
+              {{ 'cart.drawer.afterpay_and_returns' | t }}
+            {%- else -%}
+              {{ 'cart.drawer.returns_information' | t }}
             {%- endif -%}
-            {%- if cart.requires_shipping and pages['shipping-delivery-info'].url != blank -%}
-              <li><a href="{{ pages['shipping-delivery-info'].url }}">{{ 'cart.drawer.delivery_information' | t }}</a></li>
-            {%- endif -%}
-            {%- if pages['return-policy'].url != blank -%}
-              <li><a href="{{ pages['return-policy'].url }}">{{ 'cart.drawer.returns_information' | t }}</a></li>
-            {%- endif -%}
-          </ul>
+          </p>
         {% endif %}
       </div>
 
@@ -320,7 +315,7 @@
           {%- if cart.items != empty and additional_checkout_buttons -%}
             <tps-cart-express class="tps-cart-express">
               <div class="additional-checkout-buttons" inert>
-                {{ content_for_additional_checkout_buttons }}
+                <template>{{ content_for_additional_checkout_buttons }}</template>
               </div>
             </tps-cart-express>
           {%- endif -%}
