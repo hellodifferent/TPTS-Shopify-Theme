@@ -71,7 +71,7 @@
           "type": "buy-buttons",
           "settings": {
             "show_quantity_selector": false,
-            "enable_payment_button": false,
+            "enable_payment_button": true,
             "show_backorder_text": false,
             "show_pickup_availability": false,
             "show_gift_card_recipient": false

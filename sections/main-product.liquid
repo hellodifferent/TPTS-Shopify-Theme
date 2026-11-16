@@ -648,7 +648,10 @@
 
                   assign enable_dynamic_payment_button = false
                   if block.settings.enable_payment_button and product.selling_plan_groups == empty and gift_card_recipient_feature_active == false
-                    unless product.template_suffix contains 'preorder'
+                    assign ball_product_ids = settings.playtime_ball_products | map: 'id'
+                    assign mini_blocks_product_ids = settings.playtime_mini_products | map: 'id'
+                    assign product_handle = product.handle
+                    unless product.template_suffix contains 'preorder' or ball_product_ids contains product.id or mini_blocks_product_ids contains product.id or product_handle contains 'balls-100-pack' or product_handle contains 'mini-play-blocks'
                       assign enable_dynamic_payment_button = true
                     endunless
                   endif
@@ -691,7 +694,7 @@
                   </div>
 
                   {% if enable_dynamic_payment_button %}
-                    <buy-buttons class="product-dynamic-payment-button">
+                    <buy-buttons class="product-dynamic-payment-button not-in-quickbuy">
                       <script class="dynamic-payment-button-template" type="text/template">
                         {{ form | payment_button }}
                       </script>

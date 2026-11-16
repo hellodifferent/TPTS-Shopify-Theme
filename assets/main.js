@@ -3322,6 +3322,9 @@ if (theme.settings.quickbuyStyle !== 'off') {
         el.href = productUrl;
       });
       container.querySelectorAll('.not-in-quickbuy').forEach((el) => { el.remove(); });
+      container.querySelectorAll('.quantity-submit-row.has-spb').forEach((el) => {
+        if (!el.querySelector('.product-dynamic-payment-button')) el.classList.remove('has-spb');
+      });
       container.querySelectorAll('.only-in-quickbuy').forEach((el) => { el.classList.remove('only-in-quickbuy'); });
       container.querySelectorAll('.sticky-column-desktop').forEach((el) => { el.classList.remove('sticky-column-desktop'); });
       container.querySelectorAll('pickup-availability').forEach((el) => { el.remove(); });
