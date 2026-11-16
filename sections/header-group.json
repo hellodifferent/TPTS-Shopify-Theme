@@ -217,15 +217,6 @@
             "link_url": "shopify://collections/mini-step-slide"
           }
         },
-        "menu_promotion_small_AqKUQT": {
-          "type": "menu-promotion-small",
-          "settings": {
-            "dropdown_link_title": "Soft Play Sets",
-            "image": "shopify://shop_images/2_574e0b5c-3108-4221-a60c-def16f7b73a3.png",
-            "title": "Mini Play Blocks",
-            "link_url": "shopify://collections/blocks"
-          }
-        },
         "menu_promotion_small_kgP3cG": {
           "type": "menu-promotion-small",
           "settings": {
@@ -233,6 +224,15 @@
             "image": "shopify://shop_images/Photo_3-2-2025_8_09_19_AM_72.jpg",
             "title": "Explorer",
             "link_url": "shopify://products/explorer-limited-edition"
+          }
+        },
+        "menu_promotion_small_AqKUQT": {
+          "type": "menu-promotion-small",
+          "settings": {
+            "dropdown_link_title": "Soft Play Sets",
+            "image": "shopify://shop_images/Photo_2-6-2025_5_39_54_PM_9.jpg",
+            "title": "Castles",
+            "link_url": "shopify://collections/castle-soft-play"
           }
         },
         "1358f48a-f643-47c3-8d35-5da5ac20b238": {
@@ -317,8 +317,8 @@
         "menu_promotion_small_DjdxBX",
         "c75d7add-b64a-4b4c-9cb2-80345049b38a",
         "f2797bda-33f1-4969-85f8-49fc034d8329",
-        "menu_promotion_small_AqKUQT",
         "menu_promotion_small_kgP3cG",
+        "menu_promotion_small_AqKUQT",
         "1358f48a-f643-47c3-8d35-5da5ac20b238",
         "menu_promotion_small_DiKqFd",
         "menu_promotion_small_tpXGmi",
