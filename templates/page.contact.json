@@ -1,1 +1,163 @@
-{"sections":{"image_with_text_overlay_NXnePg":{"type":"image-with-text-overlay","settings":{"image":"shopify:\/\/shop_images\/Playtimestore_3944_5d82e0bf-5571-42dc-ac73-b4b9845ec602.jpg","height":"full","height_desktop":600,"height_mobile":460,"image_link":"","full_width":false,"text_alignment":"center center","mobile_overlay_under":false,"overlay_style":"shadow"}},"main":{"type":"main-contact","blocks":{"name":{"type":"name_input","settings":{"half_width":true}},"email":{"type":"email_input","settings":{"half_width":true}},"message":{"type":"message_input","settings":{"half_width":false}}},"block_order":["name","email","message"],"settings":{"show_page_title":true,"use_columns":true,"contact_title":"","contact_text":""}}},"order":["image_with_text_overlay_NXnePg","main"]}
+{
+  "sections": {
+    "help": {
+      "type": "tps-contact-help",
+      "blocks": {
+        "orders": {
+          "type": "help_link",
+          "settings": {
+            "heading": "Track an order",
+            "text": "Use the tracking link in your dispatch email or check your order history.",
+            "icon": "box",
+            "link_label": "View your orders",
+            "use_account_link": true
+          }
+        },
+        "shipping": {
+          "type": "help_link",
+          "settings": {
+            "heading": "Shipping & delivery",
+            "text": "Find delivery estimates and information for Australia and New Zealand.",
+            "icon": "truck",
+            "link_label": "View delivery info",
+            "link": "shopify://pages/shipping-delivery-info"
+          }
+        },
+        "returns": {
+          "type": "help_link",
+          "settings": {
+            "heading": "Returns & exchanges",
+            "text": "Check eligibility and what to do if you’d like to return an item.",
+            "icon": "return",
+            "link_label": "Read the returns policy",
+            "link": "shopify://pages/return-policy"
+          }
+        }
+      },
+      "block_order": [
+        "orders",
+        "shipping",
+        "returns"
+      ],
+      "settings": {
+        "heading": "Contact us",
+        "intro": "<p>Need a hand with an order or choosing something for your little one? We’re happy to help.</p>",
+        "image": "shopify://shop_images/Playtimestore_3944_5d82e0bf-5571-42dc-ac73-b4b9845ec602.jpg",
+        "button_label": "Send us a message",
+        "links_heading": "How can we help?"
+      }
+    },
+    "main": {
+      "type": "main-contact",
+      "blocks": {
+        "name": {
+          "type": "name_input",
+          "settings": {
+            "half_width": true
+          }
+        },
+        "email": {
+          "type": "email_input",
+          "settings": {
+            "half_width": true
+          }
+        },
+        "message": {
+          "type": "message_input",
+          "settings": {
+            "half_width": false
+          }
+        },
+        "topic": {
+          "type": "custom_dropdown",
+          "settings": {
+            "title": "What can we help with?",
+            "multiple_options": "Order or tracking\nShipping or delivery\nReturn or exchange\nDamaged, faulty or incorrect item\nProduct question\nSomething else",
+            "half_width": true
+          }
+        },
+        "order_number": {
+          "type": "custom_input",
+          "settings": {
+            "title": "Order number (optional)",
+            "type": "text",
+            "required": false,
+            "half_width": true
+          }
+        }
+      },
+      "block_order": [
+        "name",
+        "email",
+        "topic",
+        "order_number",
+        "message"
+      ],
+      "settings": {
+        "show_page_title": false,
+        "use_columns": true,
+        "contact_title": "Send us a message",
+        "contact_text": "<p>Tell us what you need a hand with. If it’s about an order, use the email address you checked out with.</p>",
+        "support_layout": true,
+        "support_heading": "Prefer to email?",
+        "support_text": "<p><a href=\"mailto:contact@theplaytimestore.com\">contact@theplaytimestore.com</a></p><p>We aim to reply within one business day.</p><p>If something arrived damaged or incorrect, email us your order number, a short description and any photos or video that show what happened.</p>"
+      }
+    },
+    "questions": {
+      "type": "collapsible-tabs",
+      "blocks": {
+        "tracking": {
+          "type": "question",
+          "settings": {
+            "title": "I haven’t received a tracking email. What should I do?",
+            "answer": "<p>Tracking is sent when your order ships. Check your junk or spam folder and the email address you used at checkout. If you still can’t find it, <a href=\"#contact-support-form\">send us a message</a> with your order number.</p>"
+          }
+        },
+        "change": {
+          "type": "question",
+          "settings": {
+            "title": "Can I change my delivery address or order?",
+            "answer": "<p>Get in touch as soon as you can and include your order number and what needs changing. We’ll check whether the order can still be updated.</p>"
+          }
+        },
+        "order_issue": {
+          "type": "question",
+          "settings": {
+            "title": "What if something arrives damaged, faulty or incorrect?",
+            "answer": "<p><a href=\"mailto:contact@theplaytimestore.com\">Email us</a> with your order number, the product name and a short description. Include photos or video if you can so we can see what happened.</p>"
+          }
+        },
+        "product_help": {
+          "type": "question",
+          "settings": {
+            "title": "Can you help me choose a soft play set?",
+            "answer": "<p>Of course. Tell us your little one’s age, the space you have available and any sets you’re considering, and we’ll help you narrow it down.</p>"
+          }
+        },
+        "all_faqs": {
+          "type": "button",
+          "settings": {
+            "title": "View all FAQs",
+            "link": "shopify://pages/faqs"
+          }
+        }
+      },
+      "block_order": [
+        "tracking",
+        "change",
+        "order_issue",
+        "product_help",
+        "all_faqs"
+      ],
+      "settings": {
+        "title": "Common questions",
+        "open_tab": false
+      }
+    }
+  },
+  "order": [
+    "help",
+    "main",
+    "questions"
+  ]
+}

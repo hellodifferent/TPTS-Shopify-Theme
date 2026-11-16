@@ -1,3 +1,10 @@
+{%- liquid
+  assign support_layout = section.settings.support_layout
+  assign show_page_content = false
+  unless support_layout or page.content == blank
+    assign show_page_content = true
+  endunless
+-%}
 <div class="container" {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
   {% if section.settings.show_page_title %}
     <div class="page-header">
@@ -5,17 +12,17 @@
     </div>
   {% endif %}
 
-  <div class="spaced-row {% if section.settings.use_columns %}slim-column-left-layout{% else %}reading-width{% endif %}">
-    {% if page.content != blank %}
+  <div class="{% if support_layout %}tps-contact-form{% else %}spaced-row {% if section.settings.use_columns %}slim-column-left-layout{% else %}reading-width{% endif %}{% endif %}"{% if support_layout %} id="contact-support-form" tabindex="-1"{% endif %}>
+    {% if show_page_content %}
       <div class="{% if section.settings.use_columns %}column{% endif %} rte spaced-row">
         {{ page.content }}
       </div>
     {% endif %}
 
-    <div class="account-form {% if page.content != blank and section.settings.use_columns %}column righty-form{% else %}reading-width{% endif %}">
+    <div class="account-form {% if support_layout %}tps-contact-form__main{% elsif show_page_content and section.settings.use_columns %}column righty-form{% else %}reading-width{% endif %}">
       {% form 'contact' %}
         {% if form.posted_successfully? %}
-          <p><strong>{{ 'contact.form.post_success' | t }}</strong></p>
+          <p role="status"><strong>{{ 'contact.form.post_success' | t }}</strong></p>
         {% else %}
 
           {% if section.settings.contact_title != blank or section.settings.contact_text != blank %}
@@ -189,15 +196,51 @@
         {% endif %}
       {% endform %}
     </div>
+    {%- if support_layout and section.settings.support_text != blank -%}
+      <aside class="tps-contact-form__aside">
+        {%- if section.settings.support_heading != blank -%}
+          <h2>{{ section.settings.support_heading | escape }}</h2>
+        {%- endif -%}
+        <div class="rte">{{ section.settings.support_text }}</div>
+      </aside>
+    {%- endif -%}
   </div>
 </div>
 
+{% stylesheet %}
+  .tps-contact-form { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: clamp(16px, 3vw, 44px); max-width: 1010px; margin-inline: auto; scroll-margin-top: calc(var(--header-group-height, 80px) + 16px); }
+  .tps-contact-form__main { padding: clamp(20px, 3vw, 36px); border: 1px solid #e9dfd5; border-radius: 10px; }
+  .tps-contact-form__main h2, .tps-contact-form__aside h2 { margin: 0 0 8px; font-size: clamp(23px, 2.5vw, 30px); }
+  .tps-contact-form__main textarea { min-height: 120px; }
+  .tps-contact-form__aside { padding: 22px; background: #f7f5f1; border-radius: 10px; overflow-wrap: anywhere; }
+  .tps-contact-form__aside .rte p:last-child { margin-bottom: 0; }
+  @media (min-width: 768px) {
+    .tps-contact-form:has(.tps-contact-form__aside) { grid-template-columns: minmax(0, 1fr) minmax(0, 300px); }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
   "name": "Contact page",
   "class": "page-section-spacing",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "support_layout",
+      "label": "Use support layout",
+      "info": "Use the support panel in place of the page body.",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "support_heading",
+      "label": "Support panel heading"
+    },
+    {
+      "type": "richtext",
+      "id": "support_text",
+      "label": "Support panel text"
+    },
     {
       "type": "checkbox",
       "id": "show_page_title",

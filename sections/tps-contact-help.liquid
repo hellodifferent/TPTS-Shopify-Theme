@@ -1,0 +1,107 @@
+<section class="tps-contact-help container">
+  <div class="tps-contact-help__hero{% if section.settings.image != blank %} tps-contact-help__hero--image{% endif %}">
+    <div class="tps-contact-help__intro">
+      <h1>{{ section.settings.heading | default: page.title | escape }}</h1>
+      {%- if section.settings.intro != blank -%}
+        <div class="rte">{{ section.settings.intro }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="btn btn--primary" href="#contact-support-form">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.image != blank -%}
+      <div class="tps-contact-help__image">
+        {{ section.settings.image | image_url: width: 1440 | image_tag: widths: '400, 600, 800, 1100, 1440', sizes: '(min-width: 768px) 46vw, 100vw', loading: 'eager' }}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="tps-contact-help__quick">
+      <h2>{{ section.settings.links_heading | escape }}</h2>
+      <ul class="tps-contact-help__links" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign link = block.settings.link
+            if block.settings.use_account_link
+              assign link = routes.account_url
+            endif
+          -%}
+          <li class="tps-contact-help__card" {{ block.shopify_attributes }}>
+            {% render 'icon', icon: block.settings.icon, size: 'small' %}
+            <div>
+              <h3>{{ block.settings.heading | escape }}</h3>
+              {%- if block.settings.text != blank -%}
+                <p>{{ block.settings.text | escape }}</p>
+              {%- endif -%}
+              {%- if link != blank and block.settings.link_label != blank -%}
+                <a href="{{ link | escape }}">{{ block.settings.link_label | escape }}</a>
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
+</section>
+
+{% stylesheet %}
+  .tps-contact-help { padding-block-start: clamp(16px, 3vw, 40px); }
+  .tps-contact-help__hero { border-radius: 10px; background: #fffaf6; }
+  .tps-contact-help__hero--image { display: grid; grid-template-columns: 1.05fr 1fr; }
+  .tps-contact-help__intro { align-self: center; padding: clamp(24px, 4.5vw, 66px); }
+  .tps-contact-help__intro h1 { margin: 0 0 12px; font-size: clamp(34px, 4.2vw, 56px); line-height: 1.08; }
+  .tps-contact-help__intro .rte { max-width: 44ch; }
+  .tps-contact-help__intro .rte p:last-child { margin-block-end: 0; }
+  .tps-contact-help__intro .btn { margin-block-start: 20px; }
+  .tps-contact-help__image { min-height: 260px; position: relative; overflow: hidden; border-radius: 0 10px 10px 0; }
+  .tps-contact-help__image img { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .tps-contact-help__quick { padding-block: clamp(28px, 4vw, 48px) 0; }
+  .tps-contact-help__quick h2 { margin: 0 0 14px; font-size: clamp(23px, 2.4vw, 31px); }
+  .tps-contact-help__links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; list-style: none; padding: 0; margin: 0; }
+  .tps-contact-help__card { display: grid; grid-template-columns: 22px minmax(0, 1fr); align-content: start; gap: 11px; margin: 0; padding: clamp(16px, 2vw, 23px); border: 1px solid #e9dfd5; border-radius: 8px; }
+  .tps-contact-help__card .icon { width: 22px; height: 22px; color: #896d58; }
+  .tps-contact-help__card h3 { margin: 0 0 5px; font-size: 19px; line-height: 1.2; }
+  .tps-contact-help__card p { margin: 0 0 9px; font-size: 14px; }
+  .tps-contact-help__card a { text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 767.98px) {
+    .tps-contact-help__hero--image, .tps-contact-help__links { grid-template-columns: minmax(0, 1fr); }
+    .tps-contact-help__image { min-height: 150px; border-radius: 0 0 10px 10px; }
+    .tps-contact-help__links { gap: 8px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "TPS Contact help",
+  "enabled_on": { "templates": ["page"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Contact us" },
+    { "type": "richtext", "id": "intro", "label": "Introduction" },
+    { "type": "image_picker", "id": "image", "label": "Hero image" },
+    { "type": "text", "id": "button_label", "label": "Form link label", "default": "Send us a message" },
+    { "type": "text", "id": "links_heading", "label": "Help links heading", "default": "How can we help?" }
+  ],
+  "blocks": [
+    {
+      "type": "help_link",
+      "name": "Help link",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Description" },
+        { "type": "select", "id": "icon", "label": "Icon", "default": "box", "options": [
+          { "value": "box", "label": "Box" },
+          { "value": "truck", "label": "Truck" },
+          { "value": "return", "label": "Return" },
+          { "value": "question_mark", "label": "Question mark" },
+          { "value": "chat_bubble", "label": "Chat bubble" }
+        ] },
+        { "type": "text", "id": "link_label", "label": "Link label" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "checkbox", "id": "use_account_link", "label": "Link to customer account", "default": false }
+      ]
+    }
+  ],
+  "presets": [{ "name": "TPS Contact help" }]
+}
+{% endschema %}
