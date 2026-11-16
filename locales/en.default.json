@@ -324,7 +324,7 @@
       "progress": "You’re {{ amount }} away from an extra $25 off",
       "applied": "Your extra $25 off has been applied",
       "eligible": "Extra $25 off eligible orders of $450 or more",
-      "drawer_offer": "Spend $450 or more and we’ll take an extra $25 off.",
+      "drawer_offer": "Receive an extra $25 off orders over $450",
       "drawer_applied": "An extra $25 off has been applied."
     },
     "general": {
