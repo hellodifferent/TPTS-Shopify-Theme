@@ -291,7 +291,7 @@
         {% if collection.products.size == 0 %}
           {% render 'tps-collection-empty', collection: collection, section: section %}
         {% else %}
-          <playtime-favourites class="product-grid product-grid--per-row-{{ section.settings.grid }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }}">
+          <playtime-favourites class="product-grid product-grid--per-row-{{ section.settings.grid }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }}{% if paginate.items < 4 %} tps-collection-grid--centred{% endif %}">
             {%- liquid
               if settings.prod_thumb_shape == 'portrait-23'
                 assign chosen_aspect_ratio = 0.67

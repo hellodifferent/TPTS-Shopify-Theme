@@ -1,5 +1,17 @@
 .tps-collection-cards.playtime-favourites { padding: 0; background: transparent; }
-.tps-collection-cards .product-grid { column-gap: 17px; row-gap: 36px; align-items: stretch; }
+.tps-collection-cards .product-grid { --collection-column-gap: 17px; column-gap: var(--collection-column-gap); row-gap: 36px; align-items: stretch; }
+@media (min-width: 768px) {
+  .tps-collection-cards .tps-collection-grid--centred {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tps-collection-grid--centred > .pf-card {
+    flex: 0 0 calc((100% - var(--collection-column-gap) * (var(--product-columns-desktop) - 1)) / var(--product-columns-desktop));
+    min-width: 0;
+  }
+}
 .tps-collection-cards .pf-card { text-align: start; }
 .tps-collection-cards .pf-title { font-size: 14.5px; line-height: 1.35; font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); color: rgb(var(--heading-color)); }
 .tps-collection-cards .pf-title a { color: inherit; }
