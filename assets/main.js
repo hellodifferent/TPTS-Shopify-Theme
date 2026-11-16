@@ -1192,12 +1192,8 @@ const CCCartCrossSell = class extends HTMLElement {
           newContent.innerHTML = response;
 
           const recommendations = newContent.querySelector('.product-grid');
-          const priority = this.querySelector('[data-priority-recommendations]');
           const seen = new Set((this.dataset.cartProductIds || '').split(','));
-          const cards = [
-            ...Array.from(priority?.content.cloneNode(true).children || []),
-            ...Array.from(recommendations?.children || [])
-          ].filter((card) => {
+          const cards = Array.from(recommendations?.children || []).filter((card) => {
             const { productId } = card.dataset;
             if (productId && seen.has(productId)) return false;
             if (productId) seen.add(productId);

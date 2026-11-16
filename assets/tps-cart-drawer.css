@@ -36,7 +36,7 @@
 .tps-cart-drawer .cart-item__description { padding-inline-end: 12px; min-width: 0; }
 .tps-cart-drawer .cart-item__title { font-size: 14px; font-weight: 500; line-height: 1.45; }
 .tps-cart-drawer .cart-item__price { font-size: 14px; }
-.tps-cart-drawer .cart-item__selling-price { font-weight: 500; }
+.tps-cart-drawer .cart-item__selling-price { font-weight: 400; }
 .tps-cart-drawer .cart-item__quantity { display: flex; align-items: center; gap: 16px; }
 .tps-cart-drawer .quantity { display: inline-flex; height: 40px; border-radius: 3px; }
 .tps-cart-drawer .quantity a { min-width: 36px; min-height: 40px; }
@@ -85,12 +85,13 @@
 }
 .tps-cart-totals__prices { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-end; gap: 2px 8px; text-align: end; }
 .tps-cart-totals__original { opacity: .78; white-space: nowrap; }
-.tps-cart-totals__current { font-weight: 600; white-space: nowrap; }
+.tps-cart-totals__current { font-weight: 400; white-space: nowrap; }
 .tps-cart-totals__savings,
 .tps-cart-totals__shipping { margin: 3px 0 0; color: #6b5140; font-size: 12.5px; line-height: 1.4; text-align: end; }
 .tps-cart-drawer .cart-policies { font-size: 12px; line-height: 1.5; }
 .tps-cart-drawer .cart-policies a { color: inherit; }
 .tps-cart-drawer #CartDrawerNoteToggle { display: inline-block; padding-top: 6px; color: #666; font-size: 12px; }
+.tps-cart-drawer .checkout-buttons { padding-top: 5px; }
 .tps-cart-drawer .checkout-buttons .btn {
   min-height: 48px;
   border-color: #a98d75;

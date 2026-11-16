@@ -123,15 +123,52 @@
           endif
           if cross_sell_auto
             for item in cart.items
-              assign product_family = item.product.title | split: ' ' | first
-              if product_family == 'Explorer'
-                assign explorer_in_cart = true
-                break
+              assign item_handle = item.product.handle
+              if item_handle contains 'explorer' or item_handle contains 'step-slide'
+                assign climbing_set_in_cart = true
+              elsif item_handle contains 'castle'
+                assign castle_in_cart = true
+              elsif item_handle contains 'mini-play-blocks'
+                assign blocks_in_cart = true
+              elsif item_handle contains 'foldable-ball-pit'
+                assign foldable_pit_in_cart = true
               endif
             endfor
+
+            if climbing_set_in_cart or castle_in_cart or blocks_in_cart
+              assign cross_sell_auto = false
+              assign complement_handles = ''
+              unless blocks_in_cart
+                assign complement_handles = complement_handles | append: 'mini-play-blocks-pastel,'
+              endunless
+              unless castle_in_cart
+                assign complement_handles = complement_handles | append: 'castle,'
+              endunless
+              unless climbing_set_in_cart
+                assign complement_handles = complement_handles | append: 'mini-step-slide-pastel,'
+              endunless
+              unless foldable_pit_in_cart
+                assign complement_handles = complement_handles | append: 'foldable-ball-pit-white,'
+              endunless
+              assign complement_handles = complement_handles | split: ','
+            endif
           endif
         -%}
-        {%- if cross_sell_product_list or cross_sell_auto -%}
+        {%- capture complement_cards -%}
+          {%- assign complement_count = 0 -%}
+          {%- for handle in complement_handles -%}
+            {%- assign product = all_products[handle] -%}
+            {%- if product.available and product.featured_media != blank -%}
+              <li class="slider__item">
+                {%- render 'product-block', product: product, manual_loading: true, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: 1.0 -%}
+                {%- render 'tps-cart-quick-add', product: product, form_prefix: 'CartRecommendation' -%}
+              </li>
+              {%- assign complement_count = complement_count | plus: 1 -%}
+              {%- if complement_count == 2 -%}{%- break -%}{%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- if cross_sell_product_list or cross_sell_auto or complement_cards != blank -%}
           <div class="cart-item-upsells">
             <cc-cart-cross-sell{% if cross_sell_auto %} data-from="{{ routes.product_recommendations_url }}?section_id=mini-related-products&limit=8&product_id={{ cart.items.first.product.id }}" data-cart-product-ids="{{ cart_product_ids | join: ',' }}"{% endif %}>
               <carousel-slider class="carousel block collection-slider cart-drawer__content-item use-color-scheme use-color-scheme--{{ section.settings.croll_sell_color_scheme }}">
@@ -150,6 +187,7 @@
                 </div>
                 <div class="slider slider--no-scrollbar slider--edge-peek">
                   <ul class="slider__grid product-grid product-grid--carousel product-grid--per-row-2 product-grid--per-row-mob-2">
+                    {{- complement_cards -}}
                     {%- if cross_sell_product_list -%}
                       {%- liquid
                         if settings.prod_thumb_shape == 'portrait-23'
@@ -189,20 +227,6 @@
                   </ul>
                 </div>
               </carousel-slider>
-              {%- if explorer_in_cart -%}
-                {%- assign priority_handles = 'mini-play-blocks-pastel,foldable-ball-pit-white' | split: ',' -%}
-                <template data-priority-recommendations>
-                  {%- for handle in priority_handles -%}
-                    {%- assign product = all_products[handle] -%}
-                    {%- if product.available and product.featured_media != blank -%}
-                      <li class="slider__item" data-product-id="{{ product.id }}">
-                        {%- render 'product-block', product: product, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: 1.0 -%}
-                        {% render 'tps-cart-quick-add', product: product, form_prefix: 'CartRecommendationPriority' %}
-                      </li>
-                    {%- endif -%}
-                  {%- endfor -%}
-                </template>
-              {%- endif -%}
             </cc-cart-cross-sell>
           </div>
         {%- endif -%}
