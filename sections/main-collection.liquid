@@ -320,6 +320,10 @@
               endif
 
               assign group_ball_pits = false
+              assign show_ball_pit_colour = false
+              if collection.handle == 'boucle-ball-pits'
+                assign show_ball_pit_colour = true
+              endif
               if collection.handle == 'black-friday' or collection.handle == 'ball-pits' or collection.handle == 'boucle-ball-pits' or collection.handle == 'favourites'
                 assign group_ball_pits = true
               endif
@@ -328,7 +332,7 @@
                 if forloop.index0 < section.settings.grid
                   assign prioritised_loading = true
                 endif
-                render 'tps-collection-card', product: product, columns: section.settings.grid, show_vendor: section.settings.show_vendor, prioritised_loading: prioritised_loading, group_ball_pits: group_ball_pits
+                render 'tps-collection-card', product: product, columns: section.settings.grid, show_vendor: section.settings.show_vendor, prioritised_loading: prioritised_loading, group_ball_pits: group_ball_pits, show_ball_pit_colour: show_ball_pit_colour
               endfor
             -%}
           </playtime-favourites>

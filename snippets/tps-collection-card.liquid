@@ -4,7 +4,8 @@
   @param {boolean} prioritised_loading - Load first-row images eagerly.
   @param {boolean} show_vendor - Show the product vendor.
   @param {string} [card_id] - Section-specific identifier for card forms.
-  @param {boolean} [group_ball_pits] - Present ball pit families as one card per style.
+  @param {boolean} [group_ball_pits] - Use ball pit setup pricing and links.
+  @param {boolean} [show_ball_pit_colour] - Use the product title when each colour has its own card.
 {% enddoc %}
 {%- liquid
   assign card_id = card_id | default: product.id
@@ -20,7 +21,9 @@
         assign ball_count = 300
         assign grouped_ball_pit = true
       when 'boucle-ball-pit'
-        assign card_title = 'sections.collection.boucle_ball_pit' | t
+        unless show_ball_pit_colour
+          assign card_title = 'sections.collection.boucle_ball_pit' | t
+        endunless
         assign ball_count = 200
         assign grouped_ball_pit = true
       when 'foldable-ball-pit'
@@ -56,7 +59,7 @@
     {%- endif -%}
   </div>
   {%- if show_vendor -%}<p class="tps-collection-vendor">{{ product.vendor | escape }}</p>{%- endif -%}
-  <h3 class="pf-title"><a href="{{ product.url }}" data-pf-link{% unless grouped_ball_pit %} data-pf-dynamic-title{% endunless %}>{{ card_title | escape }}</a></h3>
+  <h3 class="pf-title"><a href="{{ product.url }}" data-pf-link{% if grouped_ball_pit == false or show_ball_pit_colour %} data-pf-dynamic-title{% endif %}>{{ card_title | escape }}</a></h3>
   {%- if ball_count -%}
     <p class="pf-description">{{ 'sections.collection.ball_pit_bundle_option' | t: count: ball_count }}</p>
   {%- elsif settings.prod_thumb_show_subtitle and product.metafields.descriptors.subtitle != blank -%}
