@@ -32,6 +32,7 @@
         },
         "announcement_EVkaih": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "Ends Tonight • Save $90 on Castle Sets",
             "show_countdown": false,
@@ -41,7 +42,7 @@
             "number_font": "base",
             "countdown_separator": "box",
             "use_custom_colors": true,
-            "bg_color": "#CBF1FF",
+            "bg_color": "#cbf1ff",
             "bg_gradient": "",
             "text_color": "#111111"
           }

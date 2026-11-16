@@ -60,6 +60,7 @@
       "blocks": {
         "image_mwxexP": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Castle_BF_Offer.webp",
             "mobile_image": "shopify://shop_images/Castle_BF_Offer_-_Mobile.webp",
