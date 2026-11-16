@@ -10,21 +10,3 @@
     <p>{{ 'cart.extra_play_offer.instructions_html' | t: code: offer_code_markup }}</p>
   </div>
 {%- endif -%}
-
-{% stylesheet %}
-  .tps-cart-extra-play {
-    margin-block: 8px 14px;
-    padding: 10px 12px;
-    border: 1px solid #ece4da;
-    border-radius: 6px;
-    background: #fffaf6;
-    color: #4d4036;
-    font-size: 13px;
-    line-height: 1.45;
-    text-align: start;
-  }
-
-  .tps-cart-extra-play p { margin: 0; }
-  .tps-cart-extra-play p + p { margin-block-start: 2px; }
-  .tps-cart-extra-play__code { white-space: nowrap; }
-{% endstylesheet %}
