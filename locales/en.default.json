@@ -320,6 +320,10 @@
     }
   },
   "cart": {
+    "extra_play_offer": {
+      "heading": "Extra $25 off orders of $500 or more",
+      "instructions_html": "Enter {{ code }} at checkout."
+    },
     "general": {
       "title": "Your cart",
       "backorder": "Product is backordered and will ship as soon as it is back in stock.",

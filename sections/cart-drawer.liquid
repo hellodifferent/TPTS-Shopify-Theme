@@ -245,6 +245,8 @@
             {%- endif -%}
           </div>
 
+          {%- render 'tps-cart-extra-play-offer', cart: cart -%}
+
           <div class="lightly-spaced-row">
             {% if section.settings.show_order_note %}
               <toggle-target id="CartDrawerNoteToggle" role="button" tabindex="0" class="toggle-target-toggler--is-hidden link underline" data-toggle-target="#CartDrawerNote">{{ 'cart.note.label' | t }}</toggle-target>

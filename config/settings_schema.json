@@ -1635,6 +1635,13 @@
     "name": "Cart",
     "settings": [
       {
+        "type": "checkbox",
+        "id": "show_extra_play_cart_offer",
+        "label": "Show EXTRAPLAY25 offer",
+        "info": "Shows in AUD carts above $200. Set up the discount code in Shopify Discounts.",
+        "default": true
+      },
+      {
         "type": "select",
         "id": "cart_type",
         "label": "Cart type",
