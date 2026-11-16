@@ -89,7 +89,32 @@
 .tps-cart-drawer .cart-policies { font-size: 12px; line-height: 1.5; }
 .tps-cart-drawer .cart-policies a { color: inherit; }
 .tps-cart-drawer #CartDrawerNoteToggle { display: inline-block; padding-top: 6px; color: #666; font-size: 12px; }
-.tps-cart-drawer .checkout-buttons .btn { min-height: 48px; }
+.tps-cart-drawer .checkout-buttons .btn {
+  min-height: 48px;
+  border-color: #49372b;
+  background: #49372b;
+  color: #fff;
+}
+.tps-cart-drawer .checkout-buttons .btn:hover {
+  border-color: #392a21;
+  background: #392a21;
+  color: #fff;
+}
+.tps-cart-drawer .tps-cart-reassurance {
+  display: grid;
+  gap: 3px;
+  margin: 0 0 10px;
+  padding: 0;
+  color: #5f5a55;
+  font-size: 12px;
+  line-height: 1.4;
+  list-style: none;
+}
+.tps-cart-reassurance a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .tps-cart-express { display: block; position: relative; }
 .tps-cart-express .additional-checkout-buttons {
   display: flow-root;
@@ -172,7 +197,10 @@
 .tps-cart-quick-add { text-align: center; }
 
 body:has(.tps-cart-drawer[open]) #gorgias-chat-container,
-body:has(.tps-cart-drawer[open]) #gorgias-chat-container iframe {
+body:has(.tps-cart-drawer[open]) #gorgias-chat-container iframe,
+body:has(.tps-cart-drawer[open]) iframe[id^="gorgias-chat"],
+body:has(.tps-cart-drawer[open]) iframe[title="Gorgias Chat"],
+body:has(.tps-cart-drawer[open]) iframe[src*="gorgias.chat"] {
   visibility: hidden !important;
   pointer-events: none !important;
 }

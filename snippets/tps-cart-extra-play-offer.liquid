@@ -1,12 +1,28 @@
 {% doc %}
-  Displays the EXTRAPLAY25 offer for an AUD cart above the display threshold.
+  Shows progress toward the Australian automatic order discount.
   @param {cart} cart - Current cart.
 {% enddoc %}
-{%- if settings.show_extra_play_cart_offer and cart.currency.iso_code == 'AUD' and cart.total_price > 20000 -%}
-  {%- assign offer_code = 'EXTRAPLAY25' -%}
-  {%- capture offer_code_markup -%}<strong class="tps-cart-extra-play__code">{{ offer_code }}</strong>{%- endcapture -%}
-  <div class="tps-cart-extra-play">
-    <p><strong>{{ 'cart.extra_play_offer.heading' | t }}</strong></p>
-    <p>{{ 'cart.extra_play_offer.instructions_html' | t: code: offer_code_markup }}</p>
-  </div>
+{%- if settings.show_extra_play_cart_offer and localization.country.iso_code == 'AU' and cart.currency.iso_code == 'AUD' and cart.items_subtotal_price > 20000 -%}
+  {%- liquid
+    assign offer_title = 'Extra $25 off $450+'
+    assign offer_threshold = 45000
+    assign remaining = offer_threshold | minus: cart.items_subtotal_price
+    assign applied = false
+    for discount in cart.cart_level_discount_applications
+      if discount.title == offer_title and discount.total_allocated_amount > 0
+        assign applied = true
+        break
+      endif
+    endfor
+  -%}
+  <p class="tps-cart-extra-play" role="status">
+    {%- if applied -%}
+      {{ 'cart.extra_play_offer.applied' | t }}
+    {%- elsif remaining > 0 -%}
+      {%- assign remaining_money = remaining | money_without_trailing_zeros -%}
+      {{ 'cart.extra_play_offer.progress' | t: amount: remaining_money }}
+    {%- else -%}
+      {{ 'cart.extra_play_offer.eligible' | t }}
+    {%- endif -%}
+  </p>
 {%- endif -%}

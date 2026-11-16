@@ -321,8 +321,9 @@
   },
   "cart": {
     "extra_play_offer": {
-      "heading": "Extra $25 off orders of $500 or more",
-      "instructions_html": "Enter {{ code }} at checkout."
+      "progress": "You’re {{ amount }} away from an extra $25 off",
+      "applied": "Your extra $25 off has been applied",
+      "eligible": "Extra $25 off eligible orders of $450 or more"
     },
     "general": {
       "title": "Your cart",
@@ -375,7 +376,10 @@
       "cart_total": "Cart total",
       "original_total": "Original total",
       "savings": "Savings",
-      "free_shipping": "+ Free Shipping",
+      "free_shipping": "Free shipping included",
+      "afterpay_instalments": "or 4 payments of {{ amount }} with Afterpay",
+      "delivery_information": "Ships from Brisbane · Check delivery times",
+      "returns_information": "30-day change-of-mind returns on eligible items",
       "accepted_payments": "Accepted payment methods",
       "shop_bestsellers": "Shop bestsellers",
       "shipping_at_checkout_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",

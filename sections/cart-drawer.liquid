@@ -102,7 +102,8 @@
         {%- endif -%}
       </div>
 
-      <div data-merge="cross-sells" data-merge-cache="{% if cart.items == blank %}blank{% else %}{{ cart.items.first.product.id }}{% endif %}">
+      {%- assign cart_product_ids = cart.items | map: 'product_id' | uniq -%}
+      <div data-merge="cross-sells" data-merge-cache="{{ cart_product_ids | join: ',' }}">
         {%- liquid
           if section.settings.enable_cross_sells
             if cart.items == empty
@@ -120,7 +121,7 @@
         -%}
         {%- if cross_sell_product_list or cross_sell_auto -%}
           <div class="cart-item-upsells">
-            <cc-cart-cross-sell{% if cross_sell_auto %} data-from="{{ routes.product_recommendations_url }}?section_id=mini-related-products&limit=8&product_id={{ cart.items.first.product.id }}"{% endif %}>
+            <cc-cart-cross-sell{% if cross_sell_auto %} data-from="{{ routes.product_recommendations_url }}?section_id=mini-related-products&limit=8&product_id={{ cart.items.first.product.id }}" data-cart-product-ids="{{ cart_product_ids | join: ',' }}"{% endif %}>
               <carousel-slider class="carousel block collection-slider cart-drawer__content-item use-color-scheme use-color-scheme--{{ section.settings.croll_sell_color_scheme }}">
                 <div class="opposing-items opposing-items--valign-base very-lightly-spaced-row">
                   <div class="opposing-items__left product-info-label">{{ section.settings.cross_sell_title | escape }}</div>
@@ -176,6 +177,20 @@
                   </ul>
                 </div>
               </carousel-slider>
+              {%- if cross_sell_auto and cart.items.first.product.title contains 'Explorer Soft Play' -%}
+                {%- assign priority_handles = 'mini-play-blocks-pastel,foldable-ball-pit-white' | split: ',' -%}
+                <template data-priority-recommendations>
+                  {%- for handle in priority_handles -%}
+                    {%- assign product = all_products[handle] -%}
+                    {%- if product.available and product.featured_media != blank -%}
+                      <li class="slider__item" data-product-id="{{ product.id }}">
+                        {%- render 'product-block', product: product, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: 1.0 -%}
+                        {% render 'tps-cart-quick-add', product: product, form_prefix: 'CartRecommendationPriority' %}
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </template>
+              {%- endif -%}
             </cc-cart-cross-sell>
           </div>
         {%- endif -%}
@@ -257,6 +272,18 @@
             {% endif %}
           </div>
           {%- render 'tps-cart-extra-play-offer', cart: cart -%}
+          <ul class="tps-cart-reassurance" role="list">
+            {%- if localization.country.iso_code == 'AU' and cart.currency.iso_code == 'AUD' and cart.total_price > 0 and cart.total_price <= 200000 -%}
+              {%- assign instalment = cart.total_price | divided_by: 4.0 | round | money -%}
+              <li>{{ 'cart.drawer.afterpay_instalments' | t: amount: instalment }}</li>
+            {%- endif -%}
+            {%- if cart.requires_shipping and pages['shipping-delivery-info'].url != blank -%}
+              <li><a href="{{ pages['shipping-delivery-info'].url }}">{{ 'cart.drawer.delivery_information' | t }}</a></li>
+            {%- endif -%}
+            {%- if pages['return-policy'].url != blank -%}
+              <li><a href="{{ pages['return-policy'].url }}">{{ 'cart.drawer.returns_information' | t }}</a></li>
+            {%- endif -%}
+          </ul>
         {% endif %}
       </div>
 

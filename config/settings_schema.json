@@ -1637,8 +1637,8 @@
       {
         "type": "checkbox",
         "id": "show_extra_play_cart_offer",
-        "label": "Show EXTRAPLAY25 offer",
-        "info": "Shows in AUD carts above $200. Set up the discount code in Shopify Discounts.",
+        "label": "Show extra $25 cart offer",
+        "info": "Shows in Australian carts above $200. Manage the automatic Extra $25 off $450+ offer in Shopify Discounts.",
         "default": true
       },
       {

@@ -1191,13 +1191,22 @@ const CCCartCrossSell = class extends HTMLElement {
           frag.appendChild(newContent);
           newContent.innerHTML = response;
 
-          const pl = newContent.querySelector('.product-grid');
-          if (pl) {
-            this.productList.innerHTML = pl.innerHTML;
-            this.querySelectorAll('carousel-slider').forEach((el) => el.refresh());
-          } else {
-            this.classList.add('hidden');
-          }
+          const recommendations = newContent.querySelector('.product-grid');
+          const priority = this.querySelector('[data-priority-recommendations]');
+          const seen = new Set((this.dataset.cartProductIds || '').split(','));
+          const cards = [
+            ...Array.from(priority?.content.cloneNode(true).children || []),
+            ...Array.from(recommendations?.children || [])
+          ].filter((card) => {
+            const { productId } = card.dataset;
+            if (productId && seen.has(productId)) return false;
+            if (productId) seen.add(productId);
+            return true;
+          });
+
+          this.productList.replaceChildren(...cards);
+          this.classList.toggle('hidden', cards.length === 0);
+          if (cards.length) this.querySelectorAll('carousel-slider').forEach((el) => el.refresh());
         });
     }
   }
