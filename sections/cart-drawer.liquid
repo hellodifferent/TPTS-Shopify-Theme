@@ -106,7 +106,7 @@
       </div>
 
       {%- assign cart_product_ids = cart.items | map: 'product_id' | uniq -%}
-      <div data-merge="cross-sells" data-merge-cache="{{ cart_product_ids | join: ',' }}">
+      <div class="tps-cart-drawer__recommendations" data-merge="cross-sells" data-merge-cache="{{ cart_product_ids | join: ',' }}">
         {%- liquid
           if section.settings.enable_cross_sells
             if cart.items == empty
@@ -126,10 +126,19 @@
               assign item_handle = item.product.handle
               if item_handle contains 'explorer' or item_handle contains 'step-slide'
                 assign climbing_set_in_cart = true
+                if climbing_colour == blank
+                  assign climbing_colour = item.product.metafields.custom.swatch_name.value | handleize
+                endif
               elsif item_handle contains 'castle'
                 assign castle_in_cart = true
+                if complement_colour == blank
+                  assign complement_colour = item.product.metafields.custom.swatch_name.value | handleize
+                endif
               elsif item_handle contains 'mini-play-blocks'
                 assign blocks_in_cart = true
+                if complement_colour == blank
+                  assign complement_colour = item.product.metafields.custom.swatch_name.value | handleize
+                endif
               elsif item_handle contains 'foldable-ball-pit'
                 assign foldable_pit_in_cart = true
               endif
@@ -137,6 +146,7 @@
 
             if climbing_set_in_cart or castle_in_cart or blocks_in_cart
               assign cross_sell_auto = false
+              assign preferred_colour = climbing_colour | default: complement_colour
               assign complement_handles = ''
               unless blocks_in_cart
                 assign complement_handles = complement_handles | append: 'mini-play-blocks-pastel,'
@@ -157,7 +167,25 @@
         {%- capture complement_cards -%}
           {%- assign complement_count = 0 -%}
           {%- for handle in complement_handles -%}
-            {%- assign product = all_products[handle] -%}
+            {%- liquid
+              assign product = all_products[handle]
+              if handle == 'mini-play-blocks-pastel' or handle == 'castle'
+                assign family = product.metafields.custom.product_family.value
+                for sibling in family.products.value
+                  unless sibling.available and sibling.featured_media != blank
+                    continue
+                  endunless
+                  assign sibling_colour = sibling.metafields.custom.swatch_name.value | handleize
+                  if preferred_colour != blank and sibling_colour == preferred_colour
+                    assign product = sibling
+                    break
+                  endif
+                  if product.available == false or product.featured_media == blank
+                    assign product = sibling
+                  endif
+                endfor
+              endif
+            -%}
             {%- if product.available and product.featured_media != blank -%}
               <li class="slider__item">
                 {%- render 'product-block', product: product, manual_loading: true, no_quick_buy: true, no_swiping: true, custom_aspect_ratio: 1.0 -%}
