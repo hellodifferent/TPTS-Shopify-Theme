@@ -100,7 +100,7 @@
         "contact_text": "<p>Tell us what you need a hand with. If it’s about an order, use the email address you checked out with.</p>",
         "support_layout": true,
         "support_heading": "Prefer to email?",
-        "support_text": "<p><a href=\"mailto:contact@theplaytimestore.com\">contact@theplaytimestore.com</a></p><p>We aim to reply within one business day.</p><p>If something arrived damaged or incorrect, email us your order number, a short description and any photos or video that show what happened.</p>"
+        "support_text": "<p><a href=\"mailto:hello@theplaytimestore.com\">hello@theplaytimestore.com</a></p><p>We aim to reply within one business day.</p>"
       }
     },
     "questions": {
@@ -117,14 +117,14 @@
           "type": "question",
           "settings": {
             "title": "Can I change my delivery address or order?",
-            "answer": "<p>Get in touch as soon as you can and include your order number and what needs changing. We’ll check whether the order can still be updated.</p>"
+            "answer": "<p>If you need to change your delivery address, update an item or cancel your order, contact us as soon as possible with your order number and what you’d like to change. We can only make changes before our warehouse processes the order. Once it’s been processed, we can’t change the address, edit or cancel the order, or stop it from shipping.</p>"
           }
         },
         "order_issue": {
           "type": "question",
           "settings": {
             "title": "What if something arrives damaged, faulty or incorrect?",
-            "answer": "<p><a href=\"mailto:contact@theplaytimestore.com\">Email us</a> with your order number, the product name and a short description. Include photos or video if you can so we can see what happened.</p>"
+            "answer": "<p><a href=\"mailto:hello@theplaytimestore.com\">Email us</a> with your order number, the product name and a short description of what happened. If your item arrived damaged, please include clear photos showing the damage so we can assess it.</p>"
           }
         },
         "product_help": {
