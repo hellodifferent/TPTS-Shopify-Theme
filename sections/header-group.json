@@ -30,10 +30,26 @@
             "text_color": "#ffffff"
           }
         },
+        "announcement_EVkaih": {
+          "type": "announcement",
+          "settings": {
+            "text": "Ends Tonight • Save $90 on Castle Sets",
+            "show_countdown": false,
+            "hide_on_end": false,
+            "end_date": "",
+            "end_time": "",
+            "number_font": "base",
+            "countdown_separator": "box",
+            "use_custom_colors": true,
+            "bg_color": "#CBF1FF",
+            "bg_gradient": "",
+            "text_color": "#111111"
+          }
+        },
         "announcement_nXPLAQ": {
           "type": "announcement",
           "settings": {
-            "text": "Black Friday • Free shipping on all orders over $250",
+            "text": "Free shipping on all orders over $250",
             "show_countdown": false,
             "hide_on_end": false,
             "end_date": "",
@@ -50,23 +66,6 @@
           "type": "announcement",
           "settings": {
             "text": "<a href=\"/collections/all-products\" title=\"ALL PRODUCTS\">Shop original & award winning designs since <strong>2020&nbsp;</strong></a>",
-            "show_countdown": false,
-            "hide_on_end": false,
-            "end_date": "",
-            "end_time": "",
-            "number_font": "base",
-            "countdown_separator": "box",
-            "use_custom_colors": false,
-            "bg_color": "#4a4a4a",
-            "bg_gradient": "",
-            "text_color": "#ffffff"
-          }
-        },
-        "announcement_EVkaih": {
-          "type": "announcement",
-          "disabled": true,
-          "settings": {
-            "text": "<strong>ONLINE WAREHOUSE SALE ON NOW</strong>",
             "show_countdown": false,
             "hide_on_end": false,
             "end_date": "",
@@ -150,9 +149,9 @@
       },
       "block_order": [
         "announcement_dmPENM",
+        "announcement_EVkaih",
         "announcement_nXPLAQ",
         "announcement_8LKewf",
-        "announcement_EVkaih",
         "announcement_M3rrAb",
         "announcement_VnYXGq",
         "announcement_FgWN7h",
