@@ -379,8 +379,6 @@
       "original_total": "Original total",
       "savings": "Savings",
       "free_shipping": "+ Free shipping included",
-      "afterpay_and_returns": "Afterpay available · 30-day returns on eligible items",
-      "returns_information": "30-day returns on eligible items",
       "accepted_payments": "Accepted payment methods",
       "shop_bestsellers": "Shop bestsellers",
       "shipping_at_checkout_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",

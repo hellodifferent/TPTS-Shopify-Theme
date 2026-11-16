@@ -64,6 +64,9 @@
             {% render 'icon-close' %}
           </button>
         </header>
+    <div class="tps-cart-drawer__offer" data-merge="extra-play-offer">
+      {%- render 'tps-cart-extra-play-offer', cart: cart, plain_text: true -%}
+    </div>
     {% render 'tps-shipping-offer', placement: 'cart' %}
     <div class="cart-drawer__content{% if cart.items == empty %} cart-drawer__content--hidden{% endif %}" data-merge-attributes="content-container">
       <div class="cart-drawer__content-upper">
@@ -284,14 +287,6 @@
               </div>
             </div>
           {%- endif -%}
-          {%- render 'tps-cart-extra-play-offer', cart: cart, plain_text: true -%}
-          <p class="tps-cart-reassurance">
-            {%- if localization.country.iso_code == 'AU' and cart.currency.iso_code == 'AUD' and cart.total_price > 0 and cart.total_price <= 200000 -%}
-              {{ 'cart.drawer.afterpay_and_returns' | t }}
-            {%- else -%}
-              {{ 'cart.drawer.returns_information' | t }}
-            {%- endif -%}
-          </p>
         {% endif %}
       </div>
 

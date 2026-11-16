@@ -93,19 +93,15 @@
 .tps-cart-drawer #CartDrawerNoteToggle { display: inline-block; padding-top: 6px; color: #666; font-size: 12px; }
 .tps-cart-drawer .checkout-buttons .btn {
   min-height: 48px;
-  border-color: #d2bca6;
-  background: #d2bca6;
-  color: #33271e;
+  border-color: #a98d75;
+  background: #a98d75;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 700;
 }
 .tps-cart-drawer .checkout-buttons .btn:hover {
-  border-color: #c7af97;
-  background: #c7af97;
-}
-.tps-cart-drawer .tps-cart-reassurance {
-  margin: 0 0 10px;
-  color: #666;
-  font-size: 12px;
-  line-height: 1.4;
+  border-color: #997c65;
+  background: #997c65;
 }
 .tps-cart-express { display: block; position: relative; }
 .tps-cart-express .additional-checkout-buttons {

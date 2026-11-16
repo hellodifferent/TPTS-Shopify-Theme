@@ -10,9 +10,16 @@
   text-align: start;
 }
 
+.tps-cart-drawer__offer {
+  flex: none;
+}
 .tps-cart-extra-play--plain {
-  margin: 8px 0 10px;
-  color: #666;
-  font-size: 13px;
-  line-height: 1.4;
+  margin: 0;
+  padding: 7px var(--gutter-content, 20px);
+  border-bottom: 1px solid #ece9e4;
+  background: #f8f5f1;
+  color: #5f5146;
+  font-size: 12px;
+  line-height: 1.35;
+  text-align: center;
 }

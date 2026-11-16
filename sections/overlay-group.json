@@ -17,7 +17,7 @@
         "show_order_note": false,
         "show_tax_and_shipping": true,
         "enable_direct_cart": true,
-        "show_additional_checkout_buttons": false,
+        "show_additional_checkout_buttons": true,
         "cart_terms_page": "",
         "show_backorder_text": false,
         "show_inventory_notice": "never",
