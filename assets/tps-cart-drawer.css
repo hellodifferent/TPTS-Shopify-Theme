@@ -59,6 +59,8 @@
   gap: 14px;
 }
 .tps-cart-drawer .collection-slider .product-block { text-align: start; }
+.tps-cart-drawer .cart-item-upsells .product-label--sale,
+.tps-cart-drawer .cart-item-upsells .price-label--sale { display: none; }
 .tps-cart-drawer .collection-slider .image-cont { border-radius: 5px; overflow: hidden; }
 .tps-cart-drawer .collection-slider .product-block__title { font-size: 13px; line-height: 1.4; }
 .tps-cart-drawer .collection-slider .product-price { font-size: 13px; }
@@ -91,14 +93,13 @@
 .tps-cart-drawer #CartDrawerNoteToggle { display: inline-block; padding-top: 6px; color: #666; font-size: 12px; }
 .tps-cart-drawer .checkout-buttons .btn {
   min-height: 48px;
-  border-color: #000;
-  background: #000;
-  color: #fff;
+  border-color: #d2bca6;
+  background: #d2bca6;
+  color: #33271e;
 }
 .tps-cart-drawer .checkout-buttons .btn:hover {
-  border-color: #222;
-  background: #222;
-  color: #fff;
+  border-color: #c7af97;
+  background: #c7af97;
 }
 .tps-cart-drawer .tps-cart-reassurance {
   margin: 0 0 10px;
