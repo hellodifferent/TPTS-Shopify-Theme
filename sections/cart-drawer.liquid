@@ -118,6 +118,15 @@
               endif
             endif
           endif
+          if cross_sell_auto
+            for item in cart.items
+              assign product_family = item.product.title | split: ' ' | first
+              if product_family == 'Explorer'
+                assign explorer_in_cart = true
+                break
+              endif
+            endfor
+          endif
         -%}
         {%- if cross_sell_product_list or cross_sell_auto -%}
           <div class="cart-item-upsells">
@@ -177,7 +186,7 @@
                   </ul>
                 </div>
               </carousel-slider>
-              {%- if cross_sell_auto and cart.items.first.product.title contains 'Explorer Soft Play' -%}
+              {%- if explorer_in_cart -%}
                 {%- assign priority_handles = 'mini-play-blocks-pastel,foldable-ball-pit-white' | split: ',' -%}
                 <template data-priority-recommendations>
                   {%- for handle in priority_handles -%}
@@ -204,9 +213,11 @@
 
       <div data-merge="footer">
         {% if cart.items != empty %}
-          {%- if cart.cart_level_discount_applications != blank -%}
-            <ul class="cart-discount-list">
-              {%- for discount_application in cart.cart_level_discount_applications -%}
+          {%- capture other_cart_discounts -%}
+            {%- for discount_application in cart.cart_level_discount_applications -%}
+              {%- if settings.show_extra_play_cart_offer and localization.country.iso_code == 'AU' and cart.currency.iso_code == 'AUD' and discount_application.title == 'Extra $25 off $450+' -%}
+                {%- continue -%}
+              {%- endif -%}
                 <li class="cart-discount cart-discount--inline">
                   <span class="cart-discount__label">
                       <span class="cart-discount__icon">{% render 'icon-label' %}</span>
@@ -214,8 +225,10 @@
                   </span>
                   <span class="cart-discount__amount theme-money">{{ discount_application.total_allocated_amount | money }}</span>
                 </li>
-              {%- endfor -%}
-            </ul>
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- if other_cart_discounts != blank -%}
+            <ul class="cart-discount-list">{{ other_cart_discounts }}</ul>
           {%- endif -%}
           {%- liquid
             assign original_cart_total = cart.original_total_price

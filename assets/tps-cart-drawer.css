@@ -196,13 +196,8 @@
 
 .tps-cart-quick-add { text-align: center; }
 
-body:has(.tps-cart-drawer[open]) #gorgias-chat-container,
-body:has(.tps-cart-drawer[open]) #gorgias-chat-container iframe,
-body:has(.tps-cart-drawer[open]) iframe[id^="gorgias-chat"],
-body:has(.tps-cart-drawer[open]) iframe[title="Gorgias Chat"],
-body:has(.tps-cart-drawer[open]) iframe[src*="gorgias.chat"] {
-  visibility: hidden !important;
-  pointer-events: none !important;
+body:has(.tps-cart-drawer[open]) #gorgias-chat-container {
+  display: none !important;
 }
 
 @media (max-width: 767px) {
