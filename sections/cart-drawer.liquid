@@ -284,7 +284,7 @@
               </div>
             </div>
           {%- endif -%}
-          {%- render 'tps-cart-extra-play-offer', cart: cart, show_progress: true -%}
+          {%- render 'tps-cart-extra-play-offer', cart: cart, plain_text: true -%}
           <p class="tps-cart-reassurance">
             {%- if localization.country.iso_code == 'AU' and cart.currency.iso_code == 'AUD' and cart.total_price > 0 and cart.total_price <= 200000 -%}
               {{ 'cart.drawer.afterpay_and_returns' | t }}
