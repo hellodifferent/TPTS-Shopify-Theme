@@ -34,7 +34,7 @@ if (!customElements.get('tps-product-reviews')) {
         const rating = item.querySelector('.jm-star-rating, .jdgm-rev__rating');
         const score = Number(rating?.dataset.score || rating?.getAttribute('data-score') || rating?.getAttribute('aria-label')?.match(/[\d.]+/)?.[0]);
         return { item, text: body?.textContent.trim(), author: author?.textContent.trim(), score };
-      }).filter(review => review.text && review.author && review.score >= 4).sort((a, b) => Number(b.text.length >= 70) - Number(a.text.length >= 70));
+      }).filter(review => review.text && review.author && review.score >= 4);
       const seenMedia = new Set();
       const media = [...this.source.querySelectorAll('.jm-media-grid__item, .jdgm-gallery__thumbnail-link')].map(item => ({ item, img: item.querySelector('img') })).filter(entry => {
         const src = entry.img?.getAttribute('src');
@@ -49,9 +49,17 @@ if (!customElements.get('tps-product-reviews')) {
       if (signature === this.signature || this.interacted) return;
       this.signature = signature;
       const cards = [];
-      const pairs = Math.min(Math.floor(limit / 2), reviews.length, media.length);
-      for (let index = 0; index < pairs; index++) {
-        cards.push(this.quoteCard(reviews[index]), this.mediaCard(media[index]));
+      let reviewIndex = 0;
+      let mediaIndex = 0;
+      while (cards.length < limit && (reviewIndex < reviews.length || mediaIndex < media.length)) {
+        const showPhoto = (cards.length + 1) % 3 === 0 || reviewIndex >= reviews.length;
+        if (showPhoto && mediaIndex < media.length) {
+          cards.push(this.mediaCard(media[mediaIndex++]));
+        } else if (reviewIndex < reviews.length) {
+          cards.push(this.quoteCard(reviews[reviewIndex++]));
+        } else {
+          break;
+        }
       }
       if (!cards.length) return;
       this.track.replaceChildren(...cards);
