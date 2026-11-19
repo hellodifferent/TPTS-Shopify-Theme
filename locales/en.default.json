@@ -536,6 +536,9 @@
     "checkout": {
       "shop_policies": {
         "refund_policy": "Return Policy"
+      },
+      "alternative_payment_method_banner": {
+        "express_checkout": "⭐⭐⭐⭐⭐ Rated 4.9/5 by over 496+ satisfied customers"
       }
     }
   },
