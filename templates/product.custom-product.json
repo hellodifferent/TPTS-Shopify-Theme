@@ -135,6 +135,31 @@
             "returns_url": ""
           }
         },
+        "judge_me_reviews_review_snippet_widget_aJajHM": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_snippet_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "reviews_selection": "current_product",
+            "products": [],
+            "filter_pinned": false,
+            "filter_featured": false,
+            "filter_custom_tags": "",
+            "min_star_rating": "4",
+            "show_review_media": true,
+            "max_reviews": 5,
+            "review_length": "small",
+            "text_size": "small",
+            "max_width": 1100,
+            "max_image_size": "small",
+            "arrows_visibility": "hidden_on_mobile",
+            "transition_speed": 7,
+            "corner_styling": "round",
+            "text_color": "#3c3a38",
+            "card_color": "#ffffff",
+            "stars_color": "#d2bca6",
+            "arrows_color": "#e5dfd8",
+            "arrows_background_color": ""
+          }
+        },
         "tps_product_benefits": {
           "type": "tps_product_benefits",
           "settings": {
@@ -262,31 +287,6 @@
           "disabled": true,
           "settings": {
             "show_in_quickbuy": false
-          }
-        },
-        "judge_me_reviews_review_snippet_widget_aJajHM": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_snippet_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "reviews_selection": "current_product",
-            "products": [],
-            "filter_pinned": false,
-            "filter_featured": false,
-            "filter_custom_tags": "",
-            "min_star_rating": "4",
-            "show_review_media": true,
-            "max_reviews": 5,
-            "review_length": "small",
-            "text_size": "small",
-            "max_width": 1100,
-            "max_image_size": "small",
-            "arrows_visibility": "hidden_on_mobile",
-            "transition_speed": 7,
-            "corner_styling": "round",
-            "text_color": "#3c3a38",
-            "card_color": "#ffffff",
-            "stars_color": "#d2bca6",
-            "arrows_color": "#e5dfd8",
-            "arrows_background_color": ""
           }
         },
         "loox_reviews_loox_snippets_widget_wdPRf7": {
@@ -495,6 +495,7 @@
         "tps_castle_stock_test",
         "buy_buttons_6Ukibb",
         "tps_delivery_links",
+        "judge_me_reviews_review_snippet_widget_aJajHM",
         "tps_product_benefits",
         "tps_benefits_step_slide",
         "tps_benefits_explorer",
@@ -506,7 +507,6 @@
         "tps_benefits_boucle_pit",
         "vendor",
         "divider",
-        "judge_me_reviews_review_snippet_widget_aJajHM",
         "loox_reviews_loox_snippets_widget_wdPRf7",
         "tps_social_media",
         "description",
