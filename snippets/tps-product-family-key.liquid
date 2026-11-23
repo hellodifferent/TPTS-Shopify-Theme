@@ -1,0 +1,13 @@
+{% doc %}
+  Returns a stable product-family key for discovery deduplication.
+  @param {product} product - Product to identify.
+{% enddoc %}
+{%- liquid
+  assign family = product.metafields.custom.product_family.value
+  if family.system.handle != blank
+    echo family.system.handle
+  else
+    assign family_title = product.title | replace: ' – ', ' - ' | replace: ' — ', ' - ' | split: ' - ' | first | split: ' + ' | first | downcase | replace: 'bouclé', 'boucle' | remove: 'foam ' | remove: ' soft play' | strip
+    echo family_title | handleize
+  endif
+-%}

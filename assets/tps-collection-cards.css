@@ -118,3 +118,13 @@
   font-weight: 400;
   opacity: .75;
 }
+
+
+  .tps-collection-discovery { margin-top: 48px; padding-top: 32px; border-top: 1px solid #eee9e2; }
+  .tps-collection-discovery__heading { max-width: 620px; margin: 0 auto 24px; text-align: center; }
+  .tps-collection-discovery__heading h2 { margin: 0 0 10px; font-size: clamp(26px, 2.5vw, 34px); line-height: 1.2; }
+  .tps-collection-discovery__heading p { margin: 0; font-size: 14px; line-height: 1.5; }
+  @media (max-width: 767px) {
+    .tps-collection-discovery { margin-top: 32px; padding-top: 24px; }
+    .tps-collection-discovery__heading { margin-bottom: 20px; }
+  }

@@ -1,0 +1,69 @@
+{% doc %}
+  Renders up to four fresh product families on small collection pages.
+  @param {collection} collection - Current filtered and paginated collection.
+  @param {section} section - Parent collection section.
+{% enddoc %}
+{%- liquid
+  assign excluded_ids = '|'
+  assign excluded_families = '|'
+  for shown_product in collection.products
+    assign excluded_ids = excluded_ids | append: shown_product.id | append: '|'
+    capture family_key
+      render 'tps-product-family-key', product: shown_product
+    endcapture
+    assign family_key = family_key | strip
+    assign excluded_families = excluded_families | append: family_key | append: '|'
+  endfor
+  assign chosen_collection = section.settings.discovery_collection | default: collections['favourites']
+  assign source_handles = chosen_collection.handle | append: ',favourites,new-arrivals' | split: ',' | uniq
+  assign discovery_count = 0
+-%}
+{%- capture discovery_cards -%}
+  {%- for source_handle in source_handles -%}
+    {%- assign source_collection = collections[source_handle] -%}
+    {%- for candidate in source_collection.products limit: 50 -%}
+      {%- liquid
+        if discovery_count >= 4
+          break
+        endif
+        unless candidate.available
+          continue
+        endunless
+        if candidate.gift_card
+          continue
+        endif
+        assign candidate_name = candidate.title | downcase
+        if candidate_name contains '+' and candidate_name contains 'balls'
+          continue
+        endif
+        assign id_token = '|' | append: candidate.id | append: '|'
+        capture family_key
+          render 'tps-product-family-key', product: candidate
+        endcapture
+        assign family_key = family_key | strip
+        assign family_token = '|' | append: family_key | append: '|'
+        if excluded_ids contains id_token or excluded_families contains family_token
+          continue
+        endif
+        assign card_id = section.id | append: '-discovery-' | append: candidate.id
+        render 'tps-collection-card', product: candidate, columns: 4, prioritised_loading: false, show_vendor: false, card_id: card_id, group_ball_pits: true
+        assign discovery_count = discovery_count | plus: 1
+        assign excluded_ids = excluded_ids | append: candidate.id | append: '|'
+        assign excluded_families = excluded_families | append: family_key | append: '|'
+      -%}
+    {%- endfor -%}
+    {%- if discovery_count >= 4 -%}{%- break -%}{%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if discovery_count > 0 -%}
+  <section class="tps-collection-discovery" aria-labelledby="CollectionDiscovery-{{ section.id }}" data-tps-discovery>
+    <header class="tps-collection-discovery__heading">
+      <h2 id="CollectionDiscovery-{{ section.id }}">{{ 'sections.collection.discovery_heading' | t }}</h2>
+      <p>{{ 'sections.collection.discovery_text' | t }}</p>
+    </header>
+    <playtime-favourites class="product-grid product-grid--per-row-4 product-grid--per-row-mob-2{% if discovery_count < 4 %} tps-collection-grid--centred{% endif %}">
+      {{ discovery_cards }}
+    </playtime-favourites>
+  </section>
+{%- endif -%}
+

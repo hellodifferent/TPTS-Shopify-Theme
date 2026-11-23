@@ -289,7 +289,7 @@
 
       <div class="filters-adjacent collection-listing playtime-favourites tps-collection-cards" data-ajax-container>
         {% if collection.products.size == 0 %}
-          {% render 'tps-collection-empty', collection: collection, section: section %}
+          {% render 'tps-collection-empty', collection: collection, section: section, hide_recovery: section.settings.enable_small_collection_discovery %}
         {% else %}
           <playtime-favourites class="product-grid product-grid--per-row-{{ section.settings.grid }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }}{% if paginate.items < 4 %} tps-collection-grid--centred{% endif %}">
             {%- liquid
@@ -337,6 +337,9 @@
             -%}
           </playtime-favourites>
         {% endif %}
+        {%- if section.settings.enable_small_collection_discovery and collection.products.size < 6 -%}
+          {%- render 'tps-collection-discovery', collection: collection, section: section -%}
+        {%- endif -%}
       </div>
     </filter-container>
   </div>
@@ -370,6 +373,23 @@
       "id": "empty_collection",
       "label": "Empty collection recommendations",
       "info": "Shows up to 12 products when no products match. Uses New Arrivals when left blank."
+    },
+    {
+      "type": "header",
+      "content": "Keep exploring"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_small_collection_discovery",
+      "label": "Show suggestions when fewer than 6 cards",
+      "default": true,
+      "info": "Shows up to four available product families, excluding those already on this page. Replaces the larger empty-collection grid."
+    },
+    {
+      "type": "collection",
+      "id": "discovery_collection",
+      "label": "Recommendation collection",
+      "info": "Uses this collection first, then Shop All and New Arrivals to fill any gaps."
     },
     {
       "type": "header",

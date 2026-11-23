@@ -2,6 +2,7 @@
   Renders collection empty-state messaging and a New Arrivals recovery grid.
   @param {collection} collection - The current collection.
   @param {section} section - Collection section settings.
+  @param {boolean} [hide_recovery] - Use the compact discovery grid instead.
 {% enddoc %}
 {%- liquid
   assign recovery_collection = section.settings.empty_collection | default: collections['new-arrivals']
@@ -16,7 +17,7 @@
       <a class="btn btn--primary" href="{{ recovery_collection.url }}">{{ 'sections.collection.empty_view_arrivals' | t }}</a>
     {%- endunless -%}
   </div>
-  {%- if recovery_collection.products.size > 0 -%}
+  {%- if recovery_collection.products.size > 0 and hide_recovery != true -%}
     <section class="tps-collection-empty__arrivals" aria-label="{{ 'sections.collection.empty_view_arrivals' | t | escape }}">
       <playtime-favourites class="product-grid product-grid--per-row-{{ section.settings.grid }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }}">
         {%- for product in recovery_collection.products limit: 12 -%}
