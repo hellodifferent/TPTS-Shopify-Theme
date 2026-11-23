@@ -344,6 +344,7 @@ tps-gallery-video video::-webkit-media-controls-start-playback-button { display:
 /* Keep the sale deadline visually secondary to the product price. */
 .tps-product-sale-ends {
   display: inline-block;
+  transform: translateY(-4px);
   padding: 3px 7px;
   border-radius: 3px;
   background: #f7f1e9;
