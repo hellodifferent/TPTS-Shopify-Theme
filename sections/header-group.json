@@ -17,7 +17,7 @@
         "announcement_dmPENM": {
           "type": "announcement",
           "settings": {
-            "text": "Black Friday is here with up to 20% off",
+            "text": "Up to 20% off • Black Friday ends Monday!",
             "show_countdown": false,
             "hide_on_end": false,
             "end_date": "",
