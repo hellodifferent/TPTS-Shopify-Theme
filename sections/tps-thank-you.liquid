@@ -49,12 +49,16 @@
         <h2 id="thank-you-care-{{ section.id }}">{{ section.settings.care_heading | escape }}</h2>
         <div class="rte">{{ section.settings.care_text }}</div>
       </div>
-      <div class="tps-thank-you__care-media">
-        <video controls playsinline preload="metadata" aria-label="How to clean your eco-leather play pieces">
+      <tps-care-video class="tps-thank-you__care-media">
+        <video id="thank-you-care-video-{{ section.id }}" autoplay muted loop playsinline preload="metadata" aria-label="How to clean your eco-leather play pieces">
           <source src="{{ section.settings.care_video_url | escape }}#t=0.001" type="video/mp4">
           <a href="{{ section.settings.care_video_url | escape }}">Watch the cleaning video</a>
         </video>
-      </div>
+        <button type="button" class="tps-thank-you__video-toggle" aria-controls="thank-you-care-video-{{ section.id }}" aria-label="Pause cleaning video" data-pause-label="Pause cleaning video" data-play-label="Play cleaning video" hidden>
+          <svg data-pause-icon width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="2.5" height="10" rx=".5"/><rect x="9.5" y="3" width="2.5" height="10" rx=".5"/></svg>
+          <svg data-play-icon width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" hidden><path d="M5 3 13 8 5 13Z"/></svg>
+        </button>
+      </tps-care-video>
     </section>
   {%- endif -%}
 
@@ -92,8 +96,12 @@
   .tps-thank-you__care-copy .rte p { margin: 12px 0; }
   .tps-thank-you__care-copy .rte ul { padding-left: 20px; margin: 16px 0 0; }
   .tps-thank-you__care-copy .rte li + li { margin-top: 8px; }
-  .tps-thank-you__care-media { width: 100%; max-width: 250px; justify-self: center; }
+  .tps-thank-you__care-media { display: block; position: relative; width: 100%; max-width: 250px; justify-self: center; }
   .tps-thank-you__care-media video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: contain; background: #eeeae4; border-radius: 6px; }
+  .tps-thank-you__video-toggle { position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; min-height: 0; padding: 0; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .92); color: #634c3c; cursor: pointer; box-shadow: 0 1px 4px rgba(0, 0, 0, .08); transition: background-color .15s ease; }
+  .tps-thank-you__video-toggle:hover { background: #fff; }
+  .tps-thank-you__video-toggle:focus-visible { outline: 2px solid #634c3c; outline-offset: 3px; }
+  .tps-thank-you__video-toggle[hidden], .tps-thank-you__video-toggle svg[hidden] { display: none; }
   @media (max-width: 767px) {
     .tps-thank-you__care { grid-template-columns: minmax(0, 1fr); }
   }
@@ -102,6 +110,41 @@
   .tps-thank-you__code { white-space: nowrap; color: #634c3c; }
   .tps-thank-you__reviews { margin-top: 32px; scroll-margin-top: calc(var(--header-group-height, 80px) + 24px); }
 {% endstylesheet %}
+
+{% javascript %}
+  if (!customElements.get('tps-care-video')) {
+    customElements.define('tps-care-video', class extends HTMLElement {
+      connectedCallback() {
+        this.controller?.abort();
+        this.controller = new AbortController();
+        const { signal } = this.controller;
+        const video = this.querySelector('video');
+        const button = this.querySelector('button');
+        if (!video || !button) return;
+        const update = () => {
+          const paused = video.paused;
+          button.setAttribute('aria-label', paused ? button.dataset.playLabel : button.dataset.pauseLabel);
+          button.querySelector('[data-pause-icon]').hidden = paused;
+          button.querySelector('[data-play-icon]').hidden = !paused;
+        };
+        video.muted = true;
+        button.hidden = false;
+        video.addEventListener('play', update, { signal });
+        video.addEventListener('pause', update, { signal });
+        button.addEventListener('click', () => {
+          if (video.paused) video.play().catch(update);
+          else video.pause();
+        }, { signal });
+        update();
+        video.play().catch(update);
+      }
+      disconnectedCallback() {
+        this.controller?.abort();
+        this.querySelector('video')?.pause();
+      }
+    });
+  }
+{% endjavascript %}
 
 {% schema %}
 {
