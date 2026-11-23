@@ -341,6 +341,7 @@ tps-gallery-video video::-webkit-media-controls-start-playback-button { display:
 .product-form .tps-product-edition--castle { border: 0; background: #fae8ed; color: #765462; }
 .product-form .tps-product-edition--new-arrival { border-color: #e8e8e8; background: #fff; color: #666; }
 
+/* Keep the sale deadline visually secondary to the product price. */
 .tps-product-sale-ends {
   display: inline-block;
   padding: 3px 7px;
