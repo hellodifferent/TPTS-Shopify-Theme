@@ -314,11 +314,11 @@
       assign afterpay_amount = afterpay_variant.price | divided_by: 100.0
       assign afterpay_sku = afterpay_variant.sku | default: afterpay_variant.id
       assign afterpay_categories = product.collections | map: 'title' | join: ','
-      assign castle_weekend_offer = false
-      assign castle_weekend_offer_ends = '2026-11-17T00:00:00+11:00' | date: '%s' | plus: 0
+      assign sale_ends_label = ''
+      assign sale_message_ends = '2026-12-01T00:00:00+11:00' | date: '%s' | plus: 0
       assign now_seconds = 'now' | date: '%s' | plus: 0
-      if request.page_type == 'product' and tps_edition_title contains 'castle' and now_seconds < castle_weekend_offer_ends
-        assign castle_weekend_offer = true
+      if request.page_type == 'product' and afterpay_variant.compare_at_price > afterpay_variant.price and now_seconds < sale_message_ends
+        assign sale_ends_label = 'tps_product_badges.sale_ends' | t
       endif
     -%}
 
@@ -331,7 +331,7 @@
       show_currency_code: settings.product_currency_code_enabled,
       for_variant_picker: true,
       current_variant: current_variant,
-      castle_weekend_offer: castle_weekend_offer
+      sale_ends_label: sale_ends_label
     %}
 
     <square-placement
