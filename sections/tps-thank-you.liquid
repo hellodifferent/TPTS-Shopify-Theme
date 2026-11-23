@@ -42,6 +42,22 @@
     {%- endif -%}
   </div>
 
+  {%- if section.settings.show_care_video and section.settings.care_video_url != blank -%}
+    <section class="tps-thank-you__care" aria-labelledby="thank-you-care-{{ section.id }}">
+      <div class="tps-thank-you__care-copy">
+        <p class="tps-thank-you__eyebrow">A little care, lots more play</p>
+        <h2 id="thank-you-care-{{ section.id }}">{{ section.settings.care_heading | escape }}</h2>
+        <div class="rte">{{ section.settings.care_text }}</div>
+      </div>
+      <div class="tps-thank-you__care-media">
+        <video controls playsinline preload="metadata" aria-label="How to clean your eco-leather play pieces">
+          <source src="{{ section.settings.care_video_url | escape }}#t=0.001" type="video/mp4">
+          <a href="{{ section.settings.care_video_url | escape }}">Watch the cleaning video</a>
+        </video>
+      </div>
+    </section>
+  {%- endif -%}
+
   {%- if section.settings.show_offer and offer_code != blank -%}
     <div class="tps-thank-you__offer">
       <div>
@@ -70,6 +86,17 @@
   .tps-thank-you__card p { margin: 0 0 12px; }
   .tps-thank-you__card a { text-decoration: underline; text-underline-offset: 3px; }
   .tps-thank-you__links { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 0; margin: 0; list-style: none; }
+  .tps-thank-you__care { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 280px); align-items: center; gap: clamp(24px, 5vw, 64px); margin-block: 24px; padding: clamp(24px, 4vw, 40px); background: #f7f5f1; border-radius: 8px; }
+  .tps-thank-you__eyebrow { margin: 0 0 10px; font-size: 12px; letter-spacing: .04em; color: #716a63; }
+  .tps-thank-you__care-copy .rte { max-width: 52ch; }
+  .tps-thank-you__care-copy .rte p { margin: 12px 0; }
+  .tps-thank-you__care-copy .rte ul { padding-left: 20px; margin: 16px 0 0; }
+  .tps-thank-you__care-copy .rte li + li { margin-top: 8px; }
+  .tps-thank-you__care-media { width: 100%; max-width: 250px; justify-self: center; }
+  .tps-thank-you__care-media video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: contain; background: #eeeae4; border-radius: 6px; }
+  @media (max-width: 767px) {
+    .tps-thank-you__care { grid-template-columns: minmax(0, 1fr); }
+  }
   .tps-thank-you__offer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: clamp(20px, 4vw, 36px); background: #f7f5f1; border-radius: 8px; }
   .tps-thank-you__offer p { margin: 0; }
   .tps-thank-you__code { white-space: nowrap; color: #634c3c; }
@@ -79,13 +106,66 @@
 {% schema %}
 {
   "name": "TPS Thank you",
-  "enabled_on": { "templates": ["page"] },
+  "enabled_on": {
+    "templates": [
+      "page"
+    ]
+  },
   "settings": [
-    { "type": "url", "id": "review_url", "label": "Judge.me review link" },
-    { "type": "checkbox", "id": "show_offer", "label": "Show free-shipping offer", "default": true },
-    { "type": "text", "id": "offer_code", "label": "Free-shipping code", "default": "PLAYTIMEONUS" },
-    { "type": "collection", "id": "offer_collection", "label": "Offer button collection" }
+    {
+      "type": "url",
+      "id": "review_url",
+      "label": "Judge.me review link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_offer",
+      "label": "Show free-shipping offer",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "offer_code",
+      "label": "Free-shipping code",
+      "default": "PLAYTIMEONUS"
+    },
+    {
+      "type": "collection",
+      "id": "offer_collection",
+      "label": "Offer button collection"
+    },
+    {
+      "type": "header",
+      "content": "Eco-leather care"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_care_video",
+      "label": "Show eco-leather care section",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "care_video_url",
+      "label": "Cleaning video MP4 URL"
+    },
+    {
+      "type": "text",
+      "id": "care_heading",
+      "label": "Care heading",
+      "default": "Keeping your eco-leather pieces clean"
+    },
+    {
+      "type": "richtext",
+      "id": "care_text",
+      "label": "Care guidance",
+      "default": "<p>For our eco-leather play pieces, a quick wipe helps keep them ready for the next adventure. Watch our short cleaning guide below.</p><ul><li>Wipe with a soft, damp cloth.</li><li>Avoid harsh chemicals and abrasive cleaners.</li><li>Allow the surface to dry completely before play.</li></ul>"
+    }
   ],
-  "blocks": [{ "type": "@app" }]
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
 }
 {% endschema %}
