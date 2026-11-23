@@ -5,6 +5,8 @@
       this.abort = new AbortController();
       this.video = this.querySelector('video');
       if (!this.video) return;
+      this.gallery = this.closest('media-gallery');
+      this.slide = this.closest('.slider__item');
       this.video.muted = true;
       this.video.defaultMuted = true;
       this.mobile = matchMedia('(max-width: 767.98px)');
@@ -12,6 +14,9 @@
       this.video.addEventListener('playing', () => this.classList.add('is-playing'), options);
       this.mobile.addEventListener('change', () => this.observe(), options);
       document.addEventListener('visibilitychange', () => this.updatePlayback(), options);
+      this.gallery?.addEventListener('on:media-gallery:change', () => this.updatePlayback(), options);
+      this.activeObserver = new MutationObserver(() => this.updatePlayback());
+      if (this.slide) this.activeObserver.observe(this.slide, { attributes: true, attributeFilter: ['class', 'hidden'] });
       this.observe();
     }
     observe() {
@@ -38,7 +43,7 @@
       this.loader?.disconnect();
     }
     updatePlayback() {
-      if (this.mobile.matches && this.visible && !document.hidden) {
+      if (this.mobile.matches && this.visible && !document.hidden && !this.slide?.classList.contains('is-active') && !this.slide?.hidden) {
         this.load();
         const playback = this.video.play();
         if (playback) playback.catch(() => {});
@@ -50,6 +55,7 @@
       this.video?.pause();
       this.loader?.disconnect();
       this.visibility?.disconnect();
+      this.activeObserver?.disconnect();
       this.abort?.abort();
     }
   }

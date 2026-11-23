@@ -55,7 +55,7 @@
             {% render 'image' with media.preview_image, size_cols_desktop: 2, custom_aspect_ratio: image_aspect_ratio, loading: loading %}
           </div>
           <template>
-            {{ media | video_tag: playsinline: true, muted: true, loop: true, controls: false, preload: 'none', loading: 'eager' }}
+            {{ media | video_tag: autoplay: true, playsinline: true, muted: true, loop: true, controls: false, preload: 'metadata' }}
           </template>
         </tps-gallery-video>
       {%- else -%}

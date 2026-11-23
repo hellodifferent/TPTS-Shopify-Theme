@@ -2765,9 +2765,9 @@ const MediaGallery = class extends HTMLElement {
       if (deferredMedia) deferredMedia.loadContent(true);
 
       // video tag
-      const playableMedia = mediaEl.querySelector('video:not(tps-gallery-video video)');
-      if (playableMedia) {
-        playableMedia.play();
+      const playableMedia = mediaEl.querySelector('video');
+      if (playableMedia && !playableMedia.closest('tps-gallery-video')) {
+        playableMedia.play().catch(() => {});
       }
 
       // models require interaction
