@@ -1,0 +1,89 @@
+{%- liquid
+  assign show_care = section.settings.show_care_video
+  if section.settings.eco_leather_only
+    assign show_care = false
+    assign product_name = product.title | downcase
+    capture material_text
+      echo product.description
+      echo product.metafields.custom._details | metafield_tag
+      echo product.metafields.custom._care_instructions | metafield_tag
+    endcapture
+    assign material_text = material_text | strip_html | downcase
+    if material_text contains 'eco leather' or material_text contains 'eco-leather' or material_text contains 'vegan leather' or material_text contains 'pu leather'
+      assign show_care = section.settings.show_care_video
+    elsif product_name contains 'explorer' or product_name contains 'step & slide' or product_name contains 'wave & climb' or product_name contains 'mini play blocks' or product_name contains 'castle' or product_name contains 'soft play ball pit' or product_name contains 'foldable ball pit'
+      assign show_care = section.settings.show_care_video
+    endif
+    if product_name contains 'boucle' or product_name contains 'bouclé'
+      assign show_care = false
+    endif
+  endif
+-%}
+{%- if show_care and section.settings.care_video_url != blank -%}
+  <div class="tps-product-care container" style="--care-padding: {{ section.settings.padding_vertical }}px;">
+    {%- render 'tps-eco-care', care_settings: section.settings, care_id: section.id -%}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .tps-product-care { padding-block: var(--care-padding, 24px); }
+  .tps-product-care .tps-eco-care { max-width: 1120px; margin: 0 auto; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "TPS Eco-leather care",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_care_video",
+      "label": "Show eco-leather care section",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "care_video_url",
+      "label": "Cleaning video MP4 URL"
+    },
+    {
+      "type": "text",
+      "id": "care_heading",
+      "label": "Care heading",
+      "default": "Keeping your eco-leather pieces clean"
+    },
+    {
+      "type": "richtext",
+      "id": "care_text",
+      "label": "Care guidance",
+      "default": "<p>For our eco-leather play pieces, a quick wipe helps keep them ready for the next adventure. Watch our short cleaning guide below.</p><ul><li>Wipe with a soft, damp cloth.</li><li>Avoid harsh chemicals and abrasive cleaners.</li><li>Allow the surface to dry completely before play.</li></ul>"
+    },
+    {
+      "type": "checkbox",
+      "id": "eco_leather_only",
+      "label": "Only show for eco-leather products",
+      "default": true,
+      "info": "Uses product material and soft-play range names. Hidden on bouclé products."
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "TPS Eco-leather care"
+    }
+  ]
+}
+{% endschema %}

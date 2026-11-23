@@ -1,0 +1,77 @@
+{% doc %}
+  Renders the eco-leather care guide and video.
+  @param {object} care_settings - Care heading, text and video settings.
+  @param {string} care_id - Unique section identifier.
+{% enddoc %}
+
+<section class="tps-eco-care" aria-labelledby="eco-care-{{ care_id }}">
+      <div class="tps-eco-care__copy">
+        <p class="tps-eco-care__eyebrow">A little care, lots more play</p>
+        <h2 id="eco-care-{{ care_id }}">{{ care_settings.care_heading | escape }}</h2>
+        <div class="rte">{{ care_settings.care_text }}</div>
+      </div>
+      <tps-care-video class="tps-eco-care__media">
+        <video id="eco-care-video-{{ care_id }}" autoplay muted loop playsinline preload="metadata" aria-label="How to clean your eco-leather play pieces">
+          <source src="{{ care_settings.care_video_url | escape }}#t=0.001" type="video/mp4">
+          <a href="{{ care_settings.care_video_url | escape }}">Watch the cleaning video</a>
+        </video>
+        <button type="button" class="tps-eco-care__toggle" aria-controls="eco-care-video-{{ care_id }}" aria-label="Pause cleaning video" data-pause-label="Pause cleaning video" data-play-label="Play cleaning video" hidden>
+          <svg data-pause-icon width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="2.5" height="10" rx=".5"/><rect x="9.5" y="3" width="2.5" height="10" rx=".5"/></svg>
+          <svg data-play-icon width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" hidden><path d="M5 3 13 8 5 13Z"/></svg>
+        </button>
+      </tps-care-video>
+    </section>
+
+{% stylesheet %}
+  .tps-eco-care { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 280px); align-items: center; gap: clamp(24px, 5vw, 64px); margin-block: 24px; padding: clamp(24px, 4vw, 40px); background: #f7f5f1; border-radius: 8px; }
+  .tps-eco-care__eyebrow { margin: 0 0 10px; font-size: 12px; letter-spacing: .04em; color: #716a63; }
+  .tps-eco-care__copy .rte { max-width: 52ch; }
+  .tps-eco-care__copy .rte p { margin: 12px 0; }
+  .tps-eco-care__copy .rte ul { padding-left: 20px; margin: 16px 0 0; }
+  .tps-eco-care__copy .rte li + li { margin-top: 8px; }
+  .tps-eco-care__media { display: block; position: relative; width: 100%; max-width: 250px; justify-self: center; }
+  .tps-eco-care__media video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: contain; background: #eeeae4; border-radius: 6px; }
+  .tps-eco-care__toggle { position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; min-height: 0; padding: 0; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .92); color: #634c3c; cursor: pointer; box-shadow: 0 1px 4px rgba(0, 0, 0, .08); transition: background-color .15s ease; }
+  .tps-eco-care__toggle:hover { background: #fff; }
+  .tps-eco-care__toggle:focus-visible { outline: 2px solid #634c3c; outline-offset: 3px; }
+  .tps-eco-care__toggle[hidden], .tps-eco-care__toggle svg[hidden] { display: none; }
+  @media (max-width: 767px) {
+    .tps-eco-care { grid-template-columns: minmax(0, 1fr); }
+  }
+  .tps-eco-care h2 { margin: 0 0 8px; font-size: clamp(20px, 2vw, 24px); }
+{% endstylesheet %}
+
+{% javascript %}
+  if (!customElements.get('tps-care-video')) {
+    customElements.define('tps-care-video', class extends HTMLElement {
+      connectedCallback() {
+        this.controller?.abort();
+        this.controller = new AbortController();
+        const { signal } = this.controller;
+        const video = this.querySelector('video');
+        const button = this.querySelector('button');
+        if (!video || !button) return;
+        const update = () => {
+          const paused = video.paused;
+          button.setAttribute('aria-label', paused ? button.dataset.playLabel : button.dataset.pauseLabel);
+          button.querySelector('[data-pause-icon]').hidden = paused;
+          button.querySelector('[data-play-icon]').hidden = !paused;
+        };
+        video.muted = true;
+        button.hidden = false;
+        video.addEventListener('play', update, { signal });
+        video.addEventListener('pause', update, { signal });
+        button.addEventListener('click', () => {
+          if (video.paused) video.play().catch(update);
+          else video.pause();
+        }, { signal });
+        update();
+        video.play().catch(update);
+      }
+      disconnectedCallback() {
+        this.controller?.abort();
+        this.querySelector('video')?.pause();
+      }
+    });
+  }
+{% endjavascript %}

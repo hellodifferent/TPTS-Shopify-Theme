@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -899,10 +890,22 @@
         "show_space": true,
         "code": "<script>\nwindow.addEventListener('load', function() {\nvar _learnq = window._learnq || [];\nfunction addedToCart() {\n  fetch(`${window.location.origin}/cart.js`)\n  .then(res => res.clone().json().then(data => {\n    var cart = {\n      total_price: data.total_price/100,\n      $value: data.total_price/100,\n      total_discount: data.total_discount,\n      original_total_price: data.original_total_price/100,\n      items: data.items\n    }\n    if (item !== 'undefined') {\n      cart = Object.assign(cart, item)\n    }\n    if (klAjax) {\n        _learnq.push(['track', 'Added to Cart', cart]);\n        klAjax = false;\n      }\n  }))\n};\n(function (ns, fetch) {\n  ns.fetch = function() {\n    const response = fetch.apply(this, arguments);\n    response.then(res => {\n      if (`${window.location.origin}/cart/add.js`\n      \t.includes(res.url)) {\n        \taddedToCart()\n      }\n    });\n    return response\n  }\n}(window, window.fetch));\nvar klAjax = true;\nvar atcButtons = document.querySelectorAll(\"form[action*='/cart/add'] button[type='submit']\");\nfor (var i = 0; i < atcButtons.length; i++) {\n    atcButtons[i].addEventListener(\"click\", function() {\n      if (klAjax) {\n        _learnq.push(['track', 'Added to Cart', item]);\n        klAjax = false;\n      }\n    })\n}\n});\n</script>"
       }
+    },
+    "tps_eco_leather_care": {
+      "type": "tps-product-care",
+      "settings": {
+        "show_care_video": true,
+        "care_video_url": "https://cdn.shopify.com/videos/c/o/v/2cf6cd4de8f34fe7b0b7c5fadbfde043.mp4",
+        "care_heading": "Keeping your eco-leather pieces clean",
+        "care_text": "<p>For our eco-leather play pieces, a quick wipe helps keep them ready for the next adventure. Watch our short cleaning guide below.</p><ul><li>Wipe with a soft, damp cloth.</li><li>Avoid harsh chemicals and abrasive cleaners.</li><li>Allow the surface to dry completely before play.</li></ul>",
+        "eco_leather_only": true,
+        "padding_vertical": 24
+      }
     }
   },
   "order": [
     "main",
+    "tps_eco_leather_care",
     "product_template_product_list_zdCWFy",
     "review_testimonials_FE4FKe",
     "tps_customer_stories",
