@@ -11447,3 +11447,13 @@ body #omnisend-form-6ae7c282bad6e6584899f64e-teaser-close-btn.omnisend-form-6ae7
 @media (prefers-reduced-motion: reduce) {
   body #omnisend-form-6ae7c282bad6e6584899f64e-teaser-close-btn.omnisend-form-6ae7c282bad6e6584899f64e-rectangle-teaser-close-btn { transition: none; }
 }
+
+
+body button[id^="omnisend-form-"][id$="-teaser-close-btn"] {
+  background: transparent !important;
+}
+body button[id^="omnisend-form-"][id$="-teaser-close-btn"] svg[id$="-teaser-close-icon"] {
+  width: 8px !important;
+  height: 8px !important;
+  flex: 0 0 8px;
+}
