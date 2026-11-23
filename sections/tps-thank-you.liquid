@@ -12,18 +12,14 @@
 <section class="tps-thank-you container">
   <header class="tps-thank-you__hero">
     <h1>Thanks for shopping with The Playtime Store!</h1>
-    <p>We’re so glad to be part of their playtime. Here’s what to expect next and how to keep in touch.</p>
-  </header>
-
-  {%- if section.settings.show_offer and offer_code != blank -%}
-    <div class="tps-thank-you__offer">
-      <div>
-        <h2>Looking to add to your collection?</h2>
-        <p>Use <strong class="tps-thank-you__code">{{ offer_code | escape }}</strong> at checkout for free shipping on your next order.</p>
+    <p>We’re so glad to be part of their playtime.</p>
+    {%- if section.settings.show_offer and offer_code != blank -%}
+      <div class="tps-thank-you__offer">
+        <p>Looking to add to your collection? Your next delivery is on us. Use <strong class="tps-thank-you__code">{{ offer_code | escape }}</strong> at checkout for free shipping on your next order.</p>
+        <a class="btn btn--primary" href="{{ routes.root_url | append: '/discount/' | replace: '//', '/' }}{{ offer_code | url_encode }}?redirect={{ offer_url | url_encode }}">Shop with free shipping</a>
       </div>
-      <a class="btn btn--primary" href="{{ routes.root_url | append: '/discount/' | replace: '//', '/' }}{{ offer_code | url_encode }}?redirect={{ offer_url | url_encode }}">Shop with free shipping</a>
-    </div>
-  {%- endif -%}
+    {%- endif -%}
+  </header>
 
   <div class="tps-thank-you__cards">
     <div class="tps-thank-you__card">
@@ -76,9 +72,9 @@
   .tps-thank-you__card p { margin: 0 0 12px; }
   .tps-thank-you__card a { text-decoration: underline; text-underline-offset: 3px; }
   .tps-thank-you__links { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 0; margin: 0; list-style: none; }
-  .tps-thank-you__offer { margin-top: 20px; border: 1px solid #e5d7c8; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: clamp(20px, 4vw, 36px); background: #f1e7da; border-radius: 8px; }
-  .tps-thank-you__offer h2 { font-size: clamp(24px, 2.6vw, 30px); line-height: 1.2; }
-  .tps-thank-you__offer p { margin: 0; }
+  .tps-thank-you__offer { margin-top: 20px; }
+  .tps-thank-you__offer p { max-width: 58ch; margin: 0 auto; }
+  .tps-thank-you__offer .btn { margin-top: 24px; }
   .tps-thank-you__code { white-space: nowrap; color: #634c3c; }
   .tps-thank-you__reviews { margin-top: 32px; scroll-margin-top: calc(var(--header-group-height, 80px) + 24px); }
 {% endstylesheet %}
