@@ -1,6 +1,8 @@
 {%- liquid
   assign hero_heading = section.settings.heading | default: collection.title
   assign hero_offer = section.settings.description
+  assign sale_deadline = '2026-12-01T00:00:00+11:00' | date: '%s' | plus: 0
+  assign now_seconds = 'now' | date: '%s' | plus: 0
 -%}
 <tps-sale-hero class="tps-sale-hero" style="--sale-hero-bg: {{ section.settings.background }};">
   <div class="container tps-sale-hero__inner">
@@ -9,6 +11,9 @@
       <a href="{{ pages.reviews.url | default: '/pages/reviews' }}" data-sale-read-reviews></a>
     </p>
     <div class="rte">{{ hero_offer | replace: 'with free shipping on orders over $250.', 'with<br>free shipping on orders over $250.' }}</div>
+    {%- if now_seconds < sale_deadline -%}
+      <p class="tps-sale-hero__deadline">{{ 'tps_product_badges.sale_ends' | t }}</p>
+    {%- endif -%}
     <a class="btn" href="#black-friday-products" data-sale-shop>{{ section.settings.button_text | escape }}</a>
   </div>
   <div data-sale-review-source hidden aria-hidden="true">
@@ -25,6 +30,17 @@
   .tps-sale-hero__inner h1 { margin: 0 0 12px; font-size: clamp(32px, 4vw, 58px); line-height: 1.1; }
   .tps-sale-hero__inner .rte p:last-child { margin-bottom: 0; }
   .tps-sale-hero__inner .btn { margin-top: 18px; }
+  .tps-sale-hero__deadline {
+    display: table;
+    margin: 12px auto 0;
+    padding: 4px 9px;
+    border-radius: 3px;
+    background: #f7f1e9;
+    color: #6a5b50;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
   .tps-sale-hero__rating { margin: 0 0 14px; font-size: 13px; }
   .tps-sale-hero__rating a { color: inherit; }
   .tps-sale-hero__rating a:hover { text-decoration: underline; text-underline-offset: 3px; }
