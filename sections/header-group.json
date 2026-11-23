@@ -63,6 +63,22 @@
             "text_color": "#ffffff"
           }
         },
+        "announcement_eYNEay": {
+          "type": "announcement",
+          "settings": {
+            "text": "Black Friday Sale ends Monday 30 November",
+            "show_countdown": false,
+            "hide_on_end": false,
+            "end_date": "",
+            "end_time": "",
+            "number_font": "base",
+            "countdown_separator": "box",
+            "use_custom_colors": false,
+            "bg_color": "#4a4a4a",
+            "bg_gradient": "",
+            "text_color": "#ffffff"
+          }
+        },
         "announcement_8LKewf": {
           "type": "announcement",
           "settings": {
@@ -152,6 +168,7 @@
         "announcement_dmPENM",
         "announcement_EVkaih",
         "announcement_nXPLAQ",
+        "announcement_eYNEay",
         "announcement_8LKewf",
         "announcement_M3rrAb",
         "announcement_VnYXGq",
