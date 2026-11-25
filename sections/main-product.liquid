@@ -664,6 +664,12 @@
 
                 {% render 'playtime-pack-selector', product: product, form_id: product_form_id, exclude_mini: true %}
 
+                <div class="tps-low-stock" data-dynamic-variant-content="{{ block.id }}-low-stock" role="status" aria-live="polite" aria-atomic="true">
+                  {%- if current_variant.available and current_variant.inventory_management != blank and current_variant.inventory_policy == 'deny' and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity < 5 -%}
+                    <span class="tps-low-stock__tag">{{ 'products.inventory.only_x_remaining' | t: quantity: current_variant.inventory_quantity }}</span>
+                  {%- endif -%}
+                </div>
+
                 <div class="quantity-submit-row input-row {% if enable_dynamic_payment_button %}has-spb{% endif %}">
                   {% if block.settings.show_quantity_selector %}
                     <label class="label" for="quantity">{{ 'products.product.quantity' | t }}</label>

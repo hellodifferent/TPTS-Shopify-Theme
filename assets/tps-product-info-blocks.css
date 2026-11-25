@@ -354,3 +354,7 @@ tps-gallery-video video::-webkit-media-controls-start-playback-button { display:
   font-weight: 400;
   line-height: 1.4;
 }
+
+.tps-low-stock:empty { display: none; }
+.tps-low-stock:has(.tps-low-stock__tag) { margin: 0 0 14px; }
+.tps-low-stock__tag { display: inline-flex; align-items: center; padding: 5px 9px; border-radius: 3px; background: #f7f1e9; color: #796451; font-size: 12px; font-weight: 400; line-height: 1.4; }
