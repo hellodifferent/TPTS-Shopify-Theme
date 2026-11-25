@@ -10,6 +10,19 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ lang_dir }}">
 <head>
+  {%- unless request.design_mode -%}
+    <script>
+      (() => {
+        const current = new URL(window.location.href);
+        const matches = (key, value) => current.searchParams.get(key)?.trim().toLowerCase() === value;
+        if (!matches('utm_source', 'packaging') || !matches('utm_medium', 'qr') || !matches('utm_campaign', 'thank_you_card')) return;
+        if (/\/pages\/thank-you\/?$/.test(current.pathname)) return;
+        const destination = new URL({{ routes.root_url | append: '/pages/thank-you' | replace: '//', '/' | json }}, current.origin);
+        destination.search = current.search;
+        window.location.replace(destination.href);
+      })();
+    </script>
+  {%- endunless -%}
   {%- render 'doc-head-core' -%}
   {%- render 'doc-head-social' -%}
 
